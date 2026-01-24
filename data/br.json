@@ -1,0 +1,34 @@
+{
+  "default": {
+    "name": "Mặc định",
+    "file": "default.png",
+    "price": 0,
+    "rarity": "common",
+    "color": "#2e2e2e",
+    "description": "Một nền cơ bản, phù hợp cho tất cả mọi người."
+  },
+  "forest": {
+    "name": "Khu rừng",
+    "file": "forest.png",
+    "price": 500,
+    "rarity": "rare",
+    "color": "#2e7d32",
+    "description": "Không gian xanh mát, phù hợp hệ Mộc."
+  },
+  "lava": {
+    "name": "Dung nham",
+    "file": "lava.png",
+    "price": 1000,
+    "rarity": "epic",
+    "color": "#b71c1c",
+    "description": "Nền dung nham rực lửa, phù hợp hệ Hỏa."
+  },
+  "ocean": {
+    "name": "Đại dương",
+    "file": "ocean.png",
+    "price": 800,
+    "rarity": "rare",
+    "color": "#1565c0",
+    "description": "Nền biển xanh sâu thẳm, phù hợp hệ Thủy."
+  }
+}

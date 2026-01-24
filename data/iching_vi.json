@@ -1,0 +1,1986 @@
+[
+  {
+    "no": 1,
+    "symbol": "䷀",
+    "han": "",
+    "pinyin": "",
+    "vn": "Càn trên Càn",
+    "upper": "Càn",
+    "lower": "Càn",
+    "tier7": "Đại Cát",
+    "judgment": "Trời trên Trời: thuận lợi; lấy đức kiện – kiện mà xử việc.",
+    "image": "Trời ở trên Trời: quân tử kiện để kiện đúng thời.",
+    "keywords": [],
+    "do": [
+      "chủ động lãnh đạo",
+      "đặt tiêu chuẩn",
+      "quyết sớm việc chính"
+    ],
+    "dont": [
+      "tự mãn",
+      "ép người",
+      "vội vàng"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Vàng kim",
+    "directionHint": "Tây Bắc"
+  },
+  {
+    "no": 2,
+    "symbol": "䷁",
+    "han": "",
+    "pinyin": "",
+    "vn": "Khôn trên Khôn",
+    "upper": "Khôn",
+    "lower": "Khôn",
+    "tier7": "Cát",
+    "judgment": "Đất trên Đất: thuận lợi; lấy đức nhu – nhu mà xử việc.",
+    "image": "Đất ở trên Đất: quân tử nhu để nhu đúng thời.",
+    "keywords": [],
+    "do": [
+      "xây nền tảng",
+      "tiếp nhận góp ý",
+      "bồi dưỡng đội ngũ"
+    ],
+    "dont": [
+      "do dự kéo dài",
+      "chiều theo mọi phía",
+      "thiếu lập trường"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Nâu đất",
+    "directionHint": "Tây Nam"
+  },
+  {
+    "no": 3,
+    "symbol": "䷂",
+    "han": "",
+    "pinyin": "",
+    "vn": "Khảm trên Chấn",
+    "upper": "Khảm",
+    "lower": "Chấn",
+    "tier7": "Bình",
+    "judgment": "Nước trên Sấm: cân bằng; lấy đức hiểm – động mà xử việc.",
+    "image": "Nước ở trên Sấm: quân tử hiểm để động đúng thời.",
+    "keywords": [],
+    "do": [
+      "đánh giá rủi ro",
+      "lập phương án dự phòng",
+      "thu thập chứng cứ"
+    ],
+    "dont": [
+      "mạo hiểm mù quáng",
+      "giấu thông tin",
+      "ký kết vội"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Đen huyền",
+    "directionHint": "Bắc"
+  },
+  {
+    "no": 4,
+    "symbol": "䷃",
+    "han": "",
+    "pinyin": "",
+    "vn": "Cấn trên Khảm",
+    "upper": "Cấn",
+    "lower": "Khảm",
+    "tier7": "Bình",
+    "judgment": "Núi trên Nước: cân bằng; lấy đức chỉ – hiểm mà xử việc.",
+    "image": "Núi ở trên Nước: quân tử chỉ để hiểm đúng thời.",
+    "keywords": [],
+    "do": [
+      "dừng để quan sát",
+      "đặt giới hạn",
+      "ôn luyện căn bản"
+    ],
+    "dont": [
+      "cố chấp bất động",
+      "trì hoãn vô hạn",
+      "đóng cửa thông tin"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Nâu đất",
+    "directionHint": "Đông Bắc"
+  },
+  {
+    "no": 5,
+    "symbol": "䷄",
+    "han": "",
+    "pinyin": "",
+    "vn": "Khảm trên Càn",
+    "upper": "Khảm",
+    "lower": "Càn",
+    "tier7": "Bình",
+    "judgment": "Nước trên Trời: cân bằng; lấy đức hiểm – kiện mà xử việc.",
+    "image": "Nước ở trên Trời: quân tử hiểm để kiện đúng thời.",
+    "keywords": [],
+    "do": [
+      "đánh giá rủi ro",
+      "lập phương án dự phòng",
+      "thu thập chứng cứ"
+    ],
+    "dont": [
+      "mạo hiểm mù quáng",
+      "giấu thông tin",
+      "ký kết vội"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Đen huyền",
+    "directionHint": "Bắc"
+  },
+  {
+    "no": 6,
+    "symbol": "䷅",
+    "han": "",
+    "pinyin": "",
+    "vn": "Càn trên Khảm",
+    "upper": "Càn",
+    "lower": "Khảm",
+    "tier7": "Hung",
+    "judgment": "Trời trên Nước: nhiều trở ngại; lấy đức kiện – hiểm mà xử việc.",
+    "image": "Trời ở trên Nước: quân tử kiện để hiểm đúng thời.",
+    "keywords": [],
+    "do": [
+      "chủ động lãnh đạo",
+      "đặt tiêu chuẩn",
+      "xem lại rủi ro trước khi quyết"
+    ],
+    "dont": [
+      "tự mãn",
+      "ép người",
+      "vội vàng"
+    ],
+    "luck": {
+      "career": "Trì hoãn quyết định lớn; củng cố hồ sơ.",
+      "wealth": "Giữ tiền mặt; tránh rủi ro pháp lý.",
+      "love": "Tránh tranh cãi khi nóng.",
+      "health": "Ngủ đủ; giảm căng thẳng."
+    },
+    "colorHint": "Vàng kim",
+    "directionHint": "Tây Bắc"
+  },
+  {
+    "no": 7,
+    "symbol": "䷆",
+    "han": "",
+    "pinyin": "",
+    "vn": "Khôn trên Khảm",
+    "upper": "Khôn",
+    "lower": "Khảm",
+    "tier7": "Cát",
+    "judgment": "Đất trên Nước: thuận lợi; lấy đức nhu – hiểm mà xử việc.",
+    "image": "Đất ở trên Nước: quân tử nhu để hiểm đúng thời.",
+    "keywords": [],
+    "do": [
+      "xây nền tảng",
+      "tiếp nhận góp ý",
+      "bồi dưỡng đội ngũ"
+    ],
+    "dont": [
+      "do dự kéo dài",
+      "chiều theo mọi phía",
+      "thiếu lập trường"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Nâu đất",
+    "directionHint": "Tây Nam"
+  },
+  {
+    "no": 8,
+    "symbol": "䷇",
+    "han": "",
+    "pinyin": "",
+    "vn": "Khảm trên Khôn",
+    "upper": "Khảm",
+    "lower": "Khôn",
+    "tier7": "Cát",
+    "judgment": "Nước trên Đất: thuận lợi; lấy đức hiểm – nhu mà xử việc.",
+    "image": "Nước ở trên Đất: quân tử hiểm để nhu đúng thời.",
+    "keywords": [],
+    "do": [
+      "đánh giá rủi ro",
+      "lập phương án dự phòng",
+      "thu thập chứng cứ"
+    ],
+    "dont": [
+      "mạo hiểm mù quáng",
+      "giấu thông tin",
+      "ký kết vội"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Đen huyền",
+    "directionHint": "Bắc"
+  },
+  {
+    "no": 9,
+    "symbol": "䷈",
+    "han": "",
+    "pinyin": "",
+    "vn": "Tốn trên Càn",
+    "upper": "Tốn",
+    "lower": "Càn",
+    "tier7": "Tiểu Cát",
+    "judgment": "Gió trên Trời: thuận lợi; lấy đức nhập – kiện mà xử việc.",
+    "image": "Gió ở trên Trời: quân tử nhập để kiện đúng thời.",
+    "keywords": [],
+    "do": [
+      "thương lượng mềm dẻo",
+      "thăm dò ý kiến",
+      "đi từng bước"
+    ],
+    "dont": [
+      "lòng vòng vô tận",
+      "gió chiều nào theo chiều ấy",
+      "nhún nhường quá mức"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Xanh lục",
+    "directionHint": "Đông Nam"
+  },
+  {
+    "no": 10,
+    "symbol": "䷉",
+    "han": "",
+    "pinyin": "",
+    "vn": "Càn trên Đoài",
+    "upper": "Càn",
+    "lower": "Đoài",
+    "tier7": "Tiểu Cát",
+    "judgment": "Trời trên Đầm: thuận lợi; lấy đức kiện – duyệt mà xử việc.",
+    "image": "Trời ở trên Đầm: quân tử kiện để duyệt đúng thời.",
+    "keywords": [],
+    "do": [
+      "chủ động lãnh đạo",
+      "đặt tiêu chuẩn",
+      "quyết sớm việc chính"
+    ],
+    "dont": [
+      "tự mãn",
+      "ép người",
+      "vội vàng"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Vàng kim",
+    "directionHint": "Tây Bắc"
+  },
+  {
+    "no": 11,
+    "symbol": "䷊",
+    "han": "",
+    "pinyin": "",
+    "vn": "Khôn trên Càn",
+    "upper": "Khôn",
+    "lower": "Càn",
+    "tier7": "Đại Cát",
+    "judgment": "Đất trên Trời: thuận lợi; lấy đức nhu – kiện mà xử việc.",
+    "image": "Đất ở trên Trời: quân tử nhu để kiện đúng thời.",
+    "keywords": [],
+    "do": [
+      "xây nền tảng",
+      "tiếp nhận góp ý",
+      "bồi dưỡng đội ngũ"
+    ],
+    "dont": [
+      "do dự kéo dài",
+      "chiều theo mọi phía",
+      "thiếu lập trường"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Nâu đất",
+    "directionHint": "Tây Nam"
+  },
+  {
+    "no": 12,
+    "symbol": "䷋",
+    "han": "",
+    "pinyin": "",
+    "vn": "Càn trên Khôn",
+    "upper": "Càn",
+    "lower": "Khôn",
+    "tier7": "Hung",
+    "judgment": "Trời trên Đất: nhiều trở ngại; lấy đức kiện – nhu mà xử việc.",
+    "image": "Trời ở trên Đất: quân tử kiện để nhu đúng thời.",
+    "keywords": [],
+    "do": [
+      "chủ động lãnh đạo",
+      "đặt tiêu chuẩn",
+      "xem lại rủi ro trước khi quyết"
+    ],
+    "dont": [
+      "tự mãn",
+      "ép người",
+      "vội vàng"
+    ],
+    "luck": {
+      "career": "Trì hoãn quyết định lớn; củng cố hồ sơ.",
+      "wealth": "Giữ tiền mặt; tránh rủi ro pháp lý.",
+      "love": "Tránh tranh cãi khi nóng.",
+      "health": "Ngủ đủ; giảm căng thẳng."
+    },
+    "colorHint": "Vàng kim",
+    "directionHint": "Tây Bắc"
+  },
+  {
+    "no": 13,
+    "symbol": "䷌",
+    "han": "",
+    "pinyin": "",
+    "vn": "Càn trên Ly",
+    "upper": "Càn",
+    "lower": "Ly",
+    "tier7": "Cát",
+    "judgment": "Trời trên Lửa: thuận lợi; lấy đức kiện – minh mà xử việc.",
+    "image": "Trời ở trên Lửa: quân tử kiện để minh đúng thời.",
+    "keywords": [],
+    "do": [
+      "chủ động lãnh đạo",
+      "đặt tiêu chuẩn",
+      "quyết sớm việc chính"
+    ],
+    "dont": [
+      "tự mãn",
+      "ép người",
+      "vội vàng"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Vàng kim",
+    "directionHint": "Tây Bắc"
+  },
+  {
+    "no": 14,
+    "symbol": "䷍",
+    "han": "",
+    "pinyin": "",
+    "vn": "Ly trên Càn",
+    "upper": "Ly",
+    "lower": "Càn",
+    "tier7": "Đại Cát",
+    "judgment": "Lửa trên Trời: thuận lợi; lấy đức minh – kiện mà xử việc.",
+    "image": "Lửa ở trên Trời: quân tử minh để kiện đúng thời.",
+    "keywords": [],
+    "do": [
+      "làm rõ thông tin",
+      "truyền đạt minh bạch",
+      "trình bày súc tích"
+    ],
+    "dont": [
+      "ngụy biện",
+      "khoe khoang",
+      "nói quá"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Đỏ son",
+    "directionHint": "Nam"
+  },
+  {
+    "no": 15,
+    "symbol": "䷎",
+    "han": "",
+    "pinyin": "",
+    "vn": "Khôn trên Cấn",
+    "upper": "Khôn",
+    "lower": "Cấn",
+    "tier7": "Bình",
+    "judgment": "Đất trên Núi: cân bằng; lấy đức nhu – chỉ mà xử việc.",
+    "image": "Đất ở trên Núi: quân tử nhu để chỉ đúng thời.",
+    "keywords": [],
+    "do": [
+      "xây nền tảng",
+      "tiếp nhận góp ý",
+      "bồi dưỡng đội ngũ"
+    ],
+    "dont": [
+      "do dự kéo dài",
+      "chiều theo mọi phía",
+      "thiếu lập trường"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Nâu đất",
+    "directionHint": "Tây Nam"
+  },
+  {
+    "no": 16,
+    "symbol": "䷏",
+    "han": "",
+    "pinyin": "",
+    "vn": "Chấn trên Khôn",
+    "upper": "Chấn",
+    "lower": "Khôn",
+    "tier7": "Cát",
+    "judgment": "Sấm trên Đất: thuận lợi; lấy đức động – nhu mà xử việc.",
+    "image": "Sấm ở trên Đất: quân tử động để nhu đúng thời.",
+    "keywords": [],
+    "do": [
+      "khởi động nhanh",
+      "thử nghiệm nhỏ",
+      "hành động dứt khoát"
+    ],
+    "dont": [
+      "manh động",
+      "leo thang xung đột",
+      "đốt cháy giai đoạn"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Xanh lục",
+    "directionHint": "Đông"
+  },
+  {
+    "no": 17,
+    "symbol": "䷐",
+    "han": "",
+    "pinyin": "",
+    "vn": "Đoài trên Chấn",
+    "upper": "Đoài",
+    "lower": "Chấn",
+    "tier7": "Cát",
+    "judgment": "Đầm trên Sấm: thuận lợi; lấy đức duyệt – động mà xử việc.",
+    "image": "Đầm ở trên Sấm: quân tử duyệt để động đúng thời.",
+    "keywords": [],
+    "do": [
+      "kết nối đội nhóm",
+      "chia sẻ niềm vui",
+      "họp ngắn gọn"
+    ],
+    "dont": [
+      "đùa quá trớn",
+      "hứa suông",
+      "tán gẫu phí thời gian"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Xám bạc",
+    "directionHint": "Tây"
+  },
+  {
+    "no": 18,
+    "symbol": "䷑",
+    "han": "",
+    "pinyin": "",
+    "vn": "Cấn trên Tốn",
+    "upper": "Cấn",
+    "lower": "Tốn",
+    "tier7": "Tiểu Hung",
+    "judgment": "Núi trên Gió: nhiều trở ngại; lấy đức chỉ – nhập mà xử việc.",
+    "image": "Núi ở trên Gió: quân tử chỉ để nhập đúng thời.",
+    "keywords": [],
+    "do": [
+      "dừng để quan sát",
+      "đặt giới hạn",
+      "ôn luyện căn bản"
+    ],
+    "dont": [
+      "cố chấp bất động",
+      "trì hoãn vô hạn",
+      "đóng cửa thông tin"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Nâu đất",
+    "directionHint": "Đông Bắc"
+  },
+  {
+    "no": 19,
+    "symbol": "䷒",
+    "han": "",
+    "pinyin": "",
+    "vn": "Khôn trên Đoài",
+    "upper": "Khôn",
+    "lower": "Đoài",
+    "tier7": "Cát",
+    "judgment": "Đất trên Đầm: thuận lợi; lấy đức nhu – duyệt mà xử việc.",
+    "image": "Đất ở trên Đầm: quân tử nhu để duyệt đúng thời.",
+    "keywords": [],
+    "do": [
+      "xây nền tảng",
+      "tiếp nhận góp ý",
+      "bồi dưỡng đội ngũ"
+    ],
+    "dont": [
+      "do dự kéo dài",
+      "chiều theo mọi phía",
+      "thiếu lập trường"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Nâu đất",
+    "directionHint": "Tây Nam"
+  },
+  {
+    "no": 20,
+    "symbol": "䷓",
+    "han": "",
+    "pinyin": "",
+    "vn": "Tốn trên Khôn",
+    "upper": "Tốn",
+    "lower": "Khôn",
+    "tier7": "Bình",
+    "judgment": "Gió trên Đất: cân bằng; lấy đức nhập – nhu mà xử việc.",
+    "image": "Gió ở trên Đất: quân tử nhập để nhu đúng thời.",
+    "keywords": [],
+    "do": [
+      "thương lượng mềm dẻo",
+      "thăm dò ý kiến",
+      "đi từng bước"
+    ],
+    "dont": [
+      "lòng vòng vô tận",
+      "gió chiều nào theo chiều ấy",
+      "nhún nhường quá mức"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Xanh lục",
+    "directionHint": "Đông Nam"
+  },
+  {
+    "no": 21,
+    "symbol": "䷔",
+    "han": "",
+    "pinyin": "",
+    "vn": "Ly trên Chấn",
+    "upper": "Ly",
+    "lower": "Chấn",
+    "tier7": "Cát",
+    "judgment": "Lửa trên Sấm: thuận lợi; lấy đức minh – động mà xử việc.",
+    "image": "Lửa ở trên Sấm: quân tử minh để động đúng thời.",
+    "keywords": [],
+    "do": [
+      "làm rõ thông tin",
+      "truyền đạt minh bạch",
+      "trình bày súc tích"
+    ],
+    "dont": [
+      "ngụy biện",
+      "khoe khoang",
+      "nói quá"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Đỏ son",
+    "directionHint": "Nam"
+  },
+  {
+    "no": 22,
+    "symbol": "䷕",
+    "han": "",
+    "pinyin": "",
+    "vn": "Cấn trên Ly",
+    "upper": "Cấn",
+    "lower": "Ly",
+    "tier7": "Tiểu Cát",
+    "judgment": "Núi trên Lửa: thuận lợi; lấy đức chỉ – minh mà xử việc.",
+    "image": "Núi ở trên Lửa: quân tử chỉ để minh đúng thời.",
+    "keywords": [],
+    "do": [
+      "dừng để quan sát",
+      "đặt giới hạn",
+      "ôn luyện căn bản"
+    ],
+    "dont": [
+      "cố chấp bất động",
+      "trì hoãn vô hạn",
+      "đóng cửa thông tin"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Nâu đất",
+    "directionHint": "Đông Bắc"
+  },
+  {
+    "no": 23,
+    "symbol": "䷖",
+    "han": "",
+    "pinyin": "",
+    "vn": "Cấn trên Khôn",
+    "upper": "Cấn",
+    "lower": "Khôn",
+    "tier7": "Hung",
+    "judgment": "Núi trên Đất: nhiều trở ngại; lấy đức chỉ – nhu mà xử việc.",
+    "image": "Núi ở trên Đất: quân tử chỉ để nhu đúng thời.",
+    "keywords": [],
+    "do": [
+      "dừng để quan sát",
+      "đặt giới hạn",
+      "ôn luyện căn bản"
+    ],
+    "dont": [
+      "cố chấp bất động",
+      "trì hoãn vô hạn",
+      "đóng cửa thông tin"
+    ],
+    "luck": {
+      "career": "Trì hoãn quyết định lớn; củng cố hồ sơ.",
+      "wealth": "Giữ tiền mặt; tránh rủi ro pháp lý.",
+      "love": "Tránh tranh cãi khi nóng.",
+      "health": "Ngủ đủ; giảm căng thẳng."
+    },
+    "colorHint": "Nâu đất",
+    "directionHint": "Đông Bắc"
+  },
+  {
+    "no": 24,
+    "symbol": "䷗",
+    "han": "",
+    "pinyin": "",
+    "vn": "Khôn trên Chấn",
+    "upper": "Khôn",
+    "lower": "Chấn",
+    "tier7": "Cát",
+    "judgment": "Đất trên Sấm: thuận lợi; lấy đức nhu – động mà xử việc.",
+    "image": "Đất ở trên Sấm: quân tử nhu để động đúng thời.",
+    "keywords": [],
+    "do": [
+      "xây nền tảng",
+      "tiếp nhận góp ý",
+      "bồi dưỡng đội ngũ"
+    ],
+    "dont": [
+      "do dự kéo dài",
+      "chiều theo mọi phía",
+      "thiếu lập trường"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Nâu đất",
+    "directionHint": "Tây Nam"
+  },
+  {
+    "no": 25,
+    "symbol": "䷘",
+    "han": "",
+    "pinyin": "",
+    "vn": "Càn trên Chấn",
+    "upper": "Càn",
+    "lower": "Chấn",
+    "tier7": "Cát",
+    "judgment": "Trời trên Sấm: thuận lợi; lấy đức kiện – động mà xử việc.",
+    "image": "Trời ở trên Sấm: quân tử kiện để động đúng thời.",
+    "keywords": [],
+    "do": [
+      "chủ động lãnh đạo",
+      "đặt tiêu chuẩn",
+      "quyết sớm việc chính"
+    ],
+    "dont": [
+      "tự mãn",
+      "ép người",
+      "vội vàng"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Vàng kim",
+    "directionHint": "Tây Bắc"
+  },
+  {
+    "no": 26,
+    "symbol": "䷙",
+    "han": "",
+    "pinyin": "",
+    "vn": "Cấn trên Càn",
+    "upper": "Cấn",
+    "lower": "Càn",
+    "tier7": "Đại Cát",
+    "judgment": "Núi trên Trời: thuận lợi; lấy đức chỉ – kiện mà xử việc.",
+    "image": "Núi ở trên Trời: quân tử chỉ để kiện đúng thời.",
+    "keywords": [],
+    "do": [
+      "dừng để quan sát",
+      "đặt giới hạn",
+      "ôn luyện căn bản"
+    ],
+    "dont": [
+      "cố chấp bất động",
+      "trì hoãn vô hạn",
+      "đóng cửa thông tin"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Nâu đất",
+    "directionHint": "Đông Bắc"
+  },
+  {
+    "no": 27,
+    "symbol": "䷚",
+    "han": "",
+    "pinyin": "",
+    "vn": "Cấn trên Chấn",
+    "upper": "Cấn",
+    "lower": "Chấn",
+    "tier7": "Bình",
+    "judgment": "Núi trên Sấm: cân bằng; lấy đức chỉ – động mà xử việc.",
+    "image": "Núi ở trên Sấm: quân tử chỉ để động đúng thời.",
+    "keywords": [],
+    "do": [
+      "dừng để quan sát",
+      "đặt giới hạn",
+      "ôn luyện căn bản"
+    ],
+    "dont": [
+      "cố chấp bất động",
+      "trì hoãn vô hạn",
+      "đóng cửa thông tin"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Nâu đất",
+    "directionHint": "Đông Bắc"
+  },
+  {
+    "no": 28,
+    "symbol": "䷛",
+    "han": "",
+    "pinyin": "",
+    "vn": "Đoài trên Tốn",
+    "upper": "Đoài",
+    "lower": "Tốn",
+    "tier7": "Tiểu Hung",
+    "judgment": "Đầm trên Gió: nhiều trở ngại; lấy đức duyệt – nhập mà xử việc.",
+    "image": "Đầm ở trên Gió: quân tử duyệt để nhập đúng thời.",
+    "keywords": [],
+    "do": [
+      "kết nối đội nhóm",
+      "chia sẻ niềm vui",
+      "họp ngắn gọn"
+    ],
+    "dont": [
+      "đùa quá trớn",
+      "hứa suông",
+      "tán gẫu phí thời gian"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Xám bạc",
+    "directionHint": "Tây"
+  },
+  {
+    "no": 29,
+    "symbol": "䷜",
+    "han": "",
+    "pinyin": "",
+    "vn": "Khảm trên Khảm",
+    "upper": "Khảm",
+    "lower": "Khảm",
+    "tier7": "Hung",
+    "judgment": "Nước trên Nước: nhiều trở ngại; lấy đức hiểm – hiểm mà xử việc.",
+    "image": "Nước ở trên Nước: quân tử hiểm để hiểm đúng thời.",
+    "keywords": [],
+    "do": [
+      "đánh giá rủi ro",
+      "lập phương án dự phòng",
+      "thu thập chứng cứ"
+    ],
+    "dont": [
+      "mạo hiểm mù quáng",
+      "giấu thông tin",
+      "ký kết vội"
+    ],
+    "luck": {
+      "career": "Trì hoãn quyết định lớn; củng cố hồ sơ.",
+      "wealth": "Giữ tiền mặt; tránh rủi ro pháp lý.",
+      "love": "Tránh tranh cãi khi nóng.",
+      "health": "Ngủ đủ; giảm căng thẳng."
+    },
+    "colorHint": "Đen huyền",
+    "directionHint": "Bắc"
+  },
+  {
+    "no": 30,
+    "symbol": "䷝",
+    "han": "",
+    "pinyin": "",
+    "vn": "Ly trên Ly",
+    "upper": "Ly",
+    "lower": "Ly",
+    "tier7": "Cát",
+    "judgment": "Lửa trên Lửa: thuận lợi; lấy đức minh – minh mà xử việc.",
+    "image": "Lửa ở trên Lửa: quân tử minh để minh đúng thời.",
+    "keywords": [],
+    "do": [
+      "làm rõ thông tin",
+      "truyền đạt minh bạch",
+      "trình bày súc tích"
+    ],
+    "dont": [
+      "ngụy biện",
+      "khoe khoang",
+      "nói quá"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Đỏ son",
+    "directionHint": "Nam"
+  },
+  {
+    "no": 31,
+    "symbol": "䷞",
+    "han": "",
+    "pinyin": "",
+    "vn": "Đoài trên Cấn",
+    "upper": "Đoài",
+    "lower": "Cấn",
+    "tier7": "Cát",
+    "judgment": "Đầm trên Núi: thuận lợi; lấy đức duyệt – chỉ mà xử việc.",
+    "image": "Đầm ở trên Núi: quân tử duyệt để chỉ đúng thời.",
+    "keywords": [],
+    "do": [
+      "kết nối đội nhóm",
+      "chia sẻ niềm vui",
+      "họp ngắn gọn"
+    ],
+    "dont": [
+      "đùa quá trớn",
+      "hứa suông",
+      "tán gẫu phí thời gian"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Xám bạc",
+    "directionHint": "Tây"
+  },
+  {
+    "no": 32,
+    "symbol": "䷟",
+    "han": "",
+    "pinyin": "",
+    "vn": "Chấn trên Tốn",
+    "upper": "Chấn",
+    "lower": "Tốn",
+    "tier7": "Cát",
+    "judgment": "Sấm trên Gió: thuận lợi; lấy đức động – nhập mà xử việc.",
+    "image": "Sấm ở trên Gió: quân tử động để nhập đúng thời.",
+    "keywords": [],
+    "do": [
+      "khởi động nhanh",
+      "thử nghiệm nhỏ",
+      "hành động dứt khoát"
+    ],
+    "dont": [
+      "manh động",
+      "leo thang xung đột",
+      "đốt cháy giai đoạn"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Xanh lục",
+    "directionHint": "Đông"
+  },
+  {
+    "no": 33,
+    "symbol": "䷠",
+    "han": "",
+    "pinyin": "",
+    "vn": "Càn trên Cấn",
+    "upper": "Càn",
+    "lower": "Cấn",
+    "tier7": "Bình",
+    "judgment": "Trời trên Núi: cân bằng; lấy đức kiện – chỉ mà xử việc.",
+    "image": "Trời ở trên Núi: quân tử kiện để chỉ đúng thời.",
+    "keywords": [],
+    "do": [
+      "chủ động lãnh đạo",
+      "đặt tiêu chuẩn",
+      "quyết sớm việc chính"
+    ],
+    "dont": [
+      "tự mãn",
+      "ép người",
+      "vội vàng"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Vàng kim",
+    "directionHint": "Tây Bắc"
+  },
+  {
+    "no": 34,
+    "symbol": "䷡",
+    "han": "",
+    "pinyin": "",
+    "vn": "Chấn trên Càn",
+    "upper": "Chấn",
+    "lower": "Càn",
+    "tier7": "Đại Cát",
+    "judgment": "Sấm trên Trời: thuận lợi; lấy đức động – kiện mà xử việc.",
+    "image": "Sấm ở trên Trời: quân tử động để kiện đúng thời.",
+    "keywords": [],
+    "do": [
+      "khởi động nhanh",
+      "thử nghiệm nhỏ",
+      "hành động dứt khoát"
+    ],
+    "dont": [
+      "manh động",
+      "leo thang xung đột",
+      "đốt cháy giai đoạn"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Xanh lục",
+    "directionHint": "Đông"
+  },
+  {
+    "no": 35,
+    "symbol": "䷢",
+    "han": "",
+    "pinyin": "",
+    "vn": "Ly trên Khôn",
+    "upper": "Ly",
+    "lower": "Khôn",
+    "tier7": "Cát",
+    "judgment": "Lửa trên Đất: thuận lợi; lấy đức minh – nhu mà xử việc.",
+    "image": "Lửa ở trên Đất: quân tử minh để nhu đúng thời.",
+    "keywords": [],
+    "do": [
+      "làm rõ thông tin",
+      "truyền đạt minh bạch",
+      "trình bày súc tích"
+    ],
+    "dont": [
+      "ngụy biện",
+      "khoe khoang",
+      "nói quá"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Đỏ son",
+    "directionHint": "Nam"
+  },
+  {
+    "no": 36,
+    "symbol": "䷣",
+    "han": "",
+    "pinyin": "",
+    "vn": "Khôn trên Ly",
+    "upper": "Khôn",
+    "lower": "Ly",
+    "tier7": "Tiểu Hung",
+    "judgment": "Đất trên Lửa: nhiều trở ngại; lấy đức nhu – minh mà xử việc.",
+    "image": "Đất ở trên Lửa: quân tử nhu để minh đúng thời.",
+    "keywords": [],
+    "do": [
+      "xây nền tảng",
+      "tiếp nhận góp ý",
+      "bồi dưỡng đội ngũ"
+    ],
+    "dont": [
+      "do dự kéo dài",
+      "chiều theo mọi phía",
+      "thiếu lập trường"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Nâu đất",
+    "directionHint": "Tây Nam"
+  },
+  {
+    "no": 37,
+    "symbol": "䷤",
+    "han": "",
+    "pinyin": "",
+    "vn": "Tốn trên Ly",
+    "upper": "Tốn",
+    "lower": "Ly",
+    "tier7": "Cát",
+    "judgment": "Gió trên Lửa: thuận lợi; lấy đức nhập – minh mà xử việc.",
+    "image": "Gió ở trên Lửa: quân tử nhập để minh đúng thời.",
+    "keywords": [],
+    "do": [
+      "thương lượng mềm dẻo",
+      "thăm dò ý kiến",
+      "đi từng bước"
+    ],
+    "dont": [
+      "lòng vòng vô tận",
+      "gió chiều nào theo chiều ấy",
+      "nhún nhường quá mức"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Xanh lục",
+    "directionHint": "Đông Nam"
+  },
+  {
+    "no": 38,
+    "symbol": "䷥",
+    "han": "",
+    "pinyin": "",
+    "vn": "Ly trên Đoài",
+    "upper": "Ly",
+    "lower": "Đoài",
+    "tier7": "Bình",
+    "judgment": "Lửa trên Đầm: cân bằng; lấy đức minh – duyệt mà xử việc.",
+    "image": "Lửa ở trên Đầm: quân tử minh để duyệt đúng thời.",
+    "keywords": [],
+    "do": [
+      "làm rõ thông tin",
+      "truyền đạt minh bạch",
+      "trình bày súc tích"
+    ],
+    "dont": [
+      "ngụy biện",
+      "khoe khoang",
+      "nói quá"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Đỏ son",
+    "directionHint": "Nam"
+  },
+  {
+    "no": 39,
+    "symbol": "䷦",
+    "han": "",
+    "pinyin": "",
+    "vn": "Khảm trên Cấn",
+    "upper": "Khảm",
+    "lower": "Cấn",
+    "tier7": "Tiểu Hung",
+    "judgment": "Nước trên Núi: nhiều trở ngại; lấy đức hiểm – chỉ mà xử việc.",
+    "image": "Nước ở trên Núi: quân tử hiểm để chỉ đúng thời.",
+    "keywords": [],
+    "do": [
+      "đánh giá rủi ro",
+      "lập phương án dự phòng",
+      "thu thập chứng cứ"
+    ],
+    "dont": [
+      "mạo hiểm mù quáng",
+      "giấu thông tin",
+      "ký kết vội"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Đen huyền",
+    "directionHint": "Bắc"
+  },
+  {
+    "no": 40,
+    "symbol": "䷧",
+    "han": "",
+    "pinyin": "",
+    "vn": "Chấn trên Khảm",
+    "upper": "Chấn",
+    "lower": "Khảm",
+    "tier7": "Cát",
+    "judgment": "Sấm trên Nước: thuận lợi; lấy đức động – hiểm mà xử việc.",
+    "image": "Sấm ở trên Nước: quân tử động để hiểm đúng thời.",
+    "keywords": [],
+    "do": [
+      "khởi động nhanh",
+      "thử nghiệm nhỏ",
+      "hành động dứt khoát"
+    ],
+    "dont": [
+      "manh động",
+      "leo thang xung đột",
+      "đốt cháy giai đoạn"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Xanh lục",
+    "directionHint": "Đông"
+  },
+  {
+    "no": 41,
+    "symbol": "䷨",
+    "han": "",
+    "pinyin": "",
+    "vn": "Cấn trên Đoài",
+    "upper": "Cấn",
+    "lower": "Đoài",
+    "tier7": "Bình",
+    "judgment": "Núi trên Đầm: cân bằng; lấy đức chỉ – duyệt mà xử việc.",
+    "image": "Núi ở trên Đầm: quân tử chỉ để duyệt đúng thời.",
+    "keywords": [],
+    "do": [
+      "dừng để quan sát",
+      "đặt giới hạn",
+      "ôn luyện căn bản"
+    ],
+    "dont": [
+      "cố chấp bất động",
+      "trì hoãn vô hạn",
+      "đóng cửa thông tin"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Nâu đất",
+    "directionHint": "Đông Bắc"
+  },
+  {
+    "no": 42,
+    "symbol": "䷩",
+    "han": "",
+    "pinyin": "",
+    "vn": "Tốn trên Chấn",
+    "upper": "Tốn",
+    "lower": "Chấn",
+    "tier7": "Đại Cát",
+    "judgment": "Gió trên Sấm: thuận lợi; lấy đức nhập – động mà xử việc.",
+    "image": "Gió ở trên Sấm: quân tử nhập để động đúng thời.",
+    "keywords": [],
+    "do": [
+      "thương lượng mềm dẻo",
+      "thăm dò ý kiến",
+      "đi từng bước"
+    ],
+    "dont": [
+      "lòng vòng vô tận",
+      "gió chiều nào theo chiều ấy",
+      "nhún nhường quá mức"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Xanh lục",
+    "directionHint": "Đông Nam"
+  },
+  {
+    "no": 43,
+    "symbol": "䷪",
+    "han": "",
+    "pinyin": "",
+    "vn": "Đoài trên Càn",
+    "upper": "Đoài",
+    "lower": "Càn",
+    "tier7": "Tiểu Hung",
+    "judgment": "Đầm trên Trời: nhiều trở ngại; lấy đức duyệt – kiện mà xử việc.",
+    "image": "Đầm ở trên Trời: quân tử duyệt để kiện đúng thời.",
+    "keywords": [],
+    "do": [
+      "kết nối đội nhóm",
+      "chia sẻ niềm vui",
+      "họp ngắn gọn"
+    ],
+    "dont": [
+      "đùa quá trớn",
+      "hứa suông",
+      "tán gẫu phí thời gian"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Xám bạc",
+    "directionHint": "Tây"
+  },
+  {
+    "no": 44,
+    "symbol": "䷫",
+    "han": "",
+    "pinyin": "",
+    "vn": "Càn trên Tốn",
+    "upper": "Càn",
+    "lower": "Tốn",
+    "tier7": "Tiểu Hung",
+    "judgment": "Trời trên Gió: nhiều trở ngại; lấy đức kiện – nhập mà xử việc.",
+    "image": "Trời ở trên Gió: quân tử kiện để nhập đúng thời.",
+    "keywords": [],
+    "do": [
+      "chủ động lãnh đạo",
+      "đặt tiêu chuẩn",
+      "xem lại rủi ro trước khi quyết"
+    ],
+    "dont": [
+      "tự mãn",
+      "ép người",
+      "vội vàng"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Vàng kim",
+    "directionHint": "Tây Bắc"
+  },
+  {
+    "no": 45,
+    "symbol": "䷬",
+    "han": "",
+    "pinyin": "",
+    "vn": "Đoài trên Khôn",
+    "upper": "Đoài",
+    "lower": "Khôn",
+    "tier7": "Cát",
+    "judgment": "Đầm trên Đất: thuận lợi; lấy đức duyệt – nhu mà xử việc.",
+    "image": "Đầm ở trên Đất: quân tử duyệt để nhu đúng thời.",
+    "keywords": [],
+    "do": [
+      "kết nối đội nhóm",
+      "chia sẻ niềm vui",
+      "họp ngắn gọn"
+    ],
+    "dont": [
+      "đùa quá trớn",
+      "hứa suông",
+      "tán gẫu phí thời gian"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Xám bạc",
+    "directionHint": "Tây"
+  },
+  {
+    "no": 46,
+    "symbol": "䷭",
+    "han": "",
+    "pinyin": "",
+    "vn": "Khôn trên Tốn",
+    "upper": "Khôn",
+    "lower": "Tốn",
+    "tier7": "Cát",
+    "judgment": "Đất trên Gió: thuận lợi; lấy đức nhu – nhập mà xử việc.",
+    "image": "Đất ở trên Gió: quân tử nhu để nhập đúng thời.",
+    "keywords": [],
+    "do": [
+      "xây nền tảng",
+      "tiếp nhận góp ý",
+      "bồi dưỡng đội ngũ"
+    ],
+    "dont": [
+      "do dự kéo dài",
+      "chiều theo mọi phía",
+      "thiếu lập trường"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Nâu đất",
+    "directionHint": "Tây Nam"
+  },
+  {
+    "no": 47,
+    "symbol": "䷮",
+    "han": "",
+    "pinyin": "",
+    "vn": "Đoài trên Khảm",
+    "upper": "Đoài",
+    "lower": "Khảm",
+    "tier7": "Hung",
+    "judgment": "Đầm trên Nước: nhiều trở ngại; lấy đức duyệt – hiểm mà xử việc.",
+    "image": "Đầm ở trên Nước: quân tử duyệt để hiểm đúng thời.",
+    "keywords": [],
+    "do": [
+      "kết nối đội nhóm",
+      "chia sẻ niềm vui",
+      "họp ngắn gọn"
+    ],
+    "dont": [
+      "đùa quá trớn",
+      "hứa suông",
+      "tán gẫu phí thời gian"
+    ],
+    "luck": {
+      "career": "Trì hoãn quyết định lớn; củng cố hồ sơ.",
+      "wealth": "Giữ tiền mặt; tránh rủi ro pháp lý.",
+      "love": "Tránh tranh cãi khi nóng.",
+      "health": "Ngủ đủ; giảm căng thẳng."
+    },
+    "colorHint": "Xám bạc",
+    "directionHint": "Tây"
+  },
+  {
+    "no": 48,
+    "symbol": "䷯",
+    "han": "",
+    "pinyin": "",
+    "vn": "Khảm trên Tốn",
+    "upper": "Khảm",
+    "lower": "Tốn",
+    "tier7": "Cát",
+    "judgment": "Nước trên Gió: thuận lợi; lấy đức hiểm – nhập mà xử việc.",
+    "image": "Nước ở trên Gió: quân tử hiểm để nhập đúng thời.",
+    "keywords": [],
+    "do": [
+      "đánh giá rủi ro",
+      "lập phương án dự phòng",
+      "thu thập chứng cứ"
+    ],
+    "dont": [
+      "mạo hiểm mù quáng",
+      "giấu thông tin",
+      "ký kết vội"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Đen huyền",
+    "directionHint": "Bắc"
+  },
+  {
+    "no": 49,
+    "symbol": "䷰",
+    "han": "",
+    "pinyin": "",
+    "vn": "Ly trên Đoài",
+    "upper": "Ly",
+    "lower": "Đoài",
+    "tier7": "Cát",
+    "judgment": "Lửa trên Đầm: thuận lợi; lấy đức minh – duyệt mà xử việc.",
+    "image": "Lửa ở trên Đầm: quân tử minh để duyệt đúng thời.",
+    "keywords": [],
+    "do": [
+      "làm rõ thông tin",
+      "truyền đạt minh bạch",
+      "trình bày súc tích"
+    ],
+    "dont": [
+      "ngụy biện",
+      "khoe khoang",
+      "nói quá"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Đỏ son",
+    "directionHint": "Nam"
+  },
+  {
+    "no": 50,
+    "symbol": "䷱",
+    "han": "",
+    "pinyin": "",
+    "vn": "Ly trên Tốn",
+    "upper": "Ly",
+    "lower": "Tốn",
+    "tier7": "Đại Cát",
+    "judgment": "Lửa trên Gió: thuận lợi; lấy đức minh – nhập mà xử việc.",
+    "image": "Lửa ở trên Gió: quân tử minh để nhập đúng thời.",
+    "keywords": [],
+    "do": [
+      "làm rõ thông tin",
+      "truyền đạt minh bạch",
+      "trình bày súc tích"
+    ],
+    "dont": [
+      "ngụy biện",
+      "khoe khoang",
+      "nói quá"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Đỏ son",
+    "directionHint": "Nam"
+  },
+  {
+    "no": 51,
+    "symbol": "䷲",
+    "han": "",
+    "pinyin": "",
+    "vn": "Chấn trên Chấn",
+    "upper": "Chấn",
+    "lower": "Chấn",
+    "tier7": "Tiểu Hung",
+    "judgment": "Sấm trên Sấm: nhiều trở ngại; lấy đức động – động mà xử việc.",
+    "image": "Sấm ở trên Sấm: quân tử động để động đúng thời.",
+    "keywords": [],
+    "do": [
+      "làm thử nhỏ trước",
+      "thử nghiệm nhỏ",
+      "hành động dứt khoát"
+    ],
+    "dont": [
+      "manh động",
+      "leo thang xung đột",
+      "đốt cháy giai đoạn"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Xanh lục",
+    "directionHint": "Đông"
+  },
+  {
+    "no": 52,
+    "symbol": "䷳",
+    "han": "",
+    "pinyin": "",
+    "vn": "Cấn trên Cấn",
+    "upper": "Cấn",
+    "lower": "Cấn",
+    "tier7": "Bình",
+    "judgment": "Núi trên Núi: cân bằng; lấy đức chỉ – chỉ mà xử việc.",
+    "image": "Núi ở trên Núi: quân tử chỉ để chỉ đúng thời.",
+    "keywords": [],
+    "do": [
+      "dừng để quan sát",
+      "đặt giới hạn",
+      "ôn luyện căn bản"
+    ],
+    "dont": [
+      "cố chấp bất động",
+      "trì hoãn vô hạn",
+      "đóng cửa thông tin"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Nâu đất",
+    "directionHint": "Đông Bắc"
+  },
+  {
+    "no": 53,
+    "symbol": "䷴",
+    "han": "",
+    "pinyin": "",
+    "vn": "Tốn trên Cấn",
+    "upper": "Tốn",
+    "lower": "Cấn",
+    "tier7": "Cát",
+    "judgment": "Gió trên Núi: thuận lợi; lấy đức nhập – chỉ mà xử việc.",
+    "image": "Gió ở trên Núi: quân tử nhập để chỉ đúng thời.",
+    "keywords": [],
+    "do": [
+      "thương lượng mềm dẻo",
+      "thăm dò ý kiến",
+      "đi từng bước"
+    ],
+    "dont": [
+      "lòng vòng vô tận",
+      "gió chiều nào theo chiều ấy",
+      "nhún nhường quá mức"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Xanh lục",
+    "directionHint": "Đông Nam"
+  },
+  {
+    "no": 54,
+    "symbol": "䷵",
+    "han": "",
+    "pinyin": "",
+    "vn": "Chấn trên Đoài",
+    "upper": "Chấn",
+    "lower": "Đoài",
+    "tier7": "Tiểu Hung",
+    "judgment": "Sấm trên Đầm: nhiều trở ngại; lấy đức động – duyệt mà xử việc.",
+    "image": "Sấm ở trên Đầm: quân tử động để duyệt đúng thời.",
+    "keywords": [],
+    "do": [
+      "làm thử nhỏ trước",
+      "thử nghiệm nhỏ",
+      "hành động dứt khoát"
+    ],
+    "dont": [
+      "manh động",
+      "leo thang xung đột",
+      "đốt cháy giai đoạn"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Xanh lục",
+    "directionHint": "Đông"
+  },
+  {
+    "no": 55,
+    "symbol": "䷶",
+    "han": "",
+    "pinyin": "",
+    "vn": "Chấn trên Ly",
+    "upper": "Chấn",
+    "lower": "Ly",
+    "tier7": "Đại Cát",
+    "judgment": "Sấm trên Lửa: thuận lợi; lấy đức động – minh mà xử việc.",
+    "image": "Sấm ở trên Lửa: quân tử động để minh đúng thời.",
+    "keywords": [],
+    "do": [
+      "khởi động nhanh",
+      "thử nghiệm nhỏ",
+      "hành động dứt khoát"
+    ],
+    "dont": [
+      "manh động",
+      "leo thang xung đột",
+      "đốt cháy giai đoạn"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Xanh lục",
+    "directionHint": "Đông"
+  },
+  {
+    "no": 56,
+    "symbol": "䷷",
+    "han": "",
+    "pinyin": "",
+    "vn": "Ly trên Cấn",
+    "upper": "Ly",
+    "lower": "Cấn",
+    "tier7": "Tiểu Hung",
+    "judgment": "Lửa trên Núi: nhiều trở ngại; lấy đức minh – chỉ mà xử việc.",
+    "image": "Lửa ở trên Núi: quân tử minh để chỉ đúng thời.",
+    "keywords": [],
+    "do": [
+      "làm rõ thông tin",
+      "truyền đạt minh bạch",
+      "trình bày súc tích"
+    ],
+    "dont": [
+      "ngụy biện",
+      "khoe khoang",
+      "nói quá"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Đỏ son",
+    "directionHint": "Nam"
+  },
+  {
+    "no": 57,
+    "symbol": "䷸",
+    "han": "",
+    "pinyin": "",
+    "vn": "Tốn trên Tốn",
+    "upper": "Tốn",
+    "lower": "Tốn",
+    "tier7": "Cát",
+    "judgment": "Gió trên Gió: thuận lợi; lấy đức nhập – nhập mà xử việc.",
+    "image": "Gió ở trên Gió: quân tử nhập để nhập đúng thời.",
+    "keywords": [],
+    "do": [
+      "thương lượng mềm dẻo",
+      "thăm dò ý kiến",
+      "đi từng bước"
+    ],
+    "dont": [
+      "lòng vòng vô tận",
+      "gió chiều nào theo chiều ấy",
+      "nhún nhường quá mức"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Xanh lục",
+    "directionHint": "Đông Nam"
+  },
+  {
+    "no": 58,
+    "symbol": "䷹",
+    "han": "",
+    "pinyin": "",
+    "vn": "Đoài trên Đoài",
+    "upper": "Đoài",
+    "lower": "Đoài",
+    "tier7": "Cát",
+    "judgment": "Đầm trên Đầm: thuận lợi; lấy đức duyệt – duyệt mà xử việc.",
+    "image": "Đầm ở trên Đầm: quân tử duyệt để duyệt đúng thời.",
+    "keywords": [],
+    "do": [
+      "kết nối đội nhóm",
+      "chia sẻ niềm vui",
+      "họp ngắn gọn"
+    ],
+    "dont": [
+      "đùa quá trớn",
+      "hứa suông",
+      "tán gẫu phí thời gian"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Xám bạc",
+    "directionHint": "Tây"
+  },
+  {
+    "no": 59,
+    "symbol": "䷺",
+    "han": "",
+    "pinyin": "",
+    "vn": "Tốn trên Khảm",
+    "upper": "Tốn",
+    "lower": "Khảm",
+    "tier7": "Cát",
+    "judgment": "Gió trên Nước: thuận lợi; lấy đức nhập – hiểm mà xử việc.",
+    "image": "Gió ở trên Nước: quân tử nhập để hiểm đúng thời.",
+    "keywords": [],
+    "do": [
+      "thương lượng mềm dẻo",
+      "thăm dò ý kiến",
+      "đi từng bước"
+    ],
+    "dont": [
+      "lòng vòng vô tận",
+      "gió chiều nào theo chiều ấy",
+      "nhún nhường quá mức"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Xanh lục",
+    "directionHint": "Đông Nam"
+  },
+  {
+    "no": 60,
+    "symbol": "䷻",
+    "han": "",
+    "pinyin": "",
+    "vn": "Khảm trên Đoài",
+    "upper": "Khảm",
+    "lower": "Đoài",
+    "tier7": "Bình",
+    "judgment": "Nước trên Đầm: cân bằng; lấy đức hiểm – duyệt mà xử việc.",
+    "image": "Nước ở trên Đầm: quân tử hiểm để duyệt đúng thời.",
+    "keywords": [],
+    "do": [
+      "đánh giá rủi ro",
+      "lập phương án dự phòng",
+      "thu thập chứng cứ"
+    ],
+    "dont": [
+      "mạo hiểm mù quáng",
+      "giấu thông tin",
+      "ký kết vội"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Đen huyền",
+    "directionHint": "Bắc"
+  },
+  {
+    "no": 61,
+    "symbol": "䷼",
+    "han": "",
+    "pinyin": "",
+    "vn": "Tốn trên Đoài",
+    "upper": "Tốn",
+    "lower": "Đoài",
+    "tier7": "Cát",
+    "judgment": "Gió trên Đầm: thuận lợi; lấy đức nhập – duyệt mà xử việc.",
+    "image": "Gió ở trên Đầm: quân tử nhập để duyệt đúng thời.",
+    "keywords": [],
+    "do": [
+      "thương lượng mềm dẻo",
+      "thăm dò ý kiến",
+      "đi từng bước"
+    ],
+    "dont": [
+      "lòng vòng vô tận",
+      "gió chiều nào theo chiều ấy",
+      "nhún nhường quá mức"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Xanh lục",
+    "directionHint": "Đông Nam"
+  },
+  {
+    "no": 62,
+    "symbol": "䷽",
+    "han": "",
+    "pinyin": "",
+    "vn": "Chấn trên Cấn",
+    "upper": "Chấn",
+    "lower": "Cấn",
+    "tier7": "Tiểu Hung",
+    "judgment": "Sấm trên Núi: nhiều trở ngại; lấy đức động – chỉ mà xử việc.",
+    "image": "Sấm ở trên Núi: quân tử động để chỉ đúng thời.",
+    "keywords": [],
+    "do": [
+      "làm thử nhỏ trước",
+      "thử nghiệm nhỏ",
+      "hành động dứt khoát"
+    ],
+    "dont": [
+      "manh động",
+      "leo thang xung đột",
+      "đốt cháy giai đoạn"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Xanh lục",
+    "directionHint": "Đông"
+  },
+  {
+    "no": 63,
+    "symbol": "䷾",
+    "han": "",
+    "pinyin": "",
+    "vn": "Khảm trên Ly",
+    "upper": "Khảm",
+    "lower": "Ly",
+    "tier7": "Cát",
+    "judgment": "Nước trên Lửa: thuận lợi; lấy đức hiểm – minh mà xử việc.",
+    "image": "Nước ở trên Lửa: quân tử hiểm để minh đúng thời.",
+    "keywords": [],
+    "do": [
+      "đánh giá rủi ro",
+      "lập phương án dự phòng",
+      "thu thập chứng cứ"
+    ],
+    "dont": [
+      "mạo hiểm mù quáng",
+      "giấu thông tin",
+      "ký kết vội"
+    ],
+    "luck": {
+      "career": "Thuận để tiến; nắm việc trọng tâm.",
+      "wealth": "Quản trị dòng tiền tốt; cân đối đầu tư.",
+      "love": "Giao tiếp ấm áp; chân thành trước.",
+      "health": "Giữ nhịp sinh hoạt điều độ."
+    },
+    "colorHint": "Đen huyền",
+    "directionHint": "Bắc"
+  },
+  {
+    "no": 64,
+    "symbol": "䷿",
+    "han": "",
+    "pinyin": "",
+    "vn": "Ly trên Khảm",
+    "upper": "Ly",
+    "lower": "Khảm",
+    "tier7": "Tiểu Hung",
+    "judgment": "Lửa trên Nước: nhiều trở ngại; lấy đức minh – hiểm mà xử việc.",
+    "image": "Lửa ở trên Nước: quân tử minh để hiểm đúng thời.",
+    "keywords": [],
+    "do": [
+      "làm rõ thông tin",
+      "truyền đạt minh bạch",
+      "trình bày súc tích"
+    ],
+    "dont": [
+      "ngụy biện",
+      "khoe khoang",
+      "nói quá"
+    ],
+    "luck": {
+      "career": "Ổn định việc nền; cải tiến quy trình.",
+      "wealth": "Chi tiêu có kế hoạch; dự phòng.",
+      "love": "Lắng nghe nhiều hơn nói.",
+      "health": "Ăn nhạt, vận động nhẹ."
+    },
+    "colorHint": "Đỏ son",
+    "directionHint": "Nam"
+  }
+]

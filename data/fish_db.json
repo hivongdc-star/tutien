@@ -1,0 +1,6531 @@
+[
+  {
+    "id": "F001",
+    "name": "Cá Chuối Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 8,
+    "habitats": [
+      "song"
+    ],
+    "weight": 57
+  },
+  {
+    "id": "F002",
+    "name": "Cá Diếc Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 9,
+    "habitats": [
+      "song"
+    ],
+    "weight": 56
+  },
+  {
+    "id": "F003",
+    "name": "Cá Chép",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 14,
+    "habitats": [
+      "song"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F004",
+    "name": "Cá Mú",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 18,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 53
+  },
+  {
+    "id": "F005",
+    "name": "Cá Diêu Hồng Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 15,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 52
+  },
+  {
+    "id": "F006",
+    "name": "Cá Bống Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 6,
+    "habitats": [
+      "song"
+    ],
+    "weight": 57
+  },
+  {
+    "id": "F007",
+    "name": "Cá Chuối Hoàng Kim",
+    "rarity": "cực hiếm",
+    "emoji": "🐡",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 90,
+    "habitats": [
+      "song",
+      "bien"
+    ],
+    "weight": 5
+  },
+  {
+    "id": "F008",
+    "name": "Cá Cờ Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 27,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F009",
+    "name": "Cá Bống",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 11,
+    "habitats": [
+      "song"
+    ],
+    "weight": 51
+  },
+  {
+    "id": "F010",
+    "name": "Cá Cá Nheo Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 23,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 57
+  },
+  {
+    "id": "F011",
+    "name": "Cá Trắm Đen Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 17,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 41
+  },
+  {
+    "id": "F012",
+    "name": "Cá Trắm Cỏ Bạch Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 38,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 23
+  },
+  {
+    "id": "F013",
+    "name": "Cá Rô Phi Bão Tố",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 50,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 15
+  },
+  {
+    "id": "F014",
+    "name": "Cá Ngừ Băng Giá",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 52,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 11
+  },
+  {
+    "id": "F015",
+    "name": "Cá Chim",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 31,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 51
+  },
+  {
+    "id": "F016",
+    "name": "Cá Trắm Cỏ Vàng",
+    "rarity": "truyền thuyết",
+    "emoji": "✨",
+    "minSizeCm": 55,
+    "maxSizeCm": 120,
+    "baseLT": 141,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 1
+  },
+  {
+    "id": "F017",
+    "name": "Cá Quả",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 12,
+    "habitats": [
+      "song"
+    ],
+    "weight": 52
+  },
+  {
+    "id": "F018",
+    "name": "Cá Thu",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 26,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 43
+  },
+  {
+    "id": "F019",
+    "name": "Cá Bơn Băng Giá",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 40,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 26
+  },
+  {
+    "id": "F020",
+    "name": "Cá Hồng Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 34,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 56
+  },
+  {
+    "id": "F021",
+    "name": "Cá Bống Mỏ Dài",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 36,
+    "habitats": [
+      "song"
+    ],
+    "weight": 10
+  },
+  {
+    "id": "F022",
+    "name": "Cá Nục Thiên Thanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 46,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 31
+  },
+  {
+    "id": "F023",
+    "name": "Cá Cá Trắm Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 28,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F024",
+    "name": "Cá Lăng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 7,
+    "habitats": [
+      "song"
+    ],
+    "weight": 55
+  },
+  {
+    "id": "F025",
+    "name": "Cá Trắm Thiên Thanh",
+    "rarity": "cực hiếm",
+    "emoji": "🐡",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 58,
+    "habitats": [
+      "song"
+    ],
+    "weight": 6
+  },
+  {
+    "id": "F026",
+    "name": "Cá Hồng Thiên Thanh",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 60,
+    "maxSizeCm": 130,
+    "baseLT": 114,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 5
+  },
+  {
+    "id": "F027",
+    "name": "Cá Nục",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 21,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F028",
+    "name": "Cá Trắm",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 9,
+    "habitats": [
+      "song"
+    ],
+    "weight": 40
+  },
+  {
+    "id": "F029",
+    "name": "Cá Trắm Đỏ",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 18,
+    "habitats": [
+      "song"
+    ],
+    "weight": 22
+  },
+  {
+    "id": "F030",
+    "name": "Cá Diêu Hồng Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 17,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 58
+  },
+  {
+    "id": "F031",
+    "name": "Cá Cờ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 31,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 43
+  },
+  {
+    "id": "F032",
+    "name": "Cá Bống Hắc Ám",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 21,
+    "habitats": [
+      "song"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F033",
+    "name": "Cá Lăng Băng Giá",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 16,
+    "habitats": [
+      "song"
+    ],
+    "weight": 28
+  },
+  {
+    "id": "F034",
+    "name": "Cá Diêu Hồng Đen",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 33,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 25
+  },
+  {
+    "id": "F035",
+    "name": "Cá Bơn Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 32,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 42
+  },
+  {
+    "id": "F036",
+    "name": "Cá Mú Thiên Thanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 33,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 32
+  },
+  {
+    "id": "F037",
+    "name": "Cá Bơn Bạc",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 37,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 28
+  },
+  {
+    "id": "F038",
+    "name": "Cá Đổng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 19,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 52
+  },
+  {
+    "id": "F039",
+    "name": "Cá Rô Mắt Đỏ",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 79,
+    "habitats": [
+      "song"
+    ],
+    "weight": 6
+  },
+  {
+    "id": "F040",
+    "name": "Cá Chim Tử",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 34,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 26
+  },
+  {
+    "id": "F041",
+    "name": "Cá Bơn Xanh",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 33,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 41
+  },
+  {
+    "id": "F042",
+    "name": "Cá Kình Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 20,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 52
+  },
+  {
+    "id": "F043",
+    "name": "Cá Chuối Bão Tố",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 89,
+    "habitats": [
+      "song",
+      "ho"
+    ],
+    "weight": 6
+  },
+  {
+    "id": "F044",
+    "name": "Cá Đại Dương Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 24,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F045",
+    "name": "Cá Quả",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 18,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 50
+  },
+  {
+    "id": "F046",
+    "name": "Cá Cờ Bạc",
+    "rarity": "truyền thuyết",
+    "emoji": "🦈",
+    "minSizeCm": 80,
+    "maxSizeCm": 180,
+    "baseLT": 224,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 1
+  },
+  {
+    "id": "F047",
+    "name": "Cá Cá Nheo Vằn",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 45,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 12
+  },
+  {
+    "id": "F048",
+    "name": "Cá Bò",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 27,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 44
+  },
+  {
+    "id": "F049",
+    "name": "Cá Quả Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 16,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 49
+  },
+  {
+    "id": "F050",
+    "name": "Cá Rô Phi Chấm",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 34,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 26
+  },
+  {
+    "id": "F051",
+    "name": "Cá Lăng Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 6,
+    "habitats": [
+      "song"
+    ],
+    "weight": 50
+  },
+  {
+    "id": "F052",
+    "name": "Cá Sấu Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 14,
+    "habitats": [
+      "song"
+    ],
+    "weight": 57
+  },
+  {
+    "id": "F053",
+    "name": "Cá Rô",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 8,
+    "habitats": [
+      "song"
+    ],
+    "weight": 51
+  },
+  {
+    "id": "F054",
+    "name": "Cá Đại Dương Xanh",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 27,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 41
+  },
+  {
+    "id": "F055",
+    "name": "Cá Cá Nheo Cẩm Thạch",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 30,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 35
+  },
+  {
+    "id": "F056",
+    "name": "Cá Chạch Trắng",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 51,
+    "habitats": [
+      "song"
+    ],
+    "weight": 5
+  },
+  {
+    "id": "F057",
+    "name": "Cá Hồi Vằn",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 38,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 34
+  },
+  {
+    "id": "F058",
+    "name": "Cá Bống Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 9,
+    "habitats": [
+      "song"
+    ],
+    "weight": 54
+  },
+  {
+    "id": "F059",
+    "name": "Cá Cá Nheo",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 17,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 40
+  },
+  {
+    "id": "F060",
+    "name": "Cá Mè Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 26,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 51
+  },
+  {
+    "id": "F061",
+    "name": "Cá Kình",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 28,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 43
+  },
+  {
+    "id": "F062",
+    "name": "Cá Cá Nheo Bạch Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 39,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 28
+  },
+  {
+    "id": "F063",
+    "name": "Cá Cờ Chấm",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 18,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 51
+  },
+  {
+    "id": "F064",
+    "name": "Cá Hồng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 28,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 43
+  },
+  {
+    "id": "F065",
+    "name": "Cá Chình Hồ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 19,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 49
+  },
+  {
+    "id": "F066",
+    "name": "Cá Chim Chấm",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 23,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 52
+  },
+  {
+    "id": "F067",
+    "name": "Cá Chim Mỏ Dài",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 39,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 28
+  },
+  {
+    "id": "F068",
+    "name": "Cá Đại Dương Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 32,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 56
+  },
+  {
+    "id": "F069",
+    "name": "Cá Đuối Trắng",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 51,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 26
+  },
+  {
+    "id": "F070",
+    "name": "Cá Kình Mùa Thu",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 40,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 35
+  },
+  {
+    "id": "F071",
+    "name": "Cá Trắm Đen Vằn",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 32,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 22
+  },
+  {
+    "id": "F072",
+    "name": "Cá Trê",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 7,
+    "habitats": [
+      "song"
+    ],
+    "weight": 53
+  },
+  {
+    "id": "F073",
+    "name": "Cá Đổng Xanh",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 21,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F074",
+    "name": "Cá Trôi Lục",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 22,
+    "habitats": [
+      "song"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F075",
+    "name": "Cá Trắm Đen Đen",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 65,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 13
+  },
+  {
+    "id": "F076",
+    "name": "Cá Mú Tử",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 68,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 12
+  },
+  {
+    "id": "F077",
+    "name": "Cá Bò Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 20,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F078",
+    "name": "Cá Chép Koi",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 15,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 44
+  },
+  {
+    "id": "F079",
+    "name": "Cá Trắm Cỏ Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 15,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 53
+  },
+  {
+    "id": "F080",
+    "name": "Cá Hồi",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 18,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 55
+  },
+  {
+    "id": "F081",
+    "name": "Cá Rô Mỏ Dài",
+    "rarity": "cực hiếm",
+    "emoji": "🐡",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 76,
+    "habitats": [
+      "song"
+    ],
+    "weight": 7
+  },
+  {
+    "id": "F082",
+    "name": "Cá Trắm Cỏ Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 14,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 50
+  },
+  {
+    "id": "F083",
+    "name": "Cá Ngừ Lam",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 34,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 28
+  },
+  {
+    "id": "F084",
+    "name": "Cá Đại Dương Chấm",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 22,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 45
+  },
+  {
+    "id": "F085",
+    "name": "Cá Lăng Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 11,
+    "habitats": [
+      "song"
+    ],
+    "weight": 52
+  },
+  {
+    "id": "F086",
+    "name": "Cá Chép koi Cẩm Thạch",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 34,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F087",
+    "name": "Cá Chép Đỏ",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 20,
+    "habitats": [
+      "song"
+    ],
+    "weight": 32
+  },
+  {
+    "id": "F088",
+    "name": "Cá Trắm Băng Giá",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 15,
+    "habitats": [
+      "song"
+    ],
+    "weight": 25
+  },
+  {
+    "id": "F089",
+    "name": "Cá Mè Mùa Thu",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 30,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 24
+  },
+  {
+    "id": "F090",
+    "name": "Cá Đuối Bão Tố",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 36,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 33
+  },
+  {
+    "id": "F091",
+    "name": "Cá Quả Trắng",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 29,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 26
+  },
+  {
+    "id": "F092",
+    "name": "Cá Cờ Hoàng Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 42,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 23
+  },
+  {
+    "id": "F093",
+    "name": "Cá Đại Dương Băng Giá",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 37,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 33
+  },
+  {
+    "id": "F094",
+    "name": "Cá Chình Hồ Mùa Thu",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 65,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 13
+  },
+  {
+    "id": "F095",
+    "name": "Cá Bơn Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 28,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 53
+  },
+  {
+    "id": "F096",
+    "name": "Cá Cam Cẩm Thạch",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 35,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 31
+  },
+  {
+    "id": "F097",
+    "name": "Cá Bơn Lam",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 43,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 27
+  },
+  {
+    "id": "F098",
+    "name": "Cá Trắm Đen Bạc",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 34,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 25
+  },
+  {
+    "id": "F099",
+    "name": "Cá Cam",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 28,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 55
+  },
+  {
+    "id": "F100",
+    "name": "Cá Cá Trắm Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 19,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 59
+  },
+  {
+    "id": "F101",
+    "name": "Cá Mè",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 21,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 55
+  },
+  {
+    "id": "F102",
+    "name": "Cá Đổng Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 25,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F103",
+    "name": "Cá Chình Hồ Hắc Ám",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 41,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 28
+  },
+  {
+    "id": "F104",
+    "name": "Cá Chép koi Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 19,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 57
+  },
+  {
+    "id": "F105",
+    "name": "Cá Trôi",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 10,
+    "habitats": [
+      "song"
+    ],
+    "weight": 43
+  },
+  {
+    "id": "F106",
+    "name": "Cá Mè Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 14,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 48
+  },
+  {
+    "id": "F107",
+    "name": "Cá Trê Thiên Thanh",
+    "rarity": "cực hiếm",
+    "emoji": "🐡",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 58,
+    "habitats": [
+      "song"
+    ],
+    "weight": 6
+  },
+  {
+    "id": "F108",
+    "name": "Cá Bống Bão Tố",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 35,
+    "habitats": [
+      "song"
+    ],
+    "weight": 13
+  },
+  {
+    "id": "F109",
+    "name": "Cá Trôi Mắt Đỏ",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 80,
+    "habitats": [
+      "song"
+    ],
+    "weight": 3
+  },
+  {
+    "id": "F110",
+    "name": "Cá Ngừ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 19,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 44
+  },
+  {
+    "id": "F111",
+    "name": "Cá Trắm Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 23,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 56
+  },
+  {
+    "id": "F112",
+    "name": "Cá Thu Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 31,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 58
+  },
+  {
+    "id": "F113",
+    "name": "Cá Rô Phi Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 16,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 45
+  },
+  {
+    "id": "F114",
+    "name": "Cá Chim Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 33,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 41
+  },
+  {
+    "id": "F115",
+    "name": "Cá Trắm Mắt Đỏ",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 25,
+    "habitats": [
+      "song"
+    ],
+    "weight": 28
+  },
+  {
+    "id": "F116",
+    "name": "Cá Chuối",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 10,
+    "habitats": [
+      "song"
+    ],
+    "weight": 42
+  },
+  {
+    "id": "F117",
+    "name": "Cá Lăng Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 10,
+    "habitats": [
+      "song"
+    ],
+    "weight": 43
+  },
+  {
+    "id": "F118",
+    "name": "Cá Cam Hoàng Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 38,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F119",
+    "name": "Cá Diếc",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 11,
+    "habitats": [
+      "song"
+    ],
+    "weight": 40
+  },
+  {
+    "id": "F120",
+    "name": "Cá Cờ Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 19,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 55
+  },
+  {
+    "id": "F121",
+    "name": "Cá Bò Mắt Đỏ",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 35,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 32
+  },
+  {
+    "id": "F122",
+    "name": "Cá Đổng Tử",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 60,
+    "maxSizeCm": 130,
+    "baseLT": 91,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 3
+  },
+  {
+    "id": "F123",
+    "name": "Cá Chạch",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 10,
+    "habitats": [
+      "song"
+    ],
+    "weight": 57
+  },
+  {
+    "id": "F124",
+    "name": "Cá Trê Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 7,
+    "habitats": [
+      "song"
+    ],
+    "weight": 56
+  },
+  {
+    "id": "F125",
+    "name": "Cá Rô Thiên Thanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 22,
+    "habitats": [
+      "song"
+    ],
+    "weight": 22
+  },
+  {
+    "id": "F126",
+    "name": "Cá Rô Phi Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 21,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 43
+  },
+  {
+    "id": "F127",
+    "name": "Cá Chép Mùa Thu",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 60,
+    "habitats": [
+      "song"
+    ],
+    "weight": 7
+  },
+  {
+    "id": "F128",
+    "name": "Cá Rô Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 13,
+    "habitats": [
+      "song"
+    ],
+    "weight": 60
+  },
+  {
+    "id": "F129",
+    "name": "Cá Kình Cẩm Thạch",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 45,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 25
+  },
+  {
+    "id": "F130",
+    "name": "Cá Cam Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 34,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 42
+  },
+  {
+    "id": "F131",
+    "name": "Cá Diêu Hồng Lục",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 40,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 12
+  },
+  {
+    "id": "F132",
+    "name": "Cá Đại Dương",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 22,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 57
+  },
+  {
+    "id": "F133",
+    "name": "Cá Đuối",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 30,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 50
+  },
+  {
+    "id": "F134",
+    "name": "Cá Mè Vằn",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 74,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 3
+  },
+  {
+    "id": "F135",
+    "name": "Cá Cá Trắm Hoàng Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 38,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F136",
+    "name": "Cá Diêu Hồng Lam",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 40,
+    "habitats": [
+      "ho",
+      "bien"
+    ],
+    "weight": 14
+  },
+  {
+    "id": "F137",
+    "name": "Cá Diếc Sấm Sét",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 34,
+    "habitats": [
+      "song"
+    ],
+    "weight": 15
+  },
+  {
+    "id": "F138",
+    "name": "Cá Trắm Cỏ Cẩm Thạch",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 29,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F139",
+    "name": "Cá Chạch Xanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 15,
+    "habitats": [
+      "song"
+    ],
+    "weight": 34
+  },
+  {
+    "id": "F140",
+    "name": "Cá Lăng Bạc",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 9,
+    "habitats": [
+      "song"
+    ],
+    "weight": 58
+  },
+  {
+    "id": "F141",
+    "name": "Cá Trôi Chấm",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 9,
+    "habitats": [
+      "song"
+    ],
+    "weight": 58
+  },
+  {
+    "id": "F142",
+    "name": "Cá Cam Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 27,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 42
+  },
+  {
+    "id": "F143",
+    "name": "Cá Mú Bão Tố",
+    "rarity": "cực hiếm",
+    "emoji": "🐡",
+    "minSizeCm": 60,
+    "maxSizeCm": 130,
+    "baseLT": 97,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 5
+  },
+  {
+    "id": "F144",
+    "name": "Cá Cam Chấm",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 71,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 9
+  },
+  {
+    "id": "F145",
+    "name": "Cá Trắm Đen Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 25,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 40
+  },
+  {
+    "id": "F146",
+    "name": "Cá Lăng Tử",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 42,
+    "habitats": [
+      "song"
+    ],
+    "weight": 11
+  },
+  {
+    "id": "F147",
+    "name": "Cá Cá Nheo Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 24,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 60
+  },
+  {
+    "id": "F148",
+    "name": "Cá Bống Băng Giá",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 28,
+    "habitats": [
+      "song",
+      "bien"
+    ],
+    "weight": 10
+  },
+  {
+    "id": "F149",
+    "name": "Cá Diếc Bạch Kim",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 30,
+    "habitats": [
+      "song"
+    ],
+    "weight": 10
+  },
+  {
+    "id": "F150",
+    "name": "Cá Bơn Hắc Ám",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 52,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 12
+  },
+  {
+    "id": "F151",
+    "name": "Cá Đuối Mỏ Dài",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 60,
+    "maxSizeCm": 130,
+    "baseLT": 91,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 6
+  },
+  {
+    "id": "F152",
+    "name": "Cá Ngừ Thiên Thanh",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 60,
+    "maxSizeCm": 130,
+    "baseLT": 120,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 3
+  },
+  {
+    "id": "F153",
+    "name": "Cá Nục Xanh",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 28,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 60
+  },
+  {
+    "id": "F154",
+    "name": "Cá Chình Hồ Đen",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 30,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 22
+  },
+  {
+    "id": "F155",
+    "name": "Cá Bơn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 22,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 60
+  },
+  {
+    "id": "F156",
+    "name": "Cá Bống Mùa Thu",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 21,
+    "habitats": [
+      "song"
+    ],
+    "weight": 22
+  },
+  {
+    "id": "F157",
+    "name": "Cá Nục Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 29,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 51
+  },
+  {
+    "id": "F158",
+    "name": "Cá Chép Bạc",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 9,
+    "habitats": [
+      "song"
+    ],
+    "weight": 57
+  },
+  {
+    "id": "F159",
+    "name": "Cá Rô Phi",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 17,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 44
+  },
+  {
+    "id": "F160",
+    "name": "Cá Sấu",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 7,
+    "habitats": [
+      "song"
+    ],
+    "weight": 44
+  },
+  {
+    "id": "F161",
+    "name": "Cá Sấu Lục",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 16,
+    "habitats": [
+      "song"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F162",
+    "name": "Cá Mú Lục",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 48,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F163",
+    "name": "Cá Ngừ Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 20,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 50
+  },
+  {
+    "id": "F164",
+    "name": "Cá Quả Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 14,
+    "habitats": [
+      "song"
+    ],
+    "weight": 52
+  },
+  {
+    "id": "F165",
+    "name": "Cá Hồng Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 32,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 53
+  },
+  {
+    "id": "F166",
+    "name": "Cá Nục Sấm Sét",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 60,
+    "maxSizeCm": 130,
+    "baseLT": 74,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 3
+  },
+  {
+    "id": "F167",
+    "name": "Cá Diêu Hồng Cẩm Thạch",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 37,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 35
+  },
+  {
+    "id": "F168",
+    "name": "Cá Lăng Mùa Thu",
+    "rarity": "cực hiếm",
+    "emoji": "🐡",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 56,
+    "habitats": [
+      "song"
+    ],
+    "weight": 7
+  },
+  {
+    "id": "F169",
+    "name": "Cá Trắm Cỏ Thiên Thanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 26,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 22
+  },
+  {
+    "id": "F170",
+    "name": "Cá Diêu Hồng Bạc",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 23,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 42
+  },
+  {
+    "id": "F171",
+    "name": "Cá Quả Xanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 16,
+    "habitats": [
+      "song"
+    ],
+    "weight": 28
+  },
+  {
+    "id": "F172",
+    "name": "Cá Hồi Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 28,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 41
+  },
+  {
+    "id": "F173",
+    "name": "Cá Đổng Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 34,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 51
+  },
+  {
+    "id": "F174",
+    "name": "Cá Lăng Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 8,
+    "habitats": [
+      "song"
+    ],
+    "weight": 49
+  },
+  {
+    "id": "F175",
+    "name": "Cá Cá Trắm",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 20,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 44
+  },
+  {
+    "id": "F176",
+    "name": "Cá Thu Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 29,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 52
+  },
+  {
+    "id": "F177",
+    "name": "Cá Trắm Bão Tố",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 34,
+    "habitats": [
+      "song"
+    ],
+    "weight": 12
+  },
+  {
+    "id": "F178",
+    "name": "Cá Chạch Mùa Thu",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 22,
+    "habitats": [
+      "song"
+    ],
+    "weight": 23
+  },
+  {
+    "id": "F179",
+    "name": "Cá Hồng Vằn",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 56,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 14
+  },
+  {
+    "id": "F180",
+    "name": "Cá Chình Hồ Vằn",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 36,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 23
+  },
+  {
+    "id": "F181",
+    "name": "Cá Mè Hắc Ám",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 60,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 11
+  },
+  {
+    "id": "F182",
+    "name": "Cá Quả Băng Giá",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 16,
+    "habitats": [
+      "song"
+    ],
+    "weight": 34
+  },
+  {
+    "id": "F183",
+    "name": "Cá Cờ Mùa Thu",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 40,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 24
+  },
+  {
+    "id": "F184",
+    "name": "Cá Mú Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 26,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 51
+  },
+  {
+    "id": "F185",
+    "name": "Cá Trắm Bạc",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 24,
+    "habitats": [
+      "song"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F186",
+    "name": "Cá Quả Lam",
+    "rarity": "cực hiếm",
+    "emoji": "🐡",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 55,
+    "habitats": [
+      "song",
+      "bien"
+    ],
+    "weight": 4
+  },
+  {
+    "id": "F187",
+    "name": "Cá Trê Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 14,
+    "habitats": [
+      "song"
+    ],
+    "weight": 51
+  },
+  {
+    "id": "F188",
+    "name": "Cá Nục Hoàng Kim",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 54,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 13
+  },
+  {
+    "id": "F189",
+    "name": "Cá Diếc Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 8,
+    "habitats": [
+      "song"
+    ],
+    "weight": 60
+  },
+  {
+    "id": "F190",
+    "name": "Cá Trôi Bạch Kim",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 81,
+    "habitats": [
+      "song"
+    ],
+    "weight": 4
+  },
+  {
+    "id": "F191",
+    "name": "Cá Sấu Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 14,
+    "habitats": [
+      "song"
+    ],
+    "weight": 50
+  },
+  {
+    "id": "F192",
+    "name": "Cá Sấu Bạc",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 8,
+    "habitats": [
+      "song"
+    ],
+    "weight": 41
+  },
+  {
+    "id": "F193",
+    "name": "Cá Mú Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 24,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 58
+  },
+  {
+    "id": "F194",
+    "name": "Cá Mú Chấm",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 34,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 45
+  },
+  {
+    "id": "F195",
+    "name": "Cá Nục Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 21,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 42
+  },
+  {
+    "id": "F196",
+    "name": "Cá Quả Bạc",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 18,
+    "habitats": [
+      "song"
+    ],
+    "weight": 27
+  },
+  {
+    "id": "F197",
+    "name": "Cá Chép Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 9,
+    "habitats": [
+      "song"
+    ],
+    "weight": 42
+  },
+  {
+    "id": "F198",
+    "name": "Cá Nục Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 28,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 44
+  },
+  {
+    "id": "F199",
+    "name": "Cá Sấu Tử",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 22,
+    "habitats": [
+      "song"
+    ],
+    "weight": 23
+  },
+  {
+    "id": "F200",
+    "name": "Cá Chim Mùa Thu",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 60,
+    "maxSizeCm": 130,
+    "baseLT": 77,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 4
+  },
+  {
+    "id": "F201",
+    "name": "Cá Chình Hồ Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 21,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 43
+  },
+  {
+    "id": "F202",
+    "name": "Cá Đổng Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 25,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 49
+  },
+  {
+    "id": "F203",
+    "name": "Cá Hồng Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 31,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 42
+  },
+  {
+    "id": "F204",
+    "name": "Cá Bò Bạc",
+    "rarity": "cực hiếm",
+    "emoji": "🐡",
+    "minSizeCm": 60,
+    "maxSizeCm": 130,
+    "baseLT": 104,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 7
+  },
+  {
+    "id": "F205",
+    "name": "Cá Quả Hắc Ám",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 28,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 25
+  },
+  {
+    "id": "F206",
+    "name": "Cá Bống Bạch Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 17,
+    "habitats": [
+      "song"
+    ],
+    "weight": 27
+  },
+  {
+    "id": "F207",
+    "name": "Cá Cam Tử",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 60,
+    "maxSizeCm": 130,
+    "baseLT": 78,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 6
+  },
+  {
+    "id": "F208",
+    "name": "Cá Trê Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 6,
+    "habitats": [
+      "song"
+    ],
+    "weight": 49
+  },
+  {
+    "id": "F209",
+    "name": "Cá Lăng Bạch Kim",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 40,
+    "habitats": [
+      "song"
+    ],
+    "weight": 14
+  },
+  {
+    "id": "F210",
+    "name": "Cá Ngừ Hoàng Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 40,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F211",
+    "name": "Cá Trôi Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 11,
+    "habitats": [
+      "song"
+    ],
+    "weight": 49
+  },
+  {
+    "id": "F212",
+    "name": "Cá Cá Nheo Xanh",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 15,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 51
+  },
+  {
+    "id": "F213",
+    "name": "Cá Kình Sấm Sét",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 35,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 24
+  },
+  {
+    "id": "F214",
+    "name": "Cá Mú Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 29,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 58
+  },
+  {
+    "id": "F215",
+    "name": "Cá Cờ Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 26,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 43
+  },
+  {
+    "id": "F216",
+    "name": "Cá Chép Tử",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 23,
+    "habitats": [
+      "song"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F217",
+    "name": "Cá Chuối Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 9,
+    "habitats": [
+      "song"
+    ],
+    "weight": 55
+  },
+  {
+    "id": "F218",
+    "name": "Cá Cá Nheo Thiên Thanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 35,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 35
+  },
+  {
+    "id": "F219",
+    "name": "Cá Chạch Băng Giá",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 17,
+    "habitats": [
+      "song"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F220",
+    "name": "Cá Trắm Cỏ Bạc",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 17,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 40
+  },
+  {
+    "id": "F221",
+    "name": "Cá Sấu Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 12,
+    "habitats": [
+      "song"
+    ],
+    "weight": 56
+  },
+  {
+    "id": "F222",
+    "name": "Cá Hồi Bão Tố",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 32,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 27
+  },
+  {
+    "id": "F223",
+    "name": "Cá Chim Bạc",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 31,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 43
+  },
+  {
+    "id": "F224",
+    "name": "Cá Bò Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 25,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 56
+  },
+  {
+    "id": "F225",
+    "name": "Cá Trôi Mắt Đỏ",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 44,
+    "habitats": [
+      "ho",
+      "bien"
+    ],
+    "weight": 9
+  },
+  {
+    "id": "F226",
+    "name": "Cá Kình Bão Tố",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 48,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 24
+  },
+  {
+    "id": "F227",
+    "name": "Cá Diêu Hồng Bão Tố",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 42,
+    "habitats": [
+      "ho",
+      "song"
+    ],
+    "weight": 12
+  },
+  {
+    "id": "F228",
+    "name": "Cá Rô Phi Cẩm Thạch",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 26,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 32
+  },
+  {
+    "id": "F229",
+    "name": "Cá Ngừ Xanh",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 23,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 53
+  },
+  {
+    "id": "F230",
+    "name": "Cá Đuối Bạc",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 28,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 51
+  },
+  {
+    "id": "F231",
+    "name": "Cá Ngừ Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 21,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F232",
+    "name": "Cá Cam Bạc",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 21,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 49
+  },
+  {
+    "id": "F233",
+    "name": "Cá Thu Cẩm Thạch",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 70,
+    "habitats": [
+      "bien",
+      "song"
+    ],
+    "weight": 13
+  },
+  {
+    "id": "F234",
+    "name": "Cá Mè Tử",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 42,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F235",
+    "name": "Cá Chình Hồ Chấm",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 22,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F236",
+    "name": "Cá Đuối Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 31,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 48
+  },
+  {
+    "id": "F237",
+    "name": "Cá Nục Hắc Ám",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 31,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 22
+  },
+  {
+    "id": "F238",
+    "name": "Cá Chuối Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 11,
+    "habitats": [
+      "song"
+    ],
+    "weight": 44
+  },
+  {
+    "id": "F239",
+    "name": "Cá Mè Xanh",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 14,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 44
+  },
+  {
+    "id": "F240",
+    "name": "Cá Chình Hồ Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 24,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 53
+  },
+  {
+    "id": "F241",
+    "name": "Cá Chép Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 9,
+    "habitats": [
+      "song"
+    ],
+    "weight": 58
+  },
+  {
+    "id": "F242",
+    "name": "Cá Mè Bạc",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 20,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 53
+  },
+  {
+    "id": "F243",
+    "name": "Cá Kình Tử",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 31,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F244",
+    "name": "Cá Cam Bạch Kim",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 65,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 15
+  },
+  {
+    "id": "F245",
+    "name": "Cá Mè Mắt Đỏ",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 74,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 5
+  },
+  {
+    "id": "F246",
+    "name": "Cá Rô Phi Tử",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 36,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 27
+  },
+  {
+    "id": "F247",
+    "name": "Cá Chim Mắt Đỏ",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 62,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 14
+  },
+  {
+    "id": "F248",
+    "name": "Cá Trôi",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 15,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 54
+  },
+  {
+    "id": "F249",
+    "name": "Cá Quả Chấm",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 32,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F250",
+    "name": "Cá Đại Dương Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 25,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 41
+  },
+  {
+    "id": "F251",
+    "name": "Cá Rô Trắng",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 80,
+    "habitats": [
+      "song"
+    ],
+    "weight": 4
+  },
+  {
+    "id": "F252",
+    "name": "Cá Diếc Vằn",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 23,
+    "habitats": [
+      "song"
+    ],
+    "weight": 24
+  },
+  {
+    "id": "F253",
+    "name": "Cá Hồi Trắng",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 45,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 15
+  },
+  {
+    "id": "F254",
+    "name": "Cá Trôi Mỏ Dài",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 28,
+    "habitats": [
+      "song"
+    ],
+    "weight": 9
+  },
+  {
+    "id": "F255",
+    "name": "Cá Diêu Hồng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 22,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 44
+  },
+  {
+    "id": "F256",
+    "name": "Cá Kình Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 28,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 54
+  },
+  {
+    "id": "F257",
+    "name": "Cá Quả Xanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 36,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 31
+  },
+  {
+    "id": "F258",
+    "name": "Cá Ngừ Lục",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 40,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 28
+  },
+  {
+    "id": "F259",
+    "name": "Cá Bống Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 9,
+    "habitats": [
+      "song"
+    ],
+    "weight": 48
+  },
+  {
+    "id": "F260",
+    "name": "Cá Rô Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 6,
+    "habitats": [
+      "song"
+    ],
+    "weight": 54
+  },
+  {
+    "id": "F261",
+    "name": "Cá Chình Hồ Băng Giá",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 35,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 31
+  },
+  {
+    "id": "F262",
+    "name": "Cá Cam Mùa Thu",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 41,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 33
+  },
+  {
+    "id": "F263",
+    "name": "Cá Chim Thiên Thanh",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 70,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 11
+  },
+  {
+    "id": "F264",
+    "name": "Cá Lăng Lục",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 18,
+    "habitats": [
+      "song"
+    ],
+    "weight": 24
+  },
+  {
+    "id": "F265",
+    "name": "Cá Cá Trắm Lam",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 62,
+    "habitats": [
+      "ho",
+      "song"
+    ],
+    "weight": 9
+  },
+  {
+    "id": "F266",
+    "name": "Cá Kình Bạc",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 34,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 54
+  },
+  {
+    "id": "F267",
+    "name": "Cá Chình Hồ Hoàng Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 34,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 33
+  },
+  {
+    "id": "F268",
+    "name": "Cá Rô Phi Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 25,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 57
+  },
+  {
+    "id": "F269",
+    "name": "Cá Mú Hoàng Kim",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 65,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 13
+  },
+  {
+    "id": "F270",
+    "name": "Cá Cam Thiên Thanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 43,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 35
+  },
+  {
+    "id": "F271",
+    "name": "Cá Mè Đen",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 59,
+    "habitats": [
+      "ho",
+      "bien"
+    ],
+    "weight": 11
+  },
+  {
+    "id": "F272",
+    "name": "Cá Trắm Cỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 26,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 44
+  },
+  {
+    "id": "F273",
+    "name": "Cá Kình Vằn",
+    "rarity": "truyền thuyết",
+    "emoji": "🐉",
+    "minSizeCm": 80,
+    "maxSizeCm": 180,
+    "baseLT": 253,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 2
+  },
+  {
+    "id": "F274",
+    "name": "Cá Bò Xanh",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 23,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 57
+  },
+  {
+    "id": "F275",
+    "name": "Cá Đổng Chấm",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 34,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 53
+  },
+  {
+    "id": "F276",
+    "name": "Cá Hồi Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 33,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F277",
+    "name": "Cá Chình Hồ Vàng",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 41,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 14
+  },
+  {
+    "id": "F278",
+    "name": "Cá Chim Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 24,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 60
+  },
+  {
+    "id": "F279",
+    "name": "Cá Diếc Hắc Ám",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 28,
+    "habitats": [
+      "song",
+      "ho"
+    ],
+    "weight": 14
+  },
+  {
+    "id": "F280",
+    "name": "Cá Trê Chấm",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 37,
+    "habitats": [
+      "song"
+    ],
+    "weight": 15
+  },
+  {
+    "id": "F281",
+    "name": "Cá Rô Phi Bạch Kim",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 40,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 11
+  },
+  {
+    "id": "F282",
+    "name": "Cá Chuối Tử",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 18,
+    "habitats": [
+      "song"
+    ],
+    "weight": 28
+  },
+  {
+    "id": "F283",
+    "name": "Cá Đuối Bạch Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 36,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 27
+  },
+  {
+    "id": "F284",
+    "name": "Cá Đại Dương Bạc",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 24,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F285",
+    "name": "Cá Trắm Sấm Sét",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 76,
+    "habitats": [
+      "song",
+      "ho"
+    ],
+    "weight": 4
+  },
+  {
+    "id": "F286",
+    "name": "Cá Trắm Xanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 18,
+    "habitats": [
+      "song"
+    ],
+    "weight": 27
+  },
+  {
+    "id": "F287",
+    "name": "Cá Đuối Xanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 30,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 22
+  },
+  {
+    "id": "F288",
+    "name": "Cá Chép Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 6,
+    "habitats": [
+      "song"
+    ],
+    "weight": 45
+  },
+  {
+    "id": "F289",
+    "name": "Cá Bống Lục",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 37,
+    "habitats": [
+      "song",
+      "ho"
+    ],
+    "weight": 13
+  },
+  {
+    "id": "F290",
+    "name": "Cá Chép koi Bạc",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 37,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F291",
+    "name": "Cá Chình Hồ Bạc",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 27,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 28
+  },
+  {
+    "id": "F292",
+    "name": "Cá Rô Bạc",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 22,
+    "habitats": [
+      "song"
+    ],
+    "weight": 32
+  },
+  {
+    "id": "F293",
+    "name": "Cá Bống Đỏ",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 32,
+    "habitats": [
+      "song",
+      "bien"
+    ],
+    "weight": 9
+  },
+  {
+    "id": "F294",
+    "name": "Cá Chép koi Bão Tố",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 45,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 8
+  },
+  {
+    "id": "F295",
+    "name": "Cá Ngừ Mỏ Dài",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 62,
+    "habitats": [
+      "bien",
+      "song"
+    ],
+    "weight": 13
+  },
+  {
+    "id": "F296",
+    "name": "Cá Thu Vàng",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 52,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F297",
+    "name": "Cá Ngừ Bạch Kim",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 60,
+    "maxSizeCm": 130,
+    "baseLT": 120,
+    "habitats": [
+      "bien",
+      "ho"
+    ],
+    "weight": 6
+  },
+  {
+    "id": "F298",
+    "name": "Cá Quả Bạch Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 20,
+    "habitats": [
+      "song"
+    ],
+    "weight": 23
+  },
+  {
+    "id": "F299",
+    "name": "Cá Rô Lam",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 67,
+    "habitats": [
+      "song"
+    ],
+    "weight": 4
+  },
+  {
+    "id": "F300",
+    "name": "Cá Diếc Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 14,
+    "habitats": [
+      "song"
+    ],
+    "weight": 43
+  },
+  {
+    "id": "F301",
+    "name": "Cá Cá Trắm Xanh",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 52,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 11
+  },
+  {
+    "id": "F302",
+    "name": "Cá Chạch Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 8,
+    "habitats": [
+      "song"
+    ],
+    "weight": 45
+  },
+  {
+    "id": "F303",
+    "name": "Cá Hồng Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 29,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F304",
+    "name": "Cá Đổng Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 22,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 40
+  },
+  {
+    "id": "F305",
+    "name": "Cá Diêu Hồng Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 16,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 50
+  },
+  {
+    "id": "F306",
+    "name": "Cá Mè Chấm",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 19,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 60
+  },
+  {
+    "id": "F307",
+    "name": "Cá Đổng Vằn",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 60,
+    "maxSizeCm": 130,
+    "baseLT": 87,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 5
+  },
+  {
+    "id": "F308",
+    "name": "Cá Chuối Chấm",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 36,
+    "habitats": [
+      "song"
+    ],
+    "weight": 8
+  },
+  {
+    "id": "F309",
+    "name": "Cá Mú Bạc",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 43,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 24
+  },
+  {
+    "id": "F310",
+    "name": "Cá Hồng Bạc",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 44,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 31
+  },
+  {
+    "id": "F311",
+    "name": "Cá Chạch Đỏ",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 24,
+    "habitats": [
+      "song"
+    ],
+    "weight": 34
+  },
+  {
+    "id": "F312",
+    "name": "Cá Bống Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 14,
+    "habitats": [
+      "song"
+    ],
+    "weight": 54
+  },
+  {
+    "id": "F313",
+    "name": "Cá Cá Nheo Tử",
+    "rarity": "truyền thuyết",
+    "emoji": "✨",
+    "minSizeCm": 55,
+    "maxSizeCm": 120,
+    "baseLT": 140,
+    "habitats": [
+      "ho",
+      "bien"
+    ],
+    "weight": 1
+  },
+  {
+    "id": "F314",
+    "name": "Cá Mú Lam",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 40,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 26
+  },
+  {
+    "id": "F315",
+    "name": "Cá Chép Băng Giá",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 42,
+    "habitats": [
+      "song",
+      "ho"
+    ],
+    "weight": 10
+  },
+  {
+    "id": "F316",
+    "name": "Cá Trôi Cẩm Thạch",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 21,
+    "habitats": [
+      "song"
+    ],
+    "weight": 33
+  },
+  {
+    "id": "F317",
+    "name": "Cá Bơn Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 21,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 55
+  },
+  {
+    "id": "F318",
+    "name": "Cá Bò Bạch Kim",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 60,
+    "maxSizeCm": 130,
+    "baseLT": 109,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 7
+  },
+  {
+    "id": "F319",
+    "name": "Cá Đại Dương Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 25,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 43
+  },
+  {
+    "id": "F320",
+    "name": "Cá Lăng Xanh",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 31,
+    "habitats": [
+      "song"
+    ],
+    "weight": 15
+  },
+  {
+    "id": "F321",
+    "name": "Cá Hồi Cẩm Thạch",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 52,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F322",
+    "name": "Cá Chạch Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 10,
+    "habitats": [
+      "song"
+    ],
+    "weight": 48
+  },
+  {
+    "id": "F323",
+    "name": "Cá Cờ Tử",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 47,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 31
+  },
+  {
+    "id": "F324",
+    "name": "Cá Cá Nheo Mùa Thu",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 45,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 11
+  },
+  {
+    "id": "F325",
+    "name": "Cá Chép koi Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 24,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 52
+  },
+  {
+    "id": "F326",
+    "name": "Cá Kình Hắc Ám",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 44,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 27
+  },
+  {
+    "id": "F327",
+    "name": "Cá Diếc Lam",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 25,
+    "habitats": [
+      "song"
+    ],
+    "weight": 35
+  },
+  {
+    "id": "F328",
+    "name": "Cá Trắm Hoàng Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 18,
+    "habitats": [
+      "song"
+    ],
+    "weight": 35
+  },
+  {
+    "id": "F329",
+    "name": "Cá Diêu Hồng Đỏ",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 40,
+    "habitats": [
+      "ho",
+      "bien"
+    ],
+    "weight": 10
+  },
+  {
+    "id": "F330",
+    "name": "Cá Sấu Mỏ Dài",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 29,
+    "habitats": [
+      "song",
+      "bien"
+    ],
+    "weight": 12
+  },
+  {
+    "id": "F331",
+    "name": "Cá Trắm Cỏ Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 14,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 55
+  },
+  {
+    "id": "F332",
+    "name": "Cá Trắm Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 6,
+    "habitats": [
+      "song"
+    ],
+    "weight": 50
+  },
+  {
+    "id": "F333",
+    "name": "Cá Chuối Cẩm Thạch",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 80,
+    "habitats": [
+      "song"
+    ],
+    "weight": 4
+  },
+  {
+    "id": "F334",
+    "name": "Cá Sấu Sấm Sét",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 17,
+    "habitats": [
+      "song"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F335",
+    "name": "Cá Hồi Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 20,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 44
+  },
+  {
+    "id": "F336",
+    "name": "Cá Cá Trắm Vằn",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 34,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 25
+  },
+  {
+    "id": "F337",
+    "name": "Cá Trôi Xanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 35,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F338",
+    "name": "Cá Kình Xanh",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 25,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 52
+  },
+  {
+    "id": "F339",
+    "name": "Cá Nục Vàng",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 70,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 13
+  },
+  {
+    "id": "F340",
+    "name": "Cá Bơn Tử",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 32,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 31
+  },
+  {
+    "id": "F341",
+    "name": "Cá Quả Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 9,
+    "habitats": [
+      "song"
+    ],
+    "weight": 57
+  },
+  {
+    "id": "F342",
+    "name": "Cá Trắm Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 6,
+    "habitats": [
+      "song"
+    ],
+    "weight": 42
+  },
+  {
+    "id": "F343",
+    "name": "Cá Quả Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 25,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 40
+  },
+  {
+    "id": "F344",
+    "name": "Cá Diêu Hồng Mắt Đỏ",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 42,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 26
+  },
+  {
+    "id": "F345",
+    "name": "Cá Cờ Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 21,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 56
+  },
+  {
+    "id": "F346",
+    "name": "Cá Chim Băng Giá",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 43,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 27
+  },
+  {
+    "id": "F347",
+    "name": "Cá Trê Bạc",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 68,
+    "habitats": [
+      "song"
+    ],
+    "weight": 5
+  },
+  {
+    "id": "F348",
+    "name": "Cá Diếc Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 10,
+    "habitats": [
+      "song"
+    ],
+    "weight": 59
+  },
+  {
+    "id": "F349",
+    "name": "Cá Quả Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 14,
+    "habitats": [
+      "song"
+    ],
+    "weight": 60
+  },
+  {
+    "id": "F350",
+    "name": "Cá Rô Xanh",
+    "rarity": "cực hiếm",
+    "emoji": "🐡",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 74,
+    "habitats": [
+      "song"
+    ],
+    "weight": 5
+  },
+  {
+    "id": "F351",
+    "name": "Cá Hồi Bạc",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 26,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 41
+  },
+  {
+    "id": "F352",
+    "name": "Cá Trắm Cỏ Lục",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 51,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 9
+  },
+  {
+    "id": "F353",
+    "name": "Cá Cá Trắm Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 16,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 44
+  },
+  {
+    "id": "F354",
+    "name": "Cá Mú Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 20,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 49
+  },
+  {
+    "id": "F355",
+    "name": "Cá Quả Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 12,
+    "habitats": [
+      "song"
+    ],
+    "weight": 49
+  },
+  {
+    "id": "F356",
+    "name": "Cá Chép Lam",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 85,
+    "habitats": [
+      "song"
+    ],
+    "weight": 3
+  },
+  {
+    "id": "F357",
+    "name": "Cá Nục Băng Giá",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 32,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 35
+  },
+  {
+    "id": "F358",
+    "name": "Cá Ngừ Chấm",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 23,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 46
+  },
+  {
+    "id": "F359",
+    "name": "Cá Trôi Bạc",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 6,
+    "habitats": [
+      "song"
+    ],
+    "weight": 60
+  },
+  {
+    "id": "F360",
+    "name": "Cá Bơn Hoàng Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 52,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F361",
+    "name": "Cá Bơn Đỏ",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 37,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 27
+  },
+  {
+    "id": "F362",
+    "name": "Cá Cá Nheo Bão Tố",
+    "rarity": "cực hiếm",
+    "emoji": "🐡",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 91,
+    "habitats": [
+      "ho",
+      "song"
+    ],
+    "weight": 5
+  },
+  {
+    "id": "F363",
+    "name": "Cá Trôi Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 9,
+    "habitats": [
+      "song"
+    ],
+    "weight": 56
+  },
+  {
+    "id": "F364",
+    "name": "Cá Mè Bạch Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 31,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 22
+  },
+  {
+    "id": "F365",
+    "name": "Cá Quả Lục",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 20,
+    "habitats": [
+      "song"
+    ],
+    "weight": 27
+  },
+  {
+    "id": "F366",
+    "name": "Cá Ngừ Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 22,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 53
+  },
+  {
+    "id": "F367",
+    "name": "Cá Đổng Trắng",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 52,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 25
+  },
+  {
+    "id": "F368",
+    "name": "Cá Đại Dương Hoàng Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 39,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 24
+  },
+  {
+    "id": "F369",
+    "name": "Cá Trôi Bão Tố",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 21,
+    "habitats": [
+      "song"
+    ],
+    "weight": 24
+  },
+  {
+    "id": "F370",
+    "name": "Cá Cá Trắm Mùa Thu",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 55,
+    "habitats": [
+      "ho",
+      "song"
+    ],
+    "weight": 13
+  },
+  {
+    "id": "F371",
+    "name": "Cá Rô Chấm",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 8,
+    "habitats": [
+      "song"
+    ],
+    "weight": 55
+  },
+  {
+    "id": "F372",
+    "name": "Cá Thu Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 25,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 54
+  },
+  {
+    "id": "F373",
+    "name": "Cá Trôi Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 15,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 45
+  },
+  {
+    "id": "F374",
+    "name": "Cá Thu Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 28,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 40
+  },
+  {
+    "id": "F375",
+    "name": "Cá Hồng Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 24,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 57
+  },
+  {
+    "id": "F376",
+    "name": "Cá Bơn Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 21,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 52
+  },
+  {
+    "id": "F377",
+    "name": "Cá Trôi Tử",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 79,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 6
+  },
+  {
+    "id": "F378",
+    "name": "Cá Diếc Hoàng Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 17,
+    "habitats": [
+      "song"
+    ],
+    "weight": 28
+  },
+  {
+    "id": "F379",
+    "name": "Cá Nục Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 32,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F380",
+    "name": "Cá Diếc Thiên Thanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 21,
+    "habitats": [
+      "song"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F381",
+    "name": "Cá Hồi Sấm Sét",
+    "rarity": "cực hiếm",
+    "emoji": "🐡",
+    "minSizeCm": 60,
+    "maxSizeCm": 130,
+    "baseLT": 100,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 4
+  },
+  {
+    "id": "F382",
+    "name": "Cá Trôi Trắng",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 62,
+    "habitats": [
+      "song"
+    ],
+    "weight": 3
+  },
+  {
+    "id": "F383",
+    "name": "Cá Mè Băng Giá",
+    "rarity": "truyền thuyết",
+    "emoji": "🐉",
+    "minSizeCm": 55,
+    "maxSizeCm": 120,
+    "baseLT": 170,
+    "habitats": [
+      "ho",
+      "bien"
+    ],
+    "weight": 1
+  },
+  {
+    "id": "F384",
+    "name": "Cá Rô Mùa Thu",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 24,
+    "habitats": [
+      "song"
+    ],
+    "weight": 23
+  },
+  {
+    "id": "F385",
+    "name": "Cá Đại Dương Đen",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 33,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 34
+  },
+  {
+    "id": "F386",
+    "name": "Cá Trôi Hắc Ám",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 48,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 15
+  },
+  {
+    "id": "F387",
+    "name": "Cá Đuối Hắc Ám",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 53,
+    "habitats": [
+      "bien",
+      "ho"
+    ],
+    "weight": 15
+  },
+  {
+    "id": "F388",
+    "name": "Cá Cá Trắm Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 17,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 46
+  },
+  {
+    "id": "F389",
+    "name": "Cá Hồi Lục",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 41,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F390",
+    "name": "Cá Nục Lục",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 42,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 32
+  },
+  {
+    "id": "F391",
+    "name": "Cá Diếc Bạc",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 9,
+    "habitats": [
+      "song"
+    ],
+    "weight": 60
+  },
+  {
+    "id": "F392",
+    "name": "Cá Trắm Cỏ Mắt Đỏ",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 39,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 35
+  },
+  {
+    "id": "F393",
+    "name": "Cá Chép koi Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 21,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 46
+  },
+  {
+    "id": "F394",
+    "name": "Cá Diêu Hồng Băng Giá",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 77,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 5
+  },
+  {
+    "id": "F395",
+    "name": "Cá Ngừ Sấm Sét",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 34,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 32
+  },
+  {
+    "id": "F396",
+    "name": "Cá Đại Dương Bão Tố",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 36,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 33
+  },
+  {
+    "id": "F397",
+    "name": "Cá Trắm Cỏ Băng Giá",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 41,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F398",
+    "name": "Cá Chình Hồ Sấm Sét",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 45,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 9
+  },
+  {
+    "id": "F399",
+    "name": "Cá Đuối Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 23,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 60
+  },
+  {
+    "id": "F400",
+    "name": "Cá Diếc Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 12,
+    "habitats": [
+      "song"
+    ],
+    "weight": 51
+  },
+  {
+    "id": "F401",
+    "name": "Cá Đuối Lục",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 60,
+    "habitats": [
+      "bien",
+      "ho"
+    ],
+    "weight": 14
+  },
+  {
+    "id": "F402",
+    "name": "Cá Sấu Bạch Kim",
+    "rarity": "truyền thuyết",
+    "emoji": "🦈",
+    "minSizeCm": 45,
+    "maxSizeCm": 110,
+    "baseLT": 192,
+    "habitats": [
+      "song"
+    ],
+    "weight": 1
+  },
+  {
+    "id": "F403",
+    "name": "Cá Trôi Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 10,
+    "habitats": [
+      "song"
+    ],
+    "weight": 45
+  },
+  {
+    "id": "F404",
+    "name": "Cá Diếc Chấm",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 12,
+    "habitats": [
+      "song"
+    ],
+    "weight": 55
+  },
+  {
+    "id": "F405",
+    "name": "Cá Nục Bạch Kim",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 60,
+    "maxSizeCm": 130,
+    "baseLT": 103,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 3
+  },
+  {
+    "id": "F406",
+    "name": "Cá Chình Hồ Lam",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 93,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 6
+  },
+  {
+    "id": "F407",
+    "name": "Cá Cá Nheo Trắng",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 38,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 25
+  },
+  {
+    "id": "F408",
+    "name": "Cá Chép Vằn",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 12,
+    "habitats": [
+      "song"
+    ],
+    "weight": 57
+  },
+  {
+    "id": "F409",
+    "name": "Cá Chình Hồ Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 18,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 53
+  },
+  {
+    "id": "F410",
+    "name": "Cá Trôi Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 23,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 48
+  },
+  {
+    "id": "F411",
+    "name": "Cá Bò Hắc Ám",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 60,
+    "maxSizeCm": 130,
+    "baseLT": 88,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 3
+  },
+  {
+    "id": "F412",
+    "name": "Cá Chuối Sấm Sét",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 22,
+    "habitats": [
+      "song"
+    ],
+    "weight": 23
+  },
+  {
+    "id": "F413",
+    "name": "Cá Quả Lam",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 35,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F414",
+    "name": "Cá Nục Trắng",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 33,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 28
+  },
+  {
+    "id": "F415",
+    "name": "Cá Đuối Sấm Sét",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 44,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 31
+  },
+  {
+    "id": "F416",
+    "name": "Cá Thu Mùa Thu",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 30,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F417",
+    "name": "Cá Cờ Vằn",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 51,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F418",
+    "name": "Cá Bò Mùa Thu",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 33,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 32
+  },
+  {
+    "id": "F419",
+    "name": "Cá Chép Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 14,
+    "habitats": [
+      "song"
+    ],
+    "weight": 42
+  },
+  {
+    "id": "F420",
+    "name": "Cá Chình Hồ Thiên Thanh",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 50,
+    "habitats": [
+      "ho",
+      "bien"
+    ],
+    "weight": 8
+  },
+  {
+    "id": "F421",
+    "name": "Cá Trê Tử",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 29,
+    "habitats": [
+      "song",
+      "bien"
+    ],
+    "weight": 11
+  },
+  {
+    "id": "F422",
+    "name": "Cá Chuối Lam",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 22,
+    "habitats": [
+      "song"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F423",
+    "name": "Cá Cá Trắm Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 28,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 48
+  },
+  {
+    "id": "F424",
+    "name": "Cá Cá Trắm Thiên Thanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 32,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 25
+  },
+  {
+    "id": "F425",
+    "name": "Cá Trôi Sấm Sét",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 30,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F426",
+    "name": "Cá Bơn Bạch Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 52,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 34
+  },
+  {
+    "id": "F427",
+    "name": "Cá Hồi Thiên Thanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 39,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 34
+  },
+  {
+    "id": "F428",
+    "name": "Cá Lăng Chấm",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 19,
+    "habitats": [
+      "song"
+    ],
+    "weight": 26
+  },
+  {
+    "id": "F429",
+    "name": "Cá Cá Nheo Đen",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 33,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 25
+  },
+  {
+    "id": "F430",
+    "name": "Cá Lăng Hoàng Kim",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 40,
+    "habitats": [
+      "song"
+    ],
+    "weight": 8
+  },
+  {
+    "id": "F431",
+    "name": "Cá Mú Băng Giá",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 52,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 34
+  },
+  {
+    "id": "F432",
+    "name": "Cá Chuối Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 10,
+    "habitats": [
+      "song"
+    ],
+    "weight": 45
+  },
+  {
+    "id": "F433",
+    "name": "Cá Trê Xanh",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 10,
+    "habitats": [
+      "song"
+    ],
+    "weight": 58
+  },
+  {
+    "id": "F434",
+    "name": "Cá Trắm Cỏ Sấm Sét",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 51,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 11
+  },
+  {
+    "id": "F435",
+    "name": "Cá Trắm Đen Sấm Sét",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 84,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 6
+  },
+  {
+    "id": "F436",
+    "name": "Cá Chạch Thiên Thanh",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 90,
+    "habitats": [
+      "song"
+    ],
+    "weight": 4
+  },
+  {
+    "id": "F437",
+    "name": "Cá Trê Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 14,
+    "habitats": [
+      "song"
+    ],
+    "weight": 58
+  },
+  {
+    "id": "F438",
+    "name": "Cá Thu Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 18,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 43
+  },
+  {
+    "id": "F439",
+    "name": "Cá Trôi Mỏ Dài",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 28,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 34
+  },
+  {
+    "id": "F440",
+    "name": "Cá Sấu Thiên Thanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 19,
+    "habitats": [
+      "song"
+    ],
+    "weight": 26
+  },
+  {
+    "id": "F441",
+    "name": "Cá Quả Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 27,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 57
+  },
+  {
+    "id": "F442",
+    "name": "Cá Đuối Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 33,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 45
+  },
+  {
+    "id": "F443",
+    "name": "Cá Đại Dương Mỏ Dài",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 34,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F444",
+    "name": "Cá Trắm Đen Mùa Thu",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 64,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 15
+  },
+  {
+    "id": "F445",
+    "name": "Cá Quả Tử",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 20,
+    "habitats": [
+      "song"
+    ],
+    "weight": 25
+  },
+  {
+    "id": "F446",
+    "name": "Cá Trê Lục",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 20,
+    "habitats": [
+      "song"
+    ],
+    "weight": 29
+  },
+  {
+    "id": "F447",
+    "name": "Cá Cam Đỏ",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 54,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 12
+  },
+  {
+    "id": "F448",
+    "name": "Cá Thu Hắc Ám",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 48,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F449",
+    "name": "Cá Rô Phi Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 25,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F450",
+    "name": "Cá Đuối Tử",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 36,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 32
+  },
+  {
+    "id": "F451",
+    "name": "Cá Hồi Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 23,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 60
+  },
+  {
+    "id": "F452",
+    "name": "Cá Trôi Chấm",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 90,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 4
+  },
+  {
+    "id": "F453",
+    "name": "Cá Trắm Cỏ Mùa Thu",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 30,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 31
+  },
+  {
+    "id": "F454",
+    "name": "Cá Diêu Hồng Mùa Thu",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 47,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 14
+  },
+  {
+    "id": "F455",
+    "name": "Cá Sấu Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 12,
+    "habitats": [
+      "song"
+    ],
+    "weight": 59
+  },
+  {
+    "id": "F456",
+    "name": "Cá Đuối Mùa Thu",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 47,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 34
+  },
+  {
+    "id": "F457",
+    "name": "Cá Hồng Xanh",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 34,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F458",
+    "name": "Cá Đuối Hoàng Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 41,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 28
+  },
+  {
+    "id": "F459",
+    "name": "Cá Hồi Xanh",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 34,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 56
+  },
+  {
+    "id": "F460",
+    "name": "Cá Rô Vàng",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 22,
+    "habitats": [
+      "song"
+    ],
+    "weight": 23
+  },
+  {
+    "id": "F461",
+    "name": "Cá Trắm Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 6,
+    "habitats": [
+      "song"
+    ],
+    "weight": 52
+  },
+  {
+    "id": "F462",
+    "name": "Cá Lăng Trắng",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 35,
+    "maxSizeCm": 85,
+    "baseLT": 78,
+    "habitats": [
+      "song"
+    ],
+    "weight": 4
+  },
+  {
+    "id": "F463",
+    "name": "Cá Bò Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 34,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 59
+  },
+  {
+    "id": "F464",
+    "name": "Cá Chạch Hắc Ám",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 18,
+    "habitats": [
+      "song"
+    ],
+    "weight": 24
+  },
+  {
+    "id": "F465",
+    "name": "Cá Cá Nheo Hoàng Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 32,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 33
+  },
+  {
+    "id": "F466",
+    "name": "Cá Trôi Thiên Thanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 37,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 35
+  },
+  {
+    "id": "F467",
+    "name": "Cá Cam Bão Tố",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 57,
+    "habitats": [
+      "bien",
+      "song"
+    ],
+    "weight": 9
+  },
+  {
+    "id": "F468",
+    "name": "Cá Kình Thiên Thanh",
+    "rarity": "cực hiếm",
+    "emoji": "🎣",
+    "minSizeCm": 60,
+    "maxSizeCm": 130,
+    "baseLT": 106,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 6
+  },
+  {
+    "id": "F469",
+    "name": "Cá Cam Xanh",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 52,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 14
+  },
+  {
+    "id": "F470",
+    "name": "Cá Cá Trắm Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 14,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 47
+  },
+  {
+    "id": "F471",
+    "name": "Cá Quả Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 27,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 44
+  },
+  {
+    "id": "F472",
+    "name": "Cá Trê Hắc Ám",
+    "rarity": "hiếm",
+    "emoji": "🎏",
+    "minSizeCm": 28,
+    "maxSizeCm": 65,
+    "baseLT": 35,
+    "habitats": [
+      "song"
+    ],
+    "weight": 15
+  },
+  {
+    "id": "F473",
+    "name": "Cá Cam Đen",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 30,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 50
+  },
+  {
+    "id": "F474",
+    "name": "Cá Mú Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 25,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 48
+  },
+  {
+    "id": "F475",
+    "name": "Cá Quả Chấm",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 13,
+    "habitats": [
+      "song"
+    ],
+    "weight": 60
+  },
+  {
+    "id": "F476",
+    "name": "Cá Lăng Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 13,
+    "habitats": [
+      "song"
+    ],
+    "weight": 48
+  },
+  {
+    "id": "F477",
+    "name": "Cá Chạch Bạch Kim",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 21,
+    "habitats": [
+      "song"
+    ],
+    "weight": 35
+  },
+  {
+    "id": "F478",
+    "name": "Cá Trắm Trắng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 11,
+    "habitats": [
+      "song"
+    ],
+    "weight": 48
+  },
+  {
+    "id": "F479",
+    "name": "Cá Quả Bạc",
+    "rarity": "cực hiếm",
+    "emoji": "🦈",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 66,
+    "habitats": [
+      "ho",
+      "bien"
+    ],
+    "weight": 3
+  },
+  {
+    "id": "F480",
+    "name": "Cá Đuối Chấm",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 34,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 43
+  },
+  {
+    "id": "F481",
+    "name": "Cá Chép koi Mắt Đỏ",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 18,
+    "maxSizeCm": 45,
+    "baseLT": 16,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 60
+  },
+  {
+    "id": "F482",
+    "name": "Cá Trắm Cỏ Lam",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 35,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 28
+  },
+  {
+    "id": "F483",
+    "name": "Cá Rô Tử",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 22,
+    "habitats": [
+      "song"
+    ],
+    "weight": 22
+  },
+  {
+    "id": "F484",
+    "name": "Cá Hồng Mùa Thu",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 37,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F485",
+    "name": "Cá Hồng Chấm",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 30,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 48
+  },
+  {
+    "id": "F486",
+    "name": "Cá Diếc Mỏ Dài",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 10,
+    "habitats": [
+      "song"
+    ],
+    "weight": 60
+  },
+  {
+    "id": "F487",
+    "name": "Cá Bơn Cẩm Thạch",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 36,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 24
+  },
+  {
+    "id": "F488",
+    "name": "Cá Sấu Xanh",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 18,
+    "habitats": [
+      "song"
+    ],
+    "weight": 24
+  },
+  {
+    "id": "F489",
+    "name": "Cá Đổng Lam",
+    "rarity": "truyền thuyết",
+    "emoji": "🦈",
+    "minSizeCm": 80,
+    "maxSizeCm": 180,
+    "baseLT": 164,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 1
+  },
+  {
+    "id": "F490",
+    "name": "Cá Trắm Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 12,
+    "habitats": [
+      "song"
+    ],
+    "weight": 43
+  },
+  {
+    "id": "F491",
+    "name": "Cá Trắm Đen Đỏ",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 32,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 33
+  },
+  {
+    "id": "F492",
+    "name": "Cá Chuối Xanh",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 12,
+    "maxSizeCm": 35,
+    "baseLT": 8,
+    "habitats": [
+      "song"
+    ],
+    "weight": 58
+  },
+  {
+    "id": "F493",
+    "name": "Cá Đại Dương Tử",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 52,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 27
+  },
+  {
+    "id": "F494",
+    "name": "Cá Cá Nheo Lam",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 32,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 33
+  },
+  {
+    "id": "F495",
+    "name": "Cá Thu Xanh",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 33,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 57
+  },
+  {
+    "id": "F496",
+    "name": "Cá Chép koi Mùa Thu",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 57,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 9
+  },
+  {
+    "id": "F497",
+    "name": "Cá Bò Vàng",
+    "rarity": "thường",
+    "emoji": "🐟",
+    "minSizeCm": 20,
+    "maxSizeCm": 55,
+    "baseLT": 29,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 40
+  },
+  {
+    "id": "F498",
+    "name": "Cá Cá Trắm Sấm Sét",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 25,
+    "maxSizeCm": 65,
+    "baseLT": 38,
+    "habitats": [
+      "ho"
+    ],
+    "weight": 30
+  },
+  {
+    "id": "F499",
+    "name": "Cá Thu Lục",
+    "rarity": "khá",
+    "emoji": "🐠",
+    "minSizeCm": 30,
+    "maxSizeCm": 75,
+    "baseLT": 49,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 22
+  },
+  {
+    "id": "F500",
+    "name": "Cá Đổng Bạc",
+    "rarity": "hiếm",
+    "emoji": "🐠",
+    "minSizeCm": 40,
+    "maxSizeCm": 95,
+    "baseLT": 64,
+    "habitats": [
+      "bien"
+    ],
+    "weight": 13
+  }
+]

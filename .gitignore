@@ -1,0 +1,28 @@
+﻿# Node modules & build
+node_modules/
+dist/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env (bot token, DB, secret)
+.env
+
+# Data files (runtime, không sync)
+data/users.json
+
+# PM2 logs
+pids
+*.pid
+*.seed
+*.pid.lock
+logs/

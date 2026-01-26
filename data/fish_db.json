@@ -1,7 +1,7 @@
 [
   {
     "id": "F001",
-    "name": "Hắc Chuối Ngư",
+    "name": "Hắc Xà Đầu Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -14,7 +14,7 @@
   },
   {
     "id": "F002",
-    "name": "Xích Diếc Ngư",
+    "name": "Xích Tức Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -27,7 +27,7 @@
   },
   {
     "id": "F003",
-    "name": "Chép Ngư",
+    "name": "Lý Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -40,7 +40,7 @@
   },
   {
     "id": "F004",
-    "name": "Mú Ngư",
+    "name": "Thạch Ban Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -53,7 +53,7 @@
   },
   {
     "id": "F005",
-    "name": "Hồng Bạch Diêu Ngư",
+    "name": "Bạch Diêu Hồng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -66,7 +66,7 @@
   },
   {
     "id": "F006",
-    "name": "Kim Bống Ngư",
+    "name": "Kim Hà Hổ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -79,7 +79,7 @@
   },
   {
     "id": "F007",
-    "name": "Hoàng Kim Chuối Ngư",
+    "name": "Hoàng Kim Xà Đầu Ngư",
     "rarity": "cực hiếm",
     "emoji": "🐡",
     "minSizeCm": 35,
@@ -93,7 +93,7 @@
   },
   {
     "id": "F008",
-    "name": "Hắc Cờ Ngư",
+    "name": "Hắc Kỳ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -106,7 +106,7 @@
   },
   {
     "id": "F009",
-    "name": "Bống Ngư",
+    "name": "Hà Hổ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -119,7 +119,7 @@
   },
   {
     "id": "F010",
-    "name": "Xích Nheo Ngư",
+    "name": "Hồ Xích Linh Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -132,7 +132,7 @@
   },
   {
     "id": "F011",
-    "name": "Hắc Xích Nhãn Trắm Ngư",
+    "name": "Hắc Xích Nhãn Lân Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -145,7 +145,7 @@
   },
   {
     "id": "F012",
-    "name": "Bạch Kim Trắm Cỏ Ngư",
+    "name": "Bạch Kim Thảo Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -158,7 +158,7 @@
   },
   {
     "id": "F013",
-    "name": "Lôi Vân Rô Phi Ngư",
+    "name": "Lôi Vân La Phi Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -171,7 +171,7 @@
   },
   {
     "id": "F014",
-    "name": "Hàn Băng Ngừ Ngư",
+    "name": "Hàn Băng Vị Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 40,
@@ -184,7 +184,7 @@
   },
   {
     "id": "F015",
-    "name": "Chim Ngư",
+    "name": "Phi Điểu Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -197,7 +197,7 @@
   },
   {
     "id": "F016",
-    "name": "Kim Trắm Cỏ Ngư",
+    "name": "Kim Thảo Ngư",
     "rarity": "truyền thuyết",
     "emoji": "✨",
     "minSizeCm": 55,
@@ -210,7 +210,7 @@
   },
   {
     "id": "F017",
-    "name": "Giang Quả Ngư",
+    "name": "Giang Lễ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -236,7 +236,7 @@
   },
   {
     "id": "F019",
-    "name": "Hàn Băng Bơn Ngư",
+    "name": "Hàn Băng Điệp Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -249,7 +249,7 @@
   },
   {
     "id": "F020",
-    "name": "Hồng Kim Ngư",
+    "name": "Kim Hồng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -262,7 +262,7 @@
   },
   {
     "id": "F021",
-    "name": "Trường Chủy Bống Ngư",
+    "name": "Trường Chủy Hà Hổ Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 28,
@@ -275,7 +275,7 @@
   },
   {
     "id": "F022",
-    "name": "Thanh Nục Thiên Ngư",
+    "name": "Thiên Bích Trúc Giáp Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -288,7 +288,7 @@
   },
   {
     "id": "F023",
-    "name": "Hồ Bạch Trắm Ngư",
+    "name": "Hồ Bạch Lân Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -301,7 +301,7 @@
   },
   {
     "id": "F024",
-    "name": "Lăng Ngư",
+    "name": "Giang Linh Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -314,7 +314,7 @@
   },
   {
     "id": "F025",
-    "name": "Giang Thanh Trắm Thiên Ngư",
+    "name": "Giang Thiên Bích Lân Ngư",
     "rarity": "cực hiếm",
     "emoji": "🐡",
     "minSizeCm": 35,
@@ -327,7 +327,7 @@
   },
   {
     "id": "F026",
-    "name": "Thanh Hồng Thiên Ngư",
+    "name": "Thiên Bích Hồng Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 60,
@@ -340,7 +340,7 @@
   },
   {
     "id": "F027",
-    "name": "Nục Ngư",
+    "name": "Trúc Giáp Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -353,7 +353,7 @@
   },
   {
     "id": "F028",
-    "name": "Giang Trắm Ngư",
+    "name": "Giang Lân Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -366,7 +366,7 @@
   },
   {
     "id": "F029",
-    "name": "Giang Xích Trắm Ngư",
+    "name": "Giang Xích Lân Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -379,7 +379,7 @@
   },
   {
     "id": "F030",
-    "name": "Hồng Vân Văn Diêu Ngư",
+    "name": "Vân Văn Diêu Hồng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -392,7 +392,7 @@
   },
   {
     "id": "F031",
-    "name": "Cờ Ngư",
+    "name": "Kỳ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -405,7 +405,7 @@
   },
   {
     "id": "F032",
-    "name": "U Minh Bống Ngư",
+    "name": "U Minh Hà Hổ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -418,7 +418,7 @@
   },
   {
     "id": "F033",
-    "name": "Hàn Băng Lăng Ngư",
+    "name": "Hàn Băng Linh Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -431,7 +431,7 @@
   },
   {
     "id": "F034",
-    "name": "Hồng Hắc Diêu Ngư",
+    "name": "Hắc Diêu Hồng Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -444,7 +444,7 @@
   },
   {
     "id": "F035",
-    "name": "Kim Bơn Ngư",
+    "name": "Kim Điệp Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -457,7 +457,7 @@
   },
   {
     "id": "F036",
-    "name": "Thanh Mú Thiên Ngư",
+    "name": "Thiên Bích Thạch Ban Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -470,7 +470,7 @@
   },
   {
     "id": "F037",
-    "name": "Ngân Bơn Ngư",
+    "name": "Ngân Điệp Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -496,7 +496,7 @@
   },
   {
     "id": "F039",
-    "name": "Xích Nhãn Rô Ngư",
+    "name": "Xích Nhãn Phàn Lư Ngư",
     "rarity": "cực hiếm",
     "emoji": "🎣",
     "minSizeCm": 35,
@@ -509,7 +509,7 @@
   },
   {
     "id": "F040",
-    "name": "Tử Chim Ngư",
+    "name": "Tử Phi Điểu Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -522,7 +522,7 @@
   },
   {
     "id": "F041",
-    "name": "Thanh Bơn Ngư",
+    "name": "Thanh Điệp Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -548,7 +548,7 @@
   },
   {
     "id": "F043",
-    "name": "Lôi Vân Chuối Ngư",
+    "name": "Lôi Vân Xà Đầu Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 35,
@@ -562,7 +562,7 @@
   },
   {
     "id": "F044",
-    "name": "Kim Đại Dương Ngư",
+    "name": "Kim Hải Uyên Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -575,7 +575,7 @@
   },
   {
     "id": "F045",
-    "name": "Hồ Quả Ngư",
+    "name": "Hồ Lễ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -588,7 +588,7 @@
   },
   {
     "id": "F046",
-    "name": "Ngân Cờ Ngư",
+    "name": "Ngân Kỳ Ngư",
     "rarity": "truyền thuyết",
     "emoji": "🦈",
     "minSizeCm": 80,
@@ -601,7 +601,7 @@
   },
   {
     "id": "F047",
-    "name": "Vân Văn Nheo Ngư",
+    "name": "Hồ Vân Văn Linh Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 30,
@@ -614,7 +614,7 @@
   },
   {
     "id": "F048",
-    "name": "Bò Ngư",
+    "name": "Ngưu Giác Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -627,7 +627,7 @@
   },
   {
     "id": "F049",
-    "name": "Hồ Xích Nhãn Quả Ngư",
+    "name": "Hồ Xích Nhãn Lễ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -640,7 +640,7 @@
   },
   {
     "id": "F050",
-    "name": "Điểm Ban Rô Phi Ngư",
+    "name": "Điểm Ban La Phi Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -653,7 +653,7 @@
   },
   {
     "id": "F051",
-    "name": "Kim Lăng Ngư",
+    "name": "Giang Kim Linh Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -666,7 +666,7 @@
   },
   {
     "id": "F052",
-    "name": "Vân Văn Sấu Ngư",
+    "name": "Vân Văn Ngạc Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -679,7 +679,7 @@
   },
   {
     "id": "F053",
-    "name": "Rô Ngư",
+    "name": "Phàn Lư Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -692,7 +692,7 @@
   },
   {
     "id": "F054",
-    "name": "Thanh Đại Dương Ngư",
+    "name": "Thanh Hải Uyên Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -705,7 +705,7 @@
   },
   {
     "id": "F055",
-    "name": "Ngọc Thạch Nheo Ngư",
+    "name": "Ngọc Thạch Linh Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -718,7 +718,7 @@
   },
   {
     "id": "F056",
-    "name": "Bạch Chạch Ngư",
+    "name": "Bạch Nê Thu Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 35,
@@ -731,7 +731,7 @@
   },
   {
     "id": "F057",
-    "name": "Vân Văn Hồi Ngư",
+    "name": "Vân Văn Khuê Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -744,7 +744,7 @@
   },
   {
     "id": "F058",
-    "name": "Vân Văn Bống Ngư",
+    "name": "Vân Văn Hà Hổ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -757,7 +757,7 @@
   },
   {
     "id": "F059",
-    "name": "Nheo Ngư",
+    "name": "Hồ Linh Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -770,7 +770,7 @@
   },
   {
     "id": "F060",
-    "name": "Xích Mè Ngư",
+    "name": "Xích Liên Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -796,7 +796,7 @@
   },
   {
     "id": "F062",
-    "name": "Bạch Kim Nheo Ngư",
+    "name": "Hồ Bạch Kim Linh Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -809,7 +809,7 @@
   },
   {
     "id": "F063",
-    "name": "Điểm Ban Cờ Ngư",
+    "name": "Điểm Ban Kỳ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -835,7 +835,7 @@
   },
   {
     "id": "F065",
-    "name": "Chình Hồ Ngư",
+    "name": "Hồ Man Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -848,7 +848,7 @@
   },
   {
     "id": "F066",
-    "name": "Điểm Ban Chim Ngư",
+    "name": "Điểm Ban Phi Điểu Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -861,7 +861,7 @@
   },
   {
     "id": "F067",
-    "name": "Trường Chủy Chim Ngư",
+    "name": "Trường Chủy Phi Điểu Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -874,7 +874,7 @@
   },
   {
     "id": "F068",
-    "name": "Vân Văn Đại Dương Ngư",
+    "name": "Vân Văn Hải Uyên Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -887,7 +887,7 @@
   },
   {
     "id": "F069",
-    "name": "Bạch Đuối Ngư",
+    "name": "Bạch Hồng Dực Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -913,7 +913,7 @@
   },
   {
     "id": "F071",
-    "name": "Hắc Vân Văn Trắm Ngư",
+    "name": "Hắc Vân Văn Lân Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -926,7 +926,7 @@
   },
   {
     "id": "F072",
-    "name": "Trê Ngư",
+    "name": "Niệm Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -952,7 +952,7 @@
   },
   {
     "id": "F074",
-    "name": "Lục Trôi Ngư",
+    "name": "Lục Lăng Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -965,7 +965,7 @@
   },
   {
     "id": "F075",
-    "name": "Hắc Hắc Trắm Ngư",
+    "name": "Hồ Hắc Lân Ngư · Nhất",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 30,
@@ -978,7 +978,7 @@
   },
   {
     "id": "F076",
-    "name": "Tử Mú Ngư",
+    "name": "Tử Thạch Ban Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 40,
@@ -991,7 +991,7 @@
   },
   {
     "id": "F077",
-    "name": "Vân Văn Bò Ngư",
+    "name": "Vân Văn Ngưu Giác Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -1004,7 +1004,7 @@
   },
   {
     "id": "F078",
-    "name": "Chép Koi Ngư",
+    "name": "Cẩm Lý Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -1017,7 +1017,7 @@
   },
   {
     "id": "F079",
-    "name": "Hắc Trắm Cỏ Ngư",
+    "name": "Hắc Thảo Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -1030,7 +1030,7 @@
   },
   {
     "id": "F080",
-    "name": "Hồi Ngư",
+    "name": "Khuê Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -1043,7 +1043,7 @@
   },
   {
     "id": "F081",
-    "name": "Trường Chủy Rô Ngư",
+    "name": "Trường Chủy Phàn Lư Ngư",
     "rarity": "cực hiếm",
     "emoji": "🐡",
     "minSizeCm": 35,
@@ -1056,7 +1056,7 @@
   },
   {
     "id": "F082",
-    "name": "Vân Văn Trắm Cỏ Ngư",
+    "name": "Vân Văn Thảo Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -1069,7 +1069,7 @@
   },
   {
     "id": "F083",
-    "name": "Lam Ngừ Ngư",
+    "name": "Lam Vị Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -1082,7 +1082,7 @@
   },
   {
     "id": "F084",
-    "name": "Điểm Ban Đại Dương Ngư",
+    "name": "Điểm Ban Hải Uyên Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -1095,7 +1095,7 @@
   },
   {
     "id": "F085",
-    "name": "Vân Văn Lăng Ngư",
+    "name": "Giang Vân Văn Linh Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -1108,7 +1108,7 @@
   },
   {
     "id": "F086",
-    "name": "Ngọc Thạch Chép Koi Ngư",
+    "name": "Ngọc Thạch Cẩm Lý Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -1121,7 +1121,7 @@
   },
   {
     "id": "F087",
-    "name": "Xích Chép Ngư",
+    "name": "Xích Lý Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -1134,7 +1134,7 @@
   },
   {
     "id": "F088",
-    "name": "Hàn Băng Trắm Ngư",
+    "name": "Hàn Băng Lân Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -1147,7 +1147,7 @@
   },
   {
     "id": "F089",
-    "name": "Thu Phong Mè Ngư",
+    "name": "Thu Phong Liên Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -1160,7 +1160,7 @@
   },
   {
     "id": "F090",
-    "name": "Lôi Vân Đuối Ngư",
+    "name": "Lôi Vân Hồng Dực Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -1173,7 +1173,7 @@
   },
   {
     "id": "F091",
-    "name": "Hồ Bạch Quả Ngư",
+    "name": "Hồ Bạch Lễ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -1186,7 +1186,7 @@
   },
   {
     "id": "F092",
-    "name": "Hoàng Kim Cờ Ngư",
+    "name": "Hoàng Kim Kỳ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -1199,7 +1199,7 @@
   },
   {
     "id": "F093",
-    "name": "Hàn Băng Đại Dương Ngư",
+    "name": "Hàn Băng Hải Uyên Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -1212,7 +1212,7 @@
   },
   {
     "id": "F094",
-    "name": "Thu Phong Chình Hồ Ngư",
+    "name": "Thu Phong Hồ Man Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -1225,7 +1225,7 @@
   },
   {
     "id": "F095",
-    "name": "Xích Nhãn Bơn Ngư",
+    "name": "Xích Nhãn Điệp Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -1238,7 +1238,7 @@
   },
   {
     "id": "F096",
-    "name": "Cam Ngọc Thạch Ngư",
+    "name": "Ngọc Thạch Cam Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -1251,7 +1251,7 @@
   },
   {
     "id": "F097",
-    "name": "Lam Bơn Ngư",
+    "name": "Lam Điệp Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -1264,7 +1264,7 @@
   },
   {
     "id": "F098",
-    "name": "Hắc Ngân Trắm Ngư",
+    "name": "Hắc Ngân Lân Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -1290,7 +1290,7 @@
   },
   {
     "id": "F100",
-    "name": "Hồ Kim Trắm Ngư",
+    "name": "Hồ Kim Lân Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -1303,7 +1303,7 @@
   },
   {
     "id": "F101",
-    "name": "Mè Ngư",
+    "name": "Liên Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -1329,7 +1329,7 @@
   },
   {
     "id": "F103",
-    "name": "U Minh Chình Hồ Ngư",
+    "name": "U Minh Hồ Man Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -1342,7 +1342,7 @@
   },
   {
     "id": "F104",
-    "name": "Hắc Chép Koi Ngư",
+    "name": "Hắc Cẩm Lý Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -1355,7 +1355,7 @@
   },
   {
     "id": "F105",
-    "name": "Giang Trôi Ngư",
+    "name": "Giang Lăng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -1368,7 +1368,7 @@
   },
   {
     "id": "F106",
-    "name": "Kim Mè Ngư",
+    "name": "Kim Liên Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -1381,7 +1381,7 @@
   },
   {
     "id": "F107",
-    "name": "Thanh Trê Thiên Ngư",
+    "name": "Thiên Bích Niệm Ngư",
     "rarity": "cực hiếm",
     "emoji": "🐡",
     "minSizeCm": 35,
@@ -1394,7 +1394,7 @@
   },
   {
     "id": "F108",
-    "name": "Lôi Vân Bống Ngư",
+    "name": "Lôi Vân Hà Hổ Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 28,
@@ -1407,7 +1407,7 @@
   },
   {
     "id": "F109",
-    "name": "Giang Xích Nhãn Trôi Ngư",
+    "name": "Giang Xích Nhãn Lăng Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 35,
@@ -1420,7 +1420,7 @@
   },
   {
     "id": "F110",
-    "name": "Ngừ Ngư",
+    "name": "Vị Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -1433,7 +1433,7 @@
   },
   {
     "id": "F111",
-    "name": "Hồ Hắc Trắm Ngư · Nhất",
+    "name": "Hồ Hắc Lân Ngư · Nhị",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -1459,7 +1459,7 @@
   },
   {
     "id": "F113",
-    "name": "Xích Rô Phi Ngư",
+    "name": "Xích La Phi Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -1472,7 +1472,7 @@
   },
   {
     "id": "F114",
-    "name": "Vân Văn Chim Ngư",
+    "name": "Vân Văn Phi Điểu Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -1485,7 +1485,7 @@
   },
   {
     "id": "F115",
-    "name": "Giang Xích Nhãn Trắm Ngư",
+    "name": "Giang Xích Nhãn Lân Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -1498,7 +1498,7 @@
   },
   {
     "id": "F116",
-    "name": "Chuối Ngư",
+    "name": "Xà Đầu Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -1511,7 +1511,7 @@
   },
   {
     "id": "F117",
-    "name": "Trường Chủy Lăng Ngư",
+    "name": "Trường Chủy Linh Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -1524,7 +1524,7 @@
   },
   {
     "id": "F118",
-    "name": "Cam Hoàng Kim Ngư",
+    "name": "Hoàng Kim Cam Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -1537,7 +1537,7 @@
   },
   {
     "id": "F119",
-    "name": "Diếc Ngư",
+    "name": "Tức Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -1550,7 +1550,7 @@
   },
   {
     "id": "F120",
-    "name": "Kim Cờ Ngư",
+    "name": "Kim Kỳ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -1563,7 +1563,7 @@
   },
   {
     "id": "F121",
-    "name": "Xích Nhãn Bò Ngư",
+    "name": "Xích Nhãn Ngưu Giác Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -1589,7 +1589,7 @@
   },
   {
     "id": "F123",
-    "name": "Chạch Ngư",
+    "name": "Nê Thu Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -1602,7 +1602,7 @@
   },
   {
     "id": "F124",
-    "name": "Bạch Trê Ngư",
+    "name": "Bạch Niệm Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -1615,7 +1615,7 @@
   },
   {
     "id": "F125",
-    "name": "Thanh Rô Thiên Ngư",
+    "name": "Thiên Bích Phàn Lư Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -1628,7 +1628,7 @@
   },
   {
     "id": "F126",
-    "name": "Kim Rô Phi Ngư",
+    "name": "Kim La Phi Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -1641,7 +1641,7 @@
   },
   {
     "id": "F127",
-    "name": "Thu Phong Chép Ngư",
+    "name": "Thu Phong Lý Ngư",
     "rarity": "cực hiếm",
     "emoji": "🎣",
     "minSizeCm": 35,
@@ -1654,7 +1654,7 @@
   },
   {
     "id": "F128",
-    "name": "Xích Rô Ngư",
+    "name": "Xích Phàn Lư Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -1680,7 +1680,7 @@
   },
   {
     "id": "F130",
-    "name": "Cam Trường Chủy Ngư",
+    "name": "Trường Chủy Cam Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -1693,7 +1693,7 @@
   },
   {
     "id": "F131",
-    "name": "Hồng Lục Diêu Ngư",
+    "name": "Lục Diêu Hồng Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 30,
@@ -1706,7 +1706,7 @@
   },
   {
     "id": "F132",
-    "name": "Đại Dương Ngư",
+    "name": "Hải Uyên Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -1719,7 +1719,7 @@
   },
   {
     "id": "F133",
-    "name": "Đuối Ngư",
+    "name": "Hồng Dực Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -1732,7 +1732,7 @@
   },
   {
     "id": "F134",
-    "name": "Vân Văn Mè Ngư",
+    "name": "Vân Văn Liên Ngư",
     "rarity": "cực hiếm",
     "emoji": "🎣",
     "minSizeCm": 40,
@@ -1745,7 +1745,7 @@
   },
   {
     "id": "F135",
-    "name": "Hồ Hoàng Kim Trắm Ngư",
+    "name": "Hồ Hoàng Kim Lân Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -1758,7 +1758,7 @@
   },
   {
     "id": "F136",
-    "name": "Hồng Lam Diêu Ngư",
+    "name": "Lam Diêu Hồng Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -1772,7 +1772,7 @@
   },
   {
     "id": "F137",
-    "name": "Lôi Điện Diếc Ngư",
+    "name": "Lôi Điện Tức Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 28,
@@ -1785,7 +1785,7 @@
   },
   {
     "id": "F138",
-    "name": "Ngọc Thạch Trắm Cỏ Ngư",
+    "name": "Ngọc Thạch Thảo Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -1798,7 +1798,7 @@
   },
   {
     "id": "F139",
-    "name": "Thanh Chạch Ngư",
+    "name": "Thanh Nê Thu Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -1811,7 +1811,7 @@
   },
   {
     "id": "F140",
-    "name": "Ngân Lăng Ngư",
+    "name": "Ngân Linh Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -1824,7 +1824,7 @@
   },
   {
     "id": "F141",
-    "name": "Giang Điểm Ban Trôi Ngư",
+    "name": "Giang Điểm Ban Lăng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -1837,7 +1837,7 @@
   },
   {
     "id": "F142",
-    "name": "Cam Vân Văn Ngư",
+    "name": "Vân Văn Cam Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -1850,7 +1850,7 @@
   },
   {
     "id": "F143",
-    "name": "Lôi Vân Mú Ngư",
+    "name": "Lôi Vân Thạch Ban Ngư",
     "rarity": "cực hiếm",
     "emoji": "🐡",
     "minSizeCm": 60,
@@ -1863,7 +1863,7 @@
   },
   {
     "id": "F144",
-    "name": "Cam Điểm Ban Ngư",
+    "name": "Điểm Ban Cam Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 40,
@@ -1876,7 +1876,7 @@
   },
   {
     "id": "F145",
-    "name": "Hắc Kim Trắm Ngư",
+    "name": "Hắc Kim Lân Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -1889,7 +1889,7 @@
   },
   {
     "id": "F146",
-    "name": "Tử Lăng Ngư",
+    "name": "Giang Tử Linh Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 28,
@@ -1902,7 +1902,7 @@
   },
   {
     "id": "F147",
-    "name": "Kim Nheo Ngư",
+    "name": "Hồ Kim Linh Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -1915,7 +1915,7 @@
   },
   {
     "id": "F148",
-    "name": "Hàn Băng Bống Ngư",
+    "name": "Hàn Băng Hà Hổ Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 28,
@@ -1929,7 +1929,7 @@
   },
   {
     "id": "F149",
-    "name": "Bạch Kim Diếc Ngư",
+    "name": "Bạch Kim Tức Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 28,
@@ -1942,7 +1942,7 @@
   },
   {
     "id": "F150",
-    "name": "U Minh Bơn Ngư",
+    "name": "U Minh Điệp Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 40,
@@ -1955,7 +1955,7 @@
   },
   {
     "id": "F151",
-    "name": "Trường Chủy Đuối Ngư",
+    "name": "Trường Chủy Hồng Dực Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 60,
@@ -1968,7 +1968,7 @@
   },
   {
     "id": "F152",
-    "name": "Thanh Ngừ Thiên Ngư",
+    "name": "Thiên Bích Vị Ngư",
     "rarity": "cực hiếm",
     "emoji": "🎣",
     "minSizeCm": 60,
@@ -1981,7 +1981,7 @@
   },
   {
     "id": "F153",
-    "name": "Thanh Nục Ngư",
+    "name": "Thanh Trúc Giáp Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -1994,7 +1994,7 @@
   },
   {
     "id": "F154",
-    "name": "Hắc Chình Hồ Ngư",
+    "name": "Hắc Hồ Man Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -2007,7 +2007,7 @@
   },
   {
     "id": "F155",
-    "name": "Bơn Ngư",
+    "name": "Điệp Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2020,7 +2020,7 @@
   },
   {
     "id": "F156",
-    "name": "Thu Phong Bống Ngư",
+    "name": "Thu Phong Hà Hổ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -2033,7 +2033,7 @@
   },
   {
     "id": "F157",
-    "name": "Hắc Nục Ngư",
+    "name": "Hắc Trúc Giáp Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2046,7 +2046,7 @@
   },
   {
     "id": "F158",
-    "name": "Ngân Chép Ngư",
+    "name": "Ngân Lý Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -2059,7 +2059,7 @@
   },
   {
     "id": "F159",
-    "name": "Rô Phi Ngư",
+    "name": "La Phi Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -2072,7 +2072,7 @@
   },
   {
     "id": "F160",
-    "name": "Sấu Ngư",
+    "name": "Ngạc Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -2085,7 +2085,7 @@
   },
   {
     "id": "F161",
-    "name": "Lục Sấu Ngư",
+    "name": "Lục Ngạc Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -2098,7 +2098,7 @@
   },
   {
     "id": "F162",
-    "name": "Lục Mú Ngư",
+    "name": "Lục Thạch Ban Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -2111,7 +2111,7 @@
   },
   {
     "id": "F163",
-    "name": "Vân Văn Ngừ Ngư",
+    "name": "Vân Văn Vị Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2124,7 +2124,7 @@
   },
   {
     "id": "F164",
-    "name": "Giang Trường Chủy Quả Ngư",
+    "name": "Giang Trường Chủy Lễ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -2137,7 +2137,7 @@
   },
   {
     "id": "F165",
-    "name": "Hồng Bạch Ngư",
+    "name": "Bạch Hồng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2150,7 +2150,7 @@
   },
   {
     "id": "F166",
-    "name": "Lôi Điện Nục Ngư",
+    "name": "Lôi Điện Trúc Giáp Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 60,
@@ -2163,7 +2163,7 @@
   },
   {
     "id": "F167",
-    "name": "Hồng Ngọc Thạch Diêu Ngư",
+    "name": "Ngọc Thạch Diêu Hồng Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -2176,7 +2176,7 @@
   },
   {
     "id": "F168",
-    "name": "Thu Phong Lăng Ngư",
+    "name": "Giang Thu Phong Linh Ngư",
     "rarity": "cực hiếm",
     "emoji": "🐡",
     "minSizeCm": 35,
@@ -2189,7 +2189,7 @@
   },
   {
     "id": "F169",
-    "name": "Thanh Trắm Cỏ Thiên Ngư",
+    "name": "Thiên Bích Thảo Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -2202,7 +2202,7 @@
   },
   {
     "id": "F170",
-    "name": "Hồng Ngân Diêu Ngư",
+    "name": "Ngân Diêu Hồng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -2215,7 +2215,7 @@
   },
   {
     "id": "F171",
-    "name": "Giang Thanh Quả Ngư",
+    "name": "Giang Thanh Lễ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -2228,7 +2228,7 @@
   },
   {
     "id": "F172",
-    "name": "Kim Hồi Ngư",
+    "name": "Kim Khuê Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2254,7 +2254,7 @@
   },
   {
     "id": "F174",
-    "name": "Hắc Lăng Ngư",
+    "name": "Giang Hắc Linh Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -2267,7 +2267,7 @@
   },
   {
     "id": "F175",
-    "name": "Hồ Trắm Ngư",
+    "name": "Hồ Lân Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -2293,7 +2293,7 @@
   },
   {
     "id": "F177",
-    "name": "Lôi Vân Trắm Ngư",
+    "name": "Lôi Vân Lân Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 28,
@@ -2306,7 +2306,7 @@
   },
   {
     "id": "F178",
-    "name": "Thu Phong Chạch Ngư",
+    "name": "Phong Nê Thu Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -2319,7 +2319,7 @@
   },
   {
     "id": "F179",
-    "name": "Hồng Vân Văn Ngư",
+    "name": "Vân Văn Hồng Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 40,
@@ -2332,7 +2332,7 @@
   },
   {
     "id": "F180",
-    "name": "Vân Văn Chình Hồ Ngư",
+    "name": "Vân Văn Hồ Man Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -2345,7 +2345,7 @@
   },
   {
     "id": "F181",
-    "name": "U Minh Mè Ngư",
+    "name": "U Minh Liên Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -2358,7 +2358,7 @@
   },
   {
     "id": "F182",
-    "name": "Hàn Băng Quả Ngư",
+    "name": "Hàn Băng Lễ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -2371,7 +2371,7 @@
   },
   {
     "id": "F183",
-    "name": "Thu Phong Cờ Ngư",
+    "name": "Thu Phong Kỳ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -2384,7 +2384,7 @@
   },
   {
     "id": "F184",
-    "name": "Kim Mú Ngư",
+    "name": "Kim Thạch Ban Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2397,7 +2397,7 @@
   },
   {
     "id": "F185",
-    "name": "Ngân Trắm Ngư",
+    "name": "Ngân Lân Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -2410,7 +2410,7 @@
   },
   {
     "id": "F186",
-    "name": "Giang Lam Quả Ngư",
+    "name": "Hải Lam Lễ Ngư",
     "rarity": "cực hiếm",
     "emoji": "🐡",
     "minSizeCm": 35,
@@ -2424,7 +2424,7 @@
   },
   {
     "id": "F187",
-    "name": "Vân Văn Trê Ngư",
+    "name": "Vân Văn Niệm Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -2437,7 +2437,7 @@
   },
   {
     "id": "F188",
-    "name": "Hoàng Kim Nục Ngư",
+    "name": "Hoàng Kim Trúc Giáp Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 40,
@@ -2450,7 +2450,7 @@
   },
   {
     "id": "F189",
-    "name": "Bạch Diếc Ngư",
+    "name": "Bạch Tức Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -2463,7 +2463,7 @@
   },
   {
     "id": "F190",
-    "name": "Bạch Kim Trôi Ngư",
+    "name": "Bạch Kim Lăng Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 35,
@@ -2476,7 +2476,7 @@
   },
   {
     "id": "F191",
-    "name": "Xích Sấu Ngư",
+    "name": "Xích Ngạc Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -2489,7 +2489,7 @@
   },
   {
     "id": "F192",
-    "name": "Ngân Sấu Ngư",
+    "name": "Ngân Ngạc Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -2502,7 +2502,7 @@
   },
   {
     "id": "F193",
-    "name": "Vân Văn Mú Ngư",
+    "name": "Vân Văn Thạch Ban Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2515,7 +2515,7 @@
   },
   {
     "id": "F194",
-    "name": "Điểm Ban Mú Ngư",
+    "name": "Điểm Thạch Ban Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2528,7 +2528,7 @@
   },
   {
     "id": "F195",
-    "name": "Xích Nhãn Nục Ngư",
+    "name": "Xích Nhãn Trúc Giáp Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2541,7 +2541,7 @@
   },
   {
     "id": "F196",
-    "name": "Giang Ngân Quả Ngư",
+    "name": "Giang Ngân Lễ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -2554,7 +2554,7 @@
   },
   {
     "id": "F197",
-    "name": "Bạch Chép Ngư",
+    "name": "Bạch Lý Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -2567,7 +2567,7 @@
   },
   {
     "id": "F198",
-    "name": "Xích Nục Ngư",
+    "name": "Xích Trúc Giáp Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2580,7 +2580,7 @@
   },
   {
     "id": "F199",
-    "name": "Tử Sấu Ngư",
+    "name": "Tử Ngạc Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -2593,7 +2593,7 @@
   },
   {
     "id": "F200",
-    "name": "Thu Phong Chim Ngư",
+    "name": "Thu Phong Phi Điểu Ngư",
     "rarity": "cực hiếm",
     "emoji": "🎣",
     "minSizeCm": 60,
@@ -2606,7 +2606,7 @@
   },
   {
     "id": "F201",
-    "name": "Trường Chủy Chình Hồ Ngư",
+    "name": "Trường Chủy Hồ Man Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -2632,7 +2632,7 @@
   },
   {
     "id": "F203",
-    "name": "Hồng Trường Chủy Ngư",
+    "name": "Trường Chủy Hồng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2645,7 +2645,7 @@
   },
   {
     "id": "F204",
-    "name": "Ngân Bò Ngư",
+    "name": "Ngân Ngưu Giác Ngư",
     "rarity": "cực hiếm",
     "emoji": "🐡",
     "minSizeCm": 60,
@@ -2658,7 +2658,7 @@
   },
   {
     "id": "F205",
-    "name": "U Minh Quả Ngư",
+    "name": "U Minh Lễ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -2671,7 +2671,7 @@
   },
   {
     "id": "F206",
-    "name": "Bạch Kim Bống Ngư",
+    "name": "Bạch Kim Hà Hổ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -2684,7 +2684,7 @@
   },
   {
     "id": "F207",
-    "name": "Cam Tử Ngư",
+    "name": "Tử Cam Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 60,
@@ -2697,7 +2697,7 @@
   },
   {
     "id": "F208",
-    "name": "Hắc Trê Ngư",
+    "name": "Hắc Niệm Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -2710,7 +2710,7 @@
   },
   {
     "id": "F209",
-    "name": "Bạch Kim Lăng Ngư",
+    "name": "Giang Bạch Kim Linh Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 28,
@@ -2723,7 +2723,7 @@
   },
   {
     "id": "F210",
-    "name": "Hoàng Kim Ngừ Ngư",
+    "name": "Hoàng Kim Vị Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -2736,7 +2736,7 @@
   },
   {
     "id": "F211",
-    "name": "Giang Xích Trôi Ngư",
+    "name": "Giang Xích Lăng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -2749,7 +2749,7 @@
   },
   {
     "id": "F212",
-    "name": "Thanh Nheo Ngư",
+    "name": "Hồ Thanh Linh Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -2775,7 +2775,7 @@
   },
   {
     "id": "F214",
-    "name": "Bạch Mú Ngư",
+    "name": "Bạch Thạch Ban Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2788,7 +2788,7 @@
   },
   {
     "id": "F215",
-    "name": "Bạch Cờ Ngư",
+    "name": "Bạch Kỳ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2801,7 +2801,7 @@
   },
   {
     "id": "F216",
-    "name": "Tử Chép Ngư",
+    "name": "Tử Lý Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -2814,7 +2814,7 @@
   },
   {
     "id": "F217",
-    "name": "Vân Văn Chuối Ngư",
+    "name": "Vân Văn Xà Đầu Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -2827,7 +2827,7 @@
   },
   {
     "id": "F218",
-    "name": "Thanh Nheo Thiên Ngư",
+    "name": "Thiên Bích Linh Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -2840,7 +2840,7 @@
   },
   {
     "id": "F219",
-    "name": "Hàn Băng Chạch Ngư",
+    "name": "Hàn Băng Nê Thu Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -2853,7 +2853,7 @@
   },
   {
     "id": "F220",
-    "name": "Ngân Trắm Cỏ Ngư",
+    "name": "Ngân Thảo Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -2866,7 +2866,7 @@
   },
   {
     "id": "F221",
-    "name": "Kim Sấu Ngư",
+    "name": "Kim Ngạc Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -2879,7 +2879,7 @@
   },
   {
     "id": "F222",
-    "name": "Lôi Vân Hồi Ngư",
+    "name": "Lôi Vân Khuê Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -2892,7 +2892,7 @@
   },
   {
     "id": "F223",
-    "name": "Ngân Chim Ngư",
+    "name": "Ngân Phi Điểu Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2905,7 +2905,7 @@
   },
   {
     "id": "F224",
-    "name": "Bạch Bò Ngư",
+    "name": "Bạch Ngưu Giác Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2918,7 +2918,7 @@
   },
   {
     "id": "F225",
-    "name": "Hồ Xích Nhãn Trôi Ngư",
+    "name": "Hải Xích Nhãn Lăng Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 30,
@@ -2945,7 +2945,7 @@
   },
   {
     "id": "F227",
-    "name": "Hồng Lôi Vân Diêu Ngư",
+    "name": "Lôi Vân Diêu Hồng Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -2959,7 +2959,7 @@
   },
   {
     "id": "F228",
-    "name": "Ngọc Thạch Rô Phi Ngư",
+    "name": "Ngọc Thạch La Phi Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -2972,7 +2972,7 @@
   },
   {
     "id": "F229",
-    "name": "Thanh Ngừ Ngư",
+    "name": "Thanh Vị Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2985,7 +2985,7 @@
   },
   {
     "id": "F230",
-    "name": "Ngân Đuối Ngư",
+    "name": "Ngân Hồng Dực Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -2998,7 +2998,7 @@
   },
   {
     "id": "F231",
-    "name": "Xích Nhãn Ngừ Ngư",
+    "name": "Xích Nhãn Vị Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -3011,7 +3011,7 @@
   },
   {
     "id": "F232",
-    "name": "Cam Ngân Ngư",
+    "name": "Ngân Cam Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -3038,7 +3038,7 @@
   },
   {
     "id": "F234",
-    "name": "Tử Mè Ngư",
+    "name": "Tử Liên Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -3051,7 +3051,7 @@
   },
   {
     "id": "F235",
-    "name": "Điểm Ban Chình Hồ Ngư",
+    "name": "Điểm Ban Hồ Man Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -3064,7 +3064,7 @@
   },
   {
     "id": "F236",
-    "name": "Xích Đuối Ngư",
+    "name": "Xích Hồng Dực Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -3077,7 +3077,7 @@
   },
   {
     "id": "F237",
-    "name": "U Minh Nục Ngư",
+    "name": "U Minh Trúc Giáp Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -3090,7 +3090,7 @@
   },
   {
     "id": "F238",
-    "name": "Bạch Chuối Ngư",
+    "name": "Bạch Xà Đầu Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -3103,7 +3103,7 @@
   },
   {
     "id": "F239",
-    "name": "Thanh Mè Ngư",
+    "name": "Thanh Liên Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -3116,7 +3116,7 @@
   },
   {
     "id": "F240",
-    "name": "Bạch Chình Hồ Ngư",
+    "name": "Bạch Hồ Man Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -3129,7 +3129,7 @@
   },
   {
     "id": "F241",
-    "name": "Trường Chủy Chép Ngư",
+    "name": "Trường Chủy Lý Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -3142,7 +3142,7 @@
   },
   {
     "id": "F242",
-    "name": "Ngân Mè Ngư",
+    "name": "Ngân Liên Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -3168,7 +3168,7 @@
   },
   {
     "id": "F244",
-    "name": "Cam Bạch Kim Ngư",
+    "name": "Bạch Kim Cam Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 40,
@@ -3181,7 +3181,7 @@
   },
   {
     "id": "F245",
-    "name": "Xích Nhãn Mè Ngư",
+    "name": "Xích Nhãn Liên Ngư",
     "rarity": "cực hiếm",
     "emoji": "🎣",
     "minSizeCm": 40,
@@ -3194,7 +3194,7 @@
   },
   {
     "id": "F246",
-    "name": "Tử Rô Phi Ngư",
+    "name": "Tử La Phi Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -3207,7 +3207,7 @@
   },
   {
     "id": "F247",
-    "name": "Xích Nhãn Chim Ngư",
+    "name": "Xích Nhãn Phi Điểu Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 40,
@@ -3220,7 +3220,7 @@
   },
   {
     "id": "F248",
-    "name": "Hồ Trôi Ngư",
+    "name": "Hồ Lăng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -3233,7 +3233,7 @@
   },
   {
     "id": "F249",
-    "name": "Hồ Điểm Ban Quả Ngư",
+    "name": "Hồ Điểm Ban Lễ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -3246,7 +3246,7 @@
   },
   {
     "id": "F250",
-    "name": "Xích Nhãn Đại Dương Ngư",
+    "name": "Xích Nhãn Hải Uyên Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -3259,7 +3259,7 @@
   },
   {
     "id": "F251",
-    "name": "Bạch Rô Ngư",
+    "name": "Bạch Phàn Lư Ngư",
     "rarity": "cực hiếm",
     "emoji": "🎣",
     "minSizeCm": 35,
@@ -3272,7 +3272,7 @@
   },
   {
     "id": "F252",
-    "name": "Vân Văn Diếc Ngư",
+    "name": "Vân Văn Tức Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -3285,7 +3285,7 @@
   },
   {
     "id": "F253",
-    "name": "Bạch Hồi Ngư",
+    "name": "Bạch Khuê Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 40,
@@ -3298,7 +3298,7 @@
   },
   {
     "id": "F254",
-    "name": "Giang Trường Chủy Trôi Ngư",
+    "name": "Giang Trường Chủy Lăng Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 28,
@@ -3311,7 +3311,7 @@
   },
   {
     "id": "F255",
-    "name": "Hồng Diêu Ngư",
+    "name": "Diêu Hồng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -3337,7 +3337,7 @@
   },
   {
     "id": "F257",
-    "name": "Hồ Thanh Quả Ngư",
+    "name": "Hồ Thanh Lễ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -3350,7 +3350,7 @@
   },
   {
     "id": "F258",
-    "name": "Lục Ngừ Ngư",
+    "name": "Lục Vị Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -3363,7 +3363,7 @@
   },
   {
     "id": "F259",
-    "name": "Bạch Bống Ngư",
+    "name": "Bạch Hà Hổ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -3376,7 +3376,7 @@
   },
   {
     "id": "F260",
-    "name": "Hắc Rô Ngư",
+    "name": "Hắc Phàn Lư Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -3389,7 +3389,7 @@
   },
   {
     "id": "F261",
-    "name": "Hàn Băng Chình Hồ Ngư",
+    "name": "Hàn Băng Hồ Man Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -3402,7 +3402,7 @@
   },
   {
     "id": "F262",
-    "name": "Cam Thu Phong Ngư",
+    "name": "Thu Phong Cam Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -3415,7 +3415,7 @@
   },
   {
     "id": "F263",
-    "name": "Thanh Chim Thiên Ngư",
+    "name": "Thiên Bích Phi Điểu Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 40,
@@ -3428,7 +3428,7 @@
   },
   {
     "id": "F264",
-    "name": "Lục Lăng Ngư",
+    "name": "Lục Linh Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -3441,7 +3441,7 @@
   },
   {
     "id": "F265",
-    "name": "Lam Trắm Ngư",
+    "name": "Lam Lân Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 30,
@@ -3468,7 +3468,7 @@
   },
   {
     "id": "F267",
-    "name": "Hoàng Kim Chình Hồ Ngư",
+    "name": "Hoàng Kim Hồ Man Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -3481,7 +3481,7 @@
   },
   {
     "id": "F268",
-    "name": "Bạch Rô Phi Ngư",
+    "name": "Bạch La Phi Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -3494,7 +3494,7 @@
   },
   {
     "id": "F269",
-    "name": "Hoàng Kim Mú Ngư",
+    "name": "Hoàng Kim Thạch Ban Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 40,
@@ -3507,7 +3507,7 @@
   },
   {
     "id": "F270",
-    "name": "Thanh Cam Thiên Ngư",
+    "name": "Thiên Bích Cam Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -3520,7 +3520,7 @@
   },
   {
     "id": "F271",
-    "name": "Hắc Mè Ngư",
+    "name": "Hắc Liên Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -3534,7 +3534,7 @@
   },
   {
     "id": "F272",
-    "name": "Trắm Cỏ Ngư",
+    "name": "Thảo Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -3560,7 +3560,7 @@
   },
   {
     "id": "F274",
-    "name": "Thanh Bò Ngư",
+    "name": "Thanh Ngưu Giác Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -3586,7 +3586,7 @@
   },
   {
     "id": "F276",
-    "name": "Xích Nhãn Hồi Ngư",
+    "name": "Xích Nhãn Khuê Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -3599,7 +3599,7 @@
   },
   {
     "id": "F277",
-    "name": "Kim Chình Hồ Ngư",
+    "name": "Kim Hồ Man Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 30,
@@ -3612,7 +3612,7 @@
   },
   {
     "id": "F278",
-    "name": "Kim Chim Ngư",
+    "name": "Kim Phi Điểu Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -3625,7 +3625,7 @@
   },
   {
     "id": "F279",
-    "name": "U Minh Diếc Ngư",
+    "name": "U Minh Tức Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 28,
@@ -3639,7 +3639,7 @@
   },
   {
     "id": "F280",
-    "name": "Điểm Ban Trê Ngư",
+    "name": "Điểm Ban Niệm Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 28,
@@ -3652,7 +3652,7 @@
   },
   {
     "id": "F281",
-    "name": "Bạch Kim Rô Phi Ngư",
+    "name": "Bạch Kim La Phi Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -3665,7 +3665,7 @@
   },
   {
     "id": "F282",
-    "name": "Tử Chuối Ngư",
+    "name": "Tử Xà Đầu Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -3678,7 +3678,7 @@
   },
   {
     "id": "F283",
-    "name": "Bạch Kim Đuối Ngư",
+    "name": "Bạch Kim Hồng Dực Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -3691,7 +3691,7 @@
   },
   {
     "id": "F284",
-    "name": "Ngân Đại Dương Ngư",
+    "name": "Ngân Hải Uyên Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -3704,7 +3704,7 @@
   },
   {
     "id": "F285",
-    "name": "Giang Lôi Điện Trắm Ngư",
+    "name": "Giang Lôi Điện Lân Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 35,
@@ -3718,7 +3718,7 @@
   },
   {
     "id": "F286",
-    "name": "Giang Thanh Trắm Ngư",
+    "name": "Giang Thanh Lân Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -3731,7 +3731,7 @@
   },
   {
     "id": "F287",
-    "name": "Thanh Đuối Ngư",
+    "name": "Thanh Hồng Dực Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -3744,7 +3744,7 @@
   },
   {
     "id": "F288",
-    "name": "Kim Chép Ngư",
+    "name": "Kim Lý Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -3757,7 +3757,7 @@
   },
   {
     "id": "F289",
-    "name": "Lục Bống Ngư",
+    "name": "Lục Hà Hổ Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 28,
@@ -3771,7 +3771,7 @@
   },
   {
     "id": "F290",
-    "name": "Ngân Chép Koi Ngư",
+    "name": "Ngân Cẩm Lý Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -3784,7 +3784,7 @@
   },
   {
     "id": "F291",
-    "name": "Ngân Chình Hồ Ngư",
+    "name": "Ngân Hồ Man Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -3797,7 +3797,7 @@
   },
   {
     "id": "F292",
-    "name": "Ngân Rô Ngư",
+    "name": "Ngân Phàn Lư Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -3810,7 +3810,7 @@
   },
   {
     "id": "F293",
-    "name": "Xích Bống Ngư",
+    "name": "Xích Hà Hổ Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 28,
@@ -3824,7 +3824,7 @@
   },
   {
     "id": "F294",
-    "name": "Lôi Vân Chép Koi Ngư",
+    "name": "Lôi Vân Cẩm Lý Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 30,
@@ -3837,7 +3837,7 @@
   },
   {
     "id": "F295",
-    "name": "Trường Chủy Ngừ Ngư",
+    "name": "Trường Chủy Vị Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 40,
@@ -3864,7 +3864,7 @@
   },
   {
     "id": "F297",
-    "name": "Bạch Kim Ngừ Ngư",
+    "name": "Bạch Kim Vị Ngư",
     "rarity": "cực hiếm",
     "emoji": "🎣",
     "minSizeCm": 60,
@@ -3878,7 +3878,7 @@
   },
   {
     "id": "F298",
-    "name": "Bạch Kim Quả Ngư",
+    "name": "Bạch Kim Lễ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -3891,7 +3891,7 @@
   },
   {
     "id": "F299",
-    "name": "Lam Rô Ngư",
+    "name": "Lam Phàn Lư Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 35,
@@ -3904,7 +3904,7 @@
   },
   {
     "id": "F300",
-    "name": "Xích Nhãn Diếc Ngư",
+    "name": "Xích Nhãn Tức Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -3917,7 +3917,7 @@
   },
   {
     "id": "F301",
-    "name": "Hồ Thanh Trắm Ngư",
+    "name": "Hồ Thanh Lân Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -3930,7 +3930,7 @@
   },
   {
     "id": "F302",
-    "name": "Vân Văn Chạch Ngư",
+    "name": "Vân Văn Nê Thu Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -3943,7 +3943,7 @@
   },
   {
     "id": "F303",
-    "name": "Hồng Xích Ngư",
+    "name": "Xích Hồng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -3969,7 +3969,7 @@
   },
   {
     "id": "F305",
-    "name": "Hồng Trường Chủy Diêu Ngư",
+    "name": "Trường Chủy Diêu Hồng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -3982,7 +3982,7 @@
   },
   {
     "id": "F306",
-    "name": "Điểm Ban Mè Ngư",
+    "name": "Điểm Ban Liên Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -4008,7 +4008,7 @@
   },
   {
     "id": "F308",
-    "name": "Điểm Ban Chuối Ngư",
+    "name": "Điểm Ban Xà Đầu Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 28,
@@ -4021,7 +4021,7 @@
   },
   {
     "id": "F309",
-    "name": "Ngân Mú Ngư",
+    "name": "Ngân Thạch Ban Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -4034,7 +4034,7 @@
   },
   {
     "id": "F310",
-    "name": "Hồng Ngân Ngư",
+    "name": "Ngân Hồng Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -4047,7 +4047,7 @@
   },
   {
     "id": "F311",
-    "name": "Xích Chạch Ngư",
+    "name": "Xích Nê Thu Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -4060,7 +4060,7 @@
   },
   {
     "id": "F312",
-    "name": "Xích Nhãn Bống Ngư",
+    "name": "Xích Nhãn Hà Hổ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -4073,7 +4073,7 @@
   },
   {
     "id": "F313",
-    "name": "Tử Nheo Ngư",
+    "name": "Hải Tử Linh Ngư",
     "rarity": "truyền thuyết",
     "emoji": "✨",
     "minSizeCm": 55,
@@ -4087,7 +4087,7 @@
   },
   {
     "id": "F314",
-    "name": "Lam Mú Ngư",
+    "name": "Lam Thạch Ban Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -4100,7 +4100,7 @@
   },
   {
     "id": "F315",
-    "name": "Hàn Băng Chép Ngư",
+    "name": "Hàn Băng Lý Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 28,
@@ -4114,7 +4114,7 @@
   },
   {
     "id": "F316",
-    "name": "Ngọc Thạch Trôi Ngư",
+    "name": "Ngọc Thạch Lăng Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -4127,7 +4127,7 @@
   },
   {
     "id": "F317",
-    "name": "Vân Văn Bơn Ngư",
+    "name": "Vân Văn Điệp Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -4140,7 +4140,7 @@
   },
   {
     "id": "F318",
-    "name": "Bạch Kim Bò Ngư",
+    "name": "Bạch Kim Ngưu Giác Ngư",
     "rarity": "cực hiếm",
     "emoji": "🎣",
     "minSizeCm": 60,
@@ -4153,7 +4153,7 @@
   },
   {
     "id": "F319",
-    "name": "Xích Đại Dương Ngư",
+    "name": "Xích Hải Uyên Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -4166,7 +4166,7 @@
   },
   {
     "id": "F320",
-    "name": "Thanh Lăng Ngư",
+    "name": "Giang Thanh Linh Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 28,
@@ -4179,7 +4179,7 @@
   },
   {
     "id": "F321",
-    "name": "Ngọc Thạch Hồi Ngư",
+    "name": "Ngọc Thạch Khuê Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -4192,7 +4192,7 @@
   },
   {
     "id": "F322",
-    "name": "Hắc Chạch Ngư",
+    "name": "Hắc Nê Thu Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -4205,7 +4205,7 @@
   },
   {
     "id": "F323",
-    "name": "Tử Cờ Ngư",
+    "name": "Tử Kỳ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -4218,7 +4218,7 @@
   },
   {
     "id": "F324",
-    "name": "Thu Phong Nheo Ngư",
+    "name": "Hồ Thu Phong Linh Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -4231,7 +4231,7 @@
   },
   {
     "id": "F325",
-    "name": "Xích Chép Koi Ngư",
+    "name": "Xích Cẩm Lý Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -4257,7 +4257,7 @@
   },
   {
     "id": "F327",
-    "name": "Lam Diếc Ngư",
+    "name": "Lam Tức Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -4270,7 +4270,7 @@
   },
   {
     "id": "F328",
-    "name": "Giang Hoàng Kim Trắm Ngư",
+    "name": "Giang Hoàng Kim Lân Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -4283,7 +4283,7 @@
   },
   {
     "id": "F329",
-    "name": "Hồng Xích Diêu Ngư",
+    "name": "Xích Diêu Hồng Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -4297,7 +4297,7 @@
   },
   {
     "id": "F330",
-    "name": "Trường Chủy Sấu Ngư",
+    "name": "Trường Chủy Ngạc Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 28,
@@ -4311,7 +4311,7 @@
   },
   {
     "id": "F331",
-    "name": "Xích Trắm Cỏ Ngư",
+    "name": "Xích Thảo Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -4324,7 +4324,7 @@
   },
   {
     "id": "F332",
-    "name": "Giang Vân Văn Trắm Ngư",
+    "name": "Giang Vân Văn Lân Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -4337,7 +4337,7 @@
   },
   {
     "id": "F333",
-    "name": "Ngọc Thạch Chuối Ngư",
+    "name": "Ngọc Thạch Xà Đầu Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 35,
@@ -4350,7 +4350,7 @@
   },
   {
     "id": "F334",
-    "name": "Lôi Điện Sấu Ngư",
+    "name": "Lôi Điện Ngạc Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -4363,7 +4363,7 @@
   },
   {
     "id": "F335",
-    "name": "Hắc Hồi Ngư",
+    "name": "Hắc Khuê Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -4376,7 +4376,7 @@
   },
   {
     "id": "F336",
-    "name": "Hồ Vân Văn Trắm Ngư",
+    "name": "Hồ Vân Văn Lân Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -4389,7 +4389,7 @@
   },
   {
     "id": "F337",
-    "name": "Thanh Trôi Ngư",
+    "name": "Thanh Lăng Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -4415,7 +4415,7 @@
   },
   {
     "id": "F339",
-    "name": "Kim Nục Ngư",
+    "name": "Kim Trúc Giáp Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 40,
@@ -4428,7 +4428,7 @@
   },
   {
     "id": "F340",
-    "name": "Tử Bơn Ngư",
+    "name": "Tử Điệp Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -4441,7 +4441,7 @@
   },
   {
     "id": "F341",
-    "name": "Giang Xích Nhãn Quả Ngư",
+    "name": "Giang Xích Nhãn Lễ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -4454,7 +4454,7 @@
   },
   {
     "id": "F342",
-    "name": "Giang Hắc Trắm Ngư",
+    "name": "Giang Hắc Lân Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -4467,7 +4467,7 @@
   },
   {
     "id": "F343",
-    "name": "Kim Quả Ngư",
+    "name": "Kim Lễ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -4480,7 +4480,7 @@
   },
   {
     "id": "F344",
-    "name": "Hồng Xích Nhãn Diêu Ngư",
+    "name": "Xích Nhãn Diêu Hồng Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -4493,7 +4493,7 @@
   },
   {
     "id": "F345",
-    "name": "Xích Cờ Ngư",
+    "name": "Xích Kỳ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -4506,7 +4506,7 @@
   },
   {
     "id": "F346",
-    "name": "Hàn Băng Chim Ngư",
+    "name": "Hàn Băng Phi Điểu Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -4519,7 +4519,7 @@
   },
   {
     "id": "F347",
-    "name": "Ngân Trê Ngư",
+    "name": "Ngân Niệm Ngư",
     "rarity": "cực hiếm",
     "emoji": "🎣",
     "minSizeCm": 35,
@@ -4532,7 +4532,7 @@
   },
   {
     "id": "F348",
-    "name": "Hắc Diếc Ngư",
+    "name": "Hắc Tức Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -4545,7 +4545,7 @@
   },
   {
     "id": "F349",
-    "name": "Giang Hắc Quả Ngư",
+    "name": "Giang Hắc Lễ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -4558,7 +4558,7 @@
   },
   {
     "id": "F350",
-    "name": "Thanh Rô Ngư",
+    "name": "Thanh Phàn Lư Ngư",
     "rarity": "cực hiếm",
     "emoji": "🐡",
     "minSizeCm": 35,
@@ -4571,7 +4571,7 @@
   },
   {
     "id": "F351",
-    "name": "Ngân Hồi Ngư",
+    "name": "Ngân Khuê Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -4584,7 +4584,7 @@
   },
   {
     "id": "F352",
-    "name": "Lục Trắm Cỏ Ngư",
+    "name": "Lục Thảo Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 30,
@@ -4597,7 +4597,7 @@
   },
   {
     "id": "F353",
-    "name": "Hồ Hắc Trắm Ngư · Nhị",
+    "name": "Hồ Hắc Lân Ngư · Tam",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -4610,7 +4610,7 @@
   },
   {
     "id": "F354",
-    "name": "Xích Mú Ngư",
+    "name": "Xích Thạch Ban Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -4623,7 +4623,7 @@
   },
   {
     "id": "F355",
-    "name": "Giang Bạch Quả Ngư",
+    "name": "Giang Bạch Lễ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -4636,7 +4636,7 @@
   },
   {
     "id": "F356",
-    "name": "Lam Chép Ngư",
+    "name": "Lam Lý Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 35,
@@ -4649,7 +4649,7 @@
   },
   {
     "id": "F357",
-    "name": "Hàn Băng Nục Ngư",
+    "name": "Hàn Băng Trúc Giáp Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -4662,7 +4662,7 @@
   },
   {
     "id": "F358",
-    "name": "Điểm Ban Ngừ Ngư",
+    "name": "Điểm Ban Vị Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -4675,7 +4675,7 @@
   },
   {
     "id": "F359",
-    "name": "Ngân Trôi Ngư",
+    "name": "Ngân Lăng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -4688,7 +4688,7 @@
   },
   {
     "id": "F360",
-    "name": "Hoàng Kim Bơn Ngư",
+    "name": "Hoàng Kim Điệp Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -4701,7 +4701,7 @@
   },
   {
     "id": "F361",
-    "name": "Xích Bơn Ngư",
+    "name": "Xích Điệp Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -4714,7 +4714,7 @@
   },
   {
     "id": "F362",
-    "name": "Lôi Vân Nheo Ngư",
+    "name": "Lôi Vân Linh Ngư",
     "rarity": "cực hiếm",
     "emoji": "🐡",
     "minSizeCm": 40,
@@ -4728,7 +4728,7 @@
   },
   {
     "id": "F363",
-    "name": "Giang Hắc Trôi Ngư",
+    "name": "Giang Hắc Lăng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -4741,7 +4741,7 @@
   },
   {
     "id": "F364",
-    "name": "Bạch Kim Mè Ngư",
+    "name": "Bạch Kim Liên Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -4754,7 +4754,7 @@
   },
   {
     "id": "F365",
-    "name": "Lục Quả Ngư",
+    "name": "Lục Lễ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -4767,7 +4767,7 @@
   },
   {
     "id": "F366",
-    "name": "Bạch Ngừ Ngư",
+    "name": "Bạch Vị Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -4793,7 +4793,7 @@
   },
   {
     "id": "F368",
-    "name": "Hoàng Kim Đại Dương Ngư",
+    "name": "Hoàng Kim Hải Uyên Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -4806,7 +4806,7 @@
   },
   {
     "id": "F369",
-    "name": "Lôi Vân Trôi Ngư",
+    "name": "Lôi Vân Lăng Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -4819,7 +4819,7 @@
   },
   {
     "id": "F370",
-    "name": "Thu Phong Trắm Ngư",
+    "name": "Thu Phong Lân Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -4833,7 +4833,7 @@
   },
   {
     "id": "F371",
-    "name": "Điểm Ban Rô Ngư",
+    "name": "Điểm Ban Phàn Lư Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -4859,7 +4859,7 @@
   },
   {
     "id": "F373",
-    "name": "Hồ Xích Trôi Ngư",
+    "name": "Hồ Xích Lăng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -4885,7 +4885,7 @@
   },
   {
     "id": "F375",
-    "name": "Hồng Hắc Ngư",
+    "name": "Hắc Hồng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -4898,7 +4898,7 @@
   },
   {
     "id": "F376",
-    "name": "Hắc Bơn Ngư",
+    "name": "Hắc Điệp Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -4911,7 +4911,7 @@
   },
   {
     "id": "F377",
-    "name": "Tử Trôi Ngư",
+    "name": "Tử Lăng Ngư",
     "rarity": "cực hiếm",
     "emoji": "🎣",
     "minSizeCm": 40,
@@ -4924,7 +4924,7 @@
   },
   {
     "id": "F378",
-    "name": "Hoàng Kim Diếc Ngư",
+    "name": "Hoàng Kim Tức Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -4937,7 +4937,7 @@
   },
   {
     "id": "F379",
-    "name": "Vân Văn Nục Ngư",
+    "name": "Vân Văn Trúc Giáp Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -4950,7 +4950,7 @@
   },
   {
     "id": "F380",
-    "name": "Thanh Diếc Thiên Ngư",
+    "name": "Thiên Bích Tức Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -4963,7 +4963,7 @@
   },
   {
     "id": "F381",
-    "name": "Lôi Điện Hồi Ngư",
+    "name": "Lôi Điện Khuê Ngư",
     "rarity": "cực hiếm",
     "emoji": "🐡",
     "minSizeCm": 60,
@@ -4976,7 +4976,7 @@
   },
   {
     "id": "F382",
-    "name": "Bạch Trôi Ngư",
+    "name": "Bạch Lăng Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 35,
@@ -4989,7 +4989,7 @@
   },
   {
     "id": "F383",
-    "name": "Hàn Băng Mè Ngư",
+    "name": "Hàn Băng Liên Ngư",
     "rarity": "truyền thuyết",
     "emoji": "🐉",
     "minSizeCm": 55,
@@ -5003,7 +5003,7 @@
   },
   {
     "id": "F384",
-    "name": "Thu Phong Rô Ngư",
+    "name": "Thu Phong Phàn Lư Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -5016,7 +5016,7 @@
   },
   {
     "id": "F385",
-    "name": "Hắc Đại Dương Ngư",
+    "name": "Hắc Hải Uyên Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5029,7 +5029,7 @@
   },
   {
     "id": "F386",
-    "name": "U Minh Trôi Ngư",
+    "name": "U Minh Lăng Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 30,
@@ -5042,7 +5042,7 @@
   },
   {
     "id": "F387",
-    "name": "U Minh Đuối Ngư",
+    "name": "U Minh Hồng Dực Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 40,
@@ -5056,7 +5056,7 @@
   },
   {
     "id": "F388",
-    "name": "Hồ Xích Trắm Ngư",
+    "name": "Hồ Xích Lân Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -5069,7 +5069,7 @@
   },
   {
     "id": "F389",
-    "name": "Lục Hồi Ngư",
+    "name": "Lục Khuê Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5082,7 +5082,7 @@
   },
   {
     "id": "F390",
-    "name": "Lục Nục Ngư",
+    "name": "Lục Trúc Giáp Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5095,7 +5095,7 @@
   },
   {
     "id": "F391",
-    "name": "Ngân Diếc Ngư",
+    "name": "Ngân Tức Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -5108,7 +5108,7 @@
   },
   {
     "id": "F392",
-    "name": "Xích Nhãn Trắm Cỏ Ngư",
+    "name": "Xích Nhãn Thảo Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -5121,7 +5121,7 @@
   },
   {
     "id": "F393",
-    "name": "Bạch Chép Koi Ngư",
+    "name": "Bạch Cẩm Lý Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -5134,7 +5134,7 @@
   },
   {
     "id": "F394",
-    "name": "Hồng Hàn Băng Diêu Ngư",
+    "name": "Hàn Băng Diêu Hồng Ngư",
     "rarity": "cực hiếm",
     "emoji": "🎣",
     "minSizeCm": 40,
@@ -5147,7 +5147,7 @@
   },
   {
     "id": "F395",
-    "name": "Lôi Điện Ngừ Ngư",
+    "name": "Lôi Điện Vị Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5160,7 +5160,7 @@
   },
   {
     "id": "F396",
-    "name": "Lôi Vân Đại Dương Ngư",
+    "name": "Lôi Vân Hải Uyên Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5173,7 +5173,7 @@
   },
   {
     "id": "F397",
-    "name": "Hàn Băng Trắm Cỏ Ngư",
+    "name": "Hàn Băng Thảo Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -5186,7 +5186,7 @@
   },
   {
     "id": "F398",
-    "name": "Lôi Điện Chình Hồ Ngư",
+    "name": "Lôi Điện Hồ Man Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 30,
@@ -5199,7 +5199,7 @@
   },
   {
     "id": "F399",
-    "name": "Xích Nhãn Đuối Ngư",
+    "name": "Xích Nhãn Hồng Dực Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -5212,7 +5212,7 @@
   },
   {
     "id": "F400",
-    "name": "Kim Diếc Ngư",
+    "name": "Kim Tức Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -5225,7 +5225,7 @@
   },
   {
     "id": "F401",
-    "name": "Lục Đuối Ngư",
+    "name": "Lục Hồng Dực Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 40,
@@ -5239,7 +5239,7 @@
   },
   {
     "id": "F402",
-    "name": "Bạch Kim Sấu Ngư",
+    "name": "Bạch Kim Ngạc Ngư",
     "rarity": "truyền thuyết",
     "emoji": "🦈",
     "minSizeCm": 45,
@@ -5252,7 +5252,7 @@
   },
   {
     "id": "F403",
-    "name": "Vân Văn Trôi Ngư",
+    "name": "Vân Văn Lăng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -5265,7 +5265,7 @@
   },
   {
     "id": "F404",
-    "name": "Điểm Ban Diếc Ngư",
+    "name": "Điểm Ban Tức Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -5278,7 +5278,7 @@
   },
   {
     "id": "F405",
-    "name": "Bạch Kim Nục Ngư",
+    "name": "Bạch Kim Trúc Giáp Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 60,
@@ -5291,7 +5291,7 @@
   },
   {
     "id": "F406",
-    "name": "Lam Chình Hồ Ngư",
+    "name": "Lam Hồ Man Ngư",
     "rarity": "cực hiếm",
     "emoji": "🎣",
     "minSizeCm": 40,
@@ -5304,7 +5304,7 @@
   },
   {
     "id": "F407",
-    "name": "Bạch Nheo Ngư",
+    "name": "Hồ Bạch Linh Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -5317,7 +5317,7 @@
   },
   {
     "id": "F408",
-    "name": "Vân Văn Chép Ngư",
+    "name": "Vân Văn Lý Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -5330,7 +5330,7 @@
   },
   {
     "id": "F409",
-    "name": "Xích Nhãn Chình Hồ Ngư",
+    "name": "Xích Nhãn Hồ Man Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -5343,7 +5343,7 @@
   },
   {
     "id": "F410",
-    "name": "Hồ Hắc Trôi Ngư",
+    "name": "Hồ Hắc Lăng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -5356,7 +5356,7 @@
   },
   {
     "id": "F411",
-    "name": "U Minh Bò Ngư",
+    "name": "U Minh Ngưu Giác Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 60,
@@ -5369,7 +5369,7 @@
   },
   {
     "id": "F412",
-    "name": "Lôi Điện Chuối Ngư",
+    "name": "Lôi Điện Xà Đầu Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -5382,7 +5382,7 @@
   },
   {
     "id": "F413",
-    "name": "Hồ Lam Quả Ngư",
+    "name": "Hồ Lam Lễ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -5395,7 +5395,7 @@
   },
   {
     "id": "F414",
-    "name": "Bạch Nục Ngư",
+    "name": "Bạch Trúc Giáp Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5408,7 +5408,7 @@
   },
   {
     "id": "F415",
-    "name": "Lôi Điện Đuối Ngư",
+    "name": "Lôi Điện Hồng Dực Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5421,7 +5421,7 @@
   },
   {
     "id": "F416",
-    "name": "Thu Phong Thu Ngư",
+    "name": "Phong Thu Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5434,7 +5434,7 @@
   },
   {
     "id": "F417",
-    "name": "Vân Văn Cờ Ngư",
+    "name": "Vân Văn Kỳ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5447,7 +5447,7 @@
   },
   {
     "id": "F418",
-    "name": "Thu Phong Bò Ngư",
+    "name": "Thu Phong Ngưu Giác Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5460,7 +5460,7 @@
   },
   {
     "id": "F419",
-    "name": "Xích Nhãn Chép Ngư",
+    "name": "Xích Nhãn Lý Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -5473,7 +5473,7 @@
   },
   {
     "id": "F420",
-    "name": "Thanh Chình Hồ Thiên Ngư",
+    "name": "Thiên Bích Hồ Man Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 30,
@@ -5487,7 +5487,7 @@
   },
   {
     "id": "F421",
-    "name": "Tử Trê Ngư",
+    "name": "Tử Niệm Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 28,
@@ -5501,7 +5501,7 @@
   },
   {
     "id": "F422",
-    "name": "Lam Chuối Ngư",
+    "name": "Lam Xà Đầu Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -5514,7 +5514,7 @@
   },
   {
     "id": "F423",
-    "name": "Hồ Trường Chủy Trắm Ngư",
+    "name": "Hồ Trường Chủy Lân Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -5527,7 +5527,7 @@
   },
   {
     "id": "F424",
-    "name": "Hồ Thanh Trắm Thiên Ngư",
+    "name": "Hồ Thiên Bích Lân Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -5540,7 +5540,7 @@
   },
   {
     "id": "F425",
-    "name": "Lôi Điện Trôi Ngư",
+    "name": "Lôi Điện Lăng Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -5553,7 +5553,7 @@
   },
   {
     "id": "F426",
-    "name": "Bạch Kim Bơn Ngư",
+    "name": "Bạch Kim Điệp Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5566,7 +5566,7 @@
   },
   {
     "id": "F427",
-    "name": "Thanh Hồi Thiên Ngư",
+    "name": "Thiên Bích Khuê Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5579,7 +5579,7 @@
   },
   {
     "id": "F428",
-    "name": "Điểm Ban Lăng Ngư",
+    "name": "Điểm Ban Linh Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -5592,7 +5592,7 @@
   },
   {
     "id": "F429",
-    "name": "Hắc Nheo Ngư",
+    "name": "Hồ Hắc Linh Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -5605,7 +5605,7 @@
   },
   {
     "id": "F430",
-    "name": "Hoàng Kim Lăng Ngư",
+    "name": "Giang Hoàng Kim Linh Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 28,
@@ -5618,7 +5618,7 @@
   },
   {
     "id": "F431",
-    "name": "Hàn Băng Mú Ngư",
+    "name": "Hàn Băng Thạch Ban Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5631,7 +5631,7 @@
   },
   {
     "id": "F432",
-    "name": "Xích Nhãn Chuối Ngư",
+    "name": "Xích Nhãn Xà Đầu Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -5644,7 +5644,7 @@
   },
   {
     "id": "F433",
-    "name": "Thanh Trê Ngư",
+    "name": "Thanh Niệm Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -5657,7 +5657,7 @@
   },
   {
     "id": "F434",
-    "name": "Lôi Điện Trắm Cỏ Ngư",
+    "name": "Lôi Điện Thảo Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 30,
@@ -5670,7 +5670,7 @@
   },
   {
     "id": "F435",
-    "name": "Hắc Lôi Điện Trắm Ngư",
+    "name": "Hắc Lôi Điện Lân Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 40,
@@ -5683,7 +5683,7 @@
   },
   {
     "id": "F436",
-    "name": "Thanh Chạch Thiên Ngư",
+    "name": "Thiên Bích Nê Thu Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 35,
@@ -5696,7 +5696,7 @@
   },
   {
     "id": "F437",
-    "name": "Kim Trê Ngư",
+    "name": "Kim Niệm Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -5722,7 +5722,7 @@
   },
   {
     "id": "F439",
-    "name": "Hồ Trường Chủy Trôi Ngư",
+    "name": "Hồ Trường Chủy Lăng Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -5735,7 +5735,7 @@
   },
   {
     "id": "F440",
-    "name": "Thanh Sấu Thiên Ngư",
+    "name": "Thiên Bích Ngạc Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -5748,7 +5748,7 @@
   },
   {
     "id": "F441",
-    "name": "Hồ Trường Chủy Quả Ngư",
+    "name": "Hồ Trường Chủy Lễ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -5761,7 +5761,7 @@
   },
   {
     "id": "F442",
-    "name": "Kim Đuối Ngư",
+    "name": "Kim Hồng Dực Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -5774,7 +5774,7 @@
   },
   {
     "id": "F443",
-    "name": "Trường Chủy Đại Dương Ngư",
+    "name": "Trường Chủy Hải Uyên Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5787,7 +5787,7 @@
   },
   {
     "id": "F444",
-    "name": "Hắc Thu Phong Trắm Ngư",
+    "name": "Hắc Thu Phong Lân Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5800,7 +5800,7 @@
   },
   {
     "id": "F445",
-    "name": "Tử Quả Ngư",
+    "name": "Tử Lễ Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -5813,7 +5813,7 @@
   },
   {
     "id": "F446",
-    "name": "Lục Trê Ngư",
+    "name": "Lục Niệm Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -5826,7 +5826,7 @@
   },
   {
     "id": "F447",
-    "name": "Cam Xích Ngư",
+    "name": "Xích Cam Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 40,
@@ -5852,7 +5852,7 @@
   },
   {
     "id": "F449",
-    "name": "Trường Chủy Rô Phi Ngư",
+    "name": "Trường Chủy La Phi Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -5865,7 +5865,7 @@
   },
   {
     "id": "F450",
-    "name": "Tử Đuối Ngư",
+    "name": "Tử Hồng Dực Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5878,7 +5878,7 @@
   },
   {
     "id": "F451",
-    "name": "Trường Chủy Hồi Ngư",
+    "name": "Trường Chủy Khuê Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -5891,7 +5891,7 @@
   },
   {
     "id": "F452",
-    "name": "Hồ Điểm Ban Trôi Ngư",
+    "name": "Hồ Điểm Ban Lăng Ngư",
     "rarity": "cực hiếm",
     "emoji": "🎣",
     "minSizeCm": 40,
@@ -5904,7 +5904,7 @@
   },
   {
     "id": "F453",
-    "name": "Thu Phong Trắm Cỏ Ngư",
+    "name": "Thu Phong Thảo Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -5917,7 +5917,7 @@
   },
   {
     "id": "F454",
-    "name": "Hồng Thu Phong Diêu Ngư",
+    "name": "Thu Phong Diêu Hồng Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 30,
@@ -5930,7 +5930,7 @@
   },
   {
     "id": "F455",
-    "name": "Xích Nhãn Sấu Ngư",
+    "name": "Xích Nhãn Ngạc Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -5943,7 +5943,7 @@
   },
   {
     "id": "F456",
-    "name": "Thu Phong Đuối Ngư",
+    "name": "Thu Phong Hồng Dực Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5956,7 +5956,7 @@
   },
   {
     "id": "F457",
-    "name": "Hồng Thanh Ngư",
+    "name": "Thanh Hồng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -5969,7 +5969,7 @@
   },
   {
     "id": "F458",
-    "name": "Hoàng Kim Đuối Ngư",
+    "name": "Hoàng Kim Hồng Dực Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -5982,7 +5982,7 @@
   },
   {
     "id": "F459",
-    "name": "Thanh Hồi Ngư",
+    "name": "Thanh Khuê Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -5995,7 +5995,7 @@
   },
   {
     "id": "F460",
-    "name": "Kim Rô Ngư",
+    "name": "Kim Phàn Lư Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -6008,7 +6008,7 @@
   },
   {
     "id": "F461",
-    "name": "Giang Trường Chủy Trắm Ngư",
+    "name": "Giang Trường Chủy Lân Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -6021,7 +6021,7 @@
   },
   {
     "id": "F462",
-    "name": "Bạch Lăng Ngư",
+    "name": "Giang Bạch Linh Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 35,
@@ -6034,7 +6034,7 @@
   },
   {
     "id": "F463",
-    "name": "Trường Chủy Bò Ngư",
+    "name": "Trường Chủy Ngưu Giác Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -6047,7 +6047,7 @@
   },
   {
     "id": "F464",
-    "name": "U Minh Chạch Ngư",
+    "name": "U Minh Nê Thu Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -6060,7 +6060,7 @@
   },
   {
     "id": "F465",
-    "name": "Hoàng Kim Nheo Ngư",
+    "name": "Hồ Hoàng Kim Linh Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -6073,7 +6073,7 @@
   },
   {
     "id": "F466",
-    "name": "Thanh Trôi Thiên Ngư",
+    "name": "Thiên Bích Lăng Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -6086,7 +6086,7 @@
   },
   {
     "id": "F467",
-    "name": "Cam Lôi Vân Ngư",
+    "name": "Lôi Vân Cam Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 40,
@@ -6100,7 +6100,7 @@
   },
   {
     "id": "F468",
-    "name": "Thanh Kình Thiên Ngư",
+    "name": "Thiên Bích Kình Ngư",
     "rarity": "cực hiếm",
     "emoji": "🎣",
     "minSizeCm": 60,
@@ -6113,7 +6113,7 @@
   },
   {
     "id": "F469",
-    "name": "Cam Thanh Ngư",
+    "name": "Thanh Cam Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 40,
@@ -6126,7 +6126,7 @@
   },
   {
     "id": "F470",
-    "name": "Hồ Xích Nhãn Trắm Ngư",
+    "name": "Hồ Xích Nhãn Lân Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -6139,7 +6139,7 @@
   },
   {
     "id": "F471",
-    "name": "Hồ Hắc Quả Ngư",
+    "name": "Hồ Hắc Lễ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -6152,7 +6152,7 @@
   },
   {
     "id": "F472",
-    "name": "U Minh Trê Ngư",
+    "name": "U Minh Niệm Ngư",
     "rarity": "hiếm",
     "emoji": "🎏",
     "minSizeCm": 28,
@@ -6165,7 +6165,7 @@
   },
   {
     "id": "F473",
-    "name": "Cam Hắc Ngư",
+    "name": "Hắc Cam Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -6178,7 +6178,7 @@
   },
   {
     "id": "F474",
-    "name": "Trường Chủy Mú Ngư",
+    "name": "Trường Chủy Thạch Ban Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -6191,7 +6191,7 @@
   },
   {
     "id": "F475",
-    "name": "Giang Điểm Ban Quả Ngư",
+    "name": "Giang Điểm Ban Lễ Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -6204,7 +6204,7 @@
   },
   {
     "id": "F476",
-    "name": "Xích Lăng Ngư",
+    "name": "Giang Xích Linh Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -6217,7 +6217,7 @@
   },
   {
     "id": "F477",
-    "name": "Bạch Kim Chạch Ngư",
+    "name": "Bạch Kim Nê Thu Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -6230,7 +6230,7 @@
   },
   {
     "id": "F478",
-    "name": "Giang Bạch Trắm Ngư",
+    "name": "Giang Bạch Lân Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -6243,7 +6243,7 @@
   },
   {
     "id": "F479",
-    "name": "Hồ Ngân Quả Ngư",
+    "name": "Hải Ngân Lễ Ngư",
     "rarity": "cực hiếm",
     "emoji": "🦈",
     "minSizeCm": 40,
@@ -6257,7 +6257,7 @@
   },
   {
     "id": "F480",
-    "name": "Điểm Ban Đuối Ngư",
+    "name": "Điểm Ban Hồng Dực Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -6270,7 +6270,7 @@
   },
   {
     "id": "F481",
-    "name": "Xích Nhãn Chép Koi Ngư",
+    "name": "Xích Nhãn Cẩm Lý Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 18,
@@ -6283,7 +6283,7 @@
   },
   {
     "id": "F482",
-    "name": "Lam Trắm Cỏ Ngư",
+    "name": "Lam Thảo Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -6296,7 +6296,7 @@
   },
   {
     "id": "F483",
-    "name": "Tử Rô Ngư",
+    "name": "Tử Phàn Lư Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -6309,7 +6309,7 @@
   },
   {
     "id": "F484",
-    "name": "Hồng Thu Phong Ngư",
+    "name": "Thu Phong Hồng Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -6322,7 +6322,7 @@
   },
   {
     "id": "F485",
-    "name": "Hồng Điểm Ban Ngư",
+    "name": "Điểm Ban Hồng Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -6335,7 +6335,7 @@
   },
   {
     "id": "F486",
-    "name": "Trường Chủy Diếc Ngư",
+    "name": "Trường Chủy Tức Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -6348,7 +6348,7 @@
   },
   {
     "id": "F487",
-    "name": "Ngọc Thạch Bơn Ngư",
+    "name": "Ngọc Thạch Điệp Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -6361,7 +6361,7 @@
   },
   {
     "id": "F488",
-    "name": "Thanh Sấu Ngư",
+    "name": "Thanh Ngạc Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 20,
@@ -6387,7 +6387,7 @@
   },
   {
     "id": "F490",
-    "name": "Giang Kim Trắm Ngư",
+    "name": "Giang Kim Lân Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -6400,7 +6400,7 @@
   },
   {
     "id": "F491",
-    "name": "Hắc Xích Trắm Ngư",
+    "name": "Hắc Xích Lân Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -6413,7 +6413,7 @@
   },
   {
     "id": "F492",
-    "name": "Thanh Chuối Ngư",
+    "name": "Thanh Xà Đầu Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 12,
@@ -6426,7 +6426,7 @@
   },
   {
     "id": "F493",
-    "name": "Tử Đại Dương Ngư",
+    "name": "Tử Hải Uyên Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -6439,7 +6439,7 @@
   },
   {
     "id": "F494",
-    "name": "Lam Nheo Ngư",
+    "name": "Lam Linh Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -6465,7 +6465,7 @@
   },
   {
     "id": "F496",
-    "name": "Thu Phong Chép Koi Ngư",
+    "name": "Thu Phong Cẩm Lý Ngư",
     "rarity": "hiếm",
     "emoji": "🐠",
     "minSizeCm": 30,
@@ -6478,7 +6478,7 @@
   },
   {
     "id": "F497",
-    "name": "Kim Bò Ngư",
+    "name": "Kim Ngưu Giác Ngư",
     "rarity": "thường",
     "emoji": "🐟",
     "minSizeCm": 20,
@@ -6491,7 +6491,7 @@
   },
   {
     "id": "F498",
-    "name": "Hồ Lôi Điện Trắm Ngư",
+    "name": "Hồ Lôi Điện Lân Ngư",
     "rarity": "khá",
     "emoji": "🐠",
     "minSizeCm": 25,
@@ -6530,7 +6530,7 @@
   },
   {
     "id": "F501",
-    "name": "Tiên Cá",
+    "name": "Tiên Nhân Ngư",
     "rarity": "tiên phẩm",
     "emoji": "🧜‍♀️",
     "minSizeCm": 120,

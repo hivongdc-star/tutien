@@ -1,11 +1,13 @@
-const { loadUsers } = require("../utils/storage");
+const { loadUsers, saveUsers } = require("../utils/storage");
 const { EmbedBuilder } = require("discord.js");
-const fs = require("fs");
 const path = require("path");
 
 const FISH_DB = require(path.join(__dirname, "../data/fish_db.json"));
 const idMap = {};
 for (const f of FISH_DB) idMap[f.id] = f;
+
+// Kho cá: chỉ lưu từ Thiên Phẩm trở lên
+const BAG_RARITIES = new Set(["truyền thuyết", "tiên phẩm"]);
 
 module.exports = {
   name: "fishbag",
@@ -17,19 +19,47 @@ module.exports = {
     if (!me) return msg.reply("❌ Bạn chưa có nhân vật!");
 
     if (!me.fishInventory || Object.keys(me.fishInventory).length === 0)
-      return msg.reply("🐟 Bạn chưa có con cá nào cả.");
+      return msg.reply("🐟 Bạn chưa có cá **Thiên Phẩm** trở lên.");
+
+    // Dọn kho legacy: loại bỏ cá dưới Thiên Phẩm khỏi fishInventory
+    let changed = false;
+    for (const id of Object.keys(me.fishInventory)) {
+      const info = idMap[id];
+      if (!info || !BAG_RARITIES.has(info.rarity)) {
+        delete me.fishInventory[id];
+        changed = true;
+      }
+    }
+    if (changed) {
+      users[msg.author.id] = me;
+      saveUsers(users);
+    }
+
+    if (Object.keys(me.fishInventory).length === 0)
+      return msg.reply("🐟 Bạn chưa có cá **Thiên Phẩm** trở lên.");
 
     const lines = [];
-    for (const id in me.fishInventory) {
-      const count = me.fishInventory[id];
-      const info = idMap[id] || { name: id, emoji: "🐟" };
-      lines.push(`${info.emoji || "🐟"} **${info.name}** x${count}`);
+    const items = Object.keys(me.fishInventory)
+      .map((id) => {
+        const info = idMap[id] || { id, name: id, emoji: "🐟", rarity: "thường" };
+        return { id, count: me.fishInventory[id], info };
+      })
+      .sort((a, b) => {
+        const ra = a.info.rarity === "tiên phẩm" ? 2 : 1;
+        const rb = b.info.rarity === "tiên phẩm" ? 2 : 1;
+        if (rb !== ra) return rb - ra;
+        return a.info.name.localeCompare(b.info.name, "vi");
+      });
+
+    for (const it of items) {
+      const info = it.info;
+      lines.push(`${info.emoji || "🐟"} **${info.name}** x${it.count}`);
     }
 
     const embed = new EmbedBuilder()
-      .setTitle(`🎣 Kho cá của ${msg.author.username}`)
+      .setTitle(`🎣 Kho cá (Thiên Phẩm+) của ${msg.author.username}`)
       .setDescription(lines.join("\n"))
-      .setColor("#00bfff");
+      .setColor("#F1C40F");
 
     msg.reply({ embeds: [embed] });
   },

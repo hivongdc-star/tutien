@@ -82,6 +82,15 @@ const RARITY_META = {
   },
 };
 
+// Chỉ lưu kho cá từ Thiên Phẩm trở lên
+const BAG_RARITIES = new Set(["truyền thuyết", "tiên phẩm"]);
+
+// Map id -> fish info để lọc rarity nhanh khi dọn kho
+const FISH_BY_ID = Object.create(null);
+for (const f of FISH_DB) {
+  if (f?.id) FISH_BY_ID[f.id] = f;
+}
+
 function spotText(spotKey) {
   if (spotKey === "song") return "bờ sông";
   if (spotKey === "ho") return "mặt hồ";
@@ -245,7 +254,17 @@ module.exports = {
           if (!u2.fishdex) u2.fishdex = {};
 
           const fishId = fish.id;
-          u2.fishInventory[fishId] = (u2.fishInventory[fishId] || 0) + 1;
+
+          // Kho cá: chỉ lưu từ Thiên Phẩm trở lên (Thiên Phẩm + Tiên Phẩm)
+          if (BAG_RARITIES.has(fish.rarity)) {
+            u2.fishInventory[fishId] = (u2.fishInventory[fishId] || 0) + 1;
+          }
+
+          // Dọn kho: loại bỏ toàn bộ cá dưới Thiên Phẩm (tránh legacy data còn sót)
+          for (const id of Object.keys(u2.fishInventory)) {
+            const info = FISH_BY_ID[id];
+            if (!info || !BAG_RARITIES.has(info.rarity)) delete u2.fishInventory[id];
+          }
 
           if (!u2.fishdex[fishId]) u2.fishdex[fishId] = { count: 0, maxSize: 0 };
           u2.fishdex[fishId].count += 1;
@@ -273,7 +292,7 @@ module.exports = {
             { name: "Thu hoạch", value: `+${ltFinal} LT · +${xp} EXP`, inline: true },
             { name: "Thời cơ", value: clicked ? "+25% (kéo chuẩn)" : "Không bonus", inline: true }
           )
-          .setFooter({ text: `Cooldown 30s • Tiên Phẩm: 0,001%` });
+          .setFooter({ text: `Cooldown 30s • Tiên Phẩm: 0,001% • Kho cá chỉ lưu Thiên Phẩm+` });
 
         await msg.channel.send({ embeds: [resEmbed] }).catch(() => {});
         cooldown.set(msg.author.id, Date.now());

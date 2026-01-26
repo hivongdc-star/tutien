@@ -1,5 +1,6 @@
 const { addLT, removeLT, getLT } = require("./currency");
-const { addToJackpot } = require("./lottery");
+const { addToJackpot, getPot } = require("./lottery");
+const crypto = require("node:crypto");
 
 // 🎲 Tài Xỉu
 function playTaiXiu(user, bet) {
@@ -7,12 +8,21 @@ function playTaiXiu(user, bet) {
     return { success: false, msg: "❌ Bạn không đủ LT để cược!" };
 
   removeLT(user, bet);
-  const dice = Array.from(
-    { length: 3 },
-    () => Math.floor(Math.random() * 6) + 1
-  );
+  // Dùng crypto RNG để nhất quán và khó dự đoán hơn Math.random()
+  const dice = Array.from({ length: 3 }, () => crypto.randomInt(1, 7));
   const total = dice.reduce((a, b) => a + b, 0);
   let result = `🎲 Tung xúc xắc: ${dice.join(" + ")} = ${total}\n`;
+
+  // Metadata bổ sung để UI/commands có thể render đẹp hơn (không phá tương thích cũ)
+  const meta = {
+    bet,
+    dice,
+    total,
+    outcome: "lose",
+    win: 0,
+    tax: 0,
+    jackpot: undefined,
+  };
 
   if (total >= 13) {
     let win = bet * 2;
@@ -21,10 +31,22 @@ function playTaiXiu(user, bet) {
     addLT(user, win);
     addToJackpot(tax);
     result += `✨ Bạn thắng! Nhận ${win} LT (trích ${tax} LT vào Jackpot)`;
+
+    meta.outcome = "win";
+    meta.win = win;
+    meta.tax = tax;
   } else {
     result += "💀 Bạn thua!";
   }
-  return { success: true, msg: result };
+
+  // Best-effort: lấy jackpot hiện tại để hiển thị
+  try {
+    meta.jackpot = getPot().jackpot;
+  } catch {
+    // ignore
+  }
+
+  return { success: true, msg: result, ...meta };
 }
 
 // 🪙 Tung Xu
@@ -33,8 +55,19 @@ function playFlip(user, bet, choice) {
     return { success: false, msg: "❌ Bạn không đủ LT để cược!" };
 
   removeLT(user, bet);
-  const side = Math.random() < 0.5 ? "ngửa" : "sấp";
+  // RNG crypto để nhất quán với tài xỉu
+  const side = crypto.randomInt(0, 2) === 0 ? "ngửa" : "sấp";
   let result = `🪙 Tung đồng xu: ${side}\n`;
+
+  const meta = {
+    bet,
+    choice,
+    side,
+    outcome: "lose",
+    win: 0,
+    tax: 0,
+    jackpot: undefined,
+  };
 
   if (side === choice) {
     let win = bet * 2;
@@ -43,10 +76,21 @@ function playFlip(user, bet, choice) {
     addLT(user, win);
     addToJackpot(tax);
     result += `✨ Bạn đoán đúng! Nhận ${win} LT (trích ${tax} LT vào Jackpot)`;
+
+    meta.outcome = "win";
+    meta.win = win;
+    meta.tax = tax;
   } else {
     result += "💀 Bạn đoán sai!";
   }
-  return { success: true, msg: result };
+
+  try {
+    meta.jackpot = getPot().jackpot;
+  } catch {
+    // ignore
+  }
+
+  return { success: true, msg: result, ...meta };
 }
 
 // 🎰 Slot Machine
@@ -56,11 +100,18 @@ function playSlot(user, bet) {
 
   removeLT(user, bet);
   const symbols = ["⚔️", "🌲", "💧", "🔥", "🪨", "💎"];
-  const spin = Array.from(
-    { length: 3 },
-    () => symbols[Math.floor(Math.random() * symbols.length)]
-  );
+  const spin = Array.from({ length: 3 }, () => symbols[crypto.randomInt(0, symbols.length)]);
   let result = `🎰 [ ${spin.join(" | ")} ]\n`;
+
+  const meta = {
+    bet,
+    symbols,
+    spin,
+    outcome: "lose",
+    win: 0,
+    tax: 0,
+    jackpot: undefined,
+  };
 
   if (spin.every((s) => s === spin[0])) {
     let win = spin[0] === "💎" ? bet * 50 : bet * 5;
@@ -69,6 +120,10 @@ function playSlot(user, bet) {
     addLT(user, win);
     addToJackpot(tax);
     result += `✨ Jackpot! Bạn thắng ${win} LT (trích ${tax} LT vào Jackpot)`;
+
+    meta.outcome = "jackpot";
+    meta.win = win;
+    meta.tax = tax;
   } else if (
     spin[0] === spin[1] ||
     spin[1] === spin[2] ||
@@ -80,10 +135,21 @@ function playSlot(user, bet) {
     addLT(user, win);
     addToJackpot(tax);
     result += `✨ Bạn thắng nhỏ! Nhận ${win} LT (trích ${tax} LT vào Jackpot)`;
+
+    meta.outcome = "smallwin";
+    meta.win = win;
+    meta.tax = tax;
   } else {
     result += "💀 Bạn thua!";
   }
-  return { success: true, msg: result };
+
+  try {
+    meta.jackpot = getPot().jackpot;
+  } catch {
+    // ignore
+  }
+
+  return { success: true, msg: result, ...meta };
 }
 
 // 🎴 Bài Cào (đánh với bot, có 3 cào)

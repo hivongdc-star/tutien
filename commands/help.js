@@ -21,6 +21,10 @@ module.exports = {
           value: "`-profile` | alias: `-p`, `-prof`\nXem thông tin nhân vật",
         },
         {
+          name: "🧾 Chỉ số nhân vật",
+          value: "`-nv` | alias: `-nhanvat`\nXem chỉ số (base + % tăng + phụ tố)",
+        },
+        {
           name: "♻️ Reset nhân vật",
           value:
             "`-reset` | alias: `-rs`\nReset lại nhân vật (chọn lại Tộc + Ngũ hành)",
@@ -49,6 +53,14 @@ module.exports = {
           value: "`-shop` | alias: `-s`\nXem cửa hàng",
         },
         {
+          name: "🎒 Túi",
+          value: "`-bag` | alias: `-tui`\nXem khoáng cụ / khoáng thạch / trang bị",
+        },
+        {
+          name: "⛏️ Khai khoáng",
+          value: "`-dao` | alias: `-daokhoang`\nKhai khoáng (5 phút/lần)",
+        },
+        {
           name: "🧚 Tiểu Nhu",
           value: "`-tieunhu` | alias: `-tn`\nGọi NPC Tiểu Nhu để nhận EXP",
         },
@@ -64,11 +76,11 @@ module.exports = {
         },
         {
           name: "❌ Từ chối thách đấu",
-          value: "`-deny` | alias: `-d`\nTừ chối lời thách đấu",
+          value: "`-deny`\nTừ chối lời thách đấu",
         },
         {
           name: "🚫 Hủy hành động",
-          value: "`-cancel` | alias: `-cxl`\nHủy lời thách đấu hoặc hành động",
+          value: "`-cancel` | alias: `-endall`\nHuỷ toàn bộ trận đấu (chỉ admin)",
         },
 
         // --- Cờ bạc & Xổ số ---

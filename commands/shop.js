@@ -4,12 +4,13 @@ const { listItems, buyItem } = require("../shop/shopUtils");
 
 module.exports = {
   name:"shop",
+  aliases: ["s"],
   run: async (client,msg)=>{
     const catalog = listItems(); const entries = Object.entries(catalog);
     const options = entries.slice(0,25).map(([id,it])=>({
       label:`${it.emoji||""} ${it.name}`.trim().slice(0,100),
       value:id,
-      description:`${it.price||0} LT • ${it.type}`.slice(0,100)
+      description:`${it.price||0} LT • ${it.type === "mining_tool" ? "Khoáng cụ" : "Vật phẩm"}`.slice(0,100)
     }));
     const row = new ActionRowBuilder().addComponents(new StringSelectMenuBuilder()
       .setCustomId(`shop_${msg.author.id}`).setPlaceholder("Chọn vật phẩm để mua...").addOptions(options));

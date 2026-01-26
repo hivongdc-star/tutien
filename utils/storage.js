@@ -36,6 +36,24 @@ function getUser(id) {
   if (!u.shield) u.shield = 0;
   if (!u.background) u.background = "default";
 
+  // ===== Mining + Gear (mở rộng an toàn, không phá schema cũ) =====
+  if (!u.mining) u.mining = {};
+  if (!Array.isArray(u.mining.tools)) u.mining.tools = [];
+  if (typeof u.mining.activeToolId === "undefined") u.mining.activeToolId = null;
+  if (!Number.isFinite(u.mining.lastMineAt)) u.mining.lastMineAt = 0;
+  if (!u.mining.ores || typeof u.mining.ores !== "object") u.mining.ores = {};
+
+  if (!u.gear) u.gear = {};
+  if (!u.gear.equipped || typeof u.gear.equipped !== "object") {
+    u.gear.equipped = { weapon: null, armor: null, boots: null, bracelet: null };
+  } else {
+    if (typeof u.gear.equipped.weapon === "undefined") u.gear.equipped.weapon = null;
+    if (typeof u.gear.equipped.armor === "undefined") u.gear.equipped.armor = null;
+    if (typeof u.gear.equipped.boots === "undefined") u.gear.equipped.boots = null;
+    if (typeof u.gear.equipped.bracelet === "undefined") u.gear.equipped.bracelet = null;
+  }
+  if (!Array.isArray(u.gear.bag)) u.gear.bag = [];
+
   return u;
 }
 
@@ -78,6 +96,18 @@ function createUser(id, race, element) {
       buffs: [],
       shield: 0,
       background: "default",
+
+      // Mining + Gear (mới)
+      mining: {
+        tools: [],
+        activeToolId: null,
+        lastMineAt: 0,
+        ores: {},
+      },
+      gear: {
+        equipped: { weapon: null, armor: null, boots: null, bracelet: null },
+        bag: [],
+      },
     };
 
     users[id] = user;

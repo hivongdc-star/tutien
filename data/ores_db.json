@@ -1,0 +1,27 @@
+[
+  {"id":"thiet_sa","name":"Thiết Sa","tier":"pham","weight":20},
+  {"id":"hac_thach","name":"Hắc Thạch","tier":"pham","weight":20},
+  {"id":"thanh_nham","name":"Thanh Nham","tier":"pham","weight":20},
+  {"id":"bach_sa_tinh","name":"Bạch Sa Tinh","tier":"pham","weight":20},
+  {"id":"xich_sa","name":"Xích Sa","tier":"pham","weight":20},
+
+  {"id":"linh_thach_vun","name":"Linh Thạch Vụn","tier":"linh","weight":25},
+  {"id":"linh_sa_tinh","name":"Linh Sa Tinh","tier":"linh","weight":25},
+  {"id":"moc_linh_thach","name":"Mộc Linh Thạch","tier":"linh","weight":25},
+  {"id":"thuy_linh_tinh","name":"Thủy Linh Tinh","tier":"linh","weight":25},
+
+  {"id":"hoang_kim_khoang","name":"Hoàng Kim Khoáng","tier":"hoang","weight":34},
+  {"id":"hoa_hoang_tinh","name":"Hỏa Hoàng Tinh","tier":"hoang","weight":33},
+  {"id":"tho_hoang_nham","name":"Thổ Hoàng Nham","tier":"hoang","weight":33},
+
+  {"id":"huyen_thiet_khoang","name":"Huyền Thiết Khoáng","tier":"huyen","weight":34},
+  {"id":"u_minh_tinh_sa","name":"U Minh Tinh Sa","tier":"huyen","weight":33},
+  {"id":"huyen_tinh_thach","name":"Huyền Tinh Thạch","tier":"huyen","weight":33},
+
+  {"id":"dia_tam_tinh_khoang","name":"Địa Tâm Tinh Khoáng","tier":"dia","weight":50},
+  {"id":"dia_mach_huyet_thach","name":"Địa Mạch Huyết Thạch","tier":"dia","weight":50},
+
+  {"id":"thien_ngoai_van_thach","name":"Thiên Ngoại Vẫn Thạch","tier":"thien","weight":100},
+  {"id":"tien_linh_ngoc_tuy","name":"Tiên Linh Ngọc Tủy","tier":"tien","weight":100},
+  {"id":"than_nguyen_thach","name":"Thần Nguyên Thạch","tier":"than","weight":100}
+]

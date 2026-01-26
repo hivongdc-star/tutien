@@ -1,39 +1,38 @@
 {
-  "flower_rose": {
-    "name": "Hoa Hồng",
-    "emoji": "🌹",
-    "price": 100,
-    "type": "gift",
-    "description": "Tặng hoa để tăng thiện cảm",
-    "effect": { "rela": 50 }
+  "pham_pha_thach": {
+    "name": "Thiết Hạc Phá Thạch",
+    "emoji": "⛏️",
+    "price": 3000,
+    "type": "mining_tool",
+    "tier": "pham",
+    "durability": 60,
+    "bonusRare": 0
   },
-  "choco": {
-    "name": "Socola Ngọt",
-    "emoji": "🍫",
-    "price": 200,
-    "type": "gift",
-    "description": "Tặng socola để tăng thiện cảm",
-    "effect": { "rela": 100 }
+  "linh_khai_son": {
+    "name": "Linh Văn Khai Sơn",
+    "emoji": "⛏️",
+    "price": 12000,
+    "type": "mining_tool",
+    "tier": "linh",
+    "durability": 90,
+    "bonusRare": 3
   },
-  "heart_1000": {
-    "name": "Trái Tim Định Mệnh",
-    "emoji": "💖",
-    "price": 1000000,
-    "type": "gift",
-    "description": "Vật phẩm đặc biệt, khi tặng sẽ tăng ngay 1000 điểm RELA với người nhận.",
-    "effect": { "rela": 1000 }
+  "huyen_toai_nham": {
+    "name": "Huyền Thiết Toái Nham",
+    "emoji": "⛏️",
+    "price": 45000,
+    "type": "mining_tool",
+    "tier": "huyen",
+    "durability": 120,
+    "bonusRare": 9
   },
-
-  "ring_pham_tam":   { "name": "Nhẫn Phàm Tâm",   "emoji": "💍", "price": 1000,        "type": "relationship", "requireRela": 1000,     "bonus": {} },
-  "ring_thanh_dong": { "name": "Nhẫn Thanh Đồng", "emoji": "💍", "price": 10000,       "type": "relationship", "requireRela": 5000,     "bonus": { "exp_percent": 3 } },
-  "ring_bach_ngoc":  { "name": "Nhẫn Bạch Ngọc",  "emoji": "💍", "price": 50000,       "type": "relationship", "requireRela": 10000,    "bonus": { "exp_percent": 5, "def_percent": 2 } },
-  "ring_hong_lien":  { "name": "Nhẫn Hồng Liên",  "emoji": "💍", "price": 100000,      "type": "relationship", "requireRela": 20000,    "bonus": { "exp_percent": 8, "atk_percent": 5 } },
-  "ring_kim_quang":  { "name": "Nhẫn Kim Quang",  "emoji": "💍", "price": 500000,      "type": "relationship", "requireRela": 50000,    "bonus": { "exp_percent": 10, "all_stat_percent": 5 } },
-  "ring_huyet_nguyet": { "name": "Nhẫn Huyết Nguyệt", "emoji": "💍", "price": 1000000, "type": "relationship", "requireRela": 100000,   "bonus": { "exp_percent": 15, "atk_percent": 8, "title_unlock": "Song Tâm Đồng Mệnh" } },
-  "ring_tinh_van":   { "name": "Nhẫn Tinh Vân",   "emoji": "💍", "price": 5000000,     "type": "relationship", "requireRela": 200000,   "bonus": { "exp_percent": 20, "all_stat_percent": 10 } },
-  "ring_van_kiep":   { "name": "Nhẫn Vạn Kiếp",   "emoji": "💍", "price": 10000000,    "type": "relationship", "requireRela": 300000,   "bonus": { "exp_percent": 25, "all_stat_percent": 12 } },
-  "ring_than_huyen": { "name": "Nhẫn Thần Huyền", "emoji": "💍", "price": 50000000,    "type": "relationship", "requireRela": 500000,   "bonus": { "exp_percent": 30, "all_stat_percent": 15 } },
-  "ring_tien_dao":   { "name": "Nhẫn Tiên Đạo",   "emoji": "💍", "price": 100000000,   "type": "relationship", "requireRela": 700000,   "bonus": { "exp_percent": 35, "all_stat_percent": 20, "title_unlock": "Đạo Lữ Song Tu" } },
-  "ring_vinh_hang":  { "name": "Nhẫn Vĩnh Hằng",  "emoji": "💍", "price": 500000000,   "type": "relationship", "requireRela": 900000,   "bonus": { "exp_percent": 40, "all_stat_percent": 25 } },
-  "ring_chi_ton":    { "name": "Nhẫn Chí Tôn",    "emoji": "💍", "price": 1000000000,  "type": "relationship", "requireRela": 1000000,  "bonus": { "exp_percent": 50, "all_stat_percent": 30, "title_unlock": "Thiên Địa Chứng Giám" } }
+  "thien_tran_son": {
+    "name": "Thiên Ngoại Trấn Sơn",
+    "emoji": "⛏️",
+    "price": 120000,
+    "type": "mining_tool",
+    "tier": "thien",
+    "durability": 160,
+    "bonusRare": 15
+  }
 }

@@ -3,7 +3,8 @@ const { listItems } = require("../shop/shopUtils");
 
 module.exports = {
   name: "inventory",
-  aliases: ["inv", "bag", "tui"],
+  // NOTE: Đã tách "-bag" sang hệ túi mới (trang bị/khoáng cụ/khoáng thạch)
+  aliases: ["inv"],
   run: async (client, msg) => {
     const user = getUser(msg.author.id);
     if (!user) return msg.reply("❌ Bạn chưa có nhân vật.");

@@ -292,7 +292,7 @@ module.exports = {
             { name: "Thu hoạch", value: `+${ltFinal} LT · +${xp} EXP`, inline: true },
             { name: "Thời cơ", value: clicked ? "+25% (kéo chuẩn)" : "Không bonus", inline: true }
           )
-          .setFooter({ text: `Cooldown 30s • Tiên Phẩm: 0,001% • Kho cá chỉ lưu Thiên Phẩm+` });
+          .setFooter({ text: `Cooldown 30s` });
 
         await msg.channel.send({ embeds: [resEmbed] }).catch(() => {});
         cooldown.set(msg.author.id, Date.now());

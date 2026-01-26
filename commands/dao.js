@@ -6,7 +6,7 @@ const { loadUsers, saveUsers } = require("../utils/storage");
 const { rollOre } = require("../utils/mining");
 const { tierMeta, tierText } = require("../utils/tiers");
 
-const COOLDOWN_MS = 5 * 60 * 1000;
+const COOLDOWN_MS = 30 * 1000;
 
 function ensureMining(user) {
   if (!user.mining) user.mining = {};

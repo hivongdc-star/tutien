@@ -21,14 +21,13 @@ module.exports = {
     }
 
     const userId = target.id;
-    const leveledUp = addXp(userId, amount);
-
-    const users = loadUsers();
+    const levelsGained = addXp(userId, amount);
+const users = loadUsers();
     const user = users[userId];
     if (!user) return message.reply("❌ Nhân vật này chưa được tạo.");
 
     let msg = `✅ Đã cộng **${amount} EXP** cho **${user.name}**.`;
-    if (leveledUp) {
+    if (levelsGained > 0) {
       msg += `\n⚡️ Nhân vật đã đột phá lên **${getRealm(
         user.level
       )}** (Level ${user.level}).`;

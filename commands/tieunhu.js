@@ -32,7 +32,6 @@ module.exports = {
     msg.channel.send(`👩‍🦰 **Tiểu Nhu**: ${reply}`);
 
     addXp(msg.author.id, 20); // cho 20 exp
-    saveUsers(users);
 
     cooldown.add(msg.author.id);
     setTimeout(() => cooldown.delete(msg.author.id), 5 * 60 * 1000);

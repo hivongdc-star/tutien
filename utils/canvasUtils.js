@@ -1,4 +1,13 @@
-const { createCanvas, loadImage } = require("@napi-rs/canvas");
+const path = require("path");
+const { createCanvas, loadImage, GlobalFonts } = require("@napi-rs/canvas");
+
+// Register font để tránh phụ thuộc font hệ thống (ổn định khi deploy)
+try {
+  GlobalFonts.registerFromPath(path.join(__dirname, "../assets/fonts/DejaVuSans.ttf"), "DejaVu");
+} catch {}
+
+const FONT = "DejaVu";
+
 const { getUser, loadUsers } = require("./storage");
 const { getRealm, getExpNeeded } = require("./xp");
 const { getBackground } = require("./backgrounds");
@@ -32,20 +41,20 @@ async function drawProfile(userId, avatarUrl) {
   } catch {}
 
   // --- Tên nhân vật ---
-  ctx.font = "bold 36px Sans";
+  ctx.font = `bold 36px ${FONT}`;
   ctx.fillStyle = "#4fc3f7";
   ctx.fillText(user.name, 180, 60);
 
   // --- Danh hiệu ---
   if (user.title) {
-    ctx.font = "bold 24px Sans";
+    ctx.font = `bold 24px ${FONT}`;
     ctx.fillStyle = "#ffd54f";
     ctx.fillText(user.title, 180, 95);
   }
 
   // --- Cảnh giới ---
   const realm = getRealm(user.level);
-  ctx.font = "20px Sans";
+  ctx.font = `20px ${FONT}`;
   ctx.fillStyle = "#fff";
   ctx.fillText(realm, 180, 125);
 
@@ -69,12 +78,12 @@ async function drawProfile(userId, avatarUrl) {
     const allUsers = loadUsers();
     const partner = allUsers[user.relationships.partnerId];
 
-    ctx.font = "20px Sans";
+    ctx.font = `20px ${FONT}`;
     ctx.fillStyle = "#ff80ab";
     ctx.fillText(`💍 ${ringName || "Nhẫn cưới"}`, 320, 200);
 
     if (partner) {
-      ctx.font = "18px Sans";
+      ctx.font = `18px ${FONT}`;
       ctx.fillStyle = "#ffccbc";
       ctx.fillText(`Partner: ${partner.name}`, 320, 230);
     }
@@ -97,7 +106,7 @@ async function drawProfile(userId, avatarUrl) {
   ctx.strokeStyle = "#fff";
   ctx.strokeRect(barX, barY, barW, barH);
 
-  ctx.font = "18px Sans";
+  ctx.font = `18px ${FONT}`;
   ctx.fillStyle = "#fff";
   ctx.fillText(`EXP: ${expNow}/${expNeed}`, barX + 10, barY + 22);
 
@@ -106,7 +115,7 @@ async function drawProfile(userId, avatarUrl) {
     const ltIcon = await loadImage("./assets/icons/lt.png");
     ctx.drawImage(ltIcon, 20, 370, 28, 28);
   } catch {}
-  ctx.font = "20px Sans";
+  ctx.font = `20px ${FONT}`;
   ctx.fillStyle = "#fff";
   ctx.fillText(user.lt.toString(), 60, 392);
 
@@ -130,13 +139,13 @@ async function drawProfile(userId, avatarUrl) {
       ctx.drawImage(icon, x, y, 24, 24);
     } catch {}
 
-    ctx.font = "18px Sans";
+    ctx.font = `18px ${FONT}`;
     ctx.fillStyle = "#fff";
     ctx.fillText(stats[i].text.toString(), x + 30, y + 20);
   }
 
   // --- Bio ---
-  ctx.font = "italic 18px Sans";
+  ctx.font = `italic 18px ${FONT}`;
   ctx.fillStyle = "#ccc";
   ctx.fillText(user.bio || `"Chưa có mô tả."`, 20, 470);
 

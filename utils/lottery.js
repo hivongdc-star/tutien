@@ -19,7 +19,7 @@ function ensureDataFile() {
       fs.writeFileSync(DATA_FILE, JSON.stringify(lottery, null, 2));
     }
   } catch (e) {
-    // giữ im lặng để tránh crash bot
+    // best-effort: không crash bot
   }
 }
 
@@ -28,14 +28,12 @@ function loadLottery() {
   try {
     const raw = fs.readFileSync(DATA_FILE, "utf8");
     const obj = JSON.parse(raw);
-    // phòng lỗi cấu trúc
     lottery = {
       jackpot: Number(obj?.jackpot) || 0,
       tickets: typeof obj?.tickets === "object" && obj.tickets ? obj.tickets : {},
       lastWinner: obj?.lastWinner ?? null,
     };
   } catch {
-    // fallback mặc định
     lottery = { jackpot: 0, tickets: {}, lastWinner: null };
   }
 }
@@ -55,6 +53,8 @@ function saveLottery() {
 
 // Mua vé
 function buyTicket(user, amount, ticketPrice = 10) {
+  loadLottery();
+
   // xác thực tối thiểu, giữ tham số cũ để tương thích
   amount = Number(amount);
   ticketPrice = Number(ticketPrice);
@@ -71,11 +71,7 @@ function buyTicket(user, amount, ticketPrice = 10) {
     return { success: false, msg: "❌ Không đủ LT mua vé!" };
   }
 
-  // trừ LT, kiểm tra trả về nếu hàm có boolean
-  const removed = removeLT(user, totalCost);
-  if (removed === false) {
-    return { success: false, msg: "❌ Giao dịch thất bại. Vui lòng thử lại." };
-  }
+  removeLT(user, totalCost);
 
   lottery.jackpot += totalCost;
   lottery.tickets[user] = (Number(lottery.tickets[user]) || 0) + amount;
@@ -87,8 +83,10 @@ function buyTicket(user, amount, ticketPrice = 10) {
   };
 }
 
-// Cộng tiền vào hũ
+// Cộng tiền vào hũ (tax từ các game)
 function addToJackpot(amount) {
+  loadLottery();
+
   amount = Number(amount) || 0;
   if (amount <= 0) return;
   lottery.jackpot += amount;
@@ -97,6 +95,8 @@ function addToJackpot(amount) {
 
 // Xem hũ + thông tin thêm
 function getPot() {
+  loadLottery();
+
   const ticketCount = Object.values(lottery.tickets).reduce((a, b) => a + (Number(b) || 0), 0);
   return {
     jackpot: lottery.jackpot,
@@ -107,8 +107,12 @@ function getPot() {
 
 // Quay thưởng
 function drawWinner() {
+  loadLottery();
+
   // tổng số vé và chọn theo trọng số, không tạo mảng lớn
-  const entries = Object.entries(lottery.tickets).map(([uid, n]) => [uid, Number(n) || 0]).filter(([, n]) => n > 0);
+  const entries = Object.entries(lottery.tickets)
+    .map(([uid, n]) => [uid, Number(n) || 0])
+    .filter(([, n]) => n > 0);
   const total = entries.reduce((s, [, n]) => s + n, 0);
 
   if (total === 0) return { success: false, msg: "❌ Không có vé số nào!" };
@@ -125,11 +129,7 @@ function drawWinner() {
   }
 
   const prize = lottery.jackpot;
-  const added = addLT(winner, prize);
-  if (added === false) {
-    // không reset nếu cộng thưởng thất bại
-    return { success: false, msg: "❌ Trao thưởng thất bại. Thử lại sau." };
-  }
+  addLT(winner, prize);
 
   lottery.lastWinner = winner;
   lottery.jackpot = 0;
@@ -144,5 +144,7 @@ function drawWinner() {
   };
 }
 
+// init
 loadLottery();
+
 module.exports = { buyTicket, getPot, addToJackpot, drawWinner };

@@ -129,25 +129,28 @@ module.exports = {
         addLT(msg.author.id, ltFinal);
         addXp(msg.author.id, xp);
         // --- Lưu cá vào bộ sưu tập (Fish Inventory + Fishdex) ---
-if (!me.fishInventory) me.fishInventory = {};
-if (!me.fishdex) me.fishdex = {};
+        // LƯU Ý: addLT/addXp tự load/save users.json, nên cần reload user mới nhất trước khi ghi fishInventory để tránh rollback.
+        const all = loadUsers();
+        const u2 = all[msg.author.id];
+        if (u2) {
+          if (!u2.fishInventory) u2.fishInventory = {};
+          if (!u2.fishdex) u2.fishdex = {};
 
-const fishId = fish.id;
+          const fishId = fish.id;
+          // tăng số lượng cá trong kho
+          u2.fishInventory[fishId] = (u2.fishInventory[fishId] || 0) + 1;
 
-// tăng số lượng cá trong kho
-me.fishInventory[fishId] = (me.fishInventory[fishId] || 0) + 1;
+          // cập nhật fishdex
+          if (!u2.fishdex[fishId]) u2.fishdex[fishId] = { count: 0, maxSize: 0 };
+          u2.fishdex[fishId].count += 1;
+          if (size > (u2.fishdex[fishId].maxSize || 0)) {
+            u2.fishdex[fishId].maxSize = size;
+          }
 
-// cập nhật fishdex
-if (!me.fishdex[fishId]) me.fishdex[fishId] = { count: 0, maxSize: 0 };
-me.fishdex[fishId].count += 1;
-if (size > (me.fishdex[fishId].maxSize || 0)) {
-    me.fishdex[fishId].maxSize = size;
-}
+          all[msg.author.id] = u2;
+          require("../utils/storage").saveUsers(all);
+        }
 
-// lưu lại
-const all = loadUsers();
-all[msg.author.id] = me;
-require("../utils/storage").saveUsers(all);
 
 
         const lines = [];

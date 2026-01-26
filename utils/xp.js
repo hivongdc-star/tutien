@@ -5,7 +5,7 @@
 
 const { loadUsers, saveUsers } = require("./storage");
 const realms = require("./realms");
-const elements = require("./element");  // ✅ đúng file: element.js
+const elements = require("./element"); // element.js (có thêm .display)
 const races = require("./races");
 const { baseExp, expMultiplier } = require("./config");
 
@@ -44,79 +44,93 @@ function computeExpBonusPercent(user) {
 }
 
 /**
- * Cộng tăng chỉ số theo chủng tộc mỗi lần lên cấp
+ * Áp dụng tăng trưởng chỉ số đúng schema hiện tại (flat fields):
+ * maxHp/maxMp/atk/def/spd (+full heal hp/mp khi lên cấp)
  */
-function applyRaceBonus(stats, raceKey) {
-  const race = races[raceKey];
-  if (!race || !race.gain) return stats;
+function applyLevelStatGrowth(user) {
+  const raceKey = user.race || "nhan";
+  const elementKey = user.element || "kim";
 
-  const g = race.gain;
-  return {
-    hp: stats.hp + (g.hp || 0),
-    mp: stats.mp + (g.mp || 0),
-    atk: stats.atk + (g.atk || 0),
-    def: stats.def + (g.def || 0),
-    spd: stats.spd + (g.spd || 0),
-  };
-}
+  // Backfill tối thiểu
+  if (!Number.isFinite(user.maxHp)) user.maxHp = Number.isFinite(user.hp) ? user.hp : 100;
+  if (!Number.isFinite(user.maxMp)) user.maxMp = Number.isFinite(user.mp) ? user.mp : 100;
+  if (!Number.isFinite(user.atk)) user.atk = 10;
+  if (!Number.isFinite(user.def)) user.def = 10;
+  if (!Number.isFinite(user.spd)) user.spd = 10;
 
-/**
- * Cộng tăng chỉ số theo hệ mỗi lần lên cấp
- */
-function applyElementBonus(stats, elementKey) {
-  const el = elements[elementKey];
-  if (!el) return stats;
+  const raceGain = races[raceKey]?.gain || {};
+  const eleGain = elements[elementKey] || {};
 
-  return {
-    hp: stats.hp + (el.hp || 0),
-    mp: stats.mp + (el.mp || 0),
-    atk: stats.atk + (el.atk || 0),
-    def: stats.def + (el.def || 0),
-    spd: stats.spd + (el.spd || 0),
-  };
+  // Cộng theo tộc
+  if (Number.isFinite(raceGain.hp)) user.maxHp += raceGain.hp;
+  if (Number.isFinite(raceGain.mp)) user.maxMp += raceGain.mp;
+  if (Number.isFinite(raceGain.atk)) user.atk += raceGain.atk;
+  if (Number.isFinite(raceGain.def)) user.def += raceGain.def;
+  if (Number.isFinite(raceGain.spd)) user.spd += raceGain.spd;
+
+  // Cộng theo ngũ hành
+  if (Number.isFinite(eleGain.hp)) user.maxHp += eleGain.hp;
+  if (Number.isFinite(eleGain.mp)) user.maxMp += eleGain.mp;
+  if (Number.isFinite(eleGain.atk)) user.atk += eleGain.atk;
+  if (Number.isFinite(eleGain.def)) user.def += eleGain.def;
+  if (Number.isFinite(eleGain.spd)) user.spd += eleGain.spd;
+
+  // Tăng trưởng cơ bản
+  user.maxHp += 100;
+  user.maxMp += 20;
+
+  // Breakthrough (đúng theo logic fixdata.js): level % 10 === 1 (11, 21, 31, ...)
+  if ((user.level || 1) % 10 === 1) {
+    const multiplier = raceKey === "than" ? 1.6 : 1.5;
+    user.atk = Math.floor(user.atk * multiplier);
+    user.def = Math.floor(user.def * multiplier);
+    user.spd = Math.floor(user.spd * multiplier);
+    user.maxHp = Math.floor(user.maxHp * multiplier);
+    user.maxMp = Math.floor(user.maxMp * multiplier);
+  }
+
+  // Full heal khi lên cấp (giữ nhất quán với fixdata)
+  user.hp = user.maxHp;
+  user.mp = user.maxMp;
 }
 
 /**
  * Thêm EXP cho 1 user
+ * @returns {number} số cấp đã tăng (0 nếu không lên cấp)
  */
 function addXp(userId, amount) {
   const users = loadUsers();
   const user = users[userId];
-  if (!user) return null;
+  if (!user) return 0;
+
+  // Chuẩn hóa input
+  amount = Number(amount) || 0;
+  if (amount <= 0) return 0;
 
   // Tính bonus EXP %
   const bonusPercent = computeExpBonusPercent(user);
   const realGain = Math.floor(amount * (1 + bonusPercent / 100));
 
-  user.exp = (user.exp || 0) + realGain;
-  if (!user.level) user.level = 1;
+  user.exp = (Number(user.exp) || 0) + realGain;
+  user.level = Number(user.level) || 1;
 
-  let upgraded = false;
+  let levelsGained = 0;
 
   // Nếu đủ EXP thì lên cấp nhiều lần
   while (user.exp >= getExpNeeded(user.level)) {
     user.exp -= getExpNeeded(user.level);
     user.level += 1;
-    upgraded = true;
+    levelsGained += 1;
 
-    // Đảm bảo stats có đủ field
-    if (!user.stats) {
-      user.stats = { hp: 0, mp: 0, atk: 0, def: 0, spd: 0 };
-    }
+    applyLevelStatGrowth(user);
+  }
 
-    // Áp dụng tăng theo Race và Element
-    user.stats = applyRaceBonus(user.stats, user.race);
-    user.stats = applyElementBonus(user.stats, user.element);
+  if (levelsGained > 0) {
+    user.realm = getRealm(user.level);
   }
 
   saveUsers(users);
-
-  return {
-    user,
-    gained: realGain,
-    levelUp: upgraded,
-    realm: getRealm(user.level),
-  };
+  return levelsGained;
 }
 
 /**
@@ -134,8 +148,6 @@ function getRealm(level) {
 module.exports = {
   getExpNeeded,
   computeExpBonusPercent,
-  applyRaceBonus,
-  applyElementBonus,
   getRealm,
   addXp,
 };

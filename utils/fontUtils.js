@@ -1,19 +1,20 @@
+const path = require("path");
 const { GlobalFonts } = require("@napi-rs/canvas");
 
-// Đăng ký font chữ
+// Đăng ký font chữ (tối giản: chỉ giữ DejaVuSans để ổn định khi deploy)
 function registerFonts() {
-  GlobalFonts.registerFromPath("./assets/fonts/DejaVuSans.ttf", "DejaVu");
-  GlobalFonts.registerFromPath("./assets/fonts/CinzelDecorative.ttf", "Cinzel");
-  GlobalFonts.registerFromPath(
-    "./assets/fonts/NotoSans-Regular.ttf",
-    "NotoSans"
-  );
+  try {
+    GlobalFonts.registerFromPath(
+      path.join(__dirname, "../assets/fonts/DejaVuSans.ttf"),
+      "DejaVu"
+    );
+  } catch {}
 }
 
 // Gợi ý cách dùng font
 const fonts = {
-  title: "28px Cinzel",
-  subtitle: "20px NotoSans",
+  title: "28px DejaVu",
+  subtitle: "20px DejaVu",
   text: "16px DejaVu",
   number: "16px DejaVu",
 };

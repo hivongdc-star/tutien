@@ -14,6 +14,8 @@ const {
   formatPct,
 } = require("../utils/statsView");
 
+const { ensureUserSkills, getSkill } = require("../utils/skills");
+
 function ensureGear(user) {
   if (!user.gear) user.gear = {};
   if (!user.gear.equipped || typeof user.gear.equipped !== "object") {
@@ -31,6 +33,7 @@ module.exports = {
     if (!user) return msg.reply("❌ Bạn chưa có nhân vật. Dùng `-create` trước.");
 
     ensureGear(user);
+    ensureUserSkills(user);
 
     const equipped = user.gear.equipped || {};
     const mainPct = sumMainPercents(equipped);
@@ -76,6 +79,17 @@ module.exports = {
         lines.join("\n")
       )
       .addFields({ name: "🌫️ Phụ tố (tổng)", value: affLines.join("\n") });
+
+    // Bí kíp (hiển thị đầy đủ cho người chơi)
+    const eq = user.skills?.equipped || { actives: [null, null, null, null], passive: null };
+    const act = Array.isArray(eq.actives) ? eq.actives : [null, null, null, null];
+    const actLines = act.map((id, idx) => {
+      const sk = id ? getSkill(id) : null;
+      return `• Chủ động ${idx + 1}: ${sk ? `**${sk.name}**` : "_(trống)_"}`;
+    });
+    const pas = eq.passive ? getSkill(eq.passive) : null;
+    actLines.push(`• Bị động: ${pas ? `**${pas.name}**` : "_(trống)_"}`);
+    embed.addFields({ name: "📜 Bí kíp", value: actLines.join("\n") });
 
     return msg.reply({ embeds: [embed] });
   },

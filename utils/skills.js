@@ -1,242 +1,192 @@
-const { heal, addShield, addBuff } = require("./dmg");
+// utils/skills.js
+// Quản lý kỹ năng (ngũ hành): DB kỹ năng, sở hữu / trang bị, mảnh ghép.
 
-const skills = {
-  kim: [
-    {
-      name: "Cương Phong Trảm Kích",
-      type: "normal",
-      cost: { mpPercent: 0, fury: 0 },
-      multiplier: 0.8,
-      furyGain: 30,
-      description:
-        "Phong nhận cương mãnh, nhất trảm phá thiên, dư âm sát khí tứ tán.",
-    },
-    {
-      name: "Kim Cang Trảm Giáp",
-      type: "buff",
-      cost: { mpPercent: 0, fury: 0 },
-      cooldown: 3,
-      furyGain: 0,
-      description:
-        "Kim quang hộ thể, linh lực tức tụ, phá giáp chi uy, bất khả ngăn cản.",
-      effect: (attacker, _, __, state) => {
-        attacker.mp = Math.min(
-          attacker.maxMp,
-          attacker.mp + Math.floor(attacker.maxMp * 0.5)
-        );
-        addBuff(attacker, "buffIgnoreArmor", 0.2, 2);
-        if (state)
-          state.logs.push(
-            `✨ ${attacker.name} tăng 20% xuyên giáp trong 2 lượt!`
-          );
-      },
-    },
-    {
-      name: "Thiên Toái Kim Quang",
-      type: "mana",
-      cost: { mpPercent: 20, fury: 0 },
-      multiplier: 2.0,
-      furyGain: 10,
-      description:
-        "Thiên quang tụ hội, nhất kích khai sơn, kim mang chấn nhiếp cửu tiêu.",
-    },
-    {
-      name: "Kim Lang Khiếu Nguyệt",
-      type: "fury",
-      cost: { mpPercent: 0, fury: 100 },
-      multiplier: 3.5,
-      furyGain: -100,
-      description:
-        "Kim lang ngửa mặt tru nguyệt, thiên địa thất sắc, chiến ý tung hoành vạn dặm.",
-    },
-  ],
+const fs = require("fs");
+const path = require("path");
 
-  moc: [
-    {
-      name: "Thanh Diệp Loạn Trảm",
-      type: "normal",
-      cost: { mpPercent: 0, fury: 0 },
-      multiplier: 0.8,
-      furyGain: 30,
-      description:
-        "Diệp hóa trường kiếm, loạn vũ thương khung, vạn vật diệt diệt.",
-    },
-    {
-      name: "Sinh Cơ Chi Khí",
-      type: "buff",
-      cost: { mpPercent: 0, fury: 0 },
-      cooldown: 3,
-      furyGain: 0,
-      description:
-        "Sinh cơ sinh diệp, linh khí thịnh thịnh, thương thế tiêu tán, sinh mệnh bất tuyệt.",
-      effect: (attacker, _, __, state) => {
-        attacker.mp = Math.min(
-          attacker.maxMp,
-          attacker.mp + Math.floor(attacker.maxMp * 0.5)
-        );
-        heal(attacker, Math.floor(attacker.maxHp * 0.1), state);
-      },
-    },
-    {
-      name: "Vạn Diệp Cuồng Trảm",
-      type: "mana",
-      cost: { mpPercent: 20, fury: 0 },
-      multiplier: 2.0,
-      furyGain: 10,
-      description:
-        "Vạn diệp tụ vũ, cuồng trảm phá không, lục quang che lấp nhật nguyệt.",
-    },
-    {
-      name: "Thiên Mộc Giáng Lâm",
-      type: "fury",
-      cost: { mpPercent: 0, fury: 100 },
-      multiplier: 3.5,
-      furyGain: -100,
-      description:
-        "Thiên mộc giáng hạ, cành lá phủ thiên, thiên địa đều phải khom lưng khuất phục.",
-    },
-  ],
+const skillsPath = path.join(__dirname, "../data/skills_db.json");
 
-  thuy: [
-    {
-      name: "Thủy Ảnh Hàn Tiễn",
-      type: "normal",
-      cost: { mpPercent: 0, fury: 0 },
-      multiplier: 0.8,
-      furyGain: 30,
-      description: "Thủy ảnh hóa tiễn, hàn mang bức cốt, sát ý như băng.",
-    },
-    {
-      name: "Băng Tâm Hộ Thể",
-      type: "buff",
-      cost: { mpPercent: 0, fury: 0 },
-      cooldown: 3,
-      furyGain: 0,
-      description:
-        "Tâm tĩnh như thủy, băng giáp tụ thân, hàn khí hộ thể, vạn pháp nan xâm.",
-      effect: (attacker, _, __, state) => {
-        attacker.mp = Math.min(
-          attacker.maxMp,
-          attacker.mp + Math.floor(attacker.maxMp * 0.5)
-        );
-        addShield(attacker, Math.floor(attacker.maxHp * 0.25), 2, state);
-      },
-    },
-    {
-      name: "Nguyệt Ảnh Thiên Hàn",
-      type: "mana",
-      cost: { mpPercent: 20, fury: 0 },
-      multiplier: 2.0,
-      furyGain: 10,
-      description:
-        "Nguyệt quang băng hàn, nhất kiếm đoạn thiên, hàn khí nhập cốt, phong ấn sinh cơ.",
-    },
-    {
-      name: "Kính Hoa Thủy Nguyệt",
-      type: "fury",
-      cost: { mpPercent: 0, fury: 100 },
-      multiplier: 3.5,
-      furyGain: -100,
-      description:
-        "Thủy kính phá diệt, hàn nguyệt giáng trần, băng long ngự thiên, vạn vật tận diệt.",
-    },
-  ],
+let SKILLS = null;
 
-  hoa: [
-    {
-      name: "Liệt Diễm Bạo Quyền",
-      type: "normal",
-      cost: { mpPercent: 0, fury: 0 },
-      multiplier: 0.8,
-      furyGain: 30,
-      description:
-        "Hỏa diễm bạo động, quyền thế như sơn, nhật nguyệt thất sắc.",
-    },
-    {
-      name: "Hỏa Linh Cuồng Thể",
-      type: "buff",
-      cost: { mpPercent: 0, fury: 0 },
-      cooldown: 3,
-      furyGain: 0,
-      description:
-        "Hỏa linh phụ thể, huyết khí sôi trào, uy thế như viêm long, thiên uy bạo khởi.",
-      effect: (attacker, _, __, state) => {
-        attacker.mp = Math.min(
-          attacker.maxMp,
-          attacker.mp + Math.floor(attacker.maxMp * 0.5)
-        );
-        addBuff(attacker, "buffAtk", 0.2, 2);
-        if (state)
-          state.logs.push(`🔥 ${attacker.name} tăng 20% công trong 2 lượt!`);
-      },
-    },
-    {
-      name: "Nhật Diễm Thiên Viêm",
-      type: "mana",
-      cost: { mpPercent: 20, fury: 0 },
-      multiplier: 2.2,
-      furyGain: 10,
-      description:
-        "Nhật viêm giáng thế, thiên hỏa diệt thiên, phượng hoàng tái sinh từ tịnh viêm.",
-    },
-    {
-      name: "Phật Nộ Hỏa Liên",
-      type: "fury",
-      cost: { mpPercent: 0, fury: 100 },
-      multiplier: 3.8,
-      furyGain: -100,
-      description:
-        "Liên hỏa khai nở, Phật nộ thiên uy, nhất diễm vạn diệt, hồng trần hóa hư vô.",
-    },
-  ],
+function loadSkillsDB() {
+  if (SKILLS) return SKILLS;
+  try {
+    SKILLS = JSON.parse(fs.readFileSync(skillsPath, "utf8"));
+  } catch {
+    SKILLS = {};
+  }
+  return SKILLS;
+}
 
-  tho: [
-    {
-      name: "Phá Địa Trấn Quyền",
-      type: "normal",
-      cost: { mpPercent: 0, fury: 0 },
-      multiplier: 0.8,
-      furyGain: 30,
-      description:
-        "Nhất quyền phá địa, sơn xuyên chấn động, thiên địa cộng minh.",
-    },
-    {
-      name: "Sơn Hà Thạch Thể",
-      type: "buff",
-      cost: { mpPercent: 0, fury: 0 },
-      cooldown: 3,
-      furyGain: 0,
-      description:
-        "Thân như thạch cốt, khí trụ sơn hà, thiên công nan phá, vạn pháp nan xâm.",
-      effect: (attacker, _, __, state) => {
-        attacker.mp = Math.min(
-          attacker.maxMp,
-          attacker.mp + Math.floor(attacker.maxMp * 0.5)
-        );
-        addBuff(attacker, "buffDef", 0.2, 2);
-        if (state)
-          state.logs.push(`🪨 ${attacker.name} tăng 20% thủ trong 2 lượt!`);
-      },
-    },
-    {
-      name: "Thổ Long Liệt Địa",
-      type: "mana",
-      cost: { mpPercent: 20, fury: 0 },
-      multiplier: 2.0,
-      furyGain: 10,
-      description:
-        "Địa long phá thổ, long ngâm chấn cửu châu, đại địa liệt khai.",
-    },
-    {
-      name: "Thiên Diễn Đoạn Không",
-      type: "fury",
-      cost: { mpPercent: 0, fury: 100 },
-      multiplier: 3.5,
-      furyGain: -100,
-      description:
-        "Thiên thạch hàng không, nhật nguyệt vô quang, vạn giới đoạn tuyệt, hư không sụp đổ.",
-    },
-  ],
+function getSkill(skillId) {
+  const db = loadSkillsDB();
+  return db[skillId] || null;
+}
+
+function listSkills(filter = {}) {
+  const db = loadSkillsDB();
+  const out = [];
+  for (const [id, s] of Object.entries(db)) {
+    if (!s) continue;
+    if (filter.element && s.element !== filter.element) continue;
+    if (filter.rarity && s.rarity !== filter.rarity) continue;
+    if (filter.kind && s.kind !== filter.kind) continue;
+    out.push({ id, ...s });
+  }
+  return out;
+}
+
+function ensureUserSkills(user) {
+  if (!user) return;
+  if (!user.skills || typeof user.skills !== "object") user.skills = {};
+  if (!Array.isArray(user.skills.owned)) user.skills.owned = [];
+  if (!user.skills.equipped || typeof user.skills.equipped !== "object") {
+    user.skills.equipped = { actives: [null, null, null, null], passive: null };
+  } else {
+    if (!Array.isArray(user.skills.equipped.actives)) user.skills.equipped.actives = [null, null, null, null];
+    while (user.skills.equipped.actives.length < 4) user.skills.equipped.actives.push(null);
+    user.skills.equipped.actives = user.skills.equipped.actives.slice(0, 4);
+    if (typeof user.skills.equipped.passive === "undefined") user.skills.equipped.passive = null;
+  }
+
+  // Mảnh ghép theo ngũ hành
+  if (!user.skills.shards || typeof user.skills.shards !== "object") user.skills.shards = {};
+  for (const el of ["kim", "moc", "thuy", "hoa", "tho"]) {
+    if (!user.skills.shards[el] || typeof user.skills.shards[el] !== "object") {
+      user.skills.shards[el] = { rare: 0, epic: 0 };
+    } else {
+      if (!Number.isFinite(user.skills.shards[el].rare)) user.skills.shards[el].rare = 0;
+      if (!Number.isFinite(user.skills.shards[el].epic)) user.skills.shards[el].epic = 0;
+    }
+  }
+}
+
+function formatSkillName(skillId) {
+  const s = getSkill(skillId);
+  return s?.name || "(Không rõ)";
+}
+
+function rarityText(r) {
+  if (r === "common") return "Thường";
+  if (r === "rare") return "Hiếm";
+  if (r === "epic") return "Cực hiếm";
+  return r || "?";
+}
+
+function kindText(k) {
+  if (k === "active") return "Chủ động";
+  if (k === "passive") return "Bị động";
+  return k || "?";
+}
+
+function canEquipSkill(user, skillId, slot) {
+  // slot: { type:'active', idx:0..3 } | { type:'passive' }
+  ensureUserSkills(user);
+  const s = getSkill(skillId);
+  if (!s) return { ok: false, reason: "Kỹ năng không tồn tại." };
+  if (!user.skills.owned.includes(skillId)) return { ok: false, reason: "Bạn chưa sở hữu kỹ năng này." };
+  if (s.element && user.element && s.element !== user.element) {
+    return { ok: false, reason: "Ngũ hành không phù hợp." };
+  }
+  if (slot.type === "active" && s.kind !== "active") return { ok: false, reason: "Đây không phải kỹ năng chủ động." };
+  if (slot.type === "passive" && s.kind !== "passive") return { ok: false, reason: "Đây không phải kỹ năng bị động." };
+  return { ok: true };
+}
+
+function equipSkill(user, skillId, slot) {
+  const check = canEquipSkill(user, skillId, slot);
+  if (!check.ok) return check;
+  if (slot.type === "active") {
+    user.skills.equipped.actives[slot.idx] = skillId;
+  } else {
+    user.skills.equipped.passive = skillId;
+  }
+  return { ok: true };
+}
+
+function unequipSkill(user, slot) {
+  ensureUserSkills(user);
+  if (slot.type === "active") user.skills.equipped.actives[slot.idx] = null;
+  else user.skills.equipped.passive = null;
+}
+
+function addOwnedSkill(user, skillId) {
+  ensureUserSkills(user);
+  const s = getSkill(skillId);
+  if (!s) return { ok: false, reason: "Kỹ năng không tồn tại." };
+  if (s.element && user.element && s.element !== user.element) {
+    return { ok: false, reason: "Ngũ hành không phù hợp." };
+  }
+  if (user.skills.owned.includes(skillId)) return { ok: false, reason: "Bạn đã sở hữu kỹ năng này." };
+  user.skills.owned.push(skillId);
+  return { ok: true };
+}
+
+function addShard(user, element, rarity, amount = 1) {
+  ensureUserSkills(user);
+  const el = ["kim", "moc", "thuy", "hoa", "tho"].includes(element) ? element : null;
+  if (!el) return;
+  if (rarity === "rare") user.skills.shards[el].rare += Math.max(0, Number(amount) || 0);
+  if (rarity === "epic") user.skills.shards[el].epic += Math.max(0, Number(amount) || 0);
+}
+
+function getShardCount(user, element, rarity) {
+  ensureUserSkills(user);
+  const el = element;
+  if (!user.skills.shards[el]) return 0;
+  return Math.max(0, Number(user.skills.shards[el][rarity]) || 0);
+}
+
+function spendShards(user, element, rarity, amount) {
+  ensureUserSkills(user);
+  const cur = getShardCount(user, element, rarity);
+  const need = Math.max(0, Number(amount) || 0);
+  if (cur < need) return { ok: false, reason: "Không đủ mảnh." };
+  user.skills.shards[element][rarity] = cur - need;
+  return { ok: true };
+}
+
+function computePassiveTotals(user) {
+  // tổng các chỉ số dạng % cho combat (crit, pen, ...)
+  ensureUserSkills(user);
+  const out = {
+    crit: 0,
+    crit_resist: 0,
+    armor_pen: 0,
+    crit_dmg: 0,
+    dmg_reduce: 0,
+    lifesteal: 0,
+    dodge: 0,
+    accuracy: 0,
+  };
+
+  const pid = user.skills.equipped.passive;
+  if (!pid) return out;
+  const s = getSkill(pid);
+  if (!s || s.kind !== "passive") return out;
+  const p = s.passive || null;
+  if (!p || !p.stat) return out;
+  const key = String(p.stat);
+  const pct = Number(p.pct);
+  if (!Number.isFinite(pct)) return out;
+  if (out[key] === undefined) out[key] = 0;
+  out[key] += pct;
+  return out;
+}
+
+module.exports = {
+  loadSkillsDB,
+  getSkill,
+  listSkills,
+  ensureUserSkills,
+  formatSkillName,
+  rarityText,
+  kindText,
+  equipSkill,
+  unequipSkill,
+  addOwnedSkill,
+  addShard,
+  getShardCount,
+  spendShards,
+  computePassiveTotals,
 };
-
-module.exports = skills;

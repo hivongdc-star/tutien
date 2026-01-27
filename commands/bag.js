@@ -19,6 +19,13 @@ const {
   sumMainPercents,
   formatPct,
 } = require("../utils/statsView");
+const elements = require("../utils/element");
+const {
+  ensureUserSkills,
+  getSkill,
+  listSkills,
+  craftSkill,
+} = require("../utils/skills");
 
 function ensureMining(user) {
   if (!user.mining) user.mining = {};
@@ -39,6 +46,313 @@ function ensureGear(user) {
     if (typeof user.gear.equipped.bracelet === "undefined") user.gear.equipped.bracelet = null;
   }
   if (!Array.isArray(user.gear.bag)) user.gear.bag = [];
+}
+
+function fmtShardLabel(elKey, rarity) {
+  const el = elements.display[elKey] || elKey;
+  return `${el} • ${rarity === "epic" ? "Cực hiếm" : "Hiếm"}`;
+}
+
+function buildSkillsSummaryEmbed(user) {
+  ensureUserSkills(user);
+  const el = user.element || "kim";
+  const eq = user.skills.equipped;
+  const act = eq.actives.map((id, idx) => {
+    const sk = id ? getSkill(id) : null;
+    return `${idx + 1}. ${sk ? `**${sk.name}**` : "_(trống)_"}`;
+  });
+  const пас = eq.passive ? getSkill(eq.passive) : null;
+
+  const shards = user.skills.shards?.[el] || { rare: 0, epic: 0 };
+  return new EmbedBuilder()
+    .setColor(0x8e44ad)
+    .setTitle("📜 Bí kíp")
+    .setDescription(`Hệ: ${elements.display[el] || el}`)
+    .addFields(
+      { name: "Chủ động (4)", value: act.join("\n") || "_(trống)_" },
+      { name: "Bị động (1)", value: пас ? `**${пас.name}**` : "_(trống)_" },
+      {
+        name: "Mảnh bí kíp (hệ của bạn)",
+        value: `• ${fmtShardLabel(el, "rare")}: **${shards.rare || 0}**\n• ${fmtShardLabel(el, "epic")}: **${shards.epic || 0}**`,
+      }
+    );
+}
+
+async function openSkillsView(msg, user, nonce) {
+  let u = user;
+  ensureUserSkills(u);
+  const el = u.element || "kim";
+
+  const state = {
+    mode: "equip", // equip | craft
+    slot: null, // a1..a4 | passive
+    skillId: null,
+    craftRarity: null, // rare|epic
+  };
+
+  const slotMenuId = `bag_skill_slot_${msg.author.id}_${nonce}`;
+  const skillMenuId = `bag_skill_pick_${msg.author.id}_${nonce}`;
+  const craftMenuId = `bag_skill_craft_${msg.author.id}_${nonce}`;
+
+  const buildSlotRow = () => {
+    const options = [
+      { label: "Chủ động 1", value: "a1" },
+      { label: "Chủ động 2", value: "a2" },
+      { label: "Chủ động 3", value: "a3" },
+      { label: "Chủ động 4", value: "a4" },
+      { label: "Bị động", value: "passive" },
+    ];
+    return new ActionRowBuilder().addComponents(
+      new StringSelectMenuBuilder()
+        .setCustomId(slotMenuId)
+        .setPlaceholder("Chọn slot...")
+        .addOptions(options)
+    );
+  };
+
+  const buildSkillPickRow = () => {
+    if (!state.slot || state.mode !== "equip") return null;
+    const kind = state.slot === "passive" ? "passive" : "active";
+    const owned = (u.skills.owned || []).map((id) => getSkill(id)).filter(Boolean);
+    const pool = owned.filter((s) => s.kind === kind);
+    if (!pool.length) {
+      return new ActionRowBuilder().addComponents(
+        new StringSelectMenuBuilder()
+          .setCustomId(skillMenuId)
+          .setPlaceholder("Bạn chưa có bí kíp phù hợp")
+          .addOptions([{ label: "(trống)", value: "none" }])
+          .setDisabled(true)
+      );
+    }
+    const options = pool.slice(0, 25).map((s) => ({
+      label: s.name.slice(0, 100),
+      value: s.id,
+      description: s.rarity === "common" ? "Thường" : s.rarity === "rare" ? "Hiếm" : "Cực hiếm",
+    }));
+    return new ActionRowBuilder().addComponents(
+      new StringSelectMenuBuilder()
+        .setCustomId(skillMenuId)
+        .setPlaceholder("Chọn bí kíp...")
+        .addOptions(options)
+    );
+  };
+
+  const buildCraftRow = () => {
+    if (state.mode !== "craft") return null;
+    const rarity = state.craftRarity;
+    const candidates = listSkills({ element: el, rarity, kind: null })
+      .filter((s) => !(u.skills.owned || []).includes(s.id));
+
+    const options = candidates.slice(0, 25).map((s) => ({
+      label: s.name.slice(0, 100),
+      value: s.id,
+      description: rarity === "epic" ? "Cực hiếm" : "Hiếm",
+    }));
+    if (!options.length) {
+      return new ActionRowBuilder().addComponents(
+        new StringSelectMenuBuilder()
+          .setCustomId(craftMenuId)
+          .setPlaceholder("Không có bí kíp để ghép")
+          .addOptions([{ label: "(trống)", value: "none" }])
+          .setDisabled(true)
+      );
+    }
+    return new ActionRowBuilder().addComponents(
+      new StringSelectMenuBuilder()
+        .setCustomId(craftMenuId)
+        .setPlaceholder("Chọn bí kíp để ghép...")
+        .addOptions(options)
+    );
+  };
+
+  const buildButtonsRow = () => {
+    const rows = [];
+    if (state.mode === "equip") {
+      rows.push(
+        new ActionRowBuilder().addComponents(
+          new ButtonBuilder().setCustomId(`bag_skill_equip_${msg.author.id}_${nonce}`).setLabel("Trang bị").setStyle(ButtonStyle.Primary).setDisabled(!state.slot || !state.skillId),
+          new ButtonBuilder().setCustomId(`bag_skill_unequip_${msg.author.id}_${nonce}`).setLabel("Gỡ").setStyle(ButtonStyle.Secondary).setDisabled(!state.slot),
+          new ButtonBuilder().setCustomId(`bag_skill_craftr_${msg.author.id}_${nonce}`).setLabel("Ghép (Hiếm)").setStyle(ButtonStyle.Success),
+          new ButtonBuilder().setCustomId(`bag_skill_crafte_${msg.author.id}_${nonce}`).setLabel("Ghép (Cực hiếm)").setStyle(ButtonStyle.Success),
+          new ButtonBuilder().setCustomId(`bag_skill_close_${msg.author.id}_${nonce}`).setLabel("Đóng").setStyle(ButtonStyle.Danger)
+        )
+      );
+    } else {
+      rows.push(
+        new ActionRowBuilder().addComponents(
+          new ButtonBuilder().setCustomId(`bag_skill_doCraft_${msg.author.id}_${nonce}`).setLabel("Ghép").setStyle(ButtonStyle.Primary).setDisabled(!state.skillId),
+          new ButtonBuilder().setCustomId(`bag_skill_back_${msg.author.id}_${nonce}`).setLabel("Quay lại").setStyle(ButtonStyle.Secondary),
+          new ButtonBuilder().setCustomId(`bag_skill_close_${msg.author.id}_${nonce}`).setLabel("Đóng").setStyle(ButtonStyle.Danger)
+        )
+      );
+    }
+    return rows;
+  };
+
+  const render = async (sent) => {
+    const rows = [buildSlotRow()];
+    const row2 = state.mode === "craft" ? buildCraftRow() : buildSkillPickRow();
+    if (row2) rows.push(row2);
+    rows.push(...buildButtonsRow());
+
+    const baseEmbed = buildSkillsSummaryEmbed(u);
+    if (state.mode === "craft") {
+      baseEmbed.setTitle(`📜 Ghép bí kíp • ${state.craftRarity === "epic" ? "Cực hiếm" : "Hiếm"}`);
+      const need = state.craftRarity === "epic" ? 40 : 12;
+      const shards = u.skills.shards?.[el] || { rare: 0, epic: 0 };
+      const have = state.craftRarity === "epic" ? (shards.epic || 0) : (shards.rare || 0);
+      baseEmbed.setDescription(
+        `Hệ: ${elements.display[el] || el}\n` +
+        `Cần: **${need}** mảnh • Hiện có: **${have}** mảnh\n\nChọn bí kíp để ghép.`
+      );
+    } else if (state.slot) {
+      const slotName = state.slot === "passive" ? "Bị động" : `Chủ động ${Number(state.slot.slice(1))}`;
+      baseEmbed.setFooter({ text: `Đang chọn: ${slotName}` });
+    }
+
+    await sent.edit({ embeds: [baseEmbed], components: rows }).catch(() => {});
+  };
+
+  const sent = await msg.reply({ embeds: [buildSkillsSummaryEmbed(u)], components: [buildSlotRow(), ...buildButtonsRow()] });
+  const col = sent.createMessageComponentCollector({ time: 180_000 });
+
+  col.on("collect", async (i) => {
+    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+    const cid = String(i.customId || "");
+
+    if (i.isStringSelectMenu()) {
+      await i.deferUpdate();
+
+      if (cid === slotMenuId) {
+        state.slot = i.values?.[0] || null;
+        state.skillId = null;
+        return render(sent);
+      }
+
+      if (cid === skillMenuId && state.mode === "equip") {
+        const v = i.values?.[0];
+        if (!v || v === "none") return;
+        state.skillId = v;
+        return render(sent);
+      }
+
+      if (cid === craftMenuId && state.mode === "craft") {
+        const v = i.values?.[0];
+        if (!v || v === "none") return;
+        state.skillId = v;
+        return render(sent);
+      }
+    }
+
+    if (i.isButton()) {
+      await i.deferUpdate();
+
+      if (cid === `bag_skill_close_${msg.author.id}_${nonce}`) {
+        col.stop("close");
+        return sent.edit({ components: [] }).catch(() => {});
+      }
+
+      if (cid === `bag_skill_back_${msg.author.id}_${nonce}`) {
+        state.mode = "equip";
+        state.craftRarity = null;
+        state.skillId = null;
+        return render(sent);
+      }
+
+      if (cid === `bag_skill_craftr_${msg.author.id}_${nonce}`) {
+        state.mode = "craft";
+        state.craftRarity = "rare";
+        state.skillId = null;
+        state.slot = null;
+        return render(sent);
+      }
+      if (cid === `bag_skill_crafte_${msg.author.id}_${nonce}`) {
+        state.mode = "craft";
+        state.craftRarity = "epic";
+        state.skillId = null;
+        state.slot = null;
+        return render(sent);
+      }
+
+      // Equip
+      if (cid === `bag_skill_equip_${msg.author.id}_${nonce}`) {
+        if (!state.slot || !state.skillId) return;
+
+        const users = loadUsers();
+        const cur = users[msg.author.id];
+        if (!cur) return;
+        ensureUserSkills(cur);
+
+        const sk = getSkill(state.skillId);
+        if (!sk) return i.followUp({ content: "❌ Bí kíp không tồn tại.", ephemeral: true });
+
+        const kindNeed = state.slot === "passive" ? "passive" : "active";
+        if (sk.kind !== kindNeed) {
+          return i.followUp({ content: "⚠️ Bí kíp này không phù hợp slot.", ephemeral: true });
+        }
+        if (!(cur.skills.owned || []).includes(sk.id)) {
+          return i.followUp({ content: "⚠️ Bạn chưa sở hữu bí kíp này.", ephemeral: true });
+        }
+
+        if (state.slot === "passive") {
+          cur.skills.equipped.passive = sk.id;
+        } else {
+          const idx = Math.max(0, Math.min(3, Number(state.slot.slice(1)) - 1));
+          cur.skills.equipped.actives[idx] = sk.id;
+        }
+
+        users[msg.author.id] = cur;
+        saveUsers(users);
+        u = cur;
+        return render(sent);
+      }
+
+      // Unequip
+      if (cid === `bag_skill_unequip_${msg.author.id}_${nonce}`) {
+        if (!state.slot) return;
+        const users = loadUsers();
+        const cur = users[msg.author.id];
+        if (!cur) return;
+        ensureUserSkills(cur);
+
+        if (state.slot === "passive") {
+          cur.skills.equipped.passive = null;
+        } else {
+          const idx = Math.max(0, Math.min(3, Number(state.slot.slice(1)) - 1));
+          cur.skills.equipped.actives[idx] = null;
+        }
+        users[msg.author.id] = cur;
+        saveUsers(users);
+        u = cur;
+        state.skillId = null;
+        return render(sent);
+      }
+
+      // Craft
+      if (cid === `bag_skill_doCraft_${msg.author.id}_${nonce}`) {
+        if (state.mode !== "craft" || !state.craftRarity || !state.skillId) return;
+        const users = loadUsers();
+        const cur = users[msg.author.id];
+        if (!cur) return;
+        ensureUserSkills(cur);
+
+        const res = craftSkill(cur, { element: el, rarity: state.craftRarity, skillId: state.skillId });
+        if (!res.ok) return i.followUp({ content: res.message, ephemeral: true });
+        users[msg.author.id] = cur;
+        saveUsers(users);
+        u = cur;
+        // quay lại equip
+        state.mode = "equip";
+        state.craftRarity = null;
+        state.skillId = null;
+        state.slot = null;
+        await i.followUp({ content: res.message, ephemeral: true });
+        return render(sent);
+      }
+    }
+  });
+
+  col.on("end", () => sent.edit({ components: [] }).catch(() => {}));
 }
 
 function ensureGearIds(user) {
@@ -447,6 +761,384 @@ async function openLegacyInventory(msg, user) {
   return msg.reply({ embeds: [embed] });
 }
 
+async function openSkillsView(msg, user, nonce) {
+  let u = user;
+  ensureUserSkills(u);
+
+  let mode = "main"; // main | equip | craft
+  let selectedSlot = null; // a1..a4 | passive
+  let selectedSkillId = null;
+  let craftRarity = null; // rare | epic
+  let craftSkillId = null;
+
+  const slotLabel = (slot) => {
+    if (slot === "passive") return "Bị động";
+    const idx = Number(slot?.slice(1) || 0);
+    return `Chủ động ${idx}`;
+  };
+
+  const fmtShard = (el) => {
+    const shard = (u.skills?.shards?.[el] || { rare: 0, epic: 0 });
+    const elTxt = elements.display[el] || el;
+    return `${elTxt} • Hiếm: **${shard.rare || 0}** • Cực hiếm: **${shard.epic || 0}**`;
+  };
+
+  const equippedLine = () => {
+    const eq = u.skills?.equipped || { actives: [null, null, null, null], passive: null };
+    const act = (eq.actives || []).map((id, i) => {
+      const sk = id ? getSkill(id) : null;
+      return `• Chủ động ${i + 1}: ${sk ? `**${sk.name}**` : "_(trống)_"}`;
+    });
+    const pas = eq.passive ? getSkill(eq.passive) : null;
+    act.push(`• Bị động: ${pas ? `**${pas.name}**` : "_(trống)_"}`);
+    return act.join("\n");
+  };
+
+  const ownedSkills = () => {
+    const ids = Array.isArray(u.skills?.owned) ? u.skills.owned : [];
+    return ids.map((id) => getSkill(id)).filter(Boolean);
+  };
+
+  const buildEmbed = () => {
+    const el = u.element || "kim";
+    const elTxt = elements.display[el] || el;
+    const owned = ownedSkills();
+    const shardText = fmtShard(el);
+
+    const emb = new EmbedBuilder()
+      .setColor(0x8e44ad)
+      .setTitle("📜 Bí Kíp")
+      .setDescription(
+        `Cảnh giới: **${u.realm || "(chưa rõ)"}**\n` +
+          `Hệ: ${elTxt}\n\n` +
+          `**Đang trang bị:**\n${equippedLine()}\n\n` +
+          `**Sở hữu:** ${owned.length} bí kíp\n` +
+          `**Mảnh bí kíp:** ${shardText}`
+      );
+
+    if (mode === "equip") {
+      emb.addFields({
+        name: "Chọn trang bị",
+        value:
+          `Slot: **${slotLabel(selectedSlot)}**\n` +
+          `Bí kíp: ${selectedSkillId ? `**${getSkill(selectedSkillId)?.name || "?"}**` : "_(chưa chọn)_"}`,
+      });
+    }
+
+    if (mode === "craft") {
+      emb.addFields({
+        name: "Ghép bí kíp",
+        value:
+          `Loại: **${craftRarity === "epic" ? "Cực hiếm" : "Hiếm"}**\n` +
+          `Chọn: ${craftSkillId ? `**${getSkill(craftSkillId)?.name || "?"}**` : "_(chưa chọn)_"}`,
+      });
+    }
+
+    return emb;
+  };
+
+  const buildComponents = () => {
+    const rows = [];
+
+    const closeBtn = new ButtonBuilder()
+      .setCustomId(`bag_skill_close_${msg.author.id}_${nonce}`)
+      .setStyle(ButtonStyle.Secondary)
+      .setLabel("Đóng");
+
+    if (mode === "main") {
+      const mainRow = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setCustomId(`bag_skill_equip_${msg.author.id}_${nonce}`)
+          .setStyle(ButtonStyle.Primary)
+          .setLabel("Trang bị"),
+        new ButtonBuilder()
+          .setCustomId(`bag_skill_craft_rare_${msg.author.id}_${nonce}`)
+          .setStyle(ButtonStyle.Success)
+          .setLabel("Ghép (Hiếm)"),
+        new ButtonBuilder()
+          .setCustomId(`bag_skill_craft_epic_${msg.author.id}_${nonce}`)
+          .setStyle(ButtonStyle.Success)
+          .setLabel("Ghép (Cực hiếm)"),
+        closeBtn
+      );
+      rows.push(mainRow);
+      return rows;
+    }
+
+    if (mode === "equip") {
+      const slotMenu = new StringSelectMenuBuilder()
+        .setCustomId(`bag_skill_slot_${msg.author.id}_${nonce}`)
+        .setPlaceholder("Chọn slot...")
+        .addOptions(
+          { label: "Chủ động 1", value: "a1" },
+          { label: "Chủ động 2", value: "a2" },
+          { label: "Chủ động 3", value: "a3" },
+          { label: "Chủ động 4", value: "a4" },
+          { label: "Bị động", value: "passive" }
+        );
+
+      if (selectedSlot) {
+        const el = u.element || "kim";
+        const wantKind = selectedSlot === "passive" ? "passive" : "active";
+        const list = ownedSkills().filter((s) => s.element === el && s.kind === wantKind);
+        const opts = list.slice(0, 25).map((s) => ({
+          label: s.name.slice(0, 100),
+          value: s.id,
+          description: `${s.rarity === "epic" ? "Cực hiếm" : s.rarity === "rare" ? "Hiếm" : "Thường"}`,
+        }));
+        if (opts.length === 0) {
+          opts.push({ label: "(Không có bí kíp phù hợp)", value: "none" });
+        }
+
+        const skillMenu = new StringSelectMenuBuilder()
+          .setCustomId(`bag_skill_pick_${msg.author.id}_${nonce}`)
+          .setPlaceholder("Chọn bí kíp...")
+          .addOptions(opts);
+
+        rows.push(new ActionRowBuilder().addComponents(slotMenu));
+        rows.push(new ActionRowBuilder().addComponents(skillMenu));
+
+        const btnRow = new ActionRowBuilder().addComponents(
+          new ButtonBuilder()
+            .setCustomId(`bag_skill_apply_${msg.author.id}_${nonce}`)
+            .setStyle(ButtonStyle.Success)
+            .setLabel("Đổi"),
+          new ButtonBuilder()
+            .setCustomId(`bag_skill_unequip_${msg.author.id}_${nonce}`)
+            .setStyle(ButtonStyle.Danger)
+            .setLabel("Tháo"),
+          new ButtonBuilder()
+            .setCustomId(`bag_skill_back_${msg.author.id}_${nonce}`)
+            .setStyle(ButtonStyle.Secondary)
+            .setLabel("Quay lại"),
+          closeBtn
+        );
+        rows.push(btnRow);
+        return rows;
+      }
+
+      rows.push(new ActionRowBuilder().addComponents(slotMenu));
+      rows.push(
+        new ActionRowBuilder().addComponents(
+          new ButtonBuilder()
+            .setCustomId(`bag_skill_back_${msg.author.id}_${nonce}`)
+            .setStyle(ButtonStyle.Secondary)
+            .setLabel("Quay lại"),
+          closeBtn
+        )
+      );
+      return rows;
+    }
+
+    if (mode === "craft") {
+      const el = u.element || "kim";
+      const wantR = craftRarity || "rare";
+      const list = listSkills({ element: el, rarity: wantR, kind: null }).filter((s) => !u.skills.owned.includes(s.id));
+
+      const shard = u.skills.shards?.[el] || { rare: 0, epic: 0 };
+      const okList = list.filter((s) => {
+        const need = s.rarity === "epic" ? 40 : 12;
+        const have = s.rarity === "epic" ? shard.epic : shard.rare;
+        return have >= need;
+      });
+
+      const opts = okList.slice(0, 25).map((s) => ({
+        label: s.name.slice(0, 100),
+        value: s.id,
+        description: `Cần ${s.rarity === "epic" ? 40 : 12} mảnh`,
+      }));
+      if (opts.length === 0) {
+        opts.push({ label: "(Chưa đủ mảnh để ghép)", value: "none" });
+      }
+
+      const craftMenu = new StringSelectMenuBuilder()
+        .setCustomId(`bag_skill_craftpick_${msg.author.id}_${nonce}`)
+        .setPlaceholder("Chọn bí kíp để ghép...")
+        .addOptions(opts);
+      rows.push(new ActionRowBuilder().addComponents(craftMenu));
+
+      rows.push(
+        new ActionRowBuilder().addComponents(
+          new ButtonBuilder()
+            .setCustomId(`bag_skill_craftdo_${msg.author.id}_${nonce}`)
+            .setStyle(ButtonStyle.Success)
+            .setLabel("Ghép"),
+          new ButtonBuilder()
+            .setCustomId(`bag_skill_back_${msg.author.id}_${nonce}`)
+            .setStyle(ButtonStyle.Secondary)
+            .setLabel("Quay lại"),
+          closeBtn
+        )
+      );
+      return rows;
+    }
+
+    return [new ActionRowBuilder().addComponents(closeBtn)];
+  };
+
+  const sent = await msg.reply({ embeds: [buildEmbed()], components: buildComponents() });
+  const col = sent.createMessageComponentCollector({ time: 180_000 });
+
+  const refreshUser = () => {
+    const users = loadUsers();
+    const cur = users[msg.author.id];
+    if (!cur) return null;
+    ensureUserSkills(cur);
+    return { users, cur };
+  };
+
+  const render = async () => {
+    await sent.edit({ embeds: [buildEmbed()], components: buildComponents() }).catch(() => {});
+  };
+
+  col.on("collect", async (i) => {
+    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+
+    const cid = String(i.customId || "");
+    if (cid.includes(`_${msg.author.id}_${nonce}`)) await i.deferUpdate();
+
+    // Close
+    if (i.isButton() && cid === `bag_skill_close_${msg.author.id}_${nonce}`) {
+      col.stop("close");
+      return sent.edit({ components: [] }).catch(() => {});
+    }
+
+    // Back
+    if (i.isButton() && cid === `bag_skill_back_${msg.author.id}_${nonce}`) {
+      mode = "main";
+      selectedSlot = null;
+      selectedSkillId = null;
+      craftRarity = null;
+      craftSkillId = null;
+      return render();
+    }
+
+    // Enter equip
+    if (i.isButton() && cid === `bag_skill_equip_${msg.author.id}_${nonce}`) {
+      mode = "equip";
+      selectedSlot = null;
+      selectedSkillId = null;
+      return render();
+    }
+
+    // Slot select
+    if (i.isStringSelectMenu() && cid === `bag_skill_slot_${msg.author.id}_${nonce}`) {
+      selectedSlot = i.values?.[0] || null;
+      selectedSkillId = null;
+      return render();
+    }
+
+    // Skill pick
+    if (i.isStringSelectMenu() && cid === `bag_skill_pick_${msg.author.id}_${nonce}`) {
+      const v = i.values?.[0];
+      if (!v || v === "none") {
+        selectedSkillId = null;
+      } else {
+        selectedSkillId = v;
+      }
+      return render();
+    }
+
+    // Apply equip
+    if (i.isButton() && cid === `bag_skill_apply_${msg.author.id}_${nonce}`) {
+      const pack = refreshUser();
+      if (!pack) return;
+      const { users, cur } = pack;
+
+      if (!selectedSlot) return i.followUp({ content: "⚠️ Chưa chọn slot.", ephemeral: true });
+      if (!selectedSkillId) return i.followUp({ content: "⚠️ Chưa chọn bí kíp.", ephemeral: true });
+      if (!cur.skills.owned.includes(selectedSkillId)) return i.followUp({ content: "⚠️ Bạn chưa sở hữu bí kíp này.", ephemeral: true });
+      const sk = getSkill(selectedSkillId);
+      if (!sk) return i.followUp({ content: "⚠️ Bí kíp không tồn tại.", ephemeral: true });
+      if (sk.element !== (cur.element || "kim")) return i.followUp({ content: "⚠️ Bí kíp không cùng hệ với bạn.", ephemeral: true });
+      if (selectedSlot === "passive" && sk.kind !== "passive") return i.followUp({ content: "⚠️ Slot bị động chỉ nhận bí kíp bị động.", ephemeral: true });
+      if (selectedSlot !== "passive" && sk.kind !== "active") return i.followUp({ content: "⚠️ Slot chủ động chỉ nhận bí kíp chủ động.", ephemeral: true });
+
+      if (!cur.skills.equipped) cur.skills.equipped = { actives: [null, null, null, null], passive: null };
+      if (!Array.isArray(cur.skills.equipped.actives)) cur.skills.equipped.actives = [null, null, null, null];
+
+      if (selectedSlot === "passive") {
+        cur.skills.equipped.passive = selectedSkillId;
+      } else {
+        const idx = Math.max(0, Math.min(3, Number(selectedSlot.slice(1)) - 1));
+        cur.skills.equipped.actives[idx] = selectedSkillId;
+      }
+
+      users[msg.author.id] = cur;
+      saveUsers(users);
+      u = cur;
+      return render();
+    }
+
+    // Unequip
+    if (i.isButton() && cid === `bag_skill_unequip_${msg.author.id}_${nonce}`) {
+      const pack = refreshUser();
+      if (!pack) return;
+      const { users, cur } = pack;
+
+      if (!selectedSlot) return i.followUp({ content: "⚠️ Chưa chọn slot.", ephemeral: true });
+
+      if (!cur.skills.equipped) cur.skills.equipped = { actives: [null, null, null, null], passive: null };
+      if (!Array.isArray(cur.skills.equipped.actives)) cur.skills.equipped.actives = [null, null, null, null];
+
+      if (selectedSlot === "passive") {
+        cur.skills.equipped.passive = null;
+      } else {
+        const idx = Math.max(0, Math.min(3, Number(selectedSlot.slice(1)) - 1));
+        cur.skills.equipped.actives[idx] = null;
+      }
+
+      users[msg.author.id] = cur;
+      saveUsers(users);
+      u = cur;
+      return render();
+    }
+
+    // Craft buttons
+    if (i.isButton() && cid === `bag_skill_craft_rare_${msg.author.id}_${nonce}`) {
+      mode = "craft";
+      craftRarity = "rare";
+      craftSkillId = null;
+      return render();
+    }
+    if (i.isButton() && cid === `bag_skill_craft_epic_${msg.author.id}_${nonce}`) {
+      mode = "craft";
+      craftRarity = "epic";
+      craftSkillId = null;
+      return render();
+    }
+
+    if (i.isStringSelectMenu() && cid === `bag_skill_craftpick_${msg.author.id}_${nonce}`) {
+      const v = i.values?.[0];
+      craftSkillId = !v || v === "none" ? null : v;
+      return render();
+    }
+
+    if (i.isButton() && cid === `bag_skill_craftdo_${msg.author.id}_${nonce}`) {
+      const pack = refreshUser();
+      if (!pack) return;
+      const { users, cur } = pack;
+      if (!craftSkillId) return i.followUp({ content: "⚠️ Chưa chọn bí kíp để ghép.", ephemeral: true });
+      const res = craftSkill(cur, craftSkillId);
+      if (!res.ok) return i.followUp({ content: res.message || "❌ Ghép thất bại.", ephemeral: true });
+
+      users[msg.author.id] = cur;
+      saveUsers(users);
+      u = cur;
+      mode = "main";
+      craftSkillId = null;
+      craftRarity = null;
+      return sent
+        .edit({ content: `✅ ${res.message}`, embeds: [buildEmbed()], components: buildComponents() })
+        .catch(() => {});
+    }
+  });
+
+  col.on("end", async () => {
+    await sent.edit({ components: [] }).catch(() => {});
+  });
+}
+
 module.exports = {
   name: "bag",
   aliases: ["tui"],
@@ -458,11 +1150,11 @@ module.exports = {
 
     ensureMining(user);
     ensureGear(user);
+    ensureUserSkills(user);
     const changed = ensureGearIds(user);
-    if (changed) {
-      users[msg.author.id] = user;
-      saveUsers(users);
-    }
+    users[msg.author.id] = user;
+    if (changed) saveUsers(users);
+    else saveUsers(users);
 
     const nonce = `${Date.now()}`;
     const embed = new EmbedBuilder()
@@ -476,6 +1168,7 @@ module.exports = {
       .addOptions(
         { label: "🧰 Khoáng cụ", value: "tools", description: "Chọn khoáng cụ đang dùng" },
         { label: "🪨 Khoáng thạch", value: "ores", description: "Xem khoáng thạch đã đào" },
+        { label: "📜 Bí kíp", value: "skills", description: "Xem/Trang bị/Ghép bí kíp" },
         { label: "🛡️ Trang bị", value: "gear", description: "Xem trang bị đang mặc & trong túi" },
         { label: "📦 Vật phẩm", value: "legacy", description: "Danh sách vật phẩm kiểu cũ" }
       );
@@ -492,6 +1185,7 @@ module.exports = {
 
       if (choice === "tools") return openToolsMenu(msg, user, nonce);
       if (choice === "ores") return openOresView(msg, user);
+      if (choice === "skills") return openSkillsView(msg, user, nonce);
       if (choice === "gear") return openGearView(msg, user, nonce);
       if (choice === "legacy") return openLegacyInventory(msg, user);
     });

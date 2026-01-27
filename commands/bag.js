@@ -4,6 +4,8 @@
 const {
   ActionRowBuilder,
   StringSelectMenuBuilder,
+  ButtonStyle,
+  ButtonBuilder,
   ComponentType,
   EmbedBuilder,
 } = require("discord.js");
@@ -199,91 +201,237 @@ async function openOresView(msg, user) {
 }
 
 async function openGearView(msg, user, nonce) {
-  const equipped = user.gear.equipped || {};
-  const bag = user.gear.bag || [];
+  let u = user;
 
-  const eqLines = Object.entries(equipped).map(([slot, it]) => `• **${slotLabel(slot)}:** ${describeGearItem(it)}`);
-  const aff = sumAffixes(equipped);
-  const mainPct = sumMainPercents(equipped);
+  const buildOptions = () => {
+    const equipped = u.gear.equipped || {};
+    const bag = u.gear.bag || [];
 
-  const summary =
-    `Cảnh giới: **${user.realm || "(chưa rõ)"}**\n` +
-    `Trang bị đang mặc:\n${eqLines.join("\n")}\n\n` +
-    `Tổng % dòng chính: Công +${formatPct(mainPct.atk)}% • Thủ +${formatPct(mainPct.def)}% • Tốc +${formatPct(mainPct.spd)}% • HP +${formatPct(mainPct.hp)}% • MP +${formatPct(mainPct.mp)}%\n` +
-    `Tổng phụ tố: **${Object.keys(aff).length || 0}** loại`;
-
-  const embed = new EmbedBuilder()
-    .setColor(0x9B59B6)
-    .setTitle("🛡️ Trang Bị")
-    .setDescription(summary);
-
-  // Menu xem chi tiết (ưu tiên: đang mặc trước, rồi túi)
-  const options = [];
-  for (const [slot, it] of Object.entries(equipped)) {
-    if (!it) continue;
-    options.push({
-      label: `[Đang mặc] ${slotLabel(slot)}: ${it.name || "Trang bị"}`.slice(0, 100),
-      value: `EQ:${slot}`,
-      description: `${tierText(it.tier || "pham")}`.slice(0, 100),
-    });
-  }
-  for (const it of bag) {
-    if (!it) continue;
-    options.push({
-      label: `[Túi] ${slotLabel(it.slot || "?")}: ${it.name || "Trang bị"}`.slice(0, 100),
-      value: `BG:${it.gid || ""}`,
-      description: `${tierText(it.tier || "pham")}`.slice(0, 100),
-    });
-    if (options.length >= 25) break;
-  }
-
-  if (!options.length) {
-    return msg.reply({ embeds: [embed] });
-  }
-
-  const row = new ActionRowBuilder().addComponents(
-    new StringSelectMenuBuilder()
-      .setCustomId(`bag_gear_${msg.author.id}_${nonce}`)
-      .setPlaceholder("Xem chi tiết trang bị...")
-      .addOptions(options)
-  );
-
-  const sent = await msg.reply({ embeds: [embed], components: [row] });
-  const col = sent.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 90_000 });
-  col.on("collect", async (i) => {
-    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
-    await i.deferUpdate();
-
-    const v = i.values[0];
-    let it = null;
-    let where = "";
-    let slot = null;
-    if (v.startsWith("EQ:")) {
-      slot = v.slice(3);
-      it = user.gear.equipped?.[slot] || null;
-      where = `Đang mặc • ${slotLabel(slot)}`;
-    } else if (v.startsWith("BG:")) {
-      const gid = v.slice(3);
-      it = (user.gear.bag || []).find((x) => x && x.gid === gid) || null;
-      where = `Trong túi • ${slotLabel(it?.slot || "?")}`;
+    const options = [];
+    for (const [slot, it] of Object.entries(equipped)) {
+      if (!it) continue;
+      options.push({
+        label: `[Đang mặc] ${slotLabel(slot)}: ${it.name || "Trang bị"}`.slice(0, 100),
+        value: `EQ:${slot}`,
+        description: `${tierText(it.tier || "pham")}`.slice(0, 100),
+      });
     }
-    if (!it) return;
+    for (const it of bag) {
+      if (!it) continue;
+      options.push({
+        label: `[Túi] ${slotLabel(it.slot || "?")}: ${it.name || "Trang bị"}`.slice(0, 100),
+        value: `BG:${it.gid || ""}`,
+        description: `${tierText(it.tier || "pham")}`.slice(0, 100),
+      });
+      if (options.length >= 25) break;
+    }
+    return options;
+  };
+
+  const renderSummary = () => {
+    const equipped = u.gear.equipped || {};
+    const eqLines = Object.entries(equipped).map(
+      ([slot, it]) => `• **${slotLabel(slot)}:** ${describeGearItem(it)}`
+    );
+    const aff = sumAffixes(equipped);
+    const mainPct = sumMainPercents(equipped);
+
+    const summary =
+      `Cảnh giới: **${u.realm || "(chưa rõ)"}**\n` +
+      `Trang bị đang mặc:\n${eqLines.join("\n")}\n\n` +
+      `Tổng % dòng chính: Công +${formatPct(mainPct.atk)}% • Thủ +${formatPct(mainPct.def)}% • Tốc +${formatPct(mainPct.spd)}% • HP +${formatPct(mainPct.hp)}% • MP +${formatPct(mainPct.mp)}%\n` +
+      `Tổng phụ tố: **${Object.keys(aff).length || 0}** loại`;
+
+    return new EmbedBuilder()
+      .setColor(0x9B59B6)
+      .setTitle("🛡️ Trang Bị")
+      .setDescription(summary);
+  };
+
+  let selected = null; // { kind: 'EQ'|'BG', slot?, gid? }
+
+  const resolveSelected = () => {
+    if (!selected) return { it: null, where: "" };
+    if (selected.kind === "EQ") {
+      const it = u.gear.equipped?.[selected.slot] || null;
+      return { it, where: `Đang mặc • ${slotLabel(selected.slot)}` };
+    }
+    if (selected.kind === "BG") {
+      const it = (u.gear.bag || []).find((x) => x && x.gid === selected.gid) || null;
+      return { it, where: `Trong túi • ${slotLabel(it?.slot || "?")}` };
+    }
+    return { it: null, where: "" };
+  };
+
+  const buildSelectRow = () => {
+    const options = buildOptions();
+    return new ActionRowBuilder().addComponents(
+      new StringSelectMenuBuilder()
+        .setCustomId(`bag_gear_${msg.author.id}_${nonce}`)
+        .setPlaceholder("Xem chi tiết / mặc / tháo...")
+        .addOptions(options.length ? options : [{ label: "(Không có trang bị)", value: "none" }])
+    );
+  };
+
+  const buildButtonRow = () => {
+    if (!selected) return null;
+
+    if (selected.kind === "BG") {
+      const btnEquip = new ButtonBuilder()
+        .setCustomId(`bag_equip_${msg.author.id}_${nonce}_${selected.gid}`)
+        .setStyle(ButtonStyle.Success)
+        .setLabel("Mặc");
+
+      const btnClose = new ButtonBuilder()
+        .setCustomId(`bag_close_${msg.author.id}_${nonce}`)
+        .setStyle(ButtonStyle.Secondary)
+        .setLabel("Đóng");
+
+      return new ActionRowBuilder().addComponents(btnEquip, btnClose);
+    }
+
+    if (selected.kind === "EQ") {
+      const btnUnequip = new ButtonBuilder()
+        .setCustomId(`bag_unequip_${msg.author.id}_${nonce}_${selected.slot}`)
+        .setStyle(ButtonStyle.Secondary)
+        .setLabel("Tháo");
+
+      const btnClose = new ButtonBuilder()
+        .setCustomId(`bag_close_${msg.author.id}_${nonce}`)
+        .setStyle(ButtonStyle.Secondary)
+        .setLabel("Đóng");
+
+      return new ActionRowBuilder().addComponents(btnUnequip, btnClose);
+    }
+
+    return null;
+  };
+
+  const renderDetail = () => {
+    const { it, where } = resolveSelected();
+    if (!it) return renderSummary();
 
     const m = tierMeta(it.tier || "pham");
-    const detail = new EmbedBuilder()
+    return new EmbedBuilder()
       .setColor(m.color)
       .setTitle(`${m.icon} ${it.name || "Trang bị"}`)
       .setDescription(
         `${where}\n` +
-        `Phẩm giai: **${tierText(it.tier || "pham")}**\n` +
-        `Dòng chính: **${describeMainLine(it)}**\n\n` +
-        `**Phụ tố:**\n${describeAffixes(it)}`
+          `Phẩm giai: **${tierText(it.tier || "pham")}**\n` +
+          `Dòng chính: **${describeMainLine(it)}**\n\n` +
+          `**Phụ tố:**\n${describeAffixes(it)}`
       );
+  };
 
-    await sent.edit({ embeds: [detail] }).catch(() => {});
+  const render = async (sent) => {
+    const rows = [buildSelectRow()];
+    const btnRow = buildButtonRow();
+    if (btnRow) rows.push(btnRow);
+    await sent.edit({ embeds: [selected ? renderDetail() : renderSummary()], components: rows }).catch(() => {});
+  };
+
+  const sent = await msg.reply({
+    embeds: [renderSummary()],
+    components: [buildSelectRow()],
   });
-  col.on("end", () => sent.edit({ components: [] }).catch(() => {}));
+
+  const col = sent.createMessageComponentCollector({ time: 120_000 });
+
+  col.on("collect", async (i) => {
+    if (i.user.id !== msg.author.id) {
+      return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+    }
+
+    const cid = String(i.customId || "");
+
+    // Select
+    if (i.isStringSelectMenu() && cid.startsWith(`bag_gear_${msg.author.id}_${nonce}`)) {
+      await i.deferUpdate();
+      const v = i.values?.[0];
+      if (!v || v === "none") return;
+
+      if (v.startsWith("EQ:")) {
+        selected = { kind: "EQ", slot: v.slice(3) };
+      } else if (v.startsWith("BG:")) {
+        selected = { kind: "BG", gid: v.slice(3) };
+      }
+
+      return render(sent);
+    }
+
+    // Close
+    if (i.isButton() && cid === `bag_close_${msg.author.id}_${nonce}`) {
+      await i.deferUpdate();
+      col.stop("close");
+      await sent.edit({ components: [] }).catch(() => {});
+      return;
+    }
+
+    // Equip
+    if (i.isButton() && cid.startsWith(`bag_equip_${msg.author.id}_${nonce}_`)) {
+      await i.deferUpdate();
+      const gid = cid.split(`bag_equip_${msg.author.id}_${nonce}_`)[1] || "";
+      if (!gid) return;
+
+      const users = loadUsers();
+      const cur = users[msg.author.id];
+      if (!cur) return;
+      ensureGear(cur);
+
+      const idx = (cur.gear.bag || []).findIndex((x) => x && x.gid === gid);
+      if (idx < 0) return i.followUp({ content: "⚠️ Trang bị không còn trong túi.", ephemeral: true });
+
+      const item = cur.gear.bag[idx];
+      const slot = String(item.slot || "");
+      if (!slot) return i.followUp({ content: "⚠️ Trang bị này không có slot hợp lệ.", ephemeral: true });
+
+      // Move currently equipped back to bag
+      const prev = cur.gear.equipped?.[slot] || null;
+      if (prev) cur.gear.bag.push(prev);
+
+      // Equip
+      cur.gear.equipped[slot] = item;
+      cur.gear.bag.splice(idx, 1);
+
+      users[msg.author.id] = cur;
+      saveUsers(users);
+
+      u = cur;
+      selected = { kind: "EQ", slot };
+      return render(sent);
+    }
+
+    // Unequip
+    if (i.isButton() && cid.startsWith(`bag_unequip_${msg.author.id}_${nonce}_`)) {
+      await i.deferUpdate();
+      const slot = cid.split(`bag_unequip_${msg.author.id}_${nonce}_`)[1] || "";
+      if (!slot) return;
+
+      const users = loadUsers();
+      const cur = users[msg.author.id];
+      if (!cur) return;
+      ensureGear(cur);
+
+      const it = cur.gear.equipped?.[slot] || null;
+      if (!it) return i.followUp({ content: "⚠️ Slot này đang trống.", ephemeral: true });
+
+      cur.gear.equipped[slot] = null;
+      cur.gear.bag.push(it);
+
+      users[msg.author.id] = cur;
+      saveUsers(users);
+
+      u = cur;
+      selected = null;
+      return render(sent);
+    }
+  });
+
+  col.on("end", async () => {
+    await sent.edit({ components: [] }).catch(() => {});
+  });
 }
+
 
 async function openLegacyInventory(msg, user) {
   const inv = user.inventory || {};

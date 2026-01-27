@@ -61,6 +61,10 @@ module.exports = {
           value: "`-dao` | alias: `-daokhoang`\nKhai khoáng (5 phút/lần)",
         },
         {
+          name: "🛠️ Rèn đúc",
+          value: "`-ren` | alias: `-forge`\nRèn trang bị bằng 5 khoáng thạch",
+        },
+        {
           name: "🧚 Tiểu Nhu",
           value: "`-tieunhu` | alias: `-tn`\nGọi NPC Tiểu Nhu để nhận EXP",
         },

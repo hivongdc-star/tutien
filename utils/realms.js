@@ -7,7 +7,7 @@ module.exports = [
   "Hợp Thể",
   "Độ Kiếp",
   "Đại Thừa",
-  "Tán Tiên",
+  "Nhân Tiên",
   "Chân Tiên",
   "Địa Tiên",
   "Thiên Tiên",

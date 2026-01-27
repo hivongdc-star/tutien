@@ -156,27 +156,35 @@ async function drawSide(
   let cy = y + 54;
   for (const ent of entities.slice(0, 3)) {
     // block
-    fillRoundRect(ctx, x + 14, cy, w - 28, 108, 16, "rgba(255,255,255,0.06)");
-    strokeRoundRect(ctx, x + 14, cy, w - 28, 108, 16, "rgba(255,255,255,0.10)");
+    fillRoundRect(ctx, x + 14, cy, w - 28, 104, 16, "rgba(255,255,255,0.06)");
+    strokeRoundRect(ctx, x + 14, cy, w - 28, 104, 16, "rgba(255,255,255,0.10)");
 
-    const av = 64;
-    await drawAvatar(ctx, x + 26, cy + 22, av, team, ent.element);
+    const av = 58;
+    await drawAvatar(ctx, x + 26, cy + 20, av, team, ent.element);
 
     // name
     ctx.font = `bold 18px ${FONT}`;
     ctx.fillStyle = ent.alive ? "#fff" : "rgba(255,255,255,0.55)";
     ctx.fillText(String(ent.name || "?").slice(0, 18), x + 26 + av + 14, cy + 42);
 
+    // realm/level
+    ctx.font = `13px ${FONT}`;
+    ctx.fillStyle = "rgba(255,255,255,0.72)";
+    const lv = Number(ent.level) ? `Lv ${Number(ent.level)}` : "";
+    const realm = ent.realm ? String(ent.realm).replace(" - Tầng ", " • Tầng ") : "";
+    const meta = (lv && realm) ? `${lv} • ${realm}` : (lv || realm || "");
+    if (meta) ctx.fillText(meta.slice(0, 32), x + 26 + av + 14, cy + 58);
+
     // HP bar
     const maxHp = Math.max(1, Number(ent.stats?.maxHp) || 1);
     const hp = clamp(ent.hp, 0, maxHp);
     const hpRatio = hp / maxHp;
 
-    ctx.drawImage(hpIcon, x + 26 + av + 14, cy + 54, 18, 18);
+    ctx.drawImage(hpIcon, x + 26 + av + 14, cy + 60, 18, 18);
     drawBar(
       ctx,
       x + 26 + av + 14 + 22,
-      cy + 56,
+      cy + 62,
       w - 28 - (av + 14 + 22 + 18 + 18),
       14,
       hpRatio,
@@ -188,18 +196,18 @@ async function drawSide(
     ctx.fillStyle = "rgba(255,255,255,0.85)";
     const shield = Math.max(0, Number(ent.shield) || 0);
     const shieldTxt = shield > 0 ? ` +${shield}` : "";
-    ctx.fillText(`${hp}/${maxHp}${shieldTxt}`, x + w - 18 - 90, cy + 68);
+    ctx.fillText(`${hp}/${maxHp}${shieldTxt}`, x + w - 18 - 90, cy + 74);
 
     // MP bar (only for party)
     if (team === "party") {
       const maxMp = Math.max(1, Number(ent.stats?.maxMp) || 1);
       const mp = clamp(ent.mp, 0, maxMp);
       const mpRatio = mp / maxMp;
-      ctx.drawImage(mpIcon, x + 26 + av + 14, cy + 74, 18, 18);
+      ctx.drawImage(mpIcon, x + 26 + av + 14, cy + 76, 18, 18);
       drawBar(
         ctx,
         x + 26 + av + 14 + 22,
-        cy + 76,
+        cy + 78,
         w - 28 - (av + 14 + 22 + 18 + 18),
         12,
         mpRatio,
@@ -214,7 +222,7 @@ async function drawSide(
     const sp = Math.max(0, Math.round(Number(ent.stats?.spd) || 0));
 
     const sx = x + 26 + av + 14;
-    const sy = cy + 98;
+    const sy = cy + 96;
     ctx.drawImage(atkIcon, sx, sy - 12, 16, 16);
     ctx.fillText(String(atk), sx + 18, sy);
 
@@ -224,7 +232,7 @@ async function drawSide(
     ctx.drawImage(spdIcon, sx + 156, sy - 12, 16, 16);
     ctx.fillText(String(sp), sx + 156 + 18, sy);
 
-    cy += 120;
+    cy += 114;
   }
 }
 

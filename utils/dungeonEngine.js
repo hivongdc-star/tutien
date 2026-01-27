@@ -3,11 +3,18 @@
 
 const { sumMainPercents, sumAffixes, applyPct } = require("./statsView");
 const { tierMeta } = require("./tiers");
+const { getRealm } = require("./xp");
 const { getSkill, computePassiveTotals, ensureUserSkills } = require("./skills");
 
 function clamp(n, min, max) {
   const x = Number(n) || 0;
   return Math.max(min, Math.min(max, x));
+}
+
+function pushLog(logs, side, text) {
+  // side: 'P' (party) | 'E' (enemy)
+  const prefix = side === "P" ? "🟦" : "🟥";
+  logs.push({ side, text: `${prefix} ${text}` });
 }
 
 function randInt(min, max) {
@@ -84,6 +91,8 @@ function makePlayerEntity(userId, user) {
     kind: "player",
     name: user.name || "Vô danh",
     element: user.element || "kim",
+    level: Number(user.level) || 1,
+    realm: String(user.realm || getRealm(Number(user.level)||1) || ''),
     stats: eff,
     hp: curHp,
     mp: curMp,
@@ -127,17 +136,23 @@ function enemyNamePool(mapKey) {
 function generateEnemies({ party, mapKey, diff, floor, isBoss }) {
   const avg = avgPartyStats(party);
   const dm = diffMeta(diff);
-  const fScale = 1 + 0.08 * Math.max(0, floor - 1);
   const pool = enemyNamePool(mapKey);
+
+  // --- Enemy level/realm (dễ cân) ---
+  const avgLv = Math.max(1, Math.round((party.reduce((a,p)=>a+(Number(p.level)||1),0)) / Math.max(1, party.length)));
+  const diffOffset = diff === "easy" ? -2 : diff === "hard" ? 0 : 2;
+  const floorOffset = Math.max(0, (Number(floor) || 1) - 1);
+  const bossOffset = isBoss ? 2 : 0;
+  const baseEnemyLv = avgLv + diffOffset + floorOffset + bossOffset;
 
   const count = isBoss ? 1 : (Math.random() < 0.15 ? 3 : Math.random() < 0.55 ? 2 : 1);
   const enemies = [];
   for (let i = 0; i < count; i++) {
     const name = pool[randInt(0, pool.length - 1)];
-    const baseAtk = Math.max(1, Math.round(avg.atk * (0.85 + 0.08 * (floor - 1)) * dm.mult));
-    const baseDef = Math.max(0, Math.round(avg.def * (0.75 + 0.07 * (floor - 1)) * dm.mult));
-    const baseHp = Math.max(1, Math.round(avg.maxHp * (0.70 + 0.10 * (floor - 1)) * dm.mult));
-    const baseSpd = Math.max(1, Math.round(avg.spd * (0.85 + 0.05 * (floor - 1))));
+    const baseAtk = Math.max(1, Math.round(avg.atk * (0.92 + 0.06 * (floor - 1)) * dm.mult));
+    const baseDef = Math.max(0, Math.round(avg.def * (0.62 + 0.05 * (floor - 1)) * dm.mult));
+    const baseHp = Math.max(1, Math.round(avg.maxHp * (0.62 + 0.08 * (floor - 1)) * dm.mult));
+    const baseSpd = Math.max(1, Math.round(avg.spd * (0.90 + 0.04 * (floor - 1))));
 
     let atk = baseAtk;
     let def = baseDef;
@@ -155,11 +170,27 @@ function generateEnemies({ party, mapKey, diff, floor, isBoss }) {
     if (!isBoss && count === 3) maxHp = Math.round(maxHp * 0.75);
     if (!isBoss && count === 2) maxHp = Math.round(maxHp * 0.9);
 
+    // Enemy level gap scaling (nhẹ, dễ cân)
+    const enemyLevel = Math.max(1, baseEnemyLv + randInt(-1, 1));
+    const gap = enemyLevel - avgLv;
+    const mAtkDef = clamp(1 + gap * 0.02, 0.85, 1.35);
+    const mHp = clamp(1 + gap * 0.03, 0.80, 1.55);
+    const mSpd = clamp(1 + gap * 0.01, 0.90, 1.20);
+
+    atk = Math.max(1, Math.round(atk * mAtkDef));
+    def = Math.max(0, Math.round(def * mAtkDef));
+    maxHp = Math.max(1, Math.round(maxHp * mHp));
+    spd = Math.max(1, Math.round(spd * mSpd));
+
+    const realm = String(getRealm(enemyLevel) || '');
+
     enemies.push({
       id: `e_${floor}_${i}_${Date.now()}_${Math.random().toString(16).slice(2, 6)}`,
       kind: isBoss ? "boss" : "mob",
       name: isBoss ? `Boss • ${name}` : name,
       element: null,
+      level: enemyLevel,
+      realm,
       stats: {
         atk,
         def,
@@ -284,8 +315,12 @@ function calcDamage(attacker, target, rawDmg) {
   const reduce = clamp(target.stats.dmg_reduce || 0, 0, 50);
 
   // Damage giảm theo def, nhưng không triệt tiêu hoàn toàn
-  const k = 100 / (100 + defUsed * 6);
-  const pre = Math.max(1, Math.round(rawDmg * k));
+  const rage = clamp(attacker._rageMult || 1, 1, 2.2);
+
+  // Damage giảm theo def, nhưng giảm nhẹ hơn để combat không lê thê
+  const k = 100 / (100 + defUsed * 4.2);
+  const scaledRaw = Math.max(1, Math.round(rawDmg * rage));
+  const pre = Math.max(1, Math.round(scaledRaw * k));
   const after = Math.max(1, Math.round(pre * (1 - reduce / 100)));
   return after;
 }
@@ -325,7 +360,7 @@ function spendMp(actor, pct) {
 }
 
 function choosePlayerAction(actor, allies, enemies) {
-  // Ưu tiên: heal nếu thấp máu, shield nếu còn, debuff boss, aoe nếu nhiều quái, burst còn lại.
+  // Auto combat: ưu tiên giữ mạng trước, sau đó ưu tiên dùng skill (để tránh cảm giác "chỉ đánh thường").
   const ids = (actor.skills?.actives || []).filter(Boolean);
   const skills = ids.map((id) => ({ id, s: getSkill(id) })).filter((x) => x.s && x.s.kind === "active");
   // filter usable
@@ -341,35 +376,36 @@ function choosePlayerAction(actor, allies, enemies) {
   const low = pickLowestHP(allies);
   const lowRatio = low ? (low.hp / Math.max(1, low.stats.maxHp)) : 1;
   const enemyCount = enemies.filter(isAlive).length;
-  const hasBoss = enemies.some((e) => e.kind === "boss" && isAlive(e));
 
-  // Heal
-  if (low && lowRatio <= 0.45) {
+  // Heal (ưu tiên cứu đồng đội)
+  if (low && lowRatio <= 0.5) {
     const healSkill = usable.find((x) => x.s.template === "HEAL");
     if (healSkill) return { type: "skill", ...healSkill, target: low };
   }
-  // Shield
-  if (selfRatio <= 0.6) {
+
+  // Shield (ưu tiên khi máu chưa quá thấp, để tránh chết lẻ)
+  if (selfRatio <= 0.75 && (Number(actor.shield) || 0) <= 0) {
     const shieldSkill = usable.find((x) => x.s.template === "SHIELD");
     if (shieldSkill) return { type: "skill", ...shieldSkill, target: actor };
   }
-  // Debuff
-  if (hasBoss) {
-    const deb = usable.find((x) => x.s.template === "DEBUFF");
-    if (deb) return { type: "skill", ...deb, target: pickRandomAlive(enemies) };
-  }
-  // AOE
-  if (enemyCount >= 2) {
-    const aoe = usable.find((x) => x.s.template === "AOE");
-    if (aoe) return { type: "skill", ...aoe, target: null };
-  }
-  // Buff
-  const buff = usable.find((x) => x.s.template === "BUFF");
-  if (buff) return { type: "skill", ...buff, target: actor };
 
-  // Burst
+  // Buff: nếu có và đang không có buff tương ứng
+  const buff = usable.find((x) => x.s.template === "BUFF");
+  if (buff) {
+    const st = buff.s?.buff?.stat || "atk";
+    const activeTurns = Number(actor.buffs?.[st]?.turns) || 0;
+    if (activeTurns <= 0) return { type: "skill", ...buff, target: actor };
+  }
+
+  // Offensive skills: ưu tiên burst > debuff > aoe (aoe vẫn dùng được khi 1 quái)
   const burst = usable.find((x) => x.s.template === "BURST");
   if (burst) return { type: "skill", ...burst, target: pickRandomAlive(enemies) };
+
+  const deb = usable.find((x) => x.s.template === "DEBUFF");
+  if (deb) return { type: "skill", ...deb, target: pickRandomAlive(enemies) };
+
+  const aoe = usable.find((x) => x.s.template === "AOE");
+  if (aoe) return { type: "skill", ...aoe, target: null };
 
   return { type: "basic", target: pickRandomAlive(enemies) };
 }
@@ -377,11 +413,12 @@ function choosePlayerAction(actor, allies, enemies) {
 function doBasicAttack(actor, target, logs) {
   if (!target) return;
   if (!calcHit(actor, target)) {
-    logs.push(`${actor.name} ra tay, nhưng ${target.name} né tránh.`);
+    pushLog(logs, actor.kind === "player" ? "P" : "E", `${actor.name} ra tay, nhưng ${target.name} né tránh.`);
     return;
   }
   const atk = Math.max(1, effStat(actor, "atk"));
-  let dmg = calcDamage(actor, target, atk);
+  // nhịp nhanh hơn một chút
+  let dmg = calcDamage(actor, target, Math.round(atk * 1.08));
   const crit = tryCrit(actor, target);
   if (crit) {
     const mult = 1 + (50 + (actor.stats.crit_dmg || 0)) / 100;
@@ -390,13 +427,19 @@ function doBasicAttack(actor, target, logs) {
   const dealt = applyDamage(target, dmg);
   let tail = "";
   if (crit) tail = " (Bạo kích!)";
-  logs.push(`${actor.name} công kích ${target.name}, gây **${dealt}** sát thương${tail}.`);
+  pushLog(
+    logs,
+    actor.kind === "player" ? "P" : "E",
+    `${actor.name} công kích ${target.name}, gây **${dealt}** sát thương${tail}.`
+  );
 
   // lifesteal
   const ls = clamp(actor.stats.lifesteal || 0, 0, 35);
   if (ls > 0) {
     const healed = heal(actor, Math.round((dealt * ls) / 100));
-    if (healed > 0) logs.push(`${actor.name} hút huyết, hồi **${healed}** HP.`);
+    if (healed > 0) {
+      pushLog(logs, actor.kind === "player" ? "P" : "E", `${actor.name} hút huyết, hồi **${healed}** HP.`);
+    }
   }
 }
 
@@ -423,7 +466,7 @@ function doSkill(actor, action, allies, enemies, logs) {
     const pct = Number(s.heal?.pctMaxHp) || (r === "epic" ? 36 : r === "rare" ? 28 : 16);
     const amount = Math.round((actor.stats.maxHp * pct) / 100);
     const healed = heal(target, amount);
-    logs.push(`${actor.name} thi triển **${name}**, hồi **${healed}** HP cho ${target.name}.`);
+    pushLog(logs, "P", `${actor.name} thi triển **${name}**, hồi **${healed}** HP cho ${target.name}.`);
     return;
   }
 
@@ -431,7 +474,7 @@ function doSkill(actor, action, allies, enemies, logs) {
     const pct = Number(s.shield?.pctMaxHp) || (r === "epic" ? 36 : r === "rare" ? 28 : 18);
     const amount = Math.round((actor.stats.maxHp * pct) / 100);
     actor.shield += amount;
-    logs.push(`${actor.name} vận **${name}**, tạo hộ thuẫn **${amount}**.`);
+    pushLog(logs, "P", `${actor.name} vận **${name}**, tạo hộ thuẫn **${amount}**.`);
     return;
   }
 
@@ -441,7 +484,7 @@ function doSkill(actor, action, allies, enemies, logs) {
     const pct = Number(b.pct) || (r === "epic" ? 26 : r === "rare" ? 18 : 14);
     const turns = Number(b.turns) || 2;
     applyBuff(actor, stat, pct, turns);
-    logs.push(`${actor.name} kích phát **${name}**, ${stat.toUpperCase()} +${pct}% (${turns} lượt).`);
+    pushLog(logs, "P", `${actor.name} kích phát **${name}**, ${stat.toUpperCase()} +${pct}% (${turns} lượt).`);
     return;
   }
 
@@ -460,7 +503,7 @@ function doSkill(actor, action, allies, enemies, logs) {
       }
       total += applyDamage(t, dmg);
     }
-    logs.push(`${actor.name} thi triển **${name}**, quét ngang chiến trường (tổng **${total}**).`);
+    pushLog(logs, "P", `${actor.name} thi triển **${name}**, quét ngang chiến trường (tổng **${total}**).`);
     return;
   }
 
@@ -468,7 +511,7 @@ function doSkill(actor, action, allies, enemies, logs) {
     const target = action.target || pickRandomAlive(enemies);
     if (!target) return;
     if (!calcHit(actor, target)) {
-      logs.push(`${actor.name} thi triển **${name}**, nhưng ${target.name} tránh được.`);
+      pushLog(logs, "P", `${actor.name} thi triển **${name}**, nhưng ${target.name} tránh được.`);
       return;
     }
     const atk = Math.max(1, effStat(actor, "atk"));
@@ -483,7 +526,11 @@ function doSkill(actor, action, allies, enemies, logs) {
     const pct = Number(s.debuff?.pct) || (r === "epic" ? 26 : r === "rare" ? 18 : 12);
     const turns = Number(s.debuff?.turns) || 2;
     applyDebuff(target, stat, pct, turns);
-    logs.push(`${actor.name} tung **${name}**, gây **${dealt}** và trấn áp ${stat.toUpperCase()} -${pct}% (${turns} lượt).`);
+    pushLog(
+      logs,
+      "P",
+      `${actor.name} tung **${name}**, gây **${dealt}** và trấn áp ${stat.toUpperCase()} -${pct}% (${turns} lượt).`
+    );
     return;
   }
 
@@ -491,7 +538,7 @@ function doSkill(actor, action, allies, enemies, logs) {
   const target = action.target || pickRandomAlive(enemies);
   if (!target) return;
   if (!calcHit(actor, target)) {
-    logs.push(`${actor.name} thi triển **${name}**, nhưng ${target.name} lách mình tránh né.`);
+    pushLog(logs, "P", `${actor.name} thi triển **${name}**, nhưng ${target.name} lách mình tránh né.`);
     return;
   }
   const atk = Math.max(1, effStat(actor, "atk"));
@@ -502,7 +549,33 @@ function doSkill(actor, action, allies, enemies, logs) {
     dmg = Math.max(1, Math.round(dmg * m));
   }
   const dealt = applyDamage(target, dmg);
-  logs.push(`${actor.name} xuất **${name}**, đánh trúng ${target.name} (**${dealt}**).`);
+  pushLog(logs, "P", `${actor.name} xuất **${name}**, đánh trúng ${target.name} (**${dealt}**).`);
+}
+
+function pickLast2ForView(logs) {
+  // logs: [{side:'P'|'E', text:string}]
+  if (!logs.length) return [];
+  const last2 = logs.slice(-2);
+  // Nếu đã có log phe ta trong 2 dòng mới nhất => giữ nguyên
+  if (last2.some((x) => x.side === "P")) return last2.map((x) => x.text);
+
+  // Nếu 2 dòng mới nhất đều là địch, cố gắng kéo thêm 1 dòng phe ta gần nhất để người chơi thấy mình ra tay.
+  let iP = -1;
+  let iE = -1;
+  for (let i = logs.length - 1; i >= 0; i--) {
+    const side = logs[i]?.side;
+    if (iE < 0 && side === "E") iE = i;
+    if (iP < 0 && side === "P") iP = i;
+    if (iP >= 0 && iE >= 0) break;
+  }
+  if (iP >= 0 && iE >= 0) {
+    const pair = [
+      { i: iP, t: logs[iP].text },
+      { i: iE, t: logs[iE].text },
+    ].sort((a, b) => a.i - b.i);
+    return pair.map((x) => x.t).slice(-2);
+  }
+  return last2.map((x) => x.text);
 }
 
 function anyAlive(arr) {
@@ -515,6 +588,10 @@ function simulateBattle({ party, enemies, maxTurns = 60 }) {
 
   while (turn < maxTurns && anyAlive(party) && anyAlive(enemies)) {
     turn += 1;
+
+    // Enrage nhẹ để tránh trận kéo quá dài
+    const rage = clamp(1 + Math.max(0, turn - 18) * 0.05, 1, 2.2);
+    for (const ent of [...party, ...enemies]) ent._rageMult = rage;
 
     // tick cooldown/buff/debuff
     for (const ent of [...party, ...enemies]) tickTurns(ent);
@@ -541,14 +618,14 @@ function simulateBattle({ party, enemies, maxTurns = 60 }) {
       }
 
       // giữ log gọn
-      if (logs.length > 8) logs.splice(0, logs.length - 8);
+      if (logs.length > 12) logs.splice(0, logs.length - 12);
     }
   }
 
   const win = anyAlive(party) && !anyAlive(enemies);
   const lose = !anyAlive(party);
   const outcome = win ? "win" : lose ? "lose" : "timeout";
-  return { outcome, turn, logs };
+  return { outcome, turn, logs: pickLast2ForView(logs) };
 }
 
 function cloneForView(arr) {
@@ -556,11 +633,20 @@ function cloneForView(arr) {
     id: x.id,
     kind: x.kind,
     name: x.name,
+    element: x.element || null,
+    level: Number(x.level) || 0,
+    realm: x.realm ? String(x.realm) : '',
     alive: !!x.alive,
     hp: Math.max(0, Math.round(x.hp || 0)),
     mp: Math.max(0, Math.round(x.mp || 0)),
     shield: Math.max(0, Math.round(x.shield || 0)),
-    stats: { maxHp: Math.max(1, Math.round(x.stats?.maxHp || 1)) },
+    stats: {
+      atk: Math.max(0, Math.round(Number(x.stats?.atk) || 0)),
+      def: Math.max(0, Math.round(Number(x.stats?.def) || 0)),
+      spd: Math.max(0, Math.round(Number(x.stats?.spd) || 0)),
+      maxHp: Math.max(1, Math.round(Number(x.stats?.maxHp) || 1)),
+      maxMp: Math.max(0, Math.round(Number(x.stats?.maxMp) || 0)),
+    },
   }));
 }
 
@@ -570,7 +656,7 @@ function simulateBattleTimeline({ party, enemies, maxTurns = 60, keyframeEvery =
   const keyframes = [];
 
   const pushFrame = () => {
-    const last2 = logs.slice(-2);
+    const last2 = pickLast2ForView(logs);
     keyframes.push({
       turn,
       party: cloneForView(party),
@@ -583,6 +669,10 @@ function simulateBattleTimeline({ party, enemies, maxTurns = 60, keyframeEvery =
 
   while (turn < maxTurns && anyAlive(party) && anyAlive(enemies)) {
     turn += 1;
+
+    // Enrage nhẹ để tránh trận kéo quá dài
+    const rage = clamp(1 + Math.max(0, turn - 18) * 0.05, 1, 2.2);
+    for (const ent of [...party, ...enemies]) ent._rageMult = rage;
     for (const ent of [...party, ...enemies]) tickTurns(ent);
 
     const order = [...party.filter(isAlive), ...enemies.filter(isAlive)].sort((a, b) => {
@@ -604,7 +694,7 @@ function simulateBattleTimeline({ party, enemies, maxTurns = 60, keyframeEvery =
         doBasicAttack(actor, target, logs);
       }
 
-      if (logs.length > 8) logs.splice(0, logs.length - 8);
+      if (logs.length > 12) logs.splice(0, logs.length - 12);
     }
 
     if (turn % Math.max(1, keyframeEvery) === 0) pushFrame();
@@ -614,7 +704,7 @@ function simulateBattleTimeline({ party, enemies, maxTurns = 60, keyframeEvery =
   const lose = !anyAlive(party);
   const outcome = win ? "win" : lose ? "lose" : "timeout";
   if (keyframes.length === 0 || keyframes[keyframes.length - 1].turn !== turn) pushFrame();
-  return { outcome, turn, logs: logs.slice(-2), keyframes };
+  return { outcome, turn, logs: pickLast2ForView(logs), keyframes };
 }
 
 module.exports = {

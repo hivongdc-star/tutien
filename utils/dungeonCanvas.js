@@ -191,12 +191,16 @@ async function drawSide(
       team === "party" ? "rgba(46, 204, 113, 0.9)" : "rgba(231, 76, 60, 0.9)",
       "rgba(0,0,0,0.35)"
     );
-
     ctx.font = `14px ${FONT}`;
     ctx.fillStyle = "rgba(255,255,255,0.85)";
     const shield = Math.max(0, Number(ent.shield) || 0);
     const shieldTxt = shield > 0 ? ` +${shield}` : "";
-    ctx.fillText(`${hp}/${maxHp}${shieldTxt}`, x + w - 18 - 90, cy + 74);
+    const hpTxt = `${hp}/${maxHp}${shieldTxt}`;
+    ctx.save();
+    ctx.textAlign = "right";
+    ctx.fillText(hpTxt, x + w - 22, cy + 74);
+    ctx.restore();
+
 
     // MP bar (only for party)
     if (team === "party") {

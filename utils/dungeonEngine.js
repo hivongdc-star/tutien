@@ -179,7 +179,7 @@ function generateEnemies({ party, mapKey, diff, floor, isBoss }) {
     if (isBoss) {
       atk = Math.round(atk * 1.4);
       def = Math.round(def * 1.2);
-      maxHp = Math.round(maxHp * 1.8);
+      maxHp = Math.round(maxHp * 1.65);
       spd = Math.round(spd * 1.1);
     }
 
@@ -354,8 +354,9 @@ function calcDamage(attacker, target, rawDmg) {
   // - Giảm dần theo đường cong (diminishing returns), hạn chế "đánh cùn" kéo 60 turn.
   // - Vẫn giữ target=player nặng hơn một chút để tránh one-shot.
   const turn = Math.max(1, Number(attacker._turn) || 1);
-  const decay = turn > 18 ? clamp((turn - 18) * 0.012, 0, 0.28) : 0; // anti-stall nhẹ theo thời gian
-  const armorScale = isTargetPlayer ? 2.8 : 2.1;
+  // anti-stall mạnh hơn: bắt đầu sớm để trận không kéo tới 60 lượt
+  const decay = turn > 12 ? clamp((turn - 12) * 0.02, 0, 0.42) : 0;
+  const armorScale = isTargetPlayer ? 2.8 : 1.75;
 
   const armorBase = Math.max(0, def * (1 - pen / 100));
   let armor = Math.round(armorBase * armorScale * (1 - decay));
@@ -366,9 +367,11 @@ function calcDamage(attacker, target, rawDmg) {
 
   let after = Math.max(1, Math.round(scaledRaw * mult * (1 - reduce / 100)));
 
-  // Minimum damage floor vs enemy (không áp cho player) để không có case "đánh 1-3" mãi.
+  // Minimum damage floor vs enemy (không áp cho player): tăng dần theo lượt để chống kéo dài (heal/shield).
   if (!isTargetPlayer) {
-    const floor = Math.max(1, Math.round(scaledRaw * 0.08));
+    const extra = turn > 12 ? clamp((turn - 12) * 0.01, 0, 0.12) : 0; // 10% -> 22%
+    const floorPct = 0.10 + extra;
+    const floor = Math.max(1, Math.round(scaledRaw * floorPct));
     after = Math.max(after, floor);
   }
 
@@ -535,7 +538,7 @@ function doBasicAttack(actor, target, logs) {
   }
   const atk = Math.max(1, effStat(actor, "atk"));
   // nhịp nhanh hơn một chút (ưu tiên tăng DPS cho người chơi để tránh timeout)
-  const coef = actor.kind === "player" ? 1.18 : 1.08;
+  const coef = actor.kind === "player" ? 1.24 : 1.10;
   let dmg = calcDamage(actor, target, Math.round(atk * coef));
   const crit = tryCrit(actor, target);
   if (crit) {
@@ -710,8 +713,8 @@ function simulateBattle({ party, enemies, maxTurns = 60 }) {
     turn += 1;
 
     // Enrage: ưu tiên giúp người chơi kết thúc trận, tránh đánh lê thê nhưng không làm quái "snowball"
-    const rageP = clamp(1 + Math.max(0, turn - 14) * 0.06, 1, 2.4);
-    const rageE = clamp(1 + Math.max(0, turn - 20) * 0.04, 1, 1.6);
+    const rageP = clamp(1 + Math.max(0, turn - 10) * 0.07, 1, 3.0);
+    const rageE = clamp(1 + Math.max(0, turn - 16) * 0.05, 1, 2.0);
     for (const ent of party) ent._rageMult = rageP;
     for (const ent of enemies) ent._rageMult = rageE;
     for (const ent of [...party, ...enemies]) ent._turn = turn;
@@ -795,8 +798,8 @@ function simulateBattleTimeline({ party, enemies, maxTurns = 60, keyframeEvery =
     turn += 1;
 
     // Enrage: ưu tiên giúp người chơi kết thúc trận, tránh đánh lê thê nhưng không làm quái "snowball"
-    const rageP = clamp(1 + Math.max(0, turn - 14) * 0.06, 1, 2.4);
-    const rageE = clamp(1 + Math.max(0, turn - 20) * 0.04, 1, 1.6);
+    const rageP = clamp(1 + Math.max(0, turn - 10) * 0.07, 1, 3.0);
+    const rageE = clamp(1 + Math.max(0, turn - 16) * 0.05, 1, 2.0);
     for (const ent of party) ent._rageMult = rageP;
     for (const ent of enemies) ent._rageMult = rageE;
     for (const ent of [...party, ...enemies]) ent._turn = turn;

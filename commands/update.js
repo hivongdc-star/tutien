@@ -96,7 +96,7 @@ module.exports = {
       isUpdating = true;
       // ACK nhanh (tránh user tưởng bot treo)
       await msg.reply(
-        "🔄 Đã nhận lệnh update. Bot sẽ **git pull**, **npm ci** và **restart**."
+        "🔄 Đã nhận lệnh update."
       );
 
       const opts = parseArgs(args);

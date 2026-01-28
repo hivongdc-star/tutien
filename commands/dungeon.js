@@ -39,6 +39,13 @@ const MAPS = [
   { key: "ocean", name: "Hàn Hải Long Cung", file: "ocean.png" },
   { key: "default", name: "Vô Danh Tàn Điện", file: "default.png" },
   { key: "black", name: "Hắc Vực Ma Quật", file: "black.png" },
+
+  // --- Map mở rộng (bạn tự thay ảnh trong assets/backgrounds/*) ---
+  { key: "sakura", name: "Bích Anh Hoa Lộ", file: "sakura.png" },
+  { key: "skytemple", name: "Vân Thiên Tiên Các", file: "skytemple.png" },
+  { key: "ruins", name: "Cổ Tự Tàn Tích", file: "ruins.png" },
+  { key: "ice", name: "Hàn Băng U Cốc", file: "ice.png" },
+  { key: "desert", name: "Hoàng Sa Di Tích", file: "desert.png" },
 ];
 
 function pickDifficulty() {

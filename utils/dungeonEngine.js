@@ -127,6 +127,12 @@ function enemyNamePool(mapKey) {
     forest: ["U Linh Thụ Yêu", "Huyết Ảnh Lang Vương", "Thanh Mộc Tà Linh", "Phong Ấn Cổ Thú"],
     lava: ["Liệt Diễm Ma Tướng", "Hỏa Ngục Huyết Linh", "Nham Tinh Cự Thú", "Viêm Vương Tàn Hồn"],
     ocean: ["Hàn Hải Xà Linh", "Thủy Ảnh Ma Ngư", "Băng Linh Cổ Thú", "Huyền Thủy Sát Tướng"],
+    // Map mở rộng
+    sakura: ["Anh Hoa Linh Hồ", "Bích Diệp Yêu Cơ", "Hoa Ảnh Tà Linh", "Hương Phách Cổ Thú"],
+    skytemple: ["Vân Tiêu Hộ Vệ", "Thiên Quang Linh Tướng", "Ngọc Vân Dị Thú", "Hạo Thiên Cổ Hồn"],
+    ruins: ["Cổ Tự Khôi Lỗi", "Tàn Kinh U Linh", "Phế Tích Quỷ Tướng", "Thạch Ấn Dị Thú"],
+    ice: ["Hàn Băng Ma Linh", "Bạch Sương Cổ Thú", "Băng Ảnh Quỷ Hầu", "Hàn Vực Sát Tướng"],
+    desert: ["Hoàng Sa Huyết Linh", "Sa Ảnh Quỷ Tướng", "Cự Hạt Dị Thú", "Cát Cốt Cổ Hồn"],
     black: ["Hắc Vực Quỷ Tướng", "Ma Ảnh Hồn Thể", "Tà Linh Vô Diện", "U Minh Cổ Thú"],
     default: ["Tàn Điện Khôi Lỗi", "Cổ Ấn U Linh", "Thiên Cơ Tàn Hồn", "Hư Không Dị Thú"],
   };

@@ -199,7 +199,7 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
     await sleep(rand(900, 1400));
 
     // Battle timeline
-    const { outcome, keyframes, turn } = simulateBattleTimeline({ party, enemies, maxTurns: 70, keyframeEvery: 2 });
+    const { outcome, keyframes, turn } = simulateBattleTimeline({ party, enemies, maxTurns: 60, keyframeEvery: 2 });
     // Play keyframes (giới hạn để tránh spam)
     const frames = keyframes.length > 8 ? [keyframes[0], ...keyframes.slice(-7)] : keyframes;
     for (const kf of frames) {
@@ -222,6 +222,28 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
         .setImage("attachment://dungeon.png");
       await renderAndEdit(lobbyMessage, { embeds: [emb], files: [file], components: [] });
       await sleep(rand(550, 850));
+    }
+
+    // Refresh ảnh kết thúc combat (thắng) để cinematic liền mạch
+    if (outcome === "win") {
+      const resPng = await drawDungeonCard({
+        scene: "result",
+        map,
+        diffName: dm.name,
+        floor,
+        totalFloors: floors,
+        party,
+        enemies,
+        turn,
+      });
+      const resFile = new AttachmentBuilder(resPng, { name: "dungeon.png" });
+      const resEmbed = new EmbedBuilder()
+        .setTitle(isBoss ? "✅ Boss bại trận" : "✅ Thông quan")
+        .setColor(dm.color)
+        .setDescription(isBoss ? "Chấn động động phủ... Boss đã ngã xuống." : "Tầng này đã bị phá giải." )
+        .setImage("attachment://dungeon.png");
+      await renderAndEdit(lobbyMessage, { embeds: [resEmbed], files: [resFile], components: [] });
+      await sleep(rand(650, 950));
     }
 
     if (outcome !== "win") {

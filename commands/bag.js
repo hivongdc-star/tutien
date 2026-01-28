@@ -772,8 +772,9 @@ async function openSkillsView(msg, user, nonce) {
   let craftSkillId = null;
 
   const slotLabel = (slot) => {
+    if (!slot) return "(chưa chọn)";
     if (slot === "passive") return "Bị động";
-    const idx = Number(slot?.slice(1) || 0);
+    const idx = Number(slot.slice(1) || 0);
     return `Chủ động ${idx}`;
   };
 
@@ -796,7 +797,12 @@ async function openSkillsView(msg, user, nonce) {
 
   const ownedSkills = () => {
     const ids = Array.isArray(u.skills?.owned) ? u.skills.owned : [];
-    return ids.map((id) => getSkill(id)).filter(Boolean);
+    return ids
+      .map((id) => {
+        const s = getSkill(id);
+        return s ? { id, ...s } : null;
+      })
+      .filter(Boolean);
   };
 
   const buildEmbed = () => {

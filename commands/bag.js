@@ -25,7 +25,15 @@ const {
   getSkill,
   listSkills,
   craftSkill,
+  describeSkillShort,
+  describeSkillLong,
 } = require("../utils/skills");
+
+function shorten100(s) {
+  const str = String(s || "").replace(/\s+/g, " ").trim();
+  if (str.length <= 100) return str;
+  return str.slice(0, 97).trimEnd() + "…";
+}
 
 function ensureMining(user) {
   if (!user.mining) user.mining = {};
@@ -127,7 +135,8 @@ async function openSkillsView(msg, user, nonce) {
     const options = pool.slice(0, 25).map((s) => ({
       label: s.name.slice(0, 100),
       value: s.id,
-      description: s.rarity === "common" ? "Thường" : s.rarity === "rare" ? "Hiếm" : "Cực hiếm",
+      // Discord giới hạn 100 ký tự/description
+      description: shorten100(describeSkillShort(s)),
     }));
     return new ActionRowBuilder().addComponents(
       new StringSelectMenuBuilder()
@@ -146,7 +155,7 @@ async function openSkillsView(msg, user, nonce) {
     const options = candidates.slice(0, 25).map((s) => ({
       label: s.name.slice(0, 100),
       value: s.id,
-      description: rarity === "epic" ? "Cực hiếm" : "Hiếm",
+      description: shorten100(describeSkillShort(s)),
     }));
     if (!options.length) {
       return new ActionRowBuilder().addComponents(
@@ -823,20 +832,26 @@ async function openSkillsView(msg, user, nonce) {
       );
 
     if (mode === "equip") {
+      const picked = selectedSkillId ? getSkill(selectedSkillId) : null;
+      const pickedDesc = picked ? describeSkillLong(picked) : null;
       emb.addFields({
         name: "Chọn trang bị",
         value:
           `Slot: **${slotLabel(selectedSlot)}**\n` +
-          `Bí kíp: ${selectedSkillId ? `**${getSkill(selectedSkillId)?.name || "?"}**` : "_(chưa chọn)_"}`,
+          `Bí kíp: ${selectedSkillId ? `**${getSkill(selectedSkillId)?.name || "?"}**` : "_(chưa chọn)_"}` +
+          (pickedDesc ? `\n\n${pickedDesc}` : ""),
       });
     }
 
     if (mode === "craft") {
+      const picked = craftSkillId ? getSkill(craftSkillId) : null;
+      const pickedDesc = picked ? describeSkillLong(picked) : null;
       emb.addFields({
         name: "Ghép bí kíp",
         value:
           `Loại: **${craftRarity === "epic" ? "Cực hiếm" : "Hiếm"}**\n` +
-          `Chọn: ${craftSkillId ? `**${getSkill(craftSkillId)?.name || "?"}**` : "_(chưa chọn)_"}`,
+          `Chọn: ${craftSkillId ? `**${getSkill(craftSkillId)?.name || "?"}**` : "_(chưa chọn)_"}` +
+          (pickedDesc ? `\n\n${pickedDesc}` : ""),
       });
     }
 
@@ -890,7 +905,8 @@ async function openSkillsView(msg, user, nonce) {
         const opts = list.slice(0, 25).map((s) => ({
           label: s.name.slice(0, 100),
           value: s.id,
-          description: `${s.rarity === "epic" ? "Cực hiếm" : s.rarity === "rare" ? "Hiếm" : "Thường"}`,
+          // Discord giới hạn 100 ký tự/description
+          description: shorten100(describeSkillShort(s)),
         }));
         if (opts.length === 0) {
           opts.push({ label: "(Không có bí kíp phù hợp)", value: "none" });
@@ -948,11 +964,15 @@ async function openSkillsView(msg, user, nonce) {
         return have >= need;
       });
 
-      const opts = okList.slice(0, 25).map((s) => ({
-        label: s.name.slice(0, 100),
-        value: s.id,
-        description: `Cần ${s.rarity === "epic" ? 40 : 12} mảnh`,
-      }));
+      const opts = okList.slice(0, 25).map((s) => {
+        const need = s.rarity === "epic" ? 40 : 12;
+        return {
+          label: s.name.slice(0, 100),
+          value: s.id,
+          // Discord giới hạn 100 ký tự/description
+          description: shorten100(`Cần ${need} mảnh • ${describeSkillShort(s)}`),
+        };
+      });
       if (opts.length === 0) {
         opts.push({ label: "(Chưa đủ mảnh để ghép)", value: "none" });
       }

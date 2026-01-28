@@ -153,6 +153,7 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
     party,
     enemies: [],
     turn: 0,
+    logs: [],
   });
   const enterFile = new AttachmentBuilder(enterPng, { name: "dungeon.png" });
   const enterEmbed = new EmbedBuilder()
@@ -185,6 +186,7 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
       party,
       enemies,
       turn: 0,
+      logs: [],
     });
     const preFile = new AttachmentBuilder(prePng, { name: "dungeon.png" });
     const preEmbed = new EmbedBuilder()
@@ -212,6 +214,7 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
         party: kf.party,
         enemies: kf.enemies,
         turn: kf.turn,
+        logs: kf.logs || [],
       });
       const file = new AttachmentBuilder(png, { name: "dungeon.png" });
       const logText = (kf.logs || []).slice(-2).map((s) => `• ${s}`).join("\n") || "_..._";
@@ -226,6 +229,7 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
 
     // Refresh ảnh kết thúc combat (thắng) để cinematic liền mạch
     if (outcome === "win") {
+      const lastLogs = (keyframes && keyframes.length ? keyframes[keyframes.length - 1].logs : []) || [];
       const resPng = await drawDungeonCard({
         scene: "result",
         map,
@@ -235,6 +239,7 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
         party,
         enemies,
         turn,
+        logs: lastLogs,
       });
       const resFile = new AttachmentBuilder(resPng, { name: "dungeon.png" });
       const resEmbed = new EmbedBuilder()
@@ -247,6 +252,7 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
     }
 
     if (outcome !== "win") {
+      const lastLogs = (keyframes && keyframes.length ? keyframes[keyframes.length - 1].logs : []) || [];
       // wipe / timeout => thua
       const penalty = penaltyOnWipe(diff);
       for (const uid of memberIds) {
@@ -263,6 +269,7 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
         party,
         enemies,
         turn,
+        logs: lastLogs,
       });
       const endFile = new AttachmentBuilder(endPng, { name: "dungeon.png" });
       const endEmbed = new EmbedBuilder()
@@ -311,6 +318,7 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
         party,
         enemies: [],
         turn: 0,
+        logs: [],
       });
       const decFile = new AttachmentBuilder(decPng, { name: "dungeon.png" });
       const decEmbed = new EmbedBuilder()
@@ -389,6 +397,7 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
     party,
     enemies: [],
     turn: 0,
+    logs: [],
   });
   const endFile = new AttachmentBuilder(endPng, { name: "dungeon.png" });
   const endEmbed = new EmbedBuilder()

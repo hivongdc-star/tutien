@@ -28,6 +28,27 @@ function clamp(n, min, max) {
   return Math.max(min, Math.min(max, x));
 }
 
+function fmtInt(n) {
+  return Math.max(0, Math.round(Number(n) || 0)).toLocaleString("vi-VN");
+}
+
+function formatBuffDebuffLine(ent) {
+  // ent.buffs/debuffs: { atk|def|spd: {pct, turns} } (được clone ra từ dungeonEngine)
+  const parts = [];
+  const order = ["atk", "def", "spd"];
+  for (const st of order) {
+    const b = ent?.buffs?.[st];
+    const d = ent?.debuffs?.[st];
+    const bPct = Math.round(Number(b?.pct) || 0);
+    const bTurns = Math.round(Number(b?.turns) || 0);
+    const dPct = Math.round(Number(d?.pct) || 0);
+    const dTurns = Math.round(Number(d?.turns) || 0);
+    if (bPct > 0 && bTurns > 0) parts.push(`${st.toUpperCase()} +${bPct}% (${bTurns})`);
+    if (dPct > 0 && dTurns > 0) parts.push(`${st.toUpperCase()} -${dPct}% (${dTurns})`);
+  }
+  return parts.slice(0, 3).join(" • ");
+}
+
 function drawCover(ctx, img, x, y, w, h) {
   const r = Math.max(w / img.width, h / img.height);
   const nw = img.width * r;
@@ -116,7 +137,7 @@ async function drawAvatar(ctx, x, y, size, team, el) {
   ctx.restore();
 }
 
-function drawHeader(ctx, W, mapName, diffName, sceneTag, floor, totalFloors, turn) {
+function drawHeader(ctx, W, mapName, diffName, sceneTag, floor, totalFloors, turn, resultChip) {
   // top banner
   fillRoundRect(ctx, 18, 14, W - 36, 68, 16, "rgba(0,0,0,0.55)");
   strokeRoundRect(ctx, 18, 14, W - 36, 68, 16, "rgba(255,255,255,0.18)");
@@ -129,19 +150,52 @@ function drawHeader(ctx, W, mapName, diffName, sceneTag, floor, totalFloors, tur
   ctx.fillStyle = "rgba(255,255,255,0.85)";
   const t = turn ? ` • Lượt ${turn}` : "";
   ctx.fillText(`${sceneTag} • Tầng ${floor}/${totalFloors}${t}`, 36, 74);
+
+  if (resultChip) {
+    const txt = String(resultChip).toUpperCase();
+    const padX = 14;
+    const padY = 8;
+    ctx.font = `bold 16px ${FONT}`;
+    const tw = ctx.measureText(txt).width;
+    const chipW = Math.ceil(tw + padX * 2);
+    const chipH = 32;
+    const cx = W - 36 - chipW;
+    const cy = 26;
+
+    let fg = "rgba(255,255,255,0.92)";
+    let bg = "rgba(0,0,0,0.45)";
+    if (txt.includes("THẮNG") || txt.includes("WIN")) bg = "rgba(46, 204, 113, 0.28)";
+    else if (txt.includes("THUA") || txt.includes("LOSE")) bg = "rgba(231, 76, 60, 0.30)";
+    else if (txt.includes("TIME")) bg = "rgba(241, 196, 15, 0.28)";
+
+    fillRoundRect(ctx, cx, cy, chipW, chipH, 16, bg);
+    strokeRoundRect(ctx, cx, cy, chipW, chipH, 16, "rgba(255,255,255,0.18)");
+    ctx.fillStyle = fg;
+    ctx.textAlign = "center";
+    ctx.fillText(txt, cx + chipW / 2, cy + chipH / 2 + 6);
+    ctx.textAlign = "left";
+  }
 }
 
-async function drawSide(
-  ctx,
-  x,
-  y,
-  w,
-  title,
-  team,
-  entities
-) {
-  fillRoundRect(ctx, x, y, w, 392, 18, "rgba(0,0,0,0.46)");
-  strokeRoundRect(ctx, x, y, w, 392, 18, "rgba(255,255,255,0.14)");
+function ellipsize(ctx, text, maxWidth) {
+  const s = String(text || "");
+  if (ctx.measureText(s).width <= maxWidth) return s;
+  const ell = "…";
+  let lo = 0;
+  let hi = s.length;
+  while (lo < hi) {
+    const mid = Math.floor((lo + hi) / 2);
+    const t = s.slice(0, mid).trimEnd() + ell;
+    if (ctx.measureText(t).width <= maxWidth) lo = mid + 1;
+    else hi = mid;
+  }
+  const cut = Math.max(0, lo - 1);
+  return s.slice(0, cut).trimEnd() + ell;
+}
+
+async function drawSide(ctx, x, y, w, h, title, team, entities) {
+  fillRoundRect(ctx, x, y, w, h, 18, "rgba(0,0,0,0.46)");
+  strokeRoundRect(ctx, x, y, w, h, 18, "rgba(255,255,255,0.14)");
 
   ctx.font = `bold 20px ${FONT}`;
   ctx.fillStyle = team === "party" ? "#a5d6ff" : "#ffb3b3";
@@ -153,19 +207,39 @@ async function drawSide(
   const defIcon = await icon("def.png");
   const spdIcon = await icon("spd.png");
 
-  let cy = y + 54;
-  for (const ent of entities.slice(0, 3)) {
-    // block
-    fillRoundRect(ctx, x + 14, cy, w - 28, 104, 16, "rgba(255,255,255,0.06)");
-    strokeRoundRect(ctx, x + 14, cy, w - 28, 104, 16, "rgba(255,255,255,0.10)");
+  if (!entities || entities.length === 0) {
+    ctx.font = `16px ${FONT}`;
+    ctx.fillStyle = "rgba(255,255,255,0.55)";
+    ctx.fillText("(trống)", x + 18, y + 72);
+    return;
+  }
 
-    const av = 58;
-    await drawAvatar(ctx, x + 26, cy + 20, av, team, ent.element);
+  const list = (entities || []).slice(0, 3);
+  // Fit 3 slots trong 1000x520: nén chiều cao block để không đè footer.
+  const blockGap = 10;
+  const topPad = 54;
+  const bottomPad = 16;
+  const blockH = Math.max(92, Math.floor((h - topPad - bottomPad - blockGap * (list.length - 1)) / Math.max(1, list.length)));
+
+  let cy = y + topPad;
+  for (const ent of list) {
+    const isBoss = ent.kind === "boss" || String(ent.name || "").toLowerCase().includes("boss");
+    // block
+    fillRoundRect(ctx, x + 14, cy, w - 28, blockH, 16, "rgba(255,255,255,0.06)");
+    strokeRoundRect(ctx, x + 14, cy, w - 28, blockH, 16, "rgba(255,255,255,0.10)");
+    if (isBoss) {
+      strokeRoundRect(ctx, x + 14, cy, w - 28, blockH, 16, "rgba(241, 196, 15, 0.22)", 2);
+    }
+
+    const av = Math.min(56, Math.max(50, Math.floor(blockH * 0.56)));
+    await drawAvatar(ctx, x + 26, cy + 16, av, team, ent.element);
 
     // name
     ctx.font = `bold 18px ${FONT}`;
     ctx.fillStyle = ent.alive ? "#fff" : "rgba(255,255,255,0.55)";
-    ctx.fillText(String(ent.name || "?").slice(0, 18), x + 26 + av + 14, cy + 42);
+    const nameX = x + 26 + av + 14;
+    const nameMaxW = w - 28 - (av + 14 + 26);
+    ctx.fillText(ellipsize(ctx, String(ent.name || "?"), nameMaxW), nameX, cy + 34);
 
     // realm/level
     ctx.font = `13px ${FONT}`;
@@ -173,32 +247,54 @@ async function drawSide(
     const lv = Number(ent.level) ? `Lv ${Number(ent.level)}` : "";
     const realm = ent.realm ? String(ent.realm).replace(" - Tầng ", " • Tầng ") : "";
     const meta = (lv && realm) ? `${lv} • ${realm}` : (lv || realm || "");
-    if (meta) ctx.fillText(meta.slice(0, 32), x + 26 + av + 14, cy + 58);
+    if (meta) {
+      ctx.font = `13px ${FONT}`;
+      ctx.fillStyle = "rgba(255,255,255,0.72)";
+      ctx.fillText(ellipsize(ctx, meta, nameMaxW), nameX, cy + 52);
+    }
 
-    // HP bar
+    // HP bar (+shield)
     const maxHp = Math.max(1, Number(ent.stats?.maxHp) || 1);
     const hp = clamp(ent.hp, 0, maxHp);
+    const shield = Math.max(0, Number(ent.shield) || 0);
     const hpRatio = hp / maxHp;
+    const totalRatio = clamp((hp + shield) / maxHp, 0, 1);
 
-    ctx.drawImage(hpIcon, x + 26 + av + 14, cy + 60, 18, 18);
-    drawBar(
-      ctx,
-      x + 26 + av + 14 + 22,
-      cy + 62,
-      w - 28 - (av + 14 + 22 + 18 + 18),
-      14,
-      hpRatio,
-      team === "party" ? "rgba(46, 204, 113, 0.9)" : "rgba(231, 76, 60, 0.9)",
-      "rgba(0,0,0,0.35)"
-    );
+    const barX = nameX + 22;
+    const barY = cy + 56;
+    const barW = w - 28 - (av + 14 + 22 + 18 + 18);
+    const barH = 14;
+
+    ctx.drawImage(hpIcon, nameX, cy + 54, 18, 18);
+
+    const rr = Math.floor(barH / 2);
+    fillRoundRect(ctx, barX, barY, barW, barH, rr, "rgba(0,0,0,0.35)");
+    const hpW = Math.floor(barW * clamp(hpRatio, 0, 1));
+    if (hpW > 0) {
+      fillRoundRect(
+        ctx,
+        barX,
+        barY,
+        hpW,
+        barH,
+        rr,
+        team === "party" ? "rgba(46, 204, 113, 0.9)" : "rgba(231, 76, 60, 0.9)"
+      );
+    }
+    const totW = Math.floor(barW * clamp(totalRatio, 0, 1));
+    if (shield > 0 && totW > hpW) {
+      ctx.fillStyle = "rgba(116, 185, 255, 0.65)";
+      if (hpW === 0) fillRoundRect(ctx, barX, barY, totW, barH, rr, ctx.fillStyle);
+      else ctx.fillRect(barX + hpW, barY, totW - hpW, barH);
+    }
+    strokeRoundRect(ctx, barX, barY, barW, barH, rr, "rgba(255,255,255,0.18)", 1);
     ctx.font = `14px ${FONT}`;
     ctx.fillStyle = "rgba(255,255,255,0.85)";
-    const shield = Math.max(0, Number(ent.shield) || 0);
-    const shieldTxt = shield > 0 ? ` +${shield}` : "";
-    const hpTxt = `${hp}/${maxHp}${shieldTxt}`;
+    const shieldTxt = shield > 0 ? ` (+${fmtInt(shield)})` : "";
+    const hpTxt = `${fmtInt(hp)}/${fmtInt(maxHp)}${shieldTxt}`;
     ctx.save();
     ctx.textAlign = "right";
-    ctx.fillText(hpTxt, x + w - 22, cy + 74);
+    ctx.fillText(hpTxt, x + w - 22, cy + 68);
     ctx.restore();
 
 
@@ -207,17 +303,25 @@ async function drawSide(
       const maxMp = Math.max(1, Number(ent.stats?.maxMp) || 1);
       const mp = clamp(ent.mp, 0, maxMp);
       const mpRatio = mp / maxMp;
-      ctx.drawImage(mpIcon, x + 26 + av + 14, cy + 76, 18, 18);
+      ctx.drawImage(mpIcon, nameX, cy + 70, 18, 18);
       drawBar(
         ctx,
-        x + 26 + av + 14 + 22,
-        cy + 78,
+        barX,
+        cy + 72,
         w - 28 - (av + 14 + 22 + 18 + 18),
         12,
         mpRatio,
         "rgba(52, 152, 219, 0.9)",
         "rgba(0,0,0,0.30)"
       );
+
+      // MP text
+      ctx.save();
+      ctx.font = `12px ${FONT}`;
+      ctx.fillStyle = "rgba(255,255,255,0.68)";
+      ctx.textAlign = "right";
+      ctx.fillText(`${fmtInt(mp)}/${fmtInt(maxMp)}`, x + w - 22, cy + 84);
+      ctx.restore();
     }
 
     // stats row
@@ -226,21 +330,59 @@ async function drawSide(
     const sp = Math.max(0, Math.round(Number(ent.stats?.spd) || 0));
 
     const sx = x + 26 + av + 14;
-    const sy = cy + 96;
+    const sy = cy + Math.max(82, blockH - 12);
+    const tag = (st) => {
+      const b = Math.round(Number(ent?.buffs?.[st]?.pct) || 0);
+      const bt = Math.round(Number(ent?.buffs?.[st]?.turns) || 0);
+      const d = Math.round(Number(ent?.debuffs?.[st]?.pct) || 0);
+      const dt = Math.round(Number(ent?.debuffs?.[st]?.turns) || 0);
+      if (b > 0 && bt > 0) return { t: `↑${b}%`, c: "rgba(46, 204, 113, 0.95)" };
+      if (d > 0 && dt > 0) return { t: `↓${d}%`, c: "rgba(231, 76, 60, 0.95)" };
+      return null;
+    };
+
+    ctx.font = `13px ${FONT}`;
+    ctx.fillStyle = "rgba(255,255,255,0.86)";
+
     ctx.drawImage(atkIcon, sx, sy - 12, 16, 16);
-    ctx.fillText(String(atk), sx + 18, sy);
+    const atkStr = String(atk);
+    ctx.fillText(atkStr, sx + 18, sy);
+    const atkTag = tag("atk");
+    if (atkTag) {
+      ctx.font = `12px ${FONT}`;
+      ctx.fillStyle = atkTag.c;
+      ctx.fillText(atkTag.t, sx + 18 + ctx.measureText(atkStr).width + 6, sy);
+      ctx.font = `13px ${FONT}`;
+      ctx.fillStyle = "rgba(255,255,255,0.86)";
+    }
 
     ctx.drawImage(defIcon, sx + 78, sy - 12, 16, 16);
-    ctx.fillText(String(de), sx + 78 + 18, sy);
+    const deStr = String(de);
+    ctx.fillText(deStr, sx + 78 + 18, sy);
+    const defTag = tag("def");
+    if (defTag) {
+      ctx.font = `12px ${FONT}`;
+      ctx.fillStyle = defTag.c;
+      ctx.fillText(defTag.t, sx + 78 + 18 + ctx.measureText(deStr).width + 6, sy);
+      ctx.font = `13px ${FONT}`;
+      ctx.fillStyle = "rgba(255,255,255,0.86)";
+    }
 
     ctx.drawImage(spdIcon, sx + 156, sy - 12, 16, 16);
-    ctx.fillText(String(sp), sx + 156 + 18, sy);
+    const spStr = String(sp);
+    ctx.fillText(spStr, sx + 156 + 18, sy);
+    const spdTag = tag("spd");
+    if (spdTag) {
+      ctx.font = `12px ${FONT}`;
+      ctx.fillStyle = spdTag.c;
+      ctx.fillText(spdTag.t, sx + 156 + 18 + ctx.measureText(spStr).width + 6, sy);
+    }
 
-    cy += 114;
+    cy += blockH + blockGap;
   }
 }
 
-async function drawDungeonCard({ scene, map, diffName, floor, totalFloors, party, enemies, turn }) {
+async function drawDungeonCard({ scene, map, diffName, floor, totalFloors, party, enemies, turn, logs }) {
   const W = 1000;
   const H = 520;
   const canvas = createCanvas(W, H);
@@ -265,26 +407,55 @@ async function drawDungeonCard({ scene, map, diffName, floor, totalFloors, party
 
   // Header
   const tag = scene === "enter" ? "Nhập phòng" : scene === "result" ? "Kết thúc" : scene === "versus" ? "Đối đầu" : "Giao chiến";
-  drawHeader(ctx, W, map.name, diffName, tag, floor, totalFloors, turn);
+  let resultChip = null;
+  if (scene === "result") {
+    const pAlive = Array.isArray(party) && party.some((e) => e && e.alive && Number(e.hp) > 0);
+    const eAlive = Array.isArray(enemies) && enemies.some((e) => e && e.alive && Number(e.hp) > 0);
+    resultChip = pAlive && !eAlive ? "Thắng" : !pAlive ? "Thua" : "Time Out";
+  }
+  drawHeader(ctx, W, map.name, diffName, tag, floor, totalFloors, turn, resultChip);
+
+  // Layout: body + bottom bar (tránh đè nhau ở 1000x520)
+  const bodyY = 92;
+  const bottomBarH = 40;
+  const bottomBarY = H - 14 - bottomBarH;
+  const panelH = bottomBarY - bodyY - 8;
 
   // Middle content panels
-  await drawSide(ctx, 18, 96, 460, "Đạo hữu", "party", party);
-  await drawSide(ctx, 522, 96, 460, "Yêu tà", "enemy", enemies);
+  await drawSide(ctx, 18, bodyY, 460, panelH, "Đạo hữu", "party", party);
+  await drawSide(ctx, 522, bodyY, 460, panelH, "Yêu tà", "enemy", enemies);
 
   // VS badge
-  fillRoundRect(ctx, W / 2 - 44, 250, 88, 88, 44, "rgba(0,0,0,0.55)");
-  strokeRoundRect(ctx, W / 2 - 44, 250, 88, 88, 44, "rgba(255,255,255,0.18)", 2);
+  const badgeY = bodyY + Math.floor(panelH / 2) - 44;
+  fillRoundRect(ctx, W / 2 - 44, badgeY, 88, 88, 44, "rgba(0,0,0,0.55)");
+  strokeRoundRect(ctx, W / 2 - 44, badgeY, 88, 88, 44, "rgba(255,255,255,0.18)", 2);
   ctx.font = `bold 32px ${FONT}`;
   ctx.fillStyle = "rgba(255,255,255,0.9)";
   ctx.textAlign = "center";
-  ctx.fillText("VS", W / 2, 304);
+  ctx.fillText("VS", W / 2, badgeY + 54);
   ctx.textAlign = "left";
 
-  // Footer
-  fillRoundRect(ctx, 18, H - 44, W - 36, 30, 12, "rgba(0,0,0,0.45)");
+  // Bottom bar: log (2 dòng) + watermark
+  fillRoundRect(ctx, 18, bottomBarY, W - 36, bottomBarH, 12, "rgba(0,0,0,0.45)");
+  strokeRoundRect(ctx, 18, bottomBarY, W - 36, bottomBarH, 12, "rgba(255,255,255,0.12)");
+
+  const lines = (Array.isArray(logs) ? logs : []).filter(Boolean).slice(-2);
+  const leftTxt = lines.length ? lines.map((s) => `• ${s}`).join("\n") : "• ...";
   ctx.font = `14px ${FONT}`;
-  ctx.fillStyle = "rgba(255,255,255,0.75)";
-  ctx.fillText("Tu Tiên • Dungeon Cinematic", 36, H - 22);
+  ctx.fillStyle = "rgba(255,255,255,0.78)";
+  const maxW = W - 36 - 220;
+  const parts = String(leftTxt).split("\n");
+  for (let i = 0; i < Math.min(2, parts.length); i++) {
+    const t = ellipsize(ctx, parts[i], maxW);
+    ctx.fillText(t, 36, bottomBarY + 18 + i * 16);
+  }
+
+  ctx.save();
+  ctx.textAlign = "right";
+  ctx.font = `14px ${FONT}`;
+  ctx.fillStyle = "rgba(255,255,255,0.70)";
+  ctx.fillText("Tu Tiên • Dungeon", W - 36, bottomBarY + 26);
+  ctx.restore();
 
   return canvas.toBuffer("image/png");
 }

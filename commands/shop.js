@@ -11,7 +11,7 @@ const {
 const { listItems, buyItem } = require("../shop/shopUtils");
 const { loadUsers, saveUsers } = require("../utils/storage");
 const elements = require("../utils/element");
-const { listSkills, getSkill, ensureUserSkills, addOwnedSkill } = require("../utils/skills");
+const { listSkills, getSkill, ensureUserSkills, addOwnedSkill, describeSkillShort } = require("../utils/skills");
 
 function fmtLT(n) {
   return Number(n || 0).toLocaleString("vi-VN");
@@ -22,6 +22,12 @@ function menuRow(customId, placeholder, options) {
     new StringSelectMenuBuilder().setCustomId(customId).setPlaceholder(placeholder).addOptions(options)
   );
   return row;
+}
+
+function shorten100(s) {
+  const str = String(s || "").replace(/\s+/g, " ").trim();
+  if (str.length <= 100) return str;
+  return str.slice(0, 97).trimEnd() + "…";
 }
 
 module.exports = {
@@ -106,7 +112,7 @@ module.exports = {
           const options = skillList.slice(0, 25).map((s) => ({
             label: s.name.slice(0, 100),
             value: `skill:${s.id}`,
-            description: `${fmtLT(s.price)} LT • ${s.kind === "passive" ? "Bị động" : "Chủ động"}`.slice(0, 100),
+            description: shorten100(`${fmtLT(s.price)} LT • ${describeSkillShort(s)}`),
           }));
 
           const emb = new EmbedBuilder()

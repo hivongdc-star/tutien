@@ -767,6 +767,17 @@ function cloneForView(arr) {
     hp: Math.max(0, Math.round(x.hp || 0)),
     mp: Math.max(0, Math.round(x.mp || 0)),
     shield: Math.max(0, Math.round(x.shield || 0)),
+    // Dùng cho overlay (bố cục combat)...
+    buffs: {
+      atk: { pct: Math.round(Number(x.buffs?.atk?.pct) || 0), turns: Math.round(Number(x.buffs?.atk?.turns) || 0) },
+      def: { pct: Math.round(Number(x.buffs?.def?.pct) || 0), turns: Math.round(Number(x.buffs?.def?.turns) || 0) },
+      spd: { pct: Math.round(Number(x.buffs?.spd?.pct) || 0), turns: Math.round(Number(x.buffs?.spd?.turns) || 0) },
+    },
+    debuffs: {
+      atk: { pct: Math.round(Number(x.debuffs?.atk?.pct) || 0), turns: Math.round(Number(x.debuffs?.atk?.turns) || 0) },
+      def: { pct: Math.round(Number(x.debuffs?.def?.pct) || 0), turns: Math.round(Number(x.debuffs?.def?.turns) || 0) },
+      spd: { pct: Math.round(Number(x.debuffs?.spd?.pct) || 0), turns: Math.round(Number(x.debuffs?.spd?.turns) || 0) },
+    },
     stats: {
       atk: Math.max(0, Math.round(Number(x.stats?.atk) || 0)),
       def: Math.max(0, Math.round(Number(x.stats?.def) || 0)),

@@ -145,7 +145,6 @@ function generateEnemies({ party, mapKey, diff, floor, isBoss }) {
   const bossOffset = isBoss ? 2 : 0;
   const baseEnemyLv = avgLv + diffOffset + floorOffset + bossOffset;
 
-<<<<<<< HEAD
   const partySize = Math.max(1, party.length);
   let count = 1;
   if (isBoss) {
@@ -164,9 +163,6 @@ function generateEnemies({ party, mapKey, diff, floor, isBoss }) {
     count = Math.min(count, Math.min(3, partySize));
     if (count < 1) count = 1;
   }
-=======
-  const count = isBoss ? 1 : (Math.random() < 0.15 ? 3 : Math.random() < 0.55 ? 2 : 1);
->>>>>>> ff9e909206aaad88755211d43db4051dfcfddea3
   const enemies = [];
   for (let i = 0; i < count; i++) {
     const name = pool[randInt(0, pool.length - 1)];
@@ -205,20 +201,6 @@ function generateEnemies({ party, mapKey, diff, floor, isBoss }) {
       atk = Math.round(atk * earlyAtk);
       maxHp = Math.round(maxHp * 0.95);
     }
-
-    // Enemy level gap scaling (nhẹ, dễ cân)
-    const enemyLevel = Math.max(1, baseEnemyLv + randInt(-1, 1));
-    const gap = enemyLevel - avgLv;
-    const mAtkDef = clamp(1 + gap * 0.02, 0.85, 1.35);
-    const mHp = clamp(1 + gap * 0.03, 0.80, 1.55);
-    const mSpd = clamp(1 + gap * 0.01, 0.90, 1.20);
-
-    atk = Math.max(1, Math.round(atk * mAtkDef));
-    def = Math.max(0, Math.round(def * mAtkDef));
-    maxHp = Math.max(1, Math.round(maxHp * mHp));
-    spd = Math.max(1, Math.round(spd * mSpd));
-
-    const realm = String(getRealm(enemyLevel) || '');
 
     // Enemy level gap scaling (nhẹ, dễ cân)
     const enemyLevel = Math.max(1, baseEnemyLv + randInt(-1, 1));
@@ -363,7 +345,6 @@ function calcDamage(attacker, target, rawDmg) {
   const def = Math.max(0, effStat(target, "def"));
   const reduce = clamp(target.stats.dmg_reduce || 0, 0, 50);
 
-<<<<<<< HEAD
   // Lưu ý: cap rage ở đây phải >= cap ở simulateBattleTimeline (party có thể lên tới 2.4)
   const rage = clamp(attacker._rageMult || 1, 1, 3.0);
   const scaledRaw = Math.max(1, Math.round(rawDmg * rage));
@@ -391,16 +372,6 @@ function calcDamage(attacker, target, rawDmg) {
     after = Math.max(after, floor);
   }
 
-=======
-  // Damage giảm theo def, nhưng không triệt tiêu hoàn toàn
-  const rage = clamp(attacker._rageMult || 1, 1, 2.2);
-
-  // Damage giảm theo def, nhưng giảm nhẹ hơn để combat không lê thê
-  const k = 100 / (100 + defUsed * 4.2);
-  const scaledRaw = Math.max(1, Math.round(rawDmg * rage));
-  const pre = Math.max(1, Math.round(scaledRaw * k));
-  const after = Math.max(1, Math.round(pre * (1 - reduce / 100)));
->>>>>>> ff9e909206aaad88755211d43db4051dfcfddea3
   return after;
 }
 
@@ -449,14 +420,10 @@ function regenMpPerTurn(ent) {
 }
 
 function choosePlayerAction(actor, allies, enemies) {
-<<<<<<< HEAD
   // Auto combat: chọn skill theo "điểm" để:
   // - không spam 1 chiêu duy nhất
   // - ưu tiên kết liễu (giảm số turn)
   // - vẫn cứu đồng đội khi nguy cấp
-=======
-  // Auto combat: ưu tiên giữ mạng trước, sau đó ưu tiên dùng skill (để tránh cảm giác "chỉ đánh thường").
->>>>>>> ff9e909206aaad88755211d43db4051dfcfddea3
   const ids = (actor.skills?.actives || []).filter(Boolean);
   const skills = ids
     .map((id) => ({ id, s: getSkill(id) }))
@@ -478,7 +445,6 @@ function choosePlayerAction(actor, allies, enemies) {
   const selfRatio = actor.hp / Math.max(1, actor.stats.maxHp);
   const low = pickLowestHP(allies);
   const lowRatio = low ? (low.hp / Math.max(1, low.stats.maxHp)) : 1;
-<<<<<<< HEAD
 
   const rarityScore = (r) => (r === "epic" ? 12 : r === "rare" ? 6 : 0);
   const lastId = actor._lastSkillId || null;
@@ -559,41 +525,6 @@ function choosePlayerAction(actor, allies, enemies) {
 
   // Fallback basic
   return { type: "basic", target: focus };
-=======
-  const enemyCount = enemies.filter(isAlive).length;
-
-  // Heal (ưu tiên cứu đồng đội)
-  if (low && lowRatio <= 0.5) {
-    const healSkill = usable.find((x) => x.s.template === "HEAL");
-    if (healSkill) return { type: "skill", ...healSkill, target: low };
-  }
-
-  // Shield (ưu tiên khi máu chưa quá thấp, để tránh chết lẻ)
-  if (selfRatio <= 0.75 && (Number(actor.shield) || 0) <= 0) {
-    const shieldSkill = usable.find((x) => x.s.template === "SHIELD");
-    if (shieldSkill) return { type: "skill", ...shieldSkill, target: actor };
-  }
-
-  // Buff: nếu có và đang không có buff tương ứng
-  const buff = usable.find((x) => x.s.template === "BUFF");
-  if (buff) {
-    const st = buff.s?.buff?.stat || "atk";
-    const activeTurns = Number(actor.buffs?.[st]?.turns) || 0;
-    if (activeTurns <= 0) return { type: "skill", ...buff, target: actor };
-  }
-
-  // Offensive skills: ưu tiên burst > debuff > aoe (aoe vẫn dùng được khi 1 quái)
-  const burst = usable.find((x) => x.s.template === "BURST");
-  if (burst) return { type: "skill", ...burst, target: pickRandomAlive(enemies) };
-
-  const deb = usable.find((x) => x.s.template === "DEBUFF");
-  if (deb) return { type: "skill", ...deb, target: pickRandomAlive(enemies) };
-
-  const aoe = usable.find((x) => x.s.template === "AOE");
-  if (aoe) return { type: "skill", ...aoe, target: null };
-
-  return { type: "basic", target: pickRandomAlive(enemies) };
->>>>>>> ff9e909206aaad88755211d43db4051dfcfddea3
 }
 
 function doBasicAttack(actor, target, logs) {
@@ -603,14 +534,9 @@ function doBasicAttack(actor, target, logs) {
     return;
   }
   const atk = Math.max(1, effStat(actor, "atk"));
-<<<<<<< HEAD
   // nhịp nhanh hơn một chút (ưu tiên tăng DPS cho người chơi để tránh timeout)
   const coef = actor.kind === "player" ? 1.18 : 1.08;
   let dmg = calcDamage(actor, target, Math.round(atk * coef));
-=======
-  // nhịp nhanh hơn một chút
-  let dmg = calcDamage(actor, target, Math.round(atk * 1.08));
->>>>>>> ff9e909206aaad88755211d43db4051dfcfddea3
   const crit = tryCrit(actor, target);
   if (crit) {
     const mult = 1 + (50 + (actor.stats.crit_dmg || 0)) / 100;
@@ -783,7 +709,6 @@ function simulateBattle({ party, enemies, maxTurns = 60 }) {
   while (turn < maxTurns && anyAlive(party) && anyAlive(enemies)) {
     turn += 1;
 
-<<<<<<< HEAD
     // Enrage: ưu tiên giúp người chơi kết thúc trận, tránh đánh lê thê nhưng không làm quái "snowball"
     const rageP = clamp(1 + Math.max(0, turn - 14) * 0.06, 1, 2.4);
     const rageE = clamp(1 + Math.max(0, turn - 20) * 0.04, 1, 1.6);
@@ -791,11 +716,6 @@ function simulateBattle({ party, enemies, maxTurns = 60 }) {
     for (const ent of enemies) ent._rageMult = rageE;
     for (const ent of [...party, ...enemies]) ent._turn = turn;
     for (const ent of party) regenMpPerTurn(ent);
-=======
-    // Enrage nhẹ để tránh trận kéo quá dài
-    const rage = clamp(1 + Math.max(0, turn - 18) * 0.05, 1, 2.2);
-    for (const ent of [...party, ...enemies]) ent._rageMult = rage;
->>>>>>> ff9e909206aaad88755211d43db4051dfcfddea3
 
     // tick cooldown/buff/debuff
     for (const ent of [...party, ...enemies]) tickTurns(ent);
@@ -874,7 +794,6 @@ function simulateBattleTimeline({ party, enemies, maxTurns = 60, keyframeEvery =
   while (turn < maxTurns && anyAlive(party) && anyAlive(enemies)) {
     turn += 1;
 
-<<<<<<< HEAD
     // Enrage: ưu tiên giúp người chơi kết thúc trận, tránh đánh lê thê nhưng không làm quái "snowball"
     const rageP = clamp(1 + Math.max(0, turn - 14) * 0.06, 1, 2.4);
     const rageE = clamp(1 + Math.max(0, turn - 20) * 0.04, 1, 1.6);
@@ -882,11 +801,6 @@ function simulateBattleTimeline({ party, enemies, maxTurns = 60, keyframeEvery =
     for (const ent of enemies) ent._rageMult = rageE;
     for (const ent of [...party, ...enemies]) ent._turn = turn;
     for (const ent of party) regenMpPerTurn(ent);
-=======
-    // Enrage nhẹ để tránh trận kéo quá dài
-    const rage = clamp(1 + Math.max(0, turn - 18) * 0.05, 1, 2.2);
-    for (const ent of [...party, ...enemies]) ent._rageMult = rage;
->>>>>>> ff9e909206aaad88755211d43db4051dfcfddea3
     for (const ent of [...party, ...enemies]) tickTurns(ent);
 
     const order = [...party.filter(isAlive), ...enemies.filter(isAlive)].sort((a, b) => {

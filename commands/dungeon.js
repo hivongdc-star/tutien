@@ -14,11 +14,10 @@ const elements = require("../utils/element");
 const { rollOre } = require("../utils/mining");
 const { tierMeta, tierText } = require("../utils/tiers");
 const { ensureUserSkills, addShard } = require("../utils/skills");
-const { diffMeta, makePlayerEntity, generateEnemies, simulateBattleTimeline, shuffle } = require("../utils/dungeonEngine");
+const { diffMeta, makePlayerEntity, generateEnemies, simulateBattle, shuffle } = require("../utils/dungeonEngine");
 const { drawDungeonCard } = require("../utils/dungeonCanvas");
 
 const LOBBY_TTL_MS = 10 * 60 * 1000;
-const DECISION_TTL_MS = 60 * 1000;
 
 const activeTeamOfUser = new Map(); // userId -> lobbyId
 const lobbies = new Map(); // lobbyId -> lobby
@@ -150,31 +149,8 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
   const dm = diffMeta(diff);
   const floors = pickFloors(diff);
 
-  // Cinematic: enter
-  const enterPng = await drawDungeonCard({
-    scene: "enter",
-    map,
-    diffName: dm.name,
-    floor: 1,
-    totalFloors: floors,
-    party,
-    enemies: [],
-    turn: 0,
-    logs: [],
-  });
-  const enterFile = new AttachmentBuilder(enterPng, { name: "dungeon.png" });
-  const enterEmbed = new EmbedBuilder()
-    .setTitle("🎬 Khai Môn Động Phủ")
-    .setColor(dm.color)
-    .setDescription(
-      `Đạo hữu bước vào **${map.name}**.\n` +
-        `Độ khó: **${dm.name}** • Số tầng: **${floors}**\n\n` +
-        `Chủ đội: <@${lobby.hostId}> • Quyết định **Đi tiếp/Bỏ chạy** do chủ đội định đoạt.`
-    )
-    .setImage("attachment://dungeon.png");
-
-  await renderAndEdit(lobbyMessage, { embeds: [enterEmbed], files: [enterFile], components: [] });
-  await sleep(rand(1200, 1800));
+  // Yêu cầu mới: dungeon chạy liên tục, không cần tương tác.
+  // Chỉ update "frame kết thúc tầng" (không render keyframe/log).
 
   let totalLt = 0;
   const drops = []; // {type:'ore', oreId, oreName, tier} | {type:'shard', element, rarity}
@@ -183,83 +159,9 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
     const isBoss = floor === floors;
     const enemies = generateEnemies({ party, mapKey: map.key, diff, floor, isBoss });
 
-    // Scene: confront
-    const prePng = await drawDungeonCard({
-      scene: "fight",
-      map,
-      diffName: dm.name,
-      floor,
-      totalFloors: floors,
-      party,
-      enemies,
-      turn: 0,
-      logs: [],
-    });
-    const preFile = new AttachmentBuilder(prePng, { name: "dungeon.png" });
-    const preEmbed = new EmbedBuilder()
-      .setTitle(isBoss ? "👑 Boss Xuất Hiện" : "⚔️ Đối Đầu")
-      .setColor(dm.color)
-      .setDescription(isBoss ? "Hắc khí bốc lên... Boss trấn giữ cuối cùng xuất hiện!" : "Khí tức rung động... yêu tà xuất hiện trước mặt!")
-      .addFields(
-        { name: "Log", value: "_..._" },
-      )
-      .setImage("attachment://dungeon.png");
-    await renderAndEdit(lobbyMessage, { embeds: [preEmbed], files: [preFile], components: [] });
-    await sleep(rand(900, 1400));
-
-    // Battle timeline
-    const { outcome, keyframes, turn } = simulateBattleTimeline({ party, enemies, maxTurns: 60, keyframeEvery: 2 });
-    // Play keyframes (giới hạn để tránh spam)
-    const frames = keyframes.length > 8 ? [keyframes[0], ...keyframes.slice(-7)] : keyframes;
-    for (const kf of frames) {
-      const png = await drawDungeonCard({
-        scene: "fight",
-        map,
-        diffName: dm.name,
-        floor,
-        totalFloors: floors,
-        party: kf.party,
-        enemies: kf.enemies,
-        turn: kf.turn,
-        logs: kf.logs || [],
-      });
-      const file = new AttachmentBuilder(png, { name: "dungeon.png" });
-      const logText = (kf.logs || []).slice(-2).map((s) => `• ${s}`).join("\n") || "_..._";
-      const emb = new EmbedBuilder()
-        .setTitle(isBoss ? "👑 Giao Chiến (Boss)" : "⚔️ Giao Chiến")
-        .setColor(dm.color)
-        .addFields({ name: "Log (mới nhất)", value: logText })
-        .setImage("attachment://dungeon.png");
-      await renderAndEdit(lobbyMessage, { embeds: [emb], files: [file], components: [] });
-      await sleep(rand(550, 850));
-    }
-
-    // Refresh ảnh kết thúc combat (thắng) để cinematic liền mạch
-    if (outcome === "win") {
-      const lastLogs = (keyframes && keyframes.length ? keyframes[keyframes.length - 1].logs : []) || [];
-      const resPng = await drawDungeonCard({
-        scene: "result",
-        map,
-        diffName: dm.name,
-        floor,
-        totalFloors: floors,
-        party,
-        enemies,
-        turn,
-        logs: lastLogs,
-      });
-      const resFile = new AttachmentBuilder(resPng, { name: "dungeon.png" });
-      const resEmbed = new EmbedBuilder()
-        .setTitle(isBoss ? "✅ Boss bại trận" : "✅ Thông quan")
-        .setColor(dm.color)
-        .setDescription(isBoss ? "Chấn động động phủ... Boss đã ngã xuống." : "Tầng này đã bị phá giải." )
-        .setImage("attachment://dungeon.png");
-      await renderAndEdit(lobbyMessage, { embeds: [resEmbed], files: [resFile], components: [] });
-      await sleep(rand(650, 950));
-    }
+    const { outcome, turn } = simulateBattle({ party, enemies, maxTurns: 60 });
 
     if (outcome !== "win") {
-      const lastLogs = (keyframes && keyframes.length ? keyframes[keyframes.length - 1].logs : []) || [];
       // wipe / timeout => thua
       const penalty = penaltyOnWipe(diff);
       for (const uid of memberIds) {
@@ -276,13 +178,16 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
         party,
         enemies,
         turn,
-        logs: lastLogs,
+        logs: [],
       });
       const endFile = new AttachmentBuilder(endPng, { name: "dungeon.png" });
       const endEmbed = new EmbedBuilder()
         .setTitle("💀 Đội hình tan tác")
         .setColor(0x992d22)
-        .setDescription(`Thất bại trong động phủ. Mỗi đạo hữu bị trừ **${penalty}** 💎 Linh thạch.`)
+        .setDescription(
+          `**${map.name}** • Độ khó: **${dm.name}**\n` +
+            `Thất bại tại tầng **${floor}/${floors}**. Mỗi đạo hữu bị trừ **${penalty}** 💎 Linh thạch.`
+        )
         .setImage("attachment://dungeon.png");
       await renderAndEdit(lobbyMessage, { embeds: [endEmbed], files: [endFile], components: [] });
       return;
@@ -309,57 +214,31 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
       drops.push({ type: "shard", element: pick.element || "kim", rarity: "epic" });
     }
 
-    // Decision: continue or run (host)
+    // Chỉ update frame kết thúc tầng (không log)
     if (floor < floors) {
-      const row = new ActionRowBuilder().addComponents(
-        new ButtonBuilder().setCustomId("dg_go").setLabel("Đi tiếp").setStyle(ButtonStyle.Success),
-        new ButtonBuilder().setCustomId("dg_run").setLabel("Bỏ chạy").setStyle(ButtonStyle.Secondary)
-      );
-
-      const decPng = await drawDungeonCard({
-        scene: "enter",
+      const midPng = await drawDungeonCard({
+        scene: "result",
         map,
         diffName: dm.name,
-        floor: floor + 1,
+        floor,
         totalFloors: floors,
         party,
         enemies: [],
-        turn: 0,
+        turn,
         logs: [],
       });
-      const decFile = new AttachmentBuilder(decPng, { name: "dungeon.png" });
-      const decEmbed = new EmbedBuilder()
-        .setTitle("🧭 Ngã Rẽ")
+      const midFile = new AttachmentBuilder(midPng, { name: "dungeon.png" });
+      const midEmbed = new EmbedBuilder()
+        .setTitle(isBoss ? "✅ Boss bại trận" : `✅ Thông quan • Tầng ${floor}/${floors}`)
         .setColor(dm.color)
         .setDescription(
-          `Tầng **${floor}** đã thông quan.\n` +
-            `Tạm tích lũy: **${totalLt}** 💎 Linh thạch (chia đều khi rời động phủ).\n\n` +
-            `Chủ đội <@${lobby.hostId}> hãy quyết định: **Đi tiếp** hay **Bỏ chạy**.`
+          `**${map.name}** • Độ khó: **${dm.name}**\n` +
+            `Tạm tích lũy: **${totalLt}** 💎 Linh thạch.\n` +
+            `Đội hình tiếp tục thâm nhập tầng kế tiếp…`
         )
         .setImage("attachment://dungeon.png");
-      await renderAndEdit(lobbyMessage, { embeds: [decEmbed], files: [decFile], components: [row] });
-
-      const decision = await new Promise((resolve) => {
-        const collector = lobbyMessage.createMessageComponentCollector({ time: DECISION_TTL_MS });
-        collector.on("collect", async (i) => {
-          if (i.user.id !== lobby.hostId) {
-            return i.reply({ content: "⚠️ Chỉ chủ đội được quyết.", ephemeral: true });
-          }
-          await i.deferUpdate();
-          if (i.customId === "dg_go") {
-            collector.stop("go");
-          } else if (i.customId === "dg_run") {
-            collector.stop("run");
-          }
-        });
-        collector.on("end", (_, reason) => {
-          if (reason === "go") return resolve("go");
-          if (reason === "run") return resolve("run");
-          return resolve("run"); // timeout => auto bỏ chạy
-        });
-      });
-
-      if (decision === "run") break;
+      await renderAndEdit(lobbyMessage, { embeds: [midEmbed], files: [midFile], components: [] });
+      await sleep(rand(550, 850));
     }
   }
 

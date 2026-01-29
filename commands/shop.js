@@ -1,5 +1,5 @@
 // commands/shop.js
-// Shop: Khoáng cụ + Bí kíp (kỹ năng theo ngũ hành).
+// Shop: Khoáng cụ + Bí kíp (kỹ năng theo ngũ hành) + Trứng Linh Thú.
 
 const {
   ActionRowBuilder,
@@ -11,7 +11,13 @@ const {
 const { listItems, buyItem } = require("../shop/shopUtils");
 const { loadUsers, saveUsers } = require("../utils/storage");
 const elements = require("../utils/element");
-const { listSkills, getSkill, ensureUserSkills, addOwnedSkill, describeSkillShort } = require("../utils/skills");
+const {
+  listSkills,
+  getSkill,
+  ensureUserSkills,
+  addOwnedSkill,
+  describeSkillShort,
+} = require("../utils/skills");
 
 function fmtLT(n) {
   return Number(n || 0).toLocaleString("vi-VN");
@@ -47,19 +53,20 @@ module.exports = {
     const catOptions = [
       { label: "Khoáng cụ", value: "tools", description: "Mua pháp khí đào khoáng" },
       { label: "Bí kíp", value: "skills", description: "Kỹ năng theo ngũ hành" },
+      { label: "Trứng Linh Thú", value: "pets", description: "Mua trứng để ấp linh thú" },
     ];
 
     const header = new EmbedBuilder()
       .setTitle("🛒 Linh Bảo Các")
       .setColor(0x3498db)
-      .setDescription(
-        `Linh thạch hiện có: **${fmtLT(u.lt)}** 💎\n\n` +
-          `Chọn mục mua sắm:`
-      );
+      .setDescription(`Linh thạch hiện có: **${fmtLT(u.lt)}** 💎\n\nChọn mục mua sắm:`);
 
-    const sent = await msg.reply({ embeds: [header], components: [menuRow(catId, "Chọn mục...", catOptions)] });
+    const sent = await msg.reply({
+      embeds: [header],
+      components: [menuRow(catId, "Chọn mục...", catOptions)],
+    });
 
-    let mode = null; // tools | skills
+    let mode = null; // tools | skills | pets
 
     const col = sent.createMessageComponentCollector({
       componentType: ComponentType.StringSelect,
@@ -95,7 +102,36 @@ module.exports = {
             .setColor(0x2ecc71)
             .setDescription(`Linh thạch hiện có: **${fmtLT(u2.lt)}** 💎\nChọn pháp khí để mua.`);
 
-          return sent.edit({ embeds: [emb], components: [menuRow(pickId, "Chọn khoáng cụ...", options)] }).catch(() => {});
+          return sent
+            .edit({ embeds: [emb], components: [menuRow(pickId, "Chọn khoáng cụ...", options)] })
+            .catch(() => {});
+        }
+
+        if (mode === "pets") {
+          const catalog = listItems();
+          const entries = Object.entries(catalog).filter(([, it]) => it.type === "pet_egg");
+          if (!entries.length) {
+            const emb = new EmbedBuilder()
+              .setTitle("🛒 Linh Bảo Các • Trứng Linh Thú")
+              .setColor(0xF1C40F)
+              .setDescription("Hiện chưa có trứng linh thú nào trong shop.");
+            return sent.edit({ embeds: [emb], components: [] }).catch(() => {});
+          }
+
+          const options = entries.slice(0, 25).map(([id, it]) => ({
+            label: `${it.emoji || ""} ${it.name}`.trim().slice(0, 100),
+            value: `egg:${id}`,
+            description: `${fmtLT(it.price || 0)} LT`.slice(0, 100),
+          }));
+
+          const emb = new EmbedBuilder()
+            .setTitle("🛒 Linh Bảo Các • Trứng Linh Thú")
+            .setColor(0xF1C40F)
+            .setDescription(`Linh thạch hiện có: **${fmtLT(u2.lt)}** 💎\nChọn trứng để mua.`);
+
+          return sent
+            .edit({ embeds: [emb], components: [menuRow(pickId, "Chọn trứng...", options)] })
+            .catch(() => {});
         }
 
         if (mode === "skills") {
@@ -123,7 +159,10 @@ module.exports = {
                 `Linh thạch hiện có: **${fmtLT(u2.lt)}** 💎\n\n` +
                 `Chọn bí kíp để mua (chỉ bán **thường**).`
             );
-          return sent.edit({ embeds: [emb], components: [menuRow(pickId, "Chọn bí kíp...", options)] }).catch(() => {});
+
+          return sent
+            .edit({ embeds: [emb], components: [menuRow(pickId, "Chọn bí kíp...", options)] })
+            .catch(() => {});
         }
       }
 
@@ -134,6 +173,13 @@ module.exports = {
         // TOOL
         if (val.startsWith("tool:")) {
           const itemId = val.slice("tool:".length);
+          const res = buyItem(msg.author.id, itemId);
+          return sent.edit({ content: res.message, embeds: [], components: [] }).catch(() => {});
+        }
+
+        // EGG
+        if (val.startsWith("egg:")) {
+          const itemId = val.slice("egg:".length);
           const res = buyItem(msg.author.id, itemId);
           return sent.edit({ content: res.message, embeds: [], components: [] }).catch(() => {});
         }

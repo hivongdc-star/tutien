@@ -435,19 +435,22 @@ async function drawDungeonCard({ scene, map, diffName, floor, totalFloors, party
   ctx.fillText("VS", W / 2, badgeY + 54);
   ctx.textAlign = "left";
 
-  // Bottom bar: log (2 dòng) + watermark
+  // Bottom bar: watermark (không hiển thị log nữa theo yêu cầu)
   fillRoundRect(ctx, 18, bottomBarY, W - 36, bottomBarH, 12, "rgba(0,0,0,0.45)");
   strokeRoundRect(ctx, 18, bottomBarY, W - 36, bottomBarH, 12, "rgba(255,255,255,0.12)");
 
   const lines = (Array.isArray(logs) ? logs : []).filter(Boolean).slice(-2);
-  const leftTxt = lines.length ? lines.map((s) => `• ${s}`).join("\n") : "• ...";
-  ctx.font = `14px ${FONT}`;
-  ctx.fillStyle = "rgba(255,255,255,0.78)";
-  const maxW = W - 36 - 220;
-  const parts = String(leftTxt).split("\n");
-  for (let i = 0; i < Math.min(2, parts.length); i++) {
-    const t = ellipsize(ctx, parts[i], maxW);
-    ctx.fillText(t, 36, bottomBarY + 18 + i * 16);
+  if (lines.length) {
+    // Nếu tương lai muốn bật log lại, chỉ cần truyền logs (array string) vào.
+    const leftTxt = lines.map((s) => `• ${s}`).join("\n");
+    ctx.font = `14px ${FONT}`;
+    ctx.fillStyle = "rgba(255,255,255,0.78)";
+    const maxW = W - 36 - 220;
+    const parts = String(leftTxt).split("\n");
+    for (let i = 0; i < Math.min(2, parts.length); i++) {
+      const t = ellipsize(ctx, parts[i], maxW);
+      ctx.fillText(t, 36, bottomBarY + 18 + i * 16);
+    }
   }
 
   ctx.save();

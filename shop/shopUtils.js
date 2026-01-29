@@ -28,36 +28,61 @@ function ensureUserShape(user){
   return user;
 }
 
-function buyItem(buyerId,itemId){
+function clampInt(n, min, max) {
+  const x = Number(n);
+  if (!Number.isFinite(x)) return null;
+  const i = Math.floor(x);
+  if (i < min) return null;
+  if (typeof max === "number" && i > max) return null;
+  return i;
+}
+
+function fmtLT(n) {
+  return Number(n || 0).toLocaleString("vi-VN");
+}
+
+function buyItem(buyerId,itemId,qty=1){
   const users=loadUsers(); const catalog=loadItems();
   const buyer=ensureUserShape(users[buyerId]||null);
   if (!buyer) return { ok:false, message:"❌ Bạn chưa có nhân vật." };
   const it=catalog[itemId]; if (!it) return { ok:false, message:"❌ Mặt hàng không tồn tại." };
   const price = Number(it.price||0); if (!Number.isFinite(price) || price<0) return { ok:false, message:"❌ Giá không hợp lệ." };
-  if ((buyer.lt||0) < price) return { ok:false, message:"❌ Không đủ LT." };
-  buyer.lt -= price;
+
+  // qty: mặc định 1, giới hạn để tránh spam ghi file / vòng lặp quá lớn
+  const q = clampInt(qty, 1, 99);
+  if (!q) return { ok:false, message:"❌ Số lượng không hợp lệ (1–99)." };
+
+  const total = price * q;
+  if (!Number.isFinite(total) || total < 0) return { ok:false, message:"❌ Tổng giá không hợp lệ." };
+  if ((buyer.lt||0) < total) return { ok:false, message:"❌ Không đủ LT." };
+  buyer.lt -= total;
 
   // Mining tool: lưu theo instance (có độ bền)
   if (it.type === "mining_tool") {
-    const iid = `mt_${Date.now()}_${Math.random().toString(16).slice(2,8)}`;
     const maxDur = Number(it.durability || 0);
-    buyer.mining.tools.push({
-      iid,
-      itemId,
-      name: it.name,
-      tier: it.tier || "pham",
-      durability: maxDur,
-      durabilityMax: maxDur,
-      bonusRare: Number(it.bonusRare || 0),
-      boughtAt: Date.now(),
-    });
-    if (!buyer.mining.activeToolId) buyer.mining.activeToolId = iid;
+    for (let k = 0; k < q; k++) {
+      const iid = `mt_${Date.now()}_${Math.random().toString(16).slice(2,8)}`;
+      buyer.mining.tools.push({
+        iid,
+        itemId,
+        name: it.name,
+        tier: it.tier || "pham",
+        durability: maxDur,
+        durabilityMax: maxDur,
+        bonusRare: Number(it.bonusRare || 0),
+        boughtAt: Date.now(),
+      });
+      if (!buyer.mining.activeToolId) buyer.mining.activeToolId = iid;
+    }
   } else {
     // Legacy stack inventory
-    buyer.inventory[itemId] = (buyer.inventory[itemId]||0)+1;
+    buyer.inventory[itemId] = (buyer.inventory[itemId]||0)+q;
   }
   users[buyerId]=buyer; saveUsers(users);
-  return { ok:true, message:`✅ Đã mua **${it.emoji||""} ${it.name}** với giá **${price} LT**.` };
+
+  const name = `${it.emoji||""} ${it.name}`.trim();
+  const qtyTxt = q > 1 ? `x${q} ` : "";
+  return { ok:true, message:`✅ Đã mua ${qtyTxt}**${name}** với tổng giá **${fmtLT(total)} LT**.` };
 }
 
 module.exports={ listItems, buyItem };

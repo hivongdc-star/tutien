@@ -36,7 +36,31 @@ function pickWeightedInt(list, weightField = "weight") {
   return list[list.length - 1];
 }
 
-const COOLDOWN_MS = 30_000;
+
+// Tăng nhẹ tỷ lệ gặp cá phẩm chất cao (không ảnh hưởng Tiên Phẩm / Tiên Nhân Ngư)
+const RARITY_PICK_MUL = {
+  'thường': 1.0,
+  'khá': 1.04,
+  'hiếm': 1.08,
+  'cực hiếm': 1.10,
+  'truyền thuyết': 1.12,
+  'tiên phẩm': 1.0,
+};
+
+function pickWeightedBy(list, weightFn) {
+  let total = 0;
+  for (const it of list) total += Math.max(1, Math.round(weightFn(it) || 1));
+  if (!Number.isFinite(total) || total <= 0) return list[0];
+
+  let r = randomInt(1, total + 1);
+  for (const it of list) {
+    r -= Math.max(1, Math.round(weightFn(it) || 1));
+    if (r <= 0) return it;
+  }
+  return list[list.length - 1];
+}
+
+const COOLDOWN_MS = 5_000;
 const REACTION_WINDOW_MS = 1600;
 const cooldown = new Map();
 
@@ -225,7 +249,11 @@ module.exports = {
         if (rollTienPham && poolTienPham.length) {
           fish = pickWeightedInt(poolTienPham, "weight");
         } else {
-          fish = pickWeightedInt(poolNormal.length ? poolNormal : poolAll, "weight");
+          fish = pickWeightedBy(poolNormal.length ? poolNormal : poolAll, (f) => {
+            const base = Number(f?.weight ?? 1);
+            const mul = RARITY_PICK_MUL[f?.rarity] ?? 1.0;
+            return base * mul;
+          });
         }
 
         // size
@@ -292,7 +320,7 @@ module.exports = {
             { name: "Thu hoạch", value: `+${ltFinal} LT · +${xp} EXP`, inline: true },
             { name: "Thời cơ", value: clicked ? "+25% (kéo chuẩn)" : "Không bonus", inline: true }
           )
-          .setFooter({ text: `Cooldown 30s` });
+          .setFooter({ text: `Cooldown 5s` });
 
         await msg.channel.send({ embeds: [resEmbed] }).catch(() => {});
         cooldown.set(msg.author.id, Date.now());

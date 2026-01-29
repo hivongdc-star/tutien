@@ -127,12 +127,6 @@ function enemyNamePool(mapKey) {
     forest: ["U Linh Thụ Yêu", "Huyết Ảnh Lang Vương", "Thanh Mộc Tà Linh", "Phong Ấn Cổ Thú"],
     lava: ["Liệt Diễm Ma Tướng", "Hỏa Ngục Huyết Linh", "Nham Tinh Cự Thú", "Viêm Vương Tàn Hồn"],
     ocean: ["Hàn Hải Xà Linh", "Thủy Ảnh Ma Ngư", "Băng Linh Cổ Thú", "Huyền Thủy Sát Tướng"],
-    // Map mở rộng
-    sakura: ["Anh Hoa Linh Hồ", "Bích Diệp Yêu Cơ", "Hoa Ảnh Tà Linh", "Hương Phách Cổ Thú"],
-    skytemple: ["Vân Tiêu Hộ Vệ", "Thiên Quang Linh Tướng", "Ngọc Vân Dị Thú", "Hạo Thiên Cổ Hồn"],
-    ruins: ["Cổ Tự Khôi Lỗi", "Tàn Kinh U Linh", "Phế Tích Quỷ Tướng", "Thạch Ấn Dị Thú"],
-    ice: ["Hàn Băng Ma Linh", "Bạch Sương Cổ Thú", "Băng Ảnh Quỷ Hầu", "Hàn Vực Sát Tướng"],
-    desert: ["Hoàng Sa Huyết Linh", "Sa Ảnh Quỷ Tướng", "Cự Hạt Dị Thú", "Cát Cốt Cổ Hồn"],
     black: ["Hắc Vực Quỷ Tướng", "Ma Ảnh Hồn Thể", "Tà Linh Vô Diện", "U Minh Cổ Thú"],
     default: ["Tàn Điện Khôi Lỗi", "Cổ Ấn U Linh", "Thiên Cơ Tàn Hồn", "Hư Không Dị Thú"],
   };
@@ -217,6 +211,15 @@ function generateEnemies({ party, mapKey, diff, floor, isBoss }) {
 
     atk = Math.max(1, Math.round(atk * mAtkDef));
     def = Math.max(0, Math.round(def * mAtkDef));
+
+    // Slight difficulty bump (không tăng HP để tránh kéo dài / timeout)
+    if (isBoss) {
+      atk = Math.max(1, Math.round(atk * 1.05));
+      def = Math.max(0, Math.round(def * 1.04));
+    } else if (floor >= 2) {
+      atk = Math.max(1, Math.round(atk * 1.03));
+      def = Math.max(0, Math.round(def * 1.02));
+    }
     maxHp = Math.max(1, Math.round(maxHp * mHp));
     spd = Math.max(1, Math.round(spd * mSpd));
 
@@ -773,17 +776,6 @@ function cloneForView(arr) {
     hp: Math.max(0, Math.round(x.hp || 0)),
     mp: Math.max(0, Math.round(x.mp || 0)),
     shield: Math.max(0, Math.round(x.shield || 0)),
-    // Dùng cho overlay (bố cục combat)...
-    buffs: {
-      atk: { pct: Math.round(Number(x.buffs?.atk?.pct) || 0), turns: Math.round(Number(x.buffs?.atk?.turns) || 0) },
-      def: { pct: Math.round(Number(x.buffs?.def?.pct) || 0), turns: Math.round(Number(x.buffs?.def?.turns) || 0) },
-      spd: { pct: Math.round(Number(x.buffs?.spd?.pct) || 0), turns: Math.round(Number(x.buffs?.spd?.turns) || 0) },
-    },
-    debuffs: {
-      atk: { pct: Math.round(Number(x.debuffs?.atk?.pct) || 0), turns: Math.round(Number(x.debuffs?.atk?.turns) || 0) },
-      def: { pct: Math.round(Number(x.debuffs?.def?.pct) || 0), turns: Math.round(Number(x.debuffs?.def?.turns) || 0) },
-      spd: { pct: Math.round(Number(x.debuffs?.spd?.pct) || 0), turns: Math.round(Number(x.debuffs?.spd?.turns) || 0) },
-    },
     stats: {
       atk: Math.max(0, Math.round(Number(x.stats?.atk) || 0)),
       def: Math.max(0, Math.round(Number(x.stats?.def) || 0)),

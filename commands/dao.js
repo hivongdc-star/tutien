@@ -1,12 +1,12 @@
 // commands/dao.js
-// Đào khoáng: 5 phút / lần, bắt buộc có Khoáng cụ (mua từ -shop).
+// Đào khoáng: 5 giây / lần, bắt buộc có Khoáng cụ (mua từ -shop).
 
 const { EmbedBuilder } = require("discord.js");
 const { loadUsers, saveUsers } = require("../utils/storage");
 const { rollOre } = require("../utils/mining");
 const { tierMeta, tierText } = require("../utils/tiers");
 
-const COOLDOWN_MS = 30 * 1000;
+const COOLDOWN_MS = 5 * 1000;
 
 function ensureMining(user) {
   if (!user.mining) user.mining = {};
@@ -19,7 +19,7 @@ function ensureMining(user) {
 module.exports = {
   name: "dao",
   aliases: ["daokhoang", "mine"],
-  description: "Đào khoáng (5 phút/lần).",
+  description: "Đào khoáng (5 giây/lần).",
   run: async (client, msg) => {
     const users = loadUsers();
     const user = users[msg.author.id];

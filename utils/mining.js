@@ -31,6 +31,10 @@ const BASE_TIER_WEIGHTS = {
   than: 5,
 };
 
+// Buff nhẹ toàn server để ra khoáng bậc cao hơn một chút (không phụ thuộc khoáng cụ)
+// Lưu ý: chỉ áp cho Huyền+ để không làm loãng tiến trình tân thủ.
+const GLOBAL_RARE_BONUS = 8; // %
+
 const RARE_TIERS = new Set(["huyen", "dia", "thien", "tien", "than"]);
 
 function pickWeighted(entries) {
@@ -50,7 +54,7 @@ function pickWeighted(entries) {
  * - ví dụ bonusRare=10 => weight hiếm *1.10
  */
 function rollTier({ bonusRare = 0 } = {}) {
-  const br = Math.max(0, Number(bonusRare) || 0);
+  const br = Math.max(0, Number(bonusRare) || 0) + GLOBAL_RARE_BONUS;
   const entries = TIERS.map((t) => {
     const base = BASE_TIER_WEIGHTS[t] || 0;
     if (!RARE_TIERS.has(t) || br <= 0) return [t, base];

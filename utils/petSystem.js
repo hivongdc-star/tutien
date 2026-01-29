@@ -28,6 +28,14 @@ const HATCH_RATE_SHARD = 0.55;
 
 const SHARDS_PER_PET = 10;
 
+// Realm/level gate (giống nhân vật: đủ cấp mới đột phá được)
+// Mỗi cảnh giới có 10 cấp (1-10, 11-20, ...)
+const LEVELS_PER_REALM = 10;
+function getPetLevelCap(realm) {
+  realm = Math.max(1, Math.floor(Number(realm) || 1));
+  return realm * LEVELS_PER_REALM;
+}
+
 // Hunger/Stamina model
 const MAX_HUNGER = 100;
 const MAX_STAMINA = 100;
@@ -160,15 +168,16 @@ function xpToNextLevel(level, realm) {
 
 function applyPetLevelUp(petState) {
   let leveled = 0;
-  while (petState.xp >= xpToNextLevel(petState.level, petState.realm)) {
+  const HARD_MAX_LEVEL = 999; // an toàn chống runaway
+  const cap = Math.min(getPetLevelCap(petState.realm), HARD_MAX_LEVEL);
+
+  while (petState.level < cap && petState.xp >= xpToNextLevel(petState.level, petState.realm)) {
     petState.xp -= xpToNextLevel(petState.level, petState.realm);
     petState.level += 1;
     leveled += 1;
-
-    // cap level để tránh vô hạn (vẫn có realm)
-    if (petState.level >= 50) {
-      petState.level = 50;
-      petState.xp = Math.min(petState.xp, xpToNextLevel(50, petState.realm) - 1);
+    if (petState.level >= HARD_MAX_LEVEL) {
+      petState.level = HARD_MAX_LEVEL;
+      petState.xp = Math.min(petState.xp, xpToNextLevel(HARD_MAX_LEVEL, petState.realm) - 1);
       break;
     }
   }
@@ -245,6 +254,12 @@ function breakthroughPet(user, petId) {
   const st = user.pet.pets[pid];
   if (!st || (st.count || 0) <= 0) return { ok: false, message: "❌ Bạn không sở hữu linh thú này." };
 
+  // Gate: phải đạt cấp tối đa của cảnh giới hiện tại mới được đột phá
+  const capLv = getPetLevelCap(st.realm);
+  if ((st.level || 1) < capLv) {
+    return { ok: false, message: `❌ Linh thú chưa đủ cấp để đột phá. (Lv ${st.level}/${capLv})` };
+  }
+
   const needTotal = st.realm + 1; // n -> n+1 cần n+1 bản
   const consume = st.realm; // tiêu hao n bản
 
@@ -255,7 +270,10 @@ function breakthroughPet(user, petId) {
   st.count -= consume;
   st.realm += 1;
 
-  return { ok: true, message: `✅ **${getPetMeta(pid)?.name || pid}** đột phá lên **Cảnh giới ${st.realm}**! (tiêu hao ${consume} bản)` };
+  // Sau khi tăng cảnh giới, nếu còn XP tồn thì có thể lên thêm cấp trong cap mới
+  applyPetLevelUp(st);
+
+  return { ok: true, message: `✅ **${getPetMeta(pid)?.name || pid}** đột phá thành công! (tiêu hao ${consume} bản)` };
 }
 
 function applyFeedBufferToActive(user) {
@@ -274,27 +292,42 @@ function applyFeedBufferToActive(user) {
   return buf;
 }
 
-function feedPetFromFish(user, fish, sizeCm) {
+function feedPetFromFish(user, fish, sizeCm, xpOverride) {
   ensurePetShape(user);
 
   // map rarity -> xp (cá save kho sẽ không vào đây)
-  const rarity = String(fish?.rarity || "thường");
+  const rarity = String(fish?.rarity || "thường").toLowerCase();
   const baseXpByRarity = {
+    // scheme A
     "thường": 6,
     "khá": 10,
     "hiếm": 15,
     "cực hiếm": 22,
+    // scheme B (nếu bạn dùng tier trực tiếp)
+    "phàm": 6,
+    "linh": 10,
+    "hoàng": 13,
+    "huyền": 15,
+    "địa": 22,
   };
   const baseHungerByRarity = {
+    // scheme A
     "thường": 1,
     "khá": 2,
     "hiếm": 3,
     "cực hiếm": 4,
+    // scheme B
+    "phàm": 1,
+    "linh": 2,
+    "hoàng": 2,
+    "huyền": 3,
+    "địa": 4,
   };
 
   const baseXp = baseXpByRarity[rarity] ?? 6;
   const sizeBonus = Number.isFinite(sizeCm) && sizeCm > 0 ? Math.min(8, Math.floor(sizeCm / 10)) : 0;
-  const xpGain = Math.max(1, baseXp + sizeBonus);
+  const computedXp = Math.max(1, baseXp + sizeBonus);
+  const xpGain = Number.isFinite(xpOverride) && xpOverride > 0 ? Math.floor(xpOverride) : computedXp;
   const hungerGain = baseHungerByRarity[rarity] ?? 1;
 
   const pid = user.pet.activePetId;
@@ -538,6 +571,7 @@ module.exports = {
   PET_TICK_INTERVAL_MS,
   PET_MAX_OFFLINE_MS,
   SHARDS_PER_PET,
+  getPetLevelCap,
   listPets,
   getPetMeta,
   getPetImagePath,

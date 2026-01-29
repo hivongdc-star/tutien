@@ -13,6 +13,7 @@ const {
 } = require("discord.js");
 
 const { loadUsers, saveUsers } = require("../utils/storage");
+const REALMS = require("../utils/realms");
 const {
   PET_EGG_ITEM_ID,
   listPets,
@@ -24,6 +25,7 @@ const {
   equipPet,
   setPetJob,
   breakthroughPet,
+  getPetLevelCap,
   SHARDS_PER_PET,
 } = require("../utils/petSystem");
 
@@ -44,10 +46,18 @@ function shortMapLines(obj, maxLines = 6, fmtFn = (k, v) => `${k}: ${v}`) {
   return lines.join("\n");
 }
 
+function petRealmLabel(realm) {
+  const r = Math.max(1, Math.floor(Number(realm) || 1));
+  const name = Array.isArray(REALMS) ? REALMS[r - 1] : null;
+  // Pet realm có thể vượt danh sách cảnh giới hiện có -> fallback giữ số
+  return name ? `${name} (C${r})` : `C${r}`;
+}
+
 function petStateLine(pid, st) {
   const meta = getPetMeta(pid);
   const name = meta?.name || pid;
-  return `• **${name}** ×${st.count} (C${st.realm}, Lv${st.level})`;
+  const cap = getPetLevelCap(st.realm);
+  return `• **${name}** ×${st.count} (${petRealmLabel(st.realm)}, Lv${st.level}/${cap})`;
 }
 
 function ownedPetsLines(user) {
@@ -130,10 +140,11 @@ function equipMenuRow(customId, user) {
     const st = pets[id];
     const meta = getPetMeta(id);
     const label = `${meta?.name || id} ×${st.count}`.slice(0, 100);
+    const cap = getPetLevelCap(st.realm);
     return {
       label,
       value: id,
-      description: `C${st.realm} • Lv${st.level}`.slice(0, 100),
+      description: `${petRealmLabel(st.realm)} • Lv${st.level}/${cap}`.slice(0, 100),
     };
   });
 
@@ -165,7 +176,7 @@ function buildInfoEmbed(user, tickSummary, attachName) {
         name: "⭐ Đang trang bị",
         value:
           `**${meta.name}**\n` +
-          `Cảnh giới: **${active.realm}** · Cấp: **${active.level}**\n` +
+          `Cảnh giới: **${petRealmLabel(active.realm)}** · Cấp: **${active.level}/${getPetLevelCap(active.realm)}**\n` +
           `Đói: **${active.hunger}/100** · Thể lực: **${active.stamina}/100**\n` +
           `Job: **${active.job}**`,
         inline: false,
@@ -249,13 +260,15 @@ function buildBreakEmbed(user) {
   const meta = getPetMeta(pid);
   const needTotal = (st?.realm || 1) + 1;
   const consume = st?.realm || 1;
+  const capLv = getPetLevelCap(st?.realm || 1);
 
   return new EmbedBuilder()
     .setTitle("⬆️ Đột phá")
     .setColor(0xE67E22)
     .setDescription(
       `**${meta?.name || pid}**\n` +
-        `Cảnh giới hiện tại: **${st?.realm || 1}**\n\n` +
+        `Cảnh giới hiện tại: **${petRealmLabel(st?.realm || 1)}**\n\n` +
+        `Yêu cầu cấp: **Lv ${st?.level || 1}/${capLv}** (đủ cấp mới đột phá)\n` +
         `Yêu cầu: tổng **${needTotal}** bản cùng loại.\n` +
         `Tiêu hao khi đột phá: **${consume}** bản.`
     );
@@ -351,7 +364,8 @@ module.exports = {
         const pid2 = cur.pet.activePetId;
         const st = pid2 ? cur.pet.pets?.[pid2] : null;
         const needTotal = (st?.realm || 1) + 1;
-        const canBreak = !!(st && (st.count || 0) >= needTotal);
+        const capLv = st ? getPetLevelCap(st.realm) : 0;
+        const canBreak = !!(st && (st.count || 0) >= needTotal && (st.level || 1) >= capLv);
         components = [actionMenuRow(actionId), breakRow(`${baseId}:break`, canBreak), backRow(backId)];
       }
 

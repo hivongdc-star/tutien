@@ -1,8 +1,10 @@
 // commands/shop.js
-// Shop: Khoáng cụ + Bí kíp (kỹ năng theo ngũ hành).
+// Shop: Khoáng cụ + Bí kíp (kỹ năng theo ngũ hành) + Trứng Linh Thú.
 
 const {
   ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
   StringSelectMenuBuilder,
   ComponentType,
   EmbedBuilder,
@@ -11,7 +13,13 @@ const {
 const { listItems, buyItem } = require("../shop/shopUtils");
 const { loadUsers, saveUsers } = require("../utils/storage");
 const elements = require("../utils/element");
-const { listSkills, getSkill, ensureUserSkills, addOwnedSkill, describeSkillShort } = require("../utils/skills");
+const {
+  listSkills,
+  getSkill,
+  ensureUserSkills,
+  addOwnedSkill,
+  describeSkillShort,
+} = require("../utils/skills");
 
 function fmtLT(n) {
   return Number(n || 0).toLocaleString("vi-VN");
@@ -21,6 +29,25 @@ function menuRow(customId, placeholder, options) {
   const row = new ActionRowBuilder().addComponents(
     new StringSelectMenuBuilder().setCustomId(customId).setPlaceholder(placeholder).addOptions(options)
   );
+  return row;
+}
+
+function qtyButtonsRow(userId, itemId, maxQty) {
+  const presets = [1, 5, 10, 25].filter((q) => q <= maxQty);
+  const qs = [...presets];
+  if (!qs.includes(maxQty)) qs.push(maxQty);
+  // Discord row tối đa 5 nút
+  const trimmed = qs.slice(0, 5);
+  const row = new ActionRowBuilder();
+  for (const q of trimmed) {
+    const isMax = q === maxQty;
+    row.addComponents(
+      new ButtonBuilder()
+        .setCustomId(`shopbuy_${userId}:${itemId}:${q}`)
+        .setLabel(isMax ? `Max ${q}` : `x${q}`)
+        .setStyle(isMax ? ButtonStyle.Success : ButtonStyle.Primary)
+    );
+  }
   return row;
 }
 
@@ -47,22 +74,28 @@ module.exports = {
     const catOptions = [
       { label: "Khoáng cụ", value: "tools", description: "Mua pháp khí đào khoáng" },
       { label: "Bí kíp", value: "skills", description: "Kỹ năng theo ngũ hành" },
+      { label: "Trứng Linh Thú", value: "pets", description: "Mua trứng để ấp linh thú" },
     ];
 
     const header = new EmbedBuilder()
       .setTitle("🛒 Linh Bảo Các")
       .setColor(0x3498db)
-      .setDescription(
-        `Linh thạch hiện có: **${fmtLT(u.lt)}** 💎\n\n` +
-          `Chọn mục mua sắm:`
-      );
+      .setDescription(`Linh thạch hiện có: **${fmtLT(u.lt)}** 💎\n\nChọn mục mua sắm:`);
 
-    const sent = await msg.reply({ embeds: [header], components: [menuRow(catId, "Chọn mục...", catOptions)] });
+    const sent = await msg.reply({
+      embeds: [header],
+      components: [menuRow(catId, "Chọn mục...", catOptions)],
+    });
 
-    let mode = null; // tools | skills
+    let mode = null; // tools | skills | pets
 
     const col = sent.createMessageComponentCollector({
       componentType: ComponentType.StringSelect,
+      time: 120_000,
+    });
+
+    const bcol = sent.createMessageComponentCollector({
+      componentType: ComponentType.Button,
       time: 120_000,
     });
 
@@ -95,7 +128,36 @@ module.exports = {
             .setColor(0x2ecc71)
             .setDescription(`Linh thạch hiện có: **${fmtLT(u2.lt)}** 💎\nChọn pháp khí để mua.`);
 
-          return sent.edit({ embeds: [emb], components: [menuRow(pickId, "Chọn khoáng cụ...", options)] }).catch(() => {});
+          return sent
+            .edit({ embeds: [emb], components: [menuRow(pickId, "Chọn khoáng cụ...", options)] })
+            .catch(() => {});
+        }
+
+        if (mode === "pets") {
+          const catalog = listItems();
+          const entries = Object.entries(catalog).filter(([, it]) => it.type === "pet_egg");
+          if (!entries.length) {
+            const emb = new EmbedBuilder()
+              .setTitle("🛒 Linh Bảo Các • Trứng Linh Thú")
+              .setColor(0xF1C40F)
+              .setDescription("Hiện chưa có trứng linh thú nào trong shop.");
+            return sent.edit({ embeds: [emb], components: [] }).catch(() => {});
+          }
+
+          const options = entries.slice(0, 25).map(([id, it]) => ({
+            label: `${it.emoji || ""} ${it.name}`.trim().slice(0, 100),
+            value: `egg:${id}`,
+            description: `${fmtLT(it.price || 0)} LT`.slice(0, 100),
+          }));
+
+          const emb = new EmbedBuilder()
+            .setTitle("🛒 Linh Bảo Các • Trứng Linh Thú")
+            .setColor(0xF1C40F)
+            .setDescription(`Linh thạch hiện có: **${fmtLT(u2.lt)}** 💎\nChọn trứng để mua.`);
+
+          return sent
+            .edit({ embeds: [emb], components: [menuRow(pickId, "Chọn trứng...", options)] })
+            .catch(() => {});
         }
 
         if (mode === "skills") {
@@ -123,7 +185,10 @@ module.exports = {
                 `Linh thạch hiện có: **${fmtLT(u2.lt)}** 💎\n\n` +
                 `Chọn bí kíp để mua (chỉ bán **thường**).`
             );
-          return sent.edit({ embeds: [emb], components: [menuRow(pickId, "Chọn bí kíp...", options)] }).catch(() => {});
+
+          return sent
+            .edit({ embeds: [emb], components: [menuRow(pickId, "Chọn bí kíp...", options)] })
+            .catch(() => {});
         }
       }
 
@@ -134,8 +199,57 @@ module.exports = {
         // TOOL
         if (val.startsWith("tool:")) {
           const itemId = val.slice("tool:".length);
-          const res = buyItem(msg.author.id, itemId);
-          return sent.edit({ content: res.message, embeds: [], components: [] }).catch(() => {});
+          const catalog = listItems();
+          const it = catalog[itemId];
+          if (!it) return sent.edit({ content: "❌ Mặt hàng không tồn tại.", embeds: [], components: [] }).catch(() => {});
+          const price = Number(it.price || 0);
+          const ltNow = Number(u2.lt || 0);
+          const maxAff = price > 0 ? Math.floor(ltNow / price) : 1;
+          const maxQty = Math.max(1, Math.min(maxAff, 99));
+          if (ltNow < price || maxAff < 1) {
+            return sent.edit({ content: "❌ Không đủ LT.", embeds: [], components: [] }).catch(() => {});
+          }
+
+          const emb = new EmbedBuilder()
+            .setTitle("🛒 Xác nhận mua • Khoáng cụ")
+            .setColor(0x2ecc71)
+            .setDescription(
+              `Bạn muốn mua: **${(it.emoji || "")} ${it.name}**\n` +
+                `Giá: **${fmtLT(price)} LT** / cái\n` +
+                `LT hiện có: **${fmtLT(ltNow)}** 💎\n` +
+                `Tối đa mua được: **${maxAff}**\n\n` +
+                `Chọn số lượng:`
+            );
+
+          return sent.edit({ embeds: [emb], components: [qtyButtonsRow(msg.author.id, itemId, maxQty)] }).catch(() => {});
+        }
+
+        // EGG
+        if (val.startsWith("egg:")) {
+          const itemId = val.slice("egg:".length);
+          const catalog = listItems();
+          const it = catalog[itemId];
+          if (!it) return sent.edit({ content: "❌ Mặt hàng không tồn tại.", embeds: [], components: [] }).catch(() => {});
+          const price = Number(it.price || 0);
+          const ltNow = Number(u2.lt || 0);
+          const maxAff = price > 0 ? Math.floor(ltNow / price) : 1;
+          const maxQty = Math.max(1, Math.min(maxAff, 99));
+          if (ltNow < price || maxAff < 1) {
+            return sent.edit({ content: "❌ Không đủ LT.", embeds: [], components: [] }).catch(() => {});
+          }
+
+          const emb = new EmbedBuilder()
+            .setTitle("🛒 Xác nhận mua • Trứng Linh Thú")
+            .setColor(0xF1C40F)
+            .setDescription(
+              `Bạn muốn mua: **${(it.emoji || "")} ${it.name}**\n` +
+                `Giá: **${fmtLT(price)} LT** / quả\n` +
+                `LT hiện có: **${fmtLT(ltNow)}** 💎\n` +
+                `Tối đa mua được: **${maxAff}**\n\n` +
+                `Chọn số lượng:`
+            );
+
+          return sent.edit({ embeds: [emb], components: [qtyButtonsRow(msg.author.id, itemId, maxQty)] }).catch(() => {});
         }
 
         // SKILL
@@ -169,11 +283,36 @@ module.exports = {
       }
     });
 
+    bcol.on("collect", async (i) => {
+      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải nút của bạn.", ephemeral: true });
+      await i.deferUpdate();
+
+      const id = i.customId || "";
+      const prefix = `shopbuy_${msg.author.id}:`;
+      if (!id.startsWith(prefix)) return;
+
+      const rest = id.slice(prefix.length);
+      const [itemId, qtyStr] = rest.split(":");
+      const qty = Number(qtyStr);
+      const res = buyItem(msg.author.id, itemId, qty);
+
+      // Kết thúc flow sau khi mua (thành công hoặc thất bại)
+      try {
+        await sent.edit({ content: res.message, embeds: [], components: [] });
+      } catch {}
+      col.stop("done");
+      bcol.stop("done");
+    });
+
     col.on("end", async () => {
       try {
         const m = await sent.fetch();
         if (m && m.editable) await sent.edit({ components: [] }).catch(() => {});
       } catch {}
+    });
+
+    bcol.on("end", async () => {
+      // giữ hành vi dọn component theo col.on('end') là đủ
     });
   },
 };

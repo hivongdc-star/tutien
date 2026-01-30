@@ -13,6 +13,8 @@ module.exports = {
   acp: ["accept"], // chấp nhận thách đấu
   deny: ["d"], // từ chối thách đấu
   cancel: ["cxl"], // hủy thách đấu hoặc hành động
+   pet: ["linhthu", "thu"], // linh thú
+  cau: ["fish"], // câu cá
   help: ["h"], // hướng dẫn
 
   // Lệnh cờ bạc

@@ -1,38 +1,38 @@
 {
-  "pham_pha_thach": {
-    "name": "Thiết Hạc Phá Thạch",
+  "basic_pickaxe": {
+    "name": "Cuốc Sắt",
     "emoji": "⛏️",
-    "price": 3000,
+    "price": 100,
     "type": "mining_tool",
-    "tier": "pham",
-    "durability": 60,
-    "bonusRare": 0
+    "bonus": 1
   },
-  "linh_khai_son": {
-    "name": "Linh Văn Khai Sơn",
+  "iron_pickaxe": {
+    "name": "Cuốc Bạc",
     "emoji": "⛏️",
-    "price": 12000,
+    "price": 500,
     "type": "mining_tool",
-    "tier": "linh",
-    "durability": 90,
-    "bonusRare": 3
+    "bonus": 2
   },
-  "huyen_toai_nham": {
-    "name": "Huyền Thiết Toái Nham",
+  "gold_pickaxe": {
+    "name": "Cuốc Vàng",
     "emoji": "⛏️",
-    "price": 45000,
+    "price": 2000,
     "type": "mining_tool",
-    "tier": "huyen",
-    "durability": 120,
-    "bonusRare": 9
+    "bonus": 3
   },
-  "thien_tran_son": {
-    "name": "Thiên Ngoại Trấn Sơn",
+  "diamond_pickaxe": {
+    "name": "Cuốc Kim Cương",
     "emoji": "⛏️",
-    "price": 120000,
+    "price": 8000,
     "type": "mining_tool",
-    "tier": "thien",
-    "durability": 160,
-    "bonusRare": 15
+    "bonus": 4
+  },
+
+  "pet_egg_basic": {
+    "name": "Trứng Linh Thú",
+    "emoji": "🥚",
+    "price": 8000,
+    "type": "pet_egg",
+    "desc": "Ấp có thể ra Linh Thú hoặc mảnh (có thể trắng tay)."
   }
 }

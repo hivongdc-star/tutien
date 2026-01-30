@@ -5,6 +5,8 @@ const { EmbedBuilder } = require("discord.js");
 const { loadUsers, saveUsers } = require("../utils/storage");
 const { rollOre } = require("../utils/mining");
 const { tierMeta, tierText } = require("../utils/tiers");
+const { recordEvent: recordQuestEvent } = require("../utils/questSystem");
+const { recordEvent: recordAchvEvent } = require("../utils/achievementSystem");
 
 const COOLDOWN_MS = 5 * 1000;
 
@@ -56,6 +58,10 @@ module.exports = {
     const oreId = ore.id;
     user.mining.ores[oreId] = (Number(user.mining.ores[oreId]) || 0) + 1;
 
+    // Quest + Achievement
+    recordQuestEvent(user, "mine", 1);
+    const unlockedTitles = recordAchvEvent(user, "mine", 1) || [];
+
     // Trừ độ bền
     tool.durability = Math.max(0, (Number(tool.durability) || 0) - 1);
     user.mining.lastMineAt = now;
@@ -82,6 +88,14 @@ module.exports = {
         `**Khoáng cụ:** **${tool.name || "Khoáng cụ"}** • Độ bền **${toolDurText}**` +
         brokeText
       );
+
+    if (unlockedTitles.length) {
+      embed.addFields({
+        name: "Danh hiệu mới",
+        value: unlockedTitles.map((t) => `• **${t}**`).join("\n"),
+        inline: false,
+      });
+    }
 
     users[msg.author.id] = user;
     saveUsers(users);

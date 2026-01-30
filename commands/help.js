@@ -7,9 +7,7 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setColor("Blue")
       .setTitle("📖 Danh sách lệnh cho người chơi")
-      .setDescription(
-        "Dưới đây là các lệnh bạn có thể sử dụng trong bot Tu Tiên:"
-      )
+      .setDescription("Dưới đây là các lệnh bạn có thể sử dụng trong bot Tu Tiên:")
       .addFields(
         // --- Nhân vật ---
         {
@@ -26,8 +24,7 @@ module.exports = {
         },
         {
           name: "♻️ Reset nhân vật",
-          value:
-            "`-reset` | alias: `-rs`\nReset lại nhân vật (chọn lại Tộc + Ngũ hành)",
+          value: "`-reset` | alias: `-rs`\nReset lại nhân vật (chọn lại Tộc + Ngũ hành)",
         },
         {
           name: "📖 Bio",
@@ -35,8 +32,7 @@ module.exports = {
         },
         {
           name: "✍️ Đổi tên",
-          value:
-            "`-doiten <tên>` | alias: `-rename`, `-name`\nĐổi tên nhân vật",
+          value: "`-doiten <tên>` | alias: `-rename`, `-name`\nĐổi tên nhân vật",
         },
         {
           name: "🌟 Danh hiệu",
@@ -49,8 +45,16 @@ module.exports = {
           value: "`-daily` | alias: `-dly`\nNhận thưởng hàng ngày",
         },
         {
+          name: "🧭 Nhiệm vụ",
+          value: "`-quest` | alias: `-q`\nNhiệm vụ ngày/tuần + nhận thưởng",
+        },
+        {
+          name: "🏅 Thành tựu",
+          value: "`-thanhtuu` | alias: `-tt`\nXem tiến độ thành tựu + danh hiệu mở khoá",
+        },
+        {
           name: "🛒 Shop",
-          value: "`-shop` | alias: `-s`\nXem cửa hàng",
+          value: "`-shop` | alias: `-s`\nXem cửa hàng (khoáng cụ / bí kíp / trứng linh thú)",
         },
         {
           name: "🎒 Túi",
@@ -67,6 +71,20 @@ module.exports = {
         {
           name: "🧚 Tiểu Nhu",
           value: "`-tieunhu` | alias: `-tn`\nGọi NPC Tiểu Nhu để nhận EXP",
+        },
+        {
+          name: "🎣 Câu cá",
+          value: "`-cau [địa điểm]` | alias: `-fish`\nCá không save sẽ tự động cho linh thú ăn",
+        },
+        {
+          name: "🐾 Linh thú",
+          value: "`-pet` | alias: `-linhthu`, `-thu`\nUI menu/button: Ấp trứng • Equip • Job • Đột phá",
+        },
+
+        // --- PvE ---
+        {
+          name: "🐉 World Boss",
+          value: "`-boss` | alias: `-wb`\nĐánh boss tuần, nhận thưởng theo đóng góp",
         },
 
         // --- PK ---
@@ -90,18 +108,15 @@ module.exports = {
         // --- Cờ bạc & Xổ số ---
         {
           name: "🎲 Tài Xỉu",
-          value:
-            "`-taixiu <LT>` | alias: `-tx`\nTung 3 xúc xắc, ≥13 điểm = thắng x2 LT",
+          value: "`-taixiu <LT>` | alias: `-tx`\nTung 3 xúc xắc, ≥13 điểm = thắng x2 LT",
         },
         {
           name: "🪙 Tung Xu",
-          value:
-            "`-flip <LT> <ngửa/sấp>` | alias: `-coin`\nĐoán mặt đồng xu, thắng x2 LT",
+          value: "`-flip <LT> <ngửa/sấp>` | alias: `-coin`\nĐoán mặt đồng xu, thắng x2 LT",
         },
         {
           name: "🎰 Slot Machine",
-          value:
-            "`-slot <LT>` | alias: `-quay`\nQuay 3 ô emoji (Ngũ hành + 💎), có jackpot x50",
+          value: "`-slot <LT>` | alias: `-quay`\nQuay 3 ô emoji (Ngũ hành + 💎), có jackpot x50",
         },
         {
           name: "🎟️ Xổ số",

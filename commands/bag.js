@@ -13,6 +13,8 @@ const {
 const { loadUsers, saveUsers } = require("../utils/storage");
 const { loadOreDB, getOreById } = require("../utils/mining");
 const { tierMeta, tierText } = require("../utils/tiers");
+const { fmtLT, oreSellValueByTier, gearSellValue, clampInt } = require("../utils/pricing");
+const { attemptEnhance, ensureEnhanceFields, successRate, enhanceCost } = require("../utils/enhanceSystem");
 const {
   describeGearItem,
   sumAffixes,
@@ -488,39 +490,217 @@ async function openToolsMenu(msg, user, nonce) {
   col.on("end", () => sent.edit({ components: [] }).catch(() => {}));
 }
 
-async function openOresView(msg, user) {
-  const ores = user.mining.ores || {};
-  const entries = Object.entries(ores).filter(([, q]) => (Number(q) || 0) > 0);
-  if (!entries.length) {
+async function openOresView(msg, user, nonce) {
+  const userId = msg.author.id;
+  const n = nonce || `${Date.now()}`;
+  let u = user;
+
+  const listOwned = () => {
+    const ores = u?.mining?.ores || {};
+    const entries = Object.entries(ores).filter(([, q]) => (Number(q) || 0) > 0);
+    if (!entries.length) return [];
+    loadOreDB();
+    return entries
+      .map(([id, q]) => {
+        const ore = getOreById(id);
+        if (!ore) return { id, name: id, tier: "pham", qty: Number(q) || 0 };
+        return { id, name: ore.name, tier: ore.tier, qty: Number(q) || 0 };
+      })
+      .sort((a, b) => {
+        const order = { pham: 1, linh: 2, hoang: 3, huyen: 4, dia: 5, thien: 6, tien: 7, than: 8 };
+        const ta = order[a.tier] || 99;
+        const tb = order[b.tier] || 99;
+        if (ta !== tb) return tb - ta;
+        return a.name.localeCompare(b.name);
+      });
+  };
+
+  if (!listOwned().length) {
     return msg.reply("🪨 Túi khoáng thạch trống. Dùng `-dao` để khai khoáng.");
   }
 
-  loadOreDB();
-  const mapped = entries
-    .map(([id, q]) => {
-      const ore = getOreById(id);
-      if (!ore) return { id, name: id, tier: "pham", qty: Number(q) || 0 };
-      return { id, name: ore.name, tier: ore.tier, qty: Number(q) || 0 };
-    })
-    .sort((a, b) => {
-      const order = { pham: 1, linh: 2, hoang: 3, huyen: 4, dia: 5, thien: 6, tien: 7, than: 8 };
-      const ta = order[a.tier] || 99;
-      const tb = order[b.tier] || 99;
-      if (ta !== tb) return tb - ta;
-      return a.name.localeCompare(b.name);
+  let selectedOreId = null;
+
+  const buildEmbed = () => {
+    const list = listOwned();
+    const lines = list.map((o) => {
+      const m = tierMeta(o.tier);
+      return `${m.icon} **${o.name}** x${o.qty}  _(${tierText(o.tier)})_`;
     });
 
-  const lines = mapped.map((o) => {
-    const m = tierMeta(o.tier);
-    return `${m.icon} **${o.name}** x${o.qty}  _(${tierText(o.tier)})_`;
+    if (!selectedOreId) {
+      return new EmbedBuilder()
+        .setColor(0x3498db)
+        .setTitle("🪨 Khoáng Thạch")
+        .setDescription(
+          `Cảnh giới: **${u.realm || "(chưa rõ)"}**\n` +
+            `LT: **${fmtLT(u.lt)}** 💎\n\n` +
+            `${lines.join("\n")}\n\n` +
+            `Chọn một loại khoáng để **bán**.`
+        );
+    }
+
+    const listMap = new Map(list.map((x) => [x.id, x]));
+    const cur = listMap.get(selectedOreId) || null;
+    if (!cur) {
+      selectedOreId = null;
+      return buildEmbed();
+    }
+
+    const unit = oreSellValueByTier(cur.tier);
+    const maxQty = Math.max(1, cur.qty);
+    const m = tierMeta(cur.tier);
+
+    return new EmbedBuilder()
+      .setColor(m.color)
+      .setTitle(`${m.icon} ${cur.name}`)
+      .setDescription(
+        `Phẩm giai: **${tierText(cur.tier)}**\n` +
+          `Đang có: **${cur.qty}**\n` +
+          `Giá bán: **${fmtLT(unit)} LT** / viên\n` +
+          `Bán hết: **${fmtLT(unit * maxQty)} LT**\n\n` +
+          `LT hiện có: **${fmtLT(u.lt)}** 💎`
+      );
+  };
+
+  const buildSelectRow = () => {
+    const list = listOwned();
+    const options = list.slice(0, 25).map((o) => ({
+      label: `${o.name} x${o.qty}`.slice(0, 100),
+      value: o.id,
+      description: `${tierText(o.tier)} • Bán ${fmtLT(oreSellValueByTier(o.tier))} LT/viên`.slice(0, 100),
+    }));
+
+    return new ActionRowBuilder().addComponents(
+      new StringSelectMenuBuilder()
+        .setCustomId(`bag_ores_${userId}_${n}`)
+        .setPlaceholder("Chọn khoáng để bán...")
+        .addOptions(options.length ? options : [{ label: "(Trống)", value: "none" }])
+    );
+  };
+
+  const buildButtonsRow = () => {
+    if (!selectedOreId) {
+      return new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setCustomId(`bag_ores_close_${userId}_${n}`)
+          .setStyle(ButtonStyle.Secondary)
+          .setLabel("Đóng")
+      );
+    }
+    const list = listOwned();
+    const cur = list.find((x) => x.id === selectedOreId);
+    if (!cur) return null;
+    const maxQty = Math.max(1, cur.qty);
+    const presets = [1, 5, 10].filter((q) => q <= maxQty);
+    const qs = [...presets];
+    if (!qs.includes(maxQty)) qs.push(maxQty);
+    const row = new ActionRowBuilder();
+    for (const q of qs.slice(0, 4)) {
+      const isMax = q === maxQty;
+      row.addComponents(
+        new ButtonBuilder()
+          .setCustomId(`bag_ores_sell_${userId}_${n}_${selectedOreId}_${q}`)
+          .setStyle(isMax ? ButtonStyle.Success : ButtonStyle.Primary)
+          .setLabel(isMax ? `Bán hết (${q})` : `Bán x${q}`)
+      );
+    }
+    row.addComponents(
+      new ButtonBuilder()
+        .setCustomId(`bag_ores_close_${userId}_${n}`)
+        .setStyle(ButtonStyle.Secondary)
+        .setLabel("Đóng")
+    );
+    return row;
+  };
+
+  const render = async (sent) => {
+    const rows = [buildSelectRow(), buildButtonsRow()].filter(Boolean);
+    await sent.edit({ embeds: [buildEmbed()], components: rows }).catch(() => {});
+  };
+
+  const sent = await msg.reply({ embeds: [buildEmbed()], components: [buildSelectRow(), buildButtonsRow()] });
+  const col = sent.createMessageComponentCollector({ time: 120_000 });
+
+  const refreshUser = () => {
+    const users = loadUsers();
+    const cur = users[userId];
+    if (!cur) return null;
+    ensureMining(cur);
+    users[userId] = cur;
+    return { users, cur };
+  };
+
+  col.on("collect", async (i) => {
+    if (i.user.id !== userId) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+    await i.deferUpdate();
+
+    const cid = String(i.customId || "");
+
+    if (i.isStringSelectMenu() && cid === `bag_ores_${userId}_${n}`) {
+      const v = i.values?.[0];
+      if (!v || v === "none") return;
+      selectedOreId = v;
+      return render(sent);
+    }
+
+    if (i.isButton() && cid === `bag_ores_close_${userId}_${n}`) {
+      col.stop("close");
+      await sent.edit({ components: [] }).catch(() => {});
+      return;
+    }
+
+    if (i.isButton() && cid.startsWith(`bag_ores_sell_${userId}_${n}_`)) {
+      const parts = cid.split("_");
+      const oreId = parts[parts.length - 2];
+      const qty = clampInt(parts[parts.length - 1], 1, 999999);
+
+      const pack = refreshUser();
+      if (!pack) return;
+      const { users, cur } = pack;
+
+      const ores = cur.mining.ores || {};
+      const have = Math.max(0, Number(ores[oreId]) || 0);
+      if (have <= 0) {
+        selectedOreId = null;
+        u = cur;
+        users[userId] = cur;
+        saveUsers(users);
+        return render(sent);
+      }
+
+      loadOreDB();
+      const ore = getOreById(oreId) || { id: oreId, name: oreId, tier: "pham" };
+      const qSell = Math.max(1, Math.min(have, qty));
+      const unit = oreSellValueByTier(ore.tier);
+      const total = unit * qSell;
+
+      const next = have - qSell;
+      if (next <= 0) delete ores[oreId];
+      else ores[oreId] = next;
+      cur.mining.ores = ores;
+
+      cur.lt = (Number(cur.lt) || 0) + total;
+
+      users[userId] = cur;
+      saveUsers(users);
+      u = cur;
+
+      // cập nhật selection nếu hết
+      if (!cur.mining.ores[oreId]) selectedOreId = null;
+
+      await i.followUp({
+        content: `✅ Đã bán **${ore.name}** x${qSell} → nhận **${fmtLT(total)} LT**.`,
+        ephemeral: true,
+      });
+
+      return render(sent);
+    }
   });
 
-  const embed = new EmbedBuilder()
-    .setColor(0x3498DB)
-    .setTitle("🪨 Khoáng Thạch")
-    .setDescription(`Cảnh giới: **${user.realm || "(chưa rõ)"}**\n\n${lines.join("\n")}`);
-
-  return msg.reply({ embeds: [embed] });
+  col.on("end", async () => {
+    await sent.edit({ components: [] }).catch(() => {});
+  });
 }
 
 async function openGearView(msg, user, nonce) {
@@ -605,12 +785,22 @@ async function openGearView(msg, user, nonce) {
         .setStyle(ButtonStyle.Success)
         .setLabel("Mặc");
 
+      const btnEnh = new ButtonBuilder()
+        .setCustomId(`bag_enh_${msg.author.id}_${nonce}_BG_${selected.gid}`)
+        .setStyle(ButtonStyle.Primary)
+        .setLabel("Cường hoá");
+
+      const btnSell = new ButtonBuilder()
+        .setCustomId(`bag_sellgear_${msg.author.id}_${nonce}_${selected.gid}`)
+        .setStyle(ButtonStyle.Danger)
+        .setLabel("Bán");
+
       const btnClose = new ButtonBuilder()
         .setCustomId(`bag_close_${msg.author.id}_${nonce}`)
         .setStyle(ButtonStyle.Secondary)
         .setLabel("Đóng");
 
-      return new ActionRowBuilder().addComponents(btnEquip, btnClose);
+      return new ActionRowBuilder().addComponents(btnEquip, btnEnh, btnSell, btnClose);
     }
 
     if (selected.kind === "EQ") {
@@ -619,12 +809,17 @@ async function openGearView(msg, user, nonce) {
         .setStyle(ButtonStyle.Secondary)
         .setLabel("Tháo");
 
+      const btnEnh = new ButtonBuilder()
+        .setCustomId(`bag_enh_${msg.author.id}_${nonce}_EQ_${selected.slot}`)
+        .setStyle(ButtonStyle.Primary)
+        .setLabel("Cường hoá");
+
       const btnClose = new ButtonBuilder()
         .setCustomId(`bag_close_${msg.author.id}_${nonce}`)
         .setStyle(ButtonStyle.Secondary)
         .setLabel("Đóng");
 
-      return new ActionRowBuilder().addComponents(btnUnequip, btnClose);
+      return new ActionRowBuilder().addComponents(btnUnequip, btnEnh, btnClose);
     }
 
     return null;
@@ -634,14 +829,24 @@ async function openGearView(msg, user, nonce) {
     const { it, where } = resolveSelected();
     if (!it) return renderSummary();
 
+    ensureEnhanceFields(it);
+    const enh = Math.max(0, Math.floor(Number(it.enhanceLevel) || 0));
+    const rate = successRate(enh);
+    const cost = enhanceCost(it);
+
     const m = tierMeta(it.tier || "pham");
+    const sellLine = selected?.kind === "BG" ? `\nGiá bán: **${fmtLT(gearSellValue(it))} LT**` : "";
+    const enhLine = enh > 0 ? `+${enh}` : "+0";
     return new EmbedBuilder()
       .setColor(m.color)
-      .setTitle(`${m.icon} ${it.name || "Trang bị"}`)
+      .setTitle(`${m.icon} ${it.name || "Trang bị"} ${enhLine}`)
       .setDescription(
         `${where}\n` +
           `Phẩm giai: **${tierText(it.tier || "pham")}**\n` +
           `Dòng chính: **${describeMainLine(it)}**\n\n` +
+          `Cường hoá: **${enhLine}** • Tỉ lệ lên cấp: **${Math.round(rate * 100)}%**\n` +
+          `Chi phí: **${fmtLT(cost.lt)} LT** + **${cost.oreNeed}** khoáng (${cost.minTier}+ )` +
+          `${sellLine}\n\n` +
           `**Phụ tố:**\n${describeAffixes(it)}`
       );
   };
@@ -688,6 +893,93 @@ async function openGearView(msg, user, nonce) {
       col.stop("close");
       await sent.edit({ components: [] }).catch(() => {});
       return;
+    }
+
+    // Enhance
+    if (i.isButton() && cid.startsWith(`bag_enh_${msg.author.id}_${nonce}_`)) {
+      await i.deferUpdate();
+      const tail = cid.split(`bag_enh_${msg.author.id}_${nonce}_`)[1] || ""; // BG_<gid> | EQ_<slot>
+      const [kind, id] = tail.split("_");
+      if (!kind || !id) return;
+
+      const users = loadUsers();
+      const cur = users[msg.author.id];
+      if (!cur) return;
+      ensureGear(cur);
+      ensureMining(cur);
+
+      let gear = null;
+      if (kind === "BG") {
+        gear = (cur.gear.bag || []).find((x) => x && x.gid === id) || null;
+      } else if (kind === "EQ") {
+        gear = cur.gear.equipped?.[id] || null;
+      }
+      if (!gear) return i.followUp({ content: "⚠️ Trang bị không còn tồn tại.", ephemeral: true });
+
+      const { recordEvent } = require("../utils/achievementSystem");
+      const result = attemptEnhance({ user: cur, gear });
+      if (!result.ok) {
+        users[msg.author.id] = cur;
+        saveUsers(users);
+        u = cur;
+        return i.followUp({ content: `❌ ${result.message}`, ephemeral: true });
+      }
+
+      // Thành tựu +10 / +15
+      let titleUnlocked = [];
+      if (result.after >= 10) {
+        titleUnlocked = titleUnlocked.concat(recordEvent(cur, "enh_plus10", 1) || []);
+      }
+      if (result.after >= 15) {
+        titleUnlocked = titleUnlocked.concat(recordEvent(cur, "enh_plus15", 1) || []);
+      }
+
+      users[msg.author.id] = cur;
+      saveUsers(users);
+      u = cur;
+
+      const okTxt = result.success ? "✅ Thành công" : "❌ Thất bại";
+      const extra = titleUnlocked.length ? `\n🎖 Mở khoá danh hiệu: **${titleUnlocked.join(", ")}**` : "";
+      await i.followUp({
+        content:
+          `${okTxt}: **${gear.name || "Trang bị"}** ` +
+          `(**+${result.before} → +${result.after}**)\n` +
+          `Tốn **${fmtLT(result.cost.lt)} LT** + **${result.cost.oreNeed}** khoáng.\n` +
+          `Tỉ lệ: **${Math.round(result.rate * 100)}%**${extra}`,
+        ephemeral: true,
+      });
+
+      // cập nhật selection
+      if (kind === "BG") selected = { kind: "BG", gid: id };
+      if (kind === "EQ") selected = { kind: "EQ", slot: id };
+      return render(sent);
+    }
+
+    // Sell gear (only bag)
+    if (i.isButton() && cid.startsWith(`bag_sellgear_${msg.author.id}_${nonce}_`)) {
+      await i.deferUpdate();
+      const gid = cid.split(`bag_sellgear_${msg.author.id}_${nonce}_`)[1] || "";
+      if (!gid) return;
+
+      const users = loadUsers();
+      const cur = users[msg.author.id];
+      if (!cur) return;
+      ensureGear(cur);
+
+      const idx = (cur.gear.bag || []).findIndex((x) => x && x.gid === gid);
+      if (idx < 0) return i.followUp({ content: "⚠️ Trang bị không còn trong túi.", ephemeral: true });
+      const it = cur.gear.bag[idx];
+      const price = gearSellValue(it);
+      cur.gear.bag.splice(idx, 1);
+      cur.lt = (Number(cur.lt) || 0) + price;
+
+      users[msg.author.id] = cur;
+      saveUsers(users);
+      u = cur;
+      selected = null;
+
+      await i.followUp({ content: `✅ Đã bán **${it.name || "Trang bị"}** → nhận **${fmtLT(price)} LT**.`, ephemeral: true });
+      return render(sent);
     }
 
     // Equip
@@ -1210,7 +1502,7 @@ module.exports = {
       await sent.edit({ components: [] }).catch(() => {});
 
       if (choice === "tools") return openToolsMenu(msg, user, nonce);
-      if (choice === "ores") return openOresView(msg, user);
+      if (choice === "ores") return openOresView(msg, user, nonce);
       if (choice === "skills") return openSkillsView(msg, user, nonce);
       if (choice === "gear") return openGearView(msg, user, nonce);
       if (choice === "legacy") return openLegacyInventory(msg, user);

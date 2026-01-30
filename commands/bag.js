@@ -682,6 +682,9 @@ async function openOresView(msg, user, nonce) {
 
       cur.lt = (Number(cur.lt) || 0) + total;
 
+      const { recordEvent: recordAchvEvent } = require("../utils/achievementSystem");
+      const titlesUnlocked = recordAchvEvent(cur, "sell_ore", qSell) || [];
+
       users[userId] = cur;
       saveUsers(users);
       u = cur;
@@ -690,7 +693,7 @@ async function openOresView(msg, user, nonce) {
       if (!cur.mining.ores[oreId]) selectedOreId = null;
 
       await i.followUp({
-        content: `✅ Đã bán **${ore.name}** x${qSell} → nhận **${fmtLT(total)} LT**.`,
+        content: `✅ Đã bán **${ore.name}** x${qSell} → nhận **${fmtLT(total)} LT**.` + (titlesUnlocked.length ? `\n🎖 Mở khoá danh hiệu: **${titlesUnlocked.join(', ')}**` : ''),
         ephemeral: true,
       });
 
@@ -924,14 +927,19 @@ async function openGearView(msg, user, nonce) {
         u = cur;
         return i.followUp({ content: `❌ ${result.message}`, ephemeral: true });
       }
-
-      // Thành tựu +10 / +15
+      // Thành tựu: mốc +5/+10/+15 + số lần thất bại
       let titleUnlocked = [];
+      if (result.after >= 5) {
+        titleUnlocked = titleUnlocked.concat(recordEvent(cur, "enh_plus5", 1) || []);
+      }
       if (result.after >= 10) {
         titleUnlocked = titleUnlocked.concat(recordEvent(cur, "enh_plus10", 1) || []);
       }
       if (result.after >= 15) {
         titleUnlocked = titleUnlocked.concat(recordEvent(cur, "enh_plus15", 1) || []);
+      }
+      if (!result.success) {
+        titleUnlocked = titleUnlocked.concat(recordEvent(cur, "enh_fail", 1) || []);
       }
 
       users[msg.author.id] = cur;
@@ -973,12 +981,16 @@ async function openGearView(msg, user, nonce) {
       cur.gear.bag.splice(idx, 1);
       cur.lt = (Number(cur.lt) || 0) + price;
 
+      const { recordEvent: recordAchvEvent } = require("../utils/achievementSystem");
+      const titlesUnlocked = recordAchvEvent(cur, "sell_gear", 1) || [];
+
       users[msg.author.id] = cur;
       saveUsers(users);
       u = cur;
       selected = null;
 
-      await i.followUp({ content: `✅ Đã bán **${it.name || "Trang bị"}** → nhận **${fmtLT(price)} LT**.`, ephemeral: true });
+      await i.followUp({ content: `✅ Đã bán **${it.name || "Trang bị"}** → nhận **${fmtLT(price)} LT**.` + (titlesUnlocked.length ? `
+🎖 Mở khoá danh hiệu: **${titlesUnlocked.join(', ')}**` : ''), ephemeral: true });
       return render(sent);
     }
 

@@ -22,6 +22,10 @@ function getISOWeekKey(now = Date.now()) {
   return `${year}-W${pad2(weekNo)}`;
 }
 
+/**
+ * Lưu ý: chỉ đổi name/desc để “đậm chất” hơn.
+ * id/event/target/rewardLt giữ nguyên để không phá dữ liệu.
+ */
 const DAILY_QUESTS = [
   {
     id: "D_FISH_15",
@@ -29,8 +33,8 @@ const DAILY_QUESTS = [
     event: "fish",
     target: 15,
     rewardLt: 160,
-    name: "Ngư Tang Nhất Nhật",
-    desc: "Câu cá 15 lần.",
+    name: "Ngư Tâm Nhập Đạo",
+    desc: "Thả câu 15 lần — dưỡng linh khí, nuôi linh thú.",
   },
   {
     id: "D_MINE_10",
@@ -38,8 +42,8 @@ const DAILY_QUESTS = [
     event: "mine",
     target: 10,
     rewardLt: 180,
-    name: "Khai Mạch Nhất Nhật",
-    desc: "Đào khoáng 10 lần.",
+    name: "Khai Mạch Trảm Thạch",
+    desc: "Đào khoáng 10 lần — mở đường mạch trong lòng đất.",
   },
   {
     id: "D_DG_8",
@@ -47,8 +51,8 @@ const DAILY_QUESTS = [
     event: "dungeon_floor",
     target: 8,
     rewardLt: 220,
-    name: "Động Phủ Nhất Nhật",
-    desc: "Thông quan 8 tầng dungeon (tính theo tầng).",
+    name: "Hạ Sơn Luyện Kiếp",
+    desc: "Vượt 8 tầng động phủ — mỗi tầng là một kiếp.",
   },
   {
     id: "D_BOSS_20K",
@@ -56,7 +60,7 @@ const DAILY_QUESTS = [
     event: "boss_damage",
     target: 20000,
     rewardLt: 260,
-    name: "Thí Luyện Nhất Nhật",
+    name: "Ma Uyên Thí Luyện",
     desc: "Gây 20.000 sát thương lên World Boss.",
   },
 ];
@@ -68,8 +72,8 @@ const WEEKLY_QUESTS = [
     event: "fish",
     target: 200,
     rewardLt: 1800,
-    name: "Ngư Hải Nhất Chu",
-    desc: "Câu cá 200 lần.",
+    name: "Ngư Hải Đạo Lộ",
+    desc: "Câu cá 200 lần — bền tâm như nước, đắc đạo từ câu.",
   },
   {
     id: "W_MINE_120",
@@ -77,8 +81,8 @@ const WEEKLY_QUESTS = [
     event: "mine",
     target: 120,
     rewardLt: 2200,
-    name: "Khoáng Hải Nhất Chu",
-    desc: "Đào khoáng 120 lần.",
+    name: "Khoáng Mạch Trấn Tông",
+    desc: "Đào khoáng 120 lần — mở khoáng mạch, dựng nền tông môn.",
   },
   {
     id: "W_DG_60",
@@ -86,8 +90,8 @@ const WEEKLY_QUESTS = [
     event: "dungeon_floor",
     target: 60,
     rewardLt: 2800,
-    name: "Động Chủ Nhất Chu",
-    desc: "Thông quan 60 tầng dungeon (tính theo tầng).",
+    name: "Thập Tầng Vô Hồi",
+    desc: "Vượt 60 tầng động phủ — vào rồi khó quay đầu.",
   },
   {
     id: "W_BOSS_200K",
@@ -95,8 +99,8 @@ const WEEKLY_QUESTS = [
     event: "boss_damage",
     target: 200000,
     rewardLt: 2400,
-    name: "Tru Thú Nhất Chu",
-    desc: "Gây 200.000 sát thương lên World Boss.",
+    name: "Chung Diệt Ma Uyên",
+    desc: "Gây 200.000 sát thương lên World Boss — hợp lực trừ ma.",
   },
 ];
 

@@ -216,16 +216,20 @@ module.exports = {
 
         const claimed = claimReward(st2, msg.author.id);
         if (!claimed.ok) return i.followUp({ content: `❌ ${claimed.message}`, ephemeral: true });
-
         u2.lt = (Number(u2.lt) || 0) + (Number(claimed.rewardLt) || 0);
+
+        const info = claimed.info;
+        const titlesUnlocked = info.rank === 1 ? (recordAchvEvent(u2, "boss_rank1", 1) || []) : [];
+
         users2[msg.author.id] = u2;
         saveUsers(users2);
 
-        const info = claimed.info;
         const rankTxt = info.rank ? `Top #${info.rank}` : "";
         const bonusTxt = info.bonus ? ` (bonus ${fmtLT(info.bonus)} LT)` : "";
+        const extra = titlesUnlocked.length ? `
+🎖 Mở khoá danh hiệu: **${titlesUnlocked.join(", ")}**` : "";
         return i.followUp({
-          content: `✅ Nhận thưởng World Boss: **${fmtLT(claimed.rewardLt)} LT** ${rankTxt}${bonusTxt}`,
+          content: `✅ Nhận thưởng World Boss: **${fmtLT(claimed.rewardLt)} LT** ${rankTxt}${bonusTxt}` + extra,
           ephemeral: true,
         });
       }

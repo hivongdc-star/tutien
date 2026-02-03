@@ -651,9 +651,12 @@ async function openOresView(msg, user, nonce) {
     }
 
     if (i.isButton() && cid.startsWith(`bag_ores_sell_${userId}_${n}_`)) {
-      const parts = cid.split("_");
-      const oreId = parts[parts.length - 2];
-      const qty = clampInt(parts[parts.length - 1], 1, 999999);
+      const prefix = `bag_ores_sell_${userId}_${n}_`;
+      const rest = cid.startsWith(prefix) ? cid.slice(prefix.length) : "";
+      const last = rest.lastIndexOf("_");
+      if (last < 0) return;
+      const oreId = rest.slice(0, last);
+      const qty = clampInt(rest.slice(last + 1), 1, 999999);
 
       const pack = refreshUser();
       if (!pack) return;
@@ -901,8 +904,12 @@ async function openGearView(msg, user, nonce) {
     // Enhance
     if (i.isButton() && cid.startsWith(`bag_enh_${msg.author.id}_${nonce}_`)) {
       await i.deferUpdate();
-      const tail = cid.split(`bag_enh_${msg.author.id}_${nonce}_`)[1] || ""; // BG_<gid> | EQ_<slot>
-      const [kind, id] = tail.split("_");
+      const prefix = `bag_enh_${msg.author.id}_${nonce}_`;
+      const tail = cid.startsWith(prefix) ? cid.slice(prefix.length) : ""; // BG_<gid> | EQ_<slot>
+      const sep = tail.indexOf("_");
+      if (sep < 0) return;
+      const kind = tail.slice(0, sep);
+      const id = tail.slice(sep + 1);
       if (!kind || !id) return;
 
       const users = loadUsers();

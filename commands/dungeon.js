@@ -10,6 +10,8 @@ const {
 } = require("discord.js");
 const { randomUUID } = require("node:crypto");
 const { loadUsers, saveUsers } = require("../utils/storage");
+const { recordEvent: recordQuestEvent } = require("../utils/questSystem");
+const { recordEvent: recordAchvEvent } = require("../utils/achievementSystem");
 const elements = require("../utils/element");
 const { rollOre } = require("../utils/mining");
 const { tierMeta, tierText } = require("../utils/tiers");
@@ -167,6 +169,21 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
       for (const uid of memberIds) {
         users[uid].lt = Math.max(0, (users[uid].lt || 0) - penalty);
       }
+
+      const cleared = Math.max(0, floor - 1);
+      const titleLines = [];
+      if (cleared > 0) {
+        for (const uid of memberIds) {
+          if (!users[uid]) continue;
+          recordQuestEvent(users[uid], "dungeon_floor", cleared, Date.now());
+          const titles = recordAchvEvent(users[uid], "dungeon_floor", cleared) || [];
+          if (titles.length) titleLines.push("• <@" + uid + ">: " + titles.join(", "));
+        }
+      }
+      const titleExtra = titleLines.length
+        ? "\n\n🎖 **Danh hiệu mở khoá:**\n" + titleLines.slice(0, 6).join("\n")
+        : "";
+
       saveUsers(users);
 
       const endPng = await drawDungeonCard({
@@ -186,7 +203,7 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
         .setColor(0x992d22)
         .setDescription(
           `**${map.name}** • Độ khó: **${dm.name}**\n` +
-            `Thất bại tại tầng **${floor}/${floors}**. Mỗi đạo hữu bị trừ **${penalty}** 💎 Linh thạch.`
+            `Thất bại tại tầng **${floor}/${floors}**. Mỗi đạo hữu bị trừ **${penalty}** 💎 Linh thạch.` + titleExtra
         )
         .setImage("attachment://dungeon.png");
       await renderAndEdit(lobbyMessage, { embeds: [endEmbed], files: [endFile], components: [] });
@@ -272,6 +289,18 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
     }
   }
 
+  // Quest/Achievement: cộng tiến độ dungeon theo số tầng đã thông quan
+  const unlockLines = [];
+  for (const uid of memberIds) {
+    if (!users[uid]) continue;
+    recordQuestEvent(users[uid], "dungeon_floor", floors, Date.now());
+    const titles = recordAchvEvent(users[uid], "dungeon_floor", floors) || [];
+    if (titles.length) unlockLines.push("• <@" + uid + ">: " + titles.join(", "));
+  }
+  const unlockExtra = unlockLines.length
+    ? "\n\n🎖 **Danh hiệu mở khoá:**\n" + unlockLines.slice(0, 6).join("\n")
+    : "";
+
   saveUsers(users);
 
   const endPng = await drawDungeonCard({
@@ -292,7 +321,7 @@ async function startRun({ client, channel, lobbyMessage, lobby, users }) {
     .setDescription(
       `Động phủ đã khép lại.\n` +
         `Tổng thưởng: **${totalLt}** 💎 Linh thạch (chia đều).\n` +
-        (dropLog.length ? `\n**Chiến lợi phẩm:**\n${dropLog.join("\n")}` : "\n**Chiến lợi phẩm:** _không có_" )
+        (dropLog.length ? `\n**Chiến lợi phẩm:**\n${dropLog.join("\n")}` : "\n**Chiến lợi phẩm:** _không có_" ) + unlockExtra
     )
     .setImage("attachment://dungeon.png");
 

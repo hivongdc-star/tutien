@@ -12,6 +12,7 @@ const {
 const { loadUsers, saveUsers } = require("../utils/storage");
 const { computeEffective } = require("../utils/dungeonEngine");
 const elements = require("../utils/element");
+const { formatGearLines } = require("../utils/forge");
 const {
   ensureBoss,
   bossSummary,
@@ -28,6 +29,11 @@ const ATTACK_COOLDOWN_MS = 60_000; // 60s
 
 function fmtLT(n) {
   return Number(n || 0).toLocaleString("vi-VN");
+}
+
+function ensureGearBag(user) {
+  user.gear = user.gear || {};
+  if (!Array.isArray(user.gear.bag)) user.gear.bag = [];
 }
 
 function rand(a, b) {
@@ -53,6 +59,13 @@ function buildBossEmbed(summary) {
         .join("\n")
     : "(Chưa có ai ra tay)";
 
+  const b1 = summary.bonusTop?.[1] ?? Math.round((Number(summary.poolLt) || 0) * 0.25);
+  const b2 = summary.bonusTop?.[2] ?? Math.round((Number(summary.poolLt) || 0) * 0.15);
+  const b3 = summary.bonusTop?.[3] ?? Math.round((Number(summary.poolLt) || 0) * 0.08);
+  const gearLine = summary.killedAt
+    ? `Trang bị 🔴: **${fmtLT(summary.redDropTotal || 0)}** món (chia theo % sát thương)`
+    : `Trang bị 🔴: sẽ rơi khi hạ gục (chia theo % sát thương)`;
+
   const emb = new EmbedBuilder()
     .setTitle("🐉 World Boss Tuần")
     .setColor(0xE74C3C)
@@ -65,7 +78,10 @@ function buildBossEmbed(summary) {
       { name: "🏅 Top đóng góp", value: topLines, inline: false },
       {
         name: "💰 Quỹ thưởng (ước tính)",
-        value: `**${fmtLT(summary.poolLt)} LT** (chia theo % sát thương)\nTop 1/2/3: +1000/+600/+300 LT`,
+        value:
+          `**${fmtLT(summary.poolLt)} LT** (chia theo % sát thương)\n` +
+          `Top 1/2/3: +${fmtLT(b1)}/+${fmtLT(b2)}/+${fmtLT(b3)} LT\n` +
+          gearLine,
         inline: false,
       }
     );
@@ -218,6 +234,12 @@ module.exports = {
         if (!claimed.ok) return i.followUp({ content: `❌ ${claimed.message}`, ephemeral: true });
         u2.lt = (Number(u2.lt) || 0) + (Number(claimed.rewardLt) || 0);
 
+        const drops = Array.isArray(claimed.drops) ? claimed.drops : [];
+        if (drops.length) {
+          ensureGearBag(u2);
+          for (const g of drops) u2.gear.bag.push(g);
+        }
+
         const info = claimed.info;
         const titlesUnlocked = info.rank === 1 ? (recordAchvEvent(u2, "boss_rank1", 1) || []) : [];
 
@@ -228,8 +250,20 @@ module.exports = {
         const bonusTxt = info.bonus ? ` (bonus ${fmtLT(info.bonus)} LT)` : "";
         const extra = titlesUnlocked.length ? `
 🎖 Mở khoá danh hiệu: **${titlesUnlocked.join(", ")}**` : "";
+        const dropTxt = drops.length
+          ? `
+🔴 Trang bị rơi: **+${drops.length}** món
+${drops
+  .slice(0, 3)
+  .map((g) => `• ${formatGearLines(g).title}`)
+  .join("\n")}${drops.length > 3 ? `
+… và thêm ${drops.length - 3} món nữa` : ""}`
+          : "";
         return i.followUp({
-          content: `✅ Nhận thưởng World Boss: **${fmtLT(claimed.rewardLt)} LT** ${rankTxt}${bonusTxt}` + extra,
+          content:
+            `✅ Nhận thưởng World Boss: **${fmtLT(claimed.rewardLt)} LT** ${rankTxt}${bonusTxt}` +
+            dropTxt +
+            extra,
           ephemeral: true,
         });
       }

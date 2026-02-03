@@ -46,6 +46,10 @@ const WORK_DRAIN_STAMINA = 1;
 const REST_GAIN_STAMINA = 2;
 const REST_DRAIN_HUNGER = 1;
 
+// Tăng EXP pet nhận được khi ăn cá (theo yêu cầu).
+// Chỉ áp cho feed từ cá (không đụng các nguồn EXP khác).
+const FEED_XP_MULT = 3;
+
 const JOBS = ["mine", "explore", "rest"];
 
 // ===== Pet catalog (5 loại, tên 4 chữ) =====
@@ -327,7 +331,8 @@ function feedPetFromFish(user, fish, sizeCm, xpOverride) {
   const baseXp = baseXpByRarity[rarity] ?? 6;
   const sizeBonus = Number.isFinite(sizeCm) && sizeCm > 0 ? Math.min(8, Math.floor(sizeCm / 10)) : 0;
   const computedXp = Math.max(1, baseXp + sizeBonus);
-  const xpGain = Number.isFinite(xpOverride) && xpOverride > 0 ? Math.floor(xpOverride) : computedXp;
+  const rawXp = Number.isFinite(xpOverride) && xpOverride > 0 ? Math.floor(xpOverride) : computedXp;
+  const xpGain = Math.max(1, Math.floor(rawXp * FEED_XP_MULT));
   const hungerGain = baseHungerByRarity[rarity] ?? 1;
 
   const pid = user.pet.activePetId;
@@ -497,9 +502,10 @@ function pickTierPool(realm, level) {
   // base distribution by realm
   if (r <= 1) return ["pham", "linh"]; // linh rất ít vì weight sẽ quyết định
   if (r === 2) return ["pham", "linh", "hoang"];
-  if (r === 3) return ["pham", "linh", "hoang", "huyen"];
-  if (r === 4) return ["linh", "hoang", "huyen", "dia"];
-  return ["hoang", "huyen", "dia", "thien"]; // realm cao mới mở
+  if (r === 3) return ["linh", "hoang", "huyen"];
+  if (r === 4) return ["hoang", "huyen", "dia", "thien"];
+  if (r === 5) return ["huyen", "dia", "thien", "tien"];
+  return ["dia", "thien", "tien", "than"]; // realm rất cao: mở Than cực hiếm
 }
 
 function hatchEggs(user, count) {

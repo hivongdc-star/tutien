@@ -5,8 +5,11 @@
 
 const fs = require("fs");
 const path = require("path");
+const { randomInt } = require("crypto");
 const { getISOWeekKey } = require("./questSystem");
 const elements = require("./element");
+const { loadOreDB } = require("./mining");
+const { createGearFromOres } = require("./forge");
 
 const dataPath = path.join(__dirname, "../data/worldboss.json");
 
@@ -84,6 +87,10 @@ function ensureBoss(users, now = Date.now()) {
       killedAt: null,
       contributions: {},
       claimed: {},
+      // Boss loot: trang bị "đỏ" (Tiên) phân phối theo tỷ lệ sát thương
+      redDrops: {}, // userId -> gear[]
+      redDropTotal: 0,
+      redDropsComputedAt: null,
     };
     saveBossState(state);
   }
@@ -94,6 +101,9 @@ function ensureBoss(users, now = Date.now()) {
   b.hp = clampInt(b.hp, 0, b.maxHp);
   if (!b.contributions || typeof b.contributions !== "object") b.contributions = {};
   if (!b.claimed || typeof b.claimed !== "object") b.claimed = {};
+  if (!b.redDrops || typeof b.redDrops !== "object") b.redDrops = {};
+  b.redDropTotal = clampInt(b.redDropTotal, 0, 10_000);
+  if (b.redDropsComputedAt && !Number.isFinite(Number(b.redDropsComputedAt))) b.redDropsComputedAt = null;
 
   return state;
 }
@@ -113,9 +123,9 @@ function topContributors(boss, users, limit = 5) {
 }
 
 function computeRewardPoolLt(boss) {
-  // Pool LT tỷ lệ theo HP để scale theo server.
-  // 800k -> 800 LT, 6m -> 6000 LT
-  return clampInt(Math.round((Number(boss.maxHp) || 0) / 1000), 500, 10_000);
+  // Tăng mạnh phần thưởng boss: pool LT tỷ lệ theo HP.
+  // 800k -> ~80k LT, 6m -> ~600k LT
+  return clampInt(Math.round((Number(boss.maxHp) || 0) / 10), 50_000, 2_000_000);
 }
 
 function computeRewardForUser(boss, userId) {
@@ -126,18 +136,106 @@ function computeRewardForUser(boss, userId) {
   const pool = computeRewardPoolLt(boss);
   const share = Math.floor((pool * dmg) / total);
 
-  // bonus top 3
+  // bonus top 3 (scale theo pool, để server lớn thưởng đáng kể)
   const sorted = Object.entries(boss.contributions || {})
     .map(([uid, d]) => ({ uid, dmg: Math.max(0, Number(d) || 0) }))
     .sort((a, b) => b.dmg - a.dmg);
   const rankIdx = sorted.findIndex((x) => x.uid === userId);
   const rank = rankIdx >= 0 ? rankIdx + 1 : null;
   let bonus = 0;
-  if (rank === 1) bonus = 1000;
-  else if (rank === 2) bonus = 600;
-  else if (rank === 3) bonus = 300;
+  if (rank === 1) bonus = Math.round(pool * 0.25);
+  else if (rank === 2) bonus = Math.round(pool * 0.15);
+  else if (rank === 3) bonus = Math.round(pool * 0.08);
 
   return { dmg, total, lt: Math.max(0, share + bonus), bonus, rank };
+}
+
+function pickWeightedRemainder(list) {
+  // list: { uid, w } with w>=0
+  let total = 0;
+  for (const it of list) total += Math.max(0, Number(it.w) || 0);
+  if (!Number.isFinite(total) || total <= 0) return list[0]?.uid;
+  let r = randomInt(1, Math.floor(total * 1_000_000) + 1) / 1_000_000; // 0..total (float)
+  for (const it of list) {
+    r -= Math.max(0, Number(it.w) || 0);
+    if (r <= 0) return it.uid;
+  }
+  return list[list.length - 1]?.uid;
+}
+
+function computeRedDrops(boss) {
+  // Only once per kill
+  if (!boss || boss.redDropsComputedAt) return;
+  const contribEntries = Object.entries(boss.contributions || {})
+    .map(([uid, dmg]) => ({ uid, dmg: Math.max(0, Number(dmg) || 0) }))
+    .filter((x) => x.dmg > 0)
+    .sort((a, b) => b.dmg - a.dmg);
+  const n = contribEntries.length;
+
+  // Tổng số trang bị đỏ drop (tăng mạnh phần thưởng, nhưng có cap an toàn)
+  const totalDrops = clampInt(Math.round(4 + Math.sqrt(n)), 5, 25);
+  boss.redDropTotal = totalDrops;
+  boss.redDrops = {};
+
+  if (!n || totalDrops <= 0) {
+    boss.redDropsComputedAt = Date.now();
+    return;
+  }
+
+  const totalDmg = contribEntries.reduce((a, it) => a + it.dmg, 0);
+  if (totalDmg <= 0) {
+    boss.redDropsComputedAt = Date.now();
+    return;
+  }
+
+  // 1) chia phần nguyên
+  const alloc = {};
+  const rema = [];
+  let used = 0;
+  for (const it of contribEntries) {
+    const exact = (totalDrops * it.dmg) / totalDmg;
+    const base = Math.floor(exact);
+    alloc[it.uid] = base;
+    used += base;
+    rema.push({ uid: it.uid, w: exact - base });
+  }
+
+  // 2) chia phần dư theo remainder (weighted)
+  let left = totalDrops - used;
+  for (let i = 0; i < left; i++) {
+    const uid = pickWeightedRemainder(rema);
+    if (!uid) break;
+    alloc[uid] = (alloc[uid] || 0) + 1;
+  }
+
+  // 3) generate gear tier "tien" (đỏ)
+  const db = loadOreDB();
+  const tienPool = Array.isArray(db) ? db.filter((o) => String(o?.tier) === "tien") : [];
+  const slotPool = ["weapon", "armor", "boots", "bracelet"];
+
+  function randomOreId() {
+    const src = tienPool.length ? tienPool : db;
+    if (!src.length) return null;
+    const pick = src[randomInt(0, src.length)];
+    return pick?.id || null;
+  }
+
+  for (const [uid, cnt0] of Object.entries(alloc)) {
+    const cnt = clampInt(cnt0, 0, 99);
+    if (cnt <= 0) continue;
+    const list = [];
+    for (let k = 0; k < cnt; k++) {
+      const oreId = randomOreId();
+      if (!oreId) break;
+      const oreIds = [oreId, oreId, oreId, oreId, oreId];
+      const slot = slotPool[randomInt(0, slotPool.length)];
+      const gear = createGearFromOres({ slot, oreIds });
+      list.push(gear);
+    }
+    if (list.length) boss.redDrops[uid] = list;
+  }
+
+  boss.redDropsComputedAt = Date.now();
 }
 
 function applyDamage(state, userId, dmg, now = Date.now()) {
@@ -153,6 +251,7 @@ function applyDamage(state, userId, dmg, now = Date.now()) {
   if (boss.hp <= 0) {
     boss.hp = 0;
     boss.killedAt = now;
+    computeRedDrops(boss);
     killed = true;
   }
 
@@ -174,11 +273,17 @@ function claimReward(state, userId) {
   if (!boss.contributions?.[userId]) return { ok: false, message: "Bạn không có đóng góp tuần này." };
   if (boss.claimed?.[userId]) return { ok: false, message: "Bạn đã nhận thưởng rồi." };
 
+  // Nếu boss đã chết trước khi update, có thể chưa tính drop.
+  if (boss.killedAt && !boss.redDropsComputedAt) computeRedDrops(boss);
+
   const reward = computeRewardForUser(boss, userId);
+  const drops = Array.isArray(boss?.redDrops?.[userId]) ? boss.redDrops[userId] : [];
+  // xoá để shrink state (claimed đã chặn double-claim)
+  if (boss?.redDrops && boss.redDrops[userId]) delete boss.redDrops[userId];
   boss.claimed[userId] = true;
   saveBossState(state);
 
-  return { ok: true, rewardLt: reward.lt, info: reward };
+  return { ok: true, rewardLt: reward.lt, info: reward, drops };
 }
 
 function bossSummary(state, users) {
@@ -191,6 +296,10 @@ function bossSummary(state, users) {
   const top = topContributors(boss, users, 5);
   const pool = computeRewardPoolLt(boss);
 
+  const bonusTop1 = Math.round(pool * 0.25);
+  const bonusTop2 = Math.round(pool * 0.15);
+  const bonusTop3 = Math.round(pool * 0.08);
+
   return {
     weekKey: state.weekKey,
     name: boss.name,
@@ -202,6 +311,8 @@ function bossSummary(state, users) {
     bar,
     killedAt: boss.killedAt,
     poolLt: pool,
+    bonusTop: { 1: bonusTop1, 2: bonusTop2, 3: bonusTop3 },
+    redDropTotal: clampInt(boss.redDropTotal, 0, 10_000),
     top,
   };
 }

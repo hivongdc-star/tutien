@@ -202,7 +202,7 @@ module.exports = {
 
     const baseEmbed = new EmbedBuilder()
       .setTitle("🎣 Thả câu")
-      .setDescription(`Bạn thả cần ở **${spotText(spotKey)}**...\nMặt nước lặng như tờ...`)
+      .setDescription(`Bãi câu: **${spotText(spotKey)}** • Đang chờ cá cắn câu…`)
       .setFooter({ text: "(Đã bỏ cơ chế thời cơ giật cần)" });
 
     const sent = await msg.reply({ embeds: [baseEmbed] }).catch(() => null);
@@ -285,33 +285,28 @@ module.exports = {
 
         // ===== Render =====
         const meta = RARITY_META[rarityKey] || RARITY_META["thường"];
-        const duyenPhan = calcDuyenPhan(
-          fish,
-          poolNormal.reduce((s, it) => s + Number(it.weight ?? 1), 0)
-        );
-
         const resEmbed = new EmbedBuilder()
           .setColor(meta.color)
           .setTitle(`${meta.icon} ${fish.emoji || "🐟"} ${fish.name}`)
-          .setDescription("Sóng nước khẽ động…")
-          .addFields(
-            { name: "Phẩm giai", value: `${meta.label}`, inline: true },
-            { name: "Duyên phận", value: duyenPhan, inline: true },
-            { name: "Thủy vực", value: spotLabel(spotKey), inline: true },
-            { name: "Kích cỡ", value: size ? `${size} cm` : "—", inline: true }
-          );
+          .setDescription(`**${spotLabel(spotKey)}** • ${meta.label}${size ? ` • ${size} cm` : ""}`);
 
         if (willSave) {
-          resEmbed.addFields({ name: "Thu hoạch", value: `+${fmt(ltFinal)} LT · +${fmt(xp)} EXP`, inline: true });
-          resEmbed.addFields({ name: "Kho cá", value: "✅ Đã lưu (ngưỡng Thiên/tiên)", inline: true });
+          resEmbed.addFields({
+            name: "Kết quả",
+            value: `✅ Lưu kho • +${fmt(ltFinal)} LT · +${fmt(xp)} EXP`,
+            inline: false,
+          });
         } else {
           const petNote = feedRes?.buffered
-            ? `+${fmt(feedRes.xpGain)} XP (tồn đọng — equip linh thú để hấp thụ)`
+            ? `+${fmt(feedRes.xpGain)} XP (buffer)`
             : feedRes?.petId
-            ? `+${fmt(feedRes.xpGain)} XP · +${feedRes.hungerGain} no`
+            ? `+${fmt(feedRes.xpGain)} XP`
             : `+${fmt(feedRes?.xpGain || 0)} XP`;
-          resEmbed.addFields({ name: "🐾 Linh thú hấp thụ", value: petNote, inline: false });
-          resEmbed.addFields({ name: "Thu hoạch", value: "Không cộng LT/EXP cho người chơi", inline: true });
+          resEmbed.addFields({
+            name: "🐾 Linh thú",
+            value: `${petNote} _(auto-feed)_`,
+            inline: false,
+          });
         }
 
         if (tickRes?.summary && tickRes.ticks > 0) {

@@ -19,21 +19,23 @@ function loadOreDB() {
 }
 
 // Tỷ lệ mặc định (tổng = 1000)
-// NOTE (giả định an toàn): phân bổ khá phổ biến để người mới vẫn thấy tiến triển.
+// Chỉnh để "đá hiếm" xuất hiện thường xuyên hơn (không đụng schema/user data).
+// Vẫn giữ phần lớn ở Phàm/Linh để không phá tiến trình tân thủ.
 const BASE_TIER_WEIGHTS = {
-  pham: 500,
-  linh: 250,
-  hoang: 120,
-  huyen: 60,
-  dia: 30,
-  thien: 20,
-  tien: 15,
-  than: 5,
+  pham: 420,
+  linh: 240,
+  hoang: 140,
+  huyen: 90,
+  dia: 55,
+  thien: 30,
+  tien: 18,
+  than: 7,
 };
 
 // Buff nhẹ toàn server để ra khoáng bậc cao hơn một chút (không phụ thuộc khoáng cụ)
 // Lưu ý: chỉ áp cho Huyền+ để không làm loãng tiến trình tân thủ.
-const GLOBAL_RARE_BONUS = 8; // %
+// Buff toàn server cho Huyền+ (tăng mạnh theo yêu cầu).
+const GLOBAL_RARE_BONUS = 35; // %
 
 const RARE_TIERS = new Set(["huyen", "dia", "thien", "tien", "than"]);
 

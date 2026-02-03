@@ -30,9 +30,10 @@ function shuffle(arr) {
 }
 
 function diffMeta(diff) {
-  if (diff === "easy") return { name: "Thường", mult: 0.95, color: 0x2ECC71 };
-  if (diff === "hard") return { name: "Hung", mult: 1.18, color: 0xE67E22 };
-  return { name: "Tuyệt", mult: 1.32, color: 0xE74C3C };
+  // Tăng mạnh độ khó theo yêu cầu.
+  if (diff === "easy") return { name: "Thường", mult: 1.15, color: 0x2ECC71 };
+  if (diff === "hard") return { name: "Hung", mult: 1.45, color: 0xE67E22 };
+  return { name: "Tuyệt", mult: 1.85, color: 0xE74C3C };
 }
 
 function computeEffective(user) {
@@ -177,9 +178,9 @@ function generateEnemies({ party, mapKey, diff, floor, isBoss }) {
     let spd = baseSpd;
 
     if (isBoss) {
-      atk = Math.round(atk * 1.4);
-      def = Math.round(def * 1.2);
-      maxHp = Math.round(maxHp * 1.65);
+      atk = Math.round(atk * 1.55);
+      def = Math.round(def * 1.35);
+      maxHp = Math.round(maxHp * 1.75);
       spd = Math.round(spd * 1.1);
     }
 
@@ -214,11 +215,11 @@ function generateEnemies({ party, mapKey, diff, floor, isBoss }) {
 
     // Slight difficulty bump (không tăng HP để tránh kéo dài / timeout)
     if (isBoss) {
-      atk = Math.max(1, Math.round(atk * 1.05));
-      def = Math.max(0, Math.round(def * 1.04));
+      atk = Math.max(1, Math.round(atk * 1.12));
+      def = Math.max(0, Math.round(def * 1.08));
     } else if (floor >= 2) {
-      atk = Math.max(1, Math.round(atk * 1.03));
-      def = Math.max(0, Math.round(def * 1.02));
+      atk = Math.max(1, Math.round(atk * 1.08));
+      def = Math.max(0, Math.round(def * 1.05));
     }
     maxHp = Math.max(1, Math.round(maxHp * mHp));
     spd = Math.max(1, Math.round(spd * mSpd));

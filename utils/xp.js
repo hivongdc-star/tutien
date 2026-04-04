@@ -1,7 +1,7 @@
 // utils/xp.js
 //
 // Quản lý EXP, Level Up, cập nhật chỉ số theo Race + Element
-// ĐÃ LOẠI BỎ hoàn toàn RELA (không có ringBonus, partnerBonus)
+// Hệ EXP hiện không dùng cơ chế cũ ngoài trang bị
 
 const { loadUsers, saveUsers } = require("./storage");
 const realms = require("./realms");
@@ -18,7 +18,7 @@ function getExpNeeded(level) {
 
 /**
  * Tính % bonus EXP chỉ từ TRANG BỊ
- * (đã bỏ bonus từ nhẫn cưới / relationships)
+ * (đã bỏ bonus cũ ngoài hệ thống EXP hiện tại)
  */
 function computeExpBonusPercent(user) {
   let bonus = 0;

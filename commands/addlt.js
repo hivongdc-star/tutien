@@ -10,33 +10,33 @@ module.exports = {
       return msg.reply("❌ Bạn không có quyền dùng lệnh này.");
     }
 
-    const userId = msg.mentions.users.first()?.id || args[0];
-    const amount = parseInt(args[1] || args[0]);
+    const mentionedUser = msg.mentions.users.first() || null;
+    const targetId = mentionedUser ? mentionedUser.id : msg.author.id;
+    const amount = Number.parseInt(mentionedUser ? args[1] : args[0], 10);
 
-    if (!userId || isNaN(amount)) {
+    if (!Number.isFinite(amount)) {
       return msg.reply(
         "❌ Cú pháp: `-addlt @user <số>` hoặc `-addlt <số>` (cho chính mình)."
       );
     }
 
     const users = loadUsers();
-    const targetId = userId.match(/^\d+$/) ? userId : msg.author.id;
-
-    if (!users[targetId]) {
+    const targetUser = users[targetId];
+    if (!targetUser) {
       return msg.reply("❌ Người chơi này chưa có nhân vật.");
     }
 
-    users[targetId].lt = (users[targetId].lt || 0) + amount;
+    targetUser.lt = (Number(targetUser.lt) || 0) + amount;
     saveUsers(users);
 
     if (targetId === msg.author.id) {
       return msg.reply(
-        `✅ Bạn đã nhận thêm **${amount}** 💎 Linh thạch. Tổng: **${users[targetId].lt}**`
-      );
-    } else {
-      return msg.reply(
-        `✅ Đã cộng **${amount}** 💎 Linh thạch cho <@${targetId}>. Tổng: **${users[targetId].lt}**`
+        `✅ Bạn đã nhận thêm **${amount}** 💎 Linh thạch. Tổng: **${targetUser.lt}**`
       );
     }
+
+    return msg.reply(
+      `✅ Đã cộng **${amount}** 💎 Linh thạch cho <@${targetId}>. Tổng: **${targetUser.lt}**`
+    );
   },
 };

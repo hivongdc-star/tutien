@@ -17,11 +17,9 @@ module.exports = {
       return msg.reply("⚠️ Bạn chưa có nhân vật để reset.");
     }
 
-    // Xoá nhân vật cũ
     delete users[msg.author.id];
     saveUsers(users);
 
-    // Menu chọn lại Tộc
     const raceMenu = new StringSelectMenuBuilder()
       .setCustomId("reset_select_race")
       .setPlaceholder("🧬 Chọn lại Tộc")
@@ -33,17 +31,16 @@ module.exports = {
         }))
       );
 
-    // Menu chọn lại Ngũ hành
     const elementMenu = new StringSelectMenuBuilder()
       .setCustomId("reset_select_element")
       .setPlaceholder("🌿 Chọn lại Ngũ hành")
       .addOptions(
         Object.entries(elements.display).map(([key, raw]) => {
-          const [emoji, name] = raw.split(" ");
+          const [emoji, ...rest] = String(raw || "").split(" ");
           return {
-            label: name.substring(0, 25),
+            label: rest.join(" ").substring(0, 25),
             value: key,
-            emoji: emoji,
+            emoji,
           };
         })
       );
@@ -65,6 +62,7 @@ module.exports = {
 
     let selectedRace = null;
     let selectedElement = null;
+    let completed = false;
     const collector = reply.createMessageComponentCollector({ time: 60000 });
 
     collector.on("collect", async (interaction) => {
@@ -91,12 +89,9 @@ module.exports = {
         });
       }
 
-      if (selectedRace && selectedElement) {
-        const newUser = createUser(
-          msg.author.id,
-          selectedRace,
-          selectedElement
-        );
+      if (selectedRace && selectedElement && !completed) {
+        completed = true;
+        const newUser = createUser(msg.author.id, selectedRace, selectedElement);
 
         const confirm = new EmbedBuilder()
           .setTitle("✅ Reset thành công!")
@@ -105,22 +100,20 @@ module.exports = {
             `🧬 **Tộc:** ${races[selectedRace].emoji} ${races[selectedRace].name}\n` +
               `🌿 **Ngũ hành:** ${elements.display[selectedElement]}\n` +
               `⚔️ **Cảnh giới:** ${newUser.realm}\n` +
-              `❤️ Máu: ${newUser.hp} | 🔷 Mana: ${newUser.mana}\n` +
-              `🔥 Công: ${newUser.attack} | 🛡️ Thủ: ${newUser.defense} | 📦 Giáp: ${newUser.armor}\n` +
-              `💢 Nộ: ${newUser.fury} | 💎 Linh Thạch: ${newUser.linhthach}`
+              `❤️ HP: ${newUser.hp}/${newUser.maxHp} | 🔷 MP: ${newUser.mp}/${newUser.maxMp}\n` +
+              `🔥 Công: ${newUser.atk} | 🛡️ Thủ: ${newUser.def} | ⚡ Tốc: ${newUser.spd}\n` +
+              `💢 Nộ: ${newUser.fury} | 💎 Linh Thạch: ${newUser.lt}`
           )
           .setFooter({ text: "✨ Hãy tu luyện chăm chỉ từ đầu!" });
 
         await msg.channel.send({ embeds: [confirm] });
-        collector.stop();
+        collector.stop("done");
       }
     });
 
-    collector.on("end", () => {
-      if (!selectedRace || !selectedElement) {
-        msg.channel.send(
-          "⏳ Reset không hoàn tất, hãy dùng lại lệnh `-reset`."
-        );
+    collector.on("end", (_collected, reason) => {
+      if (reason !== "done") {
+        msg.channel.send("⏳ Reset không hoàn tất, hãy dùng lại lệnh `-reset`.");
       }
     });
   },

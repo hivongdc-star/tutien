@@ -30,7 +30,6 @@ function getUser(id) {
   if (!u.equipments) u.equipments = {};
   if (!u.titles) u.titles = [];
   if (typeof u.title === "undefined") u.title = null;
-  if (!u.relationships) u.relationships = { partners: {} };
   if (!u.dailyStones) u.dailyStones = { date: null, earned: 0 };
   if (!u.buffs) u.buffs = [];
   if (!u.shield) u.shield = 0;
@@ -91,7 +90,6 @@ function createUser(id, race, element) {
       equipments: {},
       titles: [],
       title: null,
-      relationships: { partners: {} },
       dailyStones: { date: null, earned: 0 },
       buffs: [],
       shield: 0,

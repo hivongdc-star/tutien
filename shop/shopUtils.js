@@ -10,7 +10,6 @@ function ensureUserShape(user){
   user.inventory = user.inventory || {};
   user.equipments = user.equipments || {};
   user.titles = user.titles || [];
-  user.relationships = user.relationships || { partners: {} };
 
   // Mining + Gear (mở rộng an toàn)
   if (!user.mining) user.mining = {};

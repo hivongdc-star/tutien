@@ -1,0 +1,5 @@
+Overlay files modified in this session.
+
+After extracting/overwriting on server, delete these old files manually because zip overlay will not remove them automatically:
+- utils/titleUtils.js
+- utils/use.js

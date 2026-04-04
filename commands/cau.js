@@ -127,16 +127,11 @@ for (const f of FISH_DB) {
 }
 
 function spotText(spotKey) {
-  if (spotKey === "song") return "bờ sông";
-  if (spotKey === "ho") return "mặt hồ";
-  return "bờ biển";
+  if (spotKey === "song") return "Bến Lăng Ngư";
+  if (spotKey === "ho") return "Hàn Đàm";
+  return "Hải Nhai";
 }
 
-function spotLabel(spotKey) {
-  if (spotKey === "song") return "Sông";
-  if (spotKey === "ho") return "Hồ";
-  return "Biển";
-}
 
 function calcReward(baseLT, size, fish) {
   const meta = RARITY_META[String(fish.rarity || "").toLowerCase()] || RARITY_META["thường"];
@@ -201,17 +196,16 @@ module.exports = {
     const waitMs = randomInt(1500, 3501); // 1.5–3.5s
 
     const baseEmbed = new EmbedBuilder()
-      .setTitle("🎣 Thả câu")
-      .setDescription(`Bãi câu: **${spotText(spotKey)}** • Đang chờ cá cắn câu…`)
-      .setFooter({ text: "Đang chờ cá cắn câu..." });
+      .setTitle("🎣 Thả Cần")
+      .setDescription(`Bạn đã thả cần ở **${spotText(spotKey)}**.
+Mặt nước khẽ động, chờ thời khắc thu lưới...`);
 
     const sent = await msg.reply({ embeds: [baseEmbed] }).catch(() => null);
     if (!sent) return;
 
     setTimeout(async () => {
-      try {
-        // ===== Chọn cá =====
-        // Tất cả loài cá trong cùng bãi câu có tỷ lệ như nhau.
+      try {        // ===== Chọn cá =====
+        // Tất cả cá hợp lệ trong cùng bãi có xác suất như nhau.
         const fish = poolAll[randomInt(0, poolAll.length)];
 
         // size
@@ -274,30 +268,32 @@ module.exports = {
 
         // ===== Render =====
         const meta = RARITY_META[rarityKey] || RARITY_META["thường"];
+        const rarityText = `${meta.label} phẩm`;
         const resEmbed = new EmbedBuilder()
           .setColor(meta.color)
-          .setTitle(`${meta.icon} ${fish.emoji || "🐟"} ${fish.name}`)
-          .setDescription(`**${spotLabel(spotKey)}** • ${meta.label}${size ? ` • ${size} cm` : ""}`);
+          .setTitle(`${fish.emoji || "🐟"} ${fish.name}`)
+          .setDescription(`Bạn đã thả cần ở **${spotText(spotKey)}** và câu được:
+
+**${fish.name}** • **${rarityText}**${size ? ` • **${size} cm**` : ""}`);
 
         if (willSave) {
           resEmbed.addFields({
-            name: "Kết quả",
-            value: `✅ Lưu kho • +${fmt(ltFinal)} LT · +${fmt(xp)} EXP`,
+            name: "🎁 Thu hoạch",
+            value: `Đã cất vào kho cá.
++ **${fmt(ltFinal)}** linh thạch • + **${fmt(xp)}** kinh nghiệm`,
             inline: false,
           });
         } else {
           let petFieldValue;
-
           if (feedRes?.petId) {
             petFieldValue = `Linh thú đã ăn phần thu hoạch này.
-+**${fmt(feedRes.xpGain)} kinh nghiệm linh thú**`;
++ **${fmt(feedRes.xpGain)}** kinh nghiệm linh thú`;
           } else if (feedRes?.buffered) {
             petFieldValue = `Bạn chưa có linh thú đồng hành.
-Tinh hoa từ mẻ cá này đã được giữ lại: +**${fmt(feedRes.xpGain)} XP chờ dùng**`;
+Tinh hoa từ mẻ cá này đã được giữ lại: + **${fmt(feedRes.xpGain)}** XP chờ dùng`;
           } else {
             petFieldValue = `Phần thu hoạch này chưa thể dùng để bồi dưỡng linh thú.`;
           }
-
           resEmbed.addFields({
             name: "🐾 Linh thú đồng hành",
             value: petFieldValue,
@@ -308,13 +304,16 @@ Tinh hoa từ mẻ cá này đã được giữ lại: +**${fmt(feedRes.xpGain)}
         if (tickRes?.summary && tickRes.ticks > 0) {
           const s = tickRes.summary;
           const extra = [];
-          if (s.ltGained) extra.push(`+${fmt(s.ltGained)} LT`);
+          if (s.ltGained) extra.push(`+${fmt(s.ltGained)} linh thạch`);
           const oreKinds = Object.keys(s.ores || {}).length;
           if (oreKinds) extra.push(`+${oreKinds} loại khoáng`);
           const shardKinds = Object.keys(s.shards || {}).length;
           if (shardKinds) extra.push(`+${shardKinds} loại mảnh`);
-          if (extra.length) resEmbed.setFooter({ text: `🐾 Thu hoạch khi vắng mặt: ${extra.join(" • ")}` });
-          else resEmbed.setFooter({ text: "Chờ 5 giây để câu lượt tiếp theo." });
+          if (extra.length) {
+            resEmbed.setFooter({ text: `Thu hoạch khi vắng mặt: ${extra.join(" • ")}` });
+          } else {
+            resEmbed.setFooter({ text: "Chờ 5 giây để câu lượt tiếp theo." });
+          }
         } else {
           resEmbed.setFooter({ text: "Chờ 5 giây để câu lượt tiếp theo." });
         }

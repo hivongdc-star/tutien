@@ -59,7 +59,7 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     const u = users[msg.author.id];
-    if (!u) return msg.reply("❌ Bạn chưa có nhân vật. Dùng `-create` trước.");
+    if (!u) return msg.reply("❌ Bạn chưa bước vào con đường tu luyện. Dùng `-create` để khai mở nhân vật.");
 
     ensureAchv(u);
     users[msg.author.id] = u;
@@ -74,7 +74,7 @@ module.exports = {
 
     const buildEmbed = () => {
       const base = new EmbedBuilder()
-        .setTitle("🏅 Thành tựu")
+        .setTitle("🏅 Thành Tựu")
         .setColor(0xF1C40F)
         .setDescription(
           `Linh thạch: **${fmtLT(u.lt)}** 💎\n` +
@@ -92,12 +92,12 @@ module.exports = {
         const body = list.length ? list.map((t) => `• ${t}`).join("\n") : "(Chưa có)";
 
         base.addFields({
-          name: `🎖 Danh hiệu đã sở hữu (trang ${page + 1}/${totalPages})`,
+          name: `🎖 Danh hiệu đã mở (trang ${page + 1}/${totalPages})`,
           value: body.slice(0, 1024),
           inline: false,
         });
 
-        base.setFooter({ text: "Dùng -danhhieu để equip danh hiệu." });
+        base.setFooter({ text: "Dùng -danhhieu để chọn danh hiệu đang dùng." });
         return { embed: base, totalPages };
       }
 
@@ -110,19 +110,19 @@ module.exports = {
       const lines = list.map((a) => buildAchvLine(u, a)).join("\n\n");
 
       base.addFields({
-        name: `📌 Danh sách (trang ${page + 1}/${totalPages})`,
+        name: `📌 Cột mốc (trang ${page + 1}/${totalPages})`,
         value: lines ? lines.slice(0, 1024) : "(Trống)",
         inline: false,
       });
 
-      base.setFooter({ text: "Dùng -danhhieu để equip danh hiệu." });
+      base.setFooter({ text: "Dùng -danhhieu để chọn danh hiệu đang dùng." });
       return { embed: base, totalPages };
     };
 
     const buildRows = (totalPages) => {
       const menu = new StringSelectMenuBuilder()
         .setCustomId(`achv_cat_${userId}_${nonce}`)
-        .setPlaceholder("Chọn mục...")
+        .setPlaceholder("Chọn một khu vực...")
         .addOptions(
           Object.values(GROUP_META)
             .filter((x) => x.value !== "all")
@@ -183,7 +183,7 @@ module.exports = {
     col.on("collect", async (i) => {
       try {
         if (i.user.id !== userId) {
-          return i.reply({ content: "❌ Không phải bảng của bạn.", ephemeral: true });
+          return i.reply({ content: "❌ Đây không phải bảng của bạn.", ephemeral: true });
         }
 
         const cid = String(i.customId || "");

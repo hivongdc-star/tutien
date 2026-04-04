@@ -63,7 +63,7 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     const u = users[msg.author.id];
-    if (!u) return msg.reply("❌ Bạn chưa có nhân vật. Dùng `-create` trước.");
+    if (!u) return msg.reply("❌ Bạn chưa bước vào con đường tu luyện. Dùng `-create` để khai mở nhân vật.");
 
     ensureUserSkills(u);
     saveUsers(users);
@@ -72,8 +72,8 @@ module.exports = {
     const pickId = `shoppick_${msg.author.id}`;
 
     const catOptions = [
-      { label: "Khoáng cụ", value: "tools", description: "Mua pháp khí đào khoáng" },
-      { label: "Bí kíp", value: "skills", description: "Kỹ năng theo ngũ hành" },
+      { label: "Khoáng cụ", value: "tools", description: "Mua khoáng cụ để khai khoáng" },
+      { label: "Bí kíp", value: "skills", description: "Bí kíp phù hợp với ngũ hành" },
       { label: "Trứng Linh Thú", value: "pets", description: "Mua trứng để ấp linh thú" },
     ];
 
@@ -84,7 +84,7 @@ module.exports = {
 
     const sent = await msg.reply({
       embeds: [header],
-      components: [menuRow(catId, "Chọn mục...", catOptions)],
+      components: [menuRow(catId, "Chọn một khu vực...", catOptions)],
     });
 
     let mode = null; // tools | skills | pets
@@ -100,7 +100,7 @@ module.exports = {
     });
 
     col.on("collect", async (i) => {
-      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải giao diện của bạn.", ephemeral: true });
       await i.deferUpdate();
 
       const users2 = loadUsers();
@@ -124,12 +124,12 @@ module.exports = {
           }));
 
           const emb = new EmbedBuilder()
-            .setTitle("🛒 Linh Bảo Các • Khoáng cụ")
+            .setTitle("🛒 Linh Bảo Các • Khoáng Cụ")
             .setColor(0x2ecc71)
             .setDescription(`Linh thạch hiện có: **${fmtLT(u2.lt)}** 💎\nChọn pháp khí để mua.`);
 
           return sent
-            .edit({ embeds: [emb], components: [menuRow(pickId, "Chọn khoáng cụ...", options)] })
+            .edit({ embeds: [emb], components: [menuRow(pickId, "Chọn khoáng cụ muốn đổi...", options)] })
             .catch(() => {});
         }
 
@@ -140,7 +140,7 @@ module.exports = {
             const emb = new EmbedBuilder()
               .setTitle("🛒 Linh Bảo Các • Trứng Linh Thú")
               .setColor(0xF1C40F)
-              .setDescription("Hiện chưa có trứng linh thú nào trong shop.");
+              .setDescription("Hiện chưa có trứng linh thú nào trong Linh Bảo Các.");
             return sent.edit({ embeds: [emb], components: [] }).catch(() => {});
           }
 
@@ -156,7 +156,7 @@ module.exports = {
             .setDescription(`Linh thạch hiện có: **${fmtLT(u2.lt)}** 💎\nChọn trứng để mua.`);
 
           return sent
-            .edit({ embeds: [emb], components: [menuRow(pickId, "Chọn trứng...", options)] })
+            .edit({ embeds: [emb], components: [menuRow(pickId, "Chọn trứng linh thú...", options)] })
             .catch(() => {});
         }
 
@@ -165,9 +165,9 @@ module.exports = {
           const skillList = listSkills({ element: el, rarity: "common", kind: null });
           if (!skillList.length) {
             const emb = new EmbedBuilder()
-              .setTitle("🛒 Linh Bảo Các • Bí kíp")
+              .setTitle("🛒 Linh Bảo Các • Bí Kíp")
               .setColor(0x9b59b6)
-              .setDescription("Hiện chưa có bí kíp phù hợp.");
+              .setDescription("Hiện chưa có bí kíp phù hợp với ngũ hành của bạn.");
             return sent.edit({ embeds: [emb], components: [] }).catch(() => {});
           }
 
@@ -178,7 +178,7 @@ module.exports = {
           }));
 
           const emb = new EmbedBuilder()
-            .setTitle("🛒 Linh Bảo Các • Bí kíp")
+            .setTitle("🛒 Linh Bảo Các • Bí Kíp")
             .setColor(0x9b59b6)
             .setDescription(
               `Hệ: ${elements.display[el] || el}\n` +
@@ -201,17 +201,17 @@ module.exports = {
           const itemId = val.slice("tool:".length);
           const catalog = listItems();
           const it = catalog[itemId];
-          if (!it) return sent.edit({ content: "❌ Mặt hàng không tồn tại.", embeds: [], components: [] }).catch(() => {});
+          if (!it) return sent.edit({ content: "❌ Món đồ này không còn trong quầy.", embeds: [], components: [] }).catch(() => {});
           const price = Number(it.price || 0);
           const ltNow = Number(u2.lt || 0);
           const maxAff = price > 0 ? Math.floor(ltNow / price) : 1;
           const maxQty = Math.max(1, Math.min(maxAff, 99));
           if (ltNow < price || maxAff < 1) {
-            return sent.edit({ content: "❌ Không đủ LT.", embeds: [], components: [] }).catch(() => {});
+            return sent.edit({ content: "❌ Linh thạch không đủ để đổi món này.", embeds: [], components: [] }).catch(() => {});
           }
 
           const emb = new EmbedBuilder()
-            .setTitle("🛒 Xác nhận mua • Khoáng cụ")
+            .setTitle("🛒 Xác Nhận Đổi • Khoáng Cụ")
             .setColor(0x2ecc71)
             .setDescription(
               `Bạn muốn mua: **${(it.emoji || "")} ${it.name}**\n` +
@@ -229,17 +229,17 @@ module.exports = {
           const itemId = val.slice("egg:".length);
           const catalog = listItems();
           const it = catalog[itemId];
-          if (!it) return sent.edit({ content: "❌ Mặt hàng không tồn tại.", embeds: [], components: [] }).catch(() => {});
+          if (!it) return sent.edit({ content: "❌ Món đồ này không còn trong quầy.", embeds: [], components: [] }).catch(() => {});
           const price = Number(it.price || 0);
           const ltNow = Number(u2.lt || 0);
           const maxAff = price > 0 ? Math.floor(ltNow / price) : 1;
           const maxQty = Math.max(1, Math.min(maxAff, 99));
           if (ltNow < price || maxAff < 1) {
-            return sent.edit({ content: "❌ Không đủ LT.", embeds: [], components: [] }).catch(() => {});
+            return sent.edit({ content: "❌ Linh thạch không đủ để đổi món này.", embeds: [], components: [] }).catch(() => {});
           }
 
           const emb = new EmbedBuilder()
-            .setTitle("🛒 Xác nhận mua • Trứng Linh Thú")
+            .setTitle("🛒 Xác Nhận Đổi • Trứng Linh Thú")
             .setColor(0xF1C40F)
             .setDescription(
               `Bạn muốn mua: **${(it.emoji || "")} ${it.name}**\n` +
@@ -260,10 +260,10 @@ module.exports = {
           if (sk.rarity !== "common") return sent.edit({ content: "❌ Chỉ bán bí kíp thường.", embeds: [], components: [] }).catch(() => {});
 
           if ((u2.lt || 0) < (sk.price || 0)) {
-            return sent.edit({ content: "❌ Không đủ linh thạch.", embeds: [], components: [] }).catch(() => {});
+            return sent.edit({ content: "❌ Linh thạch không đủ để đổi món này.", embeds: [], components: [] }).catch(() => {});
           }
           if (u2.skills.owned.includes(skillId)) {
-            return sent.edit({ content: "⚠️ Bạn đã sở hữu bí kíp này.", embeds: [], components: [] }).catch(() => {});
+            return sent.edit({ content: "⚠️ Bạn đã có bí kíp này rồi.", embeds: [], components: [] }).catch(() => {});
           }
 
           u2.lt -= sk.price || 0;
@@ -274,7 +274,7 @@ module.exports = {
           const kindTxt = sk.kind === "passive" ? "Bị động" : "Chủ động";
           return sent
             .edit({
-              content: `✅ Đã mua **${sk.name}** (${kindTxt}) với giá **${fmtLT(sk.price)} LT**.`,
+              content: `✅ Đã đưa vào hành trang: **${sk.name}** • ${kindTxt}`,
               embeds: [],
               components: [],
             })
@@ -284,7 +284,7 @@ module.exports = {
     });
 
     bcol.on("collect", async (i) => {
-      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải nút của bạn.", ephemeral: true });
+      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải nút của bạn.", ephemeral: true });
       await i.deferUpdate();
 
       const id = i.customId || "";

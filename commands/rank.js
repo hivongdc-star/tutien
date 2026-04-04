@@ -1,43 +1,27 @@
-const { loadUsers } = require("../utils/storage");
-const { getRealm } = require("../utils/xp");
 const { EmbedBuilder } = require("discord.js");
+const { loadUsers } = require("../utils/storage");
 
 module.exports = {
   name: "rank",
-  aliases: ["top", "leaderboard"],
-  description: "Xem bảng xếp hạng người chơi theo cấp độ",
-
+  aliases: ["top", "bxh"],
   run: async (client, msg) => {
     const users = loadUsers();
+    const all = Object.values(users || {})
+      .filter((u) => u && Number.isFinite(Number(u.level)))
+      .sort((a, b) => (Number(b.level) || 0) - (Number(a.level) || 0) || (Number(b.exp) || 0) - (Number(a.exp) || 0))
+      .slice(0, 10);
 
-    // lọc và sắp xếp theo level + exp
-    const sorted = Object.values(users)
-      .filter((u) => u && u.level) // chỉ lấy user đã tạo
-      .sort((a, b) => {
-        if (b.level === a.level) return (b.exp || 0) - (a.exp || 0);
-        return b.level - a.level;
-      })
-      .slice(0, 10); // top 10
+    if (!all.length) return msg.reply("❌ Hiện chưa có ai trên Bảng Phong Vân.");
 
-    if (sorted.length === 0) {
-      return msg.reply("❌ Hiện chưa có ai trong bảng xếp hạng.");
-    }
-
-    const desc = sorted
-      .map((u, i) => {
-        const name = u.name || "Ẩn danh";
-        const realm = getRealm(u.level || 1);
-        return `**${i + 1}. ${name}** — Lv.${u.level} (${realm}) | EXP: ${
-          u.exp
-        }`;
-      })
-      .join("\n");
+    const desc = all
+      .map((u, i) => `${i + 1}. **${u.title ? `[${u.title}] ` : ""}${u.name || "Ẩn danh"}**\n${u.realm || "(chưa rõ)"} • Cấp **${u.level || 1}**`)
+      .join("\n\n");
 
     const embed = new EmbedBuilder()
-      .setTitle("🏆 Bảng Xếp Hạng Tu Luyện")
+      .setColor(0xF1C40F)
+      .setTitle("🏆 Bảng Phong Vân")
       .setDescription(desc)
-      .setColor("Gold")
-      .setFooter({ text: "✨ Cày cuốc chăm chỉ để leo hạng!" });
+      .setFooter({ text: "Những người đang đi xa nhất trên con đường tu luyện." });
 
     msg.reply({ embeds: [embed] });
   },

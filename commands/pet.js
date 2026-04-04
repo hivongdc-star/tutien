@@ -89,12 +89,12 @@ function actionMenuRow(customId) {
   return new ActionRowBuilder().addComponents(
     new StringSelectMenuBuilder()
       .setCustomId(customId)
-      .setPlaceholder("Chọn mục…")
+      .setPlaceholder("Chọn một khu vực...")
       .addOptions([
         { label: "Thông tin", value: "info", description: "Xem trạng thái linh thú" },
         { label: "Ấp trứng", value: "hatch", description: "Mở trứng linh thú" },
-        { label: "Trang bị", value: "equip", description: "Chọn 1 linh thú để equip" },
-        { label: "Công việc", value: "job", description: "Mine / Explore / Rest" },
+        { label: "Xuất chiến", value: "equip", description: "Chọn linh thú đồng hành" },
+        { label: "Công việc", value: "job", description: "Khai khoáng / thăm dò / nghỉ ngơi" },
         { label: "Đột phá", value: "break", description: "Tăng cảnh giới (tiêu hao bản sao)" },
       ])
   );
@@ -114,9 +114,9 @@ function jobRow(customId, current) {
       .setStyle(job === current ? ButtonStyle.Success : ButtonStyle.Primary);
 
   return new ActionRowBuilder().addComponents(
-    mk("mine", "⛏️ Mine"),
-    mk("explore", "🧭 Explore"),
-    mk("rest", "😴 Rest")
+    mk("mine", "⛏️ Khai khoáng"),
+    mk("explore", "🧭 Thăm dò"),
+    mk("rest", "😴 Nghỉ ngơi")
   );
 }
 
@@ -149,7 +149,7 @@ function equipMenuRow(customId, user) {
   });
 
   return new ActionRowBuilder().addComponents(
-    new StringSelectMenuBuilder().setCustomId(customId).setPlaceholder("Chọn linh thú…").addOptions(options)
+    new StringSelectMenuBuilder().setCustomId(customId).setPlaceholder("Chọn linh thú đồng hành...").addOptions(options)
   );
 }
 
@@ -158,31 +158,35 @@ function buildInfoEmbed(user, tickSummary, attachName) {
   const active = activeId ? user.pet.pets?.[activeId] : null;
   const meta = activeId ? getPetMeta(activeId) : null;
 
-  const emb = new EmbedBuilder().setTitle("🐾 Linh Thú").setColor(0xF1C40F);
+  const emb = new EmbedBuilder().setTitle("🐾 Linh Thú Đồng Hành").setColor(0xF1C40F);
 
   const eggs = user.inventory?.[PET_EGG_ITEM_ID] || 0;
   const buf = Math.floor(user.pet?.feedBufferXp || 0);
 
   emb.setDescription(
-    `💎 LT: **${fmtLT(user.lt)}**\n` +
-      `🥚 Trứng: **${eggs}**\n` +
-      (buf > 0 ? `🐟 Cá tồn đọng: **${buf} XP** (sẽ nạp khi equip)\n` : "") +
-      `\nChọn mục ở menu bên dưới.`
+    `Linh thạch: **${fmtLT(user.lt)}**
+` +
+      `Trứng linh thú: **${eggs}**
+` +
+      (buf > 0 ? `Kinh nghiệm cá đang chờ hấp thụ: **${buf}**
+` : "") +
+      `
+Chọn một mục để tiếp tục bồi dưỡng.`
   );
 
   if (active && meta) {
     emb.addFields(
       {
-        name: "⭐ Đang trang bị",
+        name: "⭐ Linh thú đang xuất chiến",
         value:
           `**${meta.name}**\n` +
           `Cảnh giới: **${petRealmLabel(active.realm)}** · Cấp: **${active.level}/${getPetLevelCap(active.realm)}**\n` +
           `Đói: **${active.hunger}/100** · Thể lực: **${active.stamina}/100**\n` +
-          `Job: **${active.job}**`,
+          `Công việc: **${active.job}**`,
         inline: false,
       },
-      { name: "📦 Sở hữu", value: ownedPetsLines(user), inline: false },
-      { name: "🧩 Mảnh", value: shardsLines(user), inline: false }
+      { name: "📦 Linh thú đang có", value: ownedPetsLines(user), inline: false },
+      { name: "🧩 Mảnh linh thú", value: shardsLines(user), inline: false }
     );
 
     if (attachName) {
@@ -190,9 +194,9 @@ function buildInfoEmbed(user, tickSummary, attachName) {
     }
   } else {
     emb.addFields(
-      { name: "⭐ Đang trang bị", value: "— (chưa có hoặc chưa equip)", inline: false },
-      { name: "📦 Sở hữu", value: ownedPetsLines(user), inline: false },
-      { name: "🧩 Mảnh", value: shardsLines(user), inline: false }
+      { name: "⭐ Linh thú đang xuất chiến", value: "— (chưa có hoặc chưa xuất chiến)", inline: false },
+      { name: "📦 Linh thú đang có", value: ownedPetsLines(user), inline: false },
+      { name: "🧩 Mảnh linh thú", value: shardsLines(user), inline: false }
     );
   }
 
@@ -202,12 +206,18 @@ function buildInfoEmbed(user, tickSummary, attachName) {
     const shardsTxt = shortMapLines(s.shards, 6, (k, v) => `• ${getPetMeta(k)?.name || k}: ${v}`);
 
     emb.addFields({
-      name: "⏱️ Offline tick",
+      name: "⏱️ Thu hoạch khi vắng mặt",
       value:
-        `Áp dụng: **${s.ticksApplied} tick** (job: **${s.job}**)\n` +
-        (s.ltGained ? `+${fmtLT(s.ltGained)} LT\n` : "") +
-        (Object.keys(s.ores || {}).length ? `Ores:\n${oresTxt}\n` : "") +
-        (Object.keys(s.shards || {}).length ? `Shards:\n${shardsTxt}\n` : "") +
+        `Áp dụng: **${s.ticksApplied} lượt** (công việc: **${s.job}**)
+` +
+        (s.ltGained ? `+${fmtLT(s.ltGained)} LT
+` : "") +
+        (Object.keys(s.ores || {}).length ? `Khoáng thạch:
+${oresTxt}
+` : "") +
+        (Object.keys(s.shards || {}).length ? `Mảnh nhận được:
+${shardsTxt}
+` : "") +
         (s.stoppedBy ? `Dừng vì: **${s.stoppedBy}**` : ""),
       inline: false,
     });
@@ -219,18 +229,20 @@ function buildInfoEmbed(user, tickSummary, attachName) {
 function buildHatchEmbed(user) {
   const eggs = user.inventory?.[PET_EGG_ITEM_ID] || 0;
   return new EmbedBuilder()
-    .setTitle("🥚 Ấp trứng linh thú")
+    .setTitle("🥚 Ấp Trứng Linh Thú")
     .setColor(0x9B59B6)
-    .setDescription(`Bạn đang có **${eggs}** trứng.\nChọn số lượng để ấp (có thể trắng tay).`);
+    .setDescription(`Bạn đang có **${eggs}** trứng.
+Chọn số lượng muốn ấp.`);
 }
 
 function buildEquipEmbed(user) {
   const activeId = user.pet?.activePetId;
   const activeName = activeId ? getPetMeta(activeId)?.name : null;
   return new EmbedBuilder()
-    .setTitle("⭐ Trang bị linh thú")
+    .setTitle("⭐ Linh Thú Xuất Chiến")
     .setColor(0x2ECC71)
-    .setDescription(`Đang trang bị: **${activeName || "—"}**\nChọn 1 linh thú để equip.`);
+    .setDescription(`Đang xuất chiến: **${activeName || "—"}**
+Chọn một linh thú để đồng hành.`);
 }
 
 function buildJobEmbed(user) {
@@ -239,21 +251,26 @@ function buildJobEmbed(user) {
   const name = pid ? getPetMeta(pid)?.name : null;
 
   return new EmbedBuilder()
-    .setTitle("🧭 Công việc")
+    .setTitle("🧭 Công Việc")
     .setColor(0x3498DB)
     .setDescription(
-      `Linh thú: **${name || "—"}**\n` +
-        `Job hiện tại: **${st?.job || "—"}**\n\n` +
-        `- **mine**: đào khoáng (cần đói & thể lực)\n` +
-        `- **explore**: đi dungeon (có thể ra LT / mảnh nhỏ)\n` +
-        `- **rest**: hồi thể lực`
+      `Linh thú: **${name || "—"}**
+` +
+        `Công việc hiện tại: **${st?.job || "—"}**
+
+` +
+        `- **mine**: đi khai khoáng
+` +
+        `- **explore**: thăm dò khu vực
+` +
+        `- **rest**: nghỉ ngơi hồi thể lực`
     );
 }
 
 function buildBreakEmbed(user) {
   const pid = user.pet?.activePetId;
   if (!pid) {
-    return new EmbedBuilder().setTitle("⬆️ Đột phá").setColor(0xE67E22).setDescription("Bạn chưa trang bị linh thú.");
+    return new EmbedBuilder().setTitle("⬆️ Đột phá").setColor(0xE67E22).setDescription("Bạn chưa có linh thú xuất chiến.");
   }
 
   const st = user.pet.pets?.[pid];
@@ -287,11 +304,11 @@ function breakRow(customId, canBreak) {
 module.exports = {
   name: "pet",
   aliases: ["linhthu", "thu"],
-  description: "Linh thú: ấp trứng, equip, job, đột phá (UI menu/button).",
+  description: "Linh thú: ấp trứng, xuất chiến, công việc, đột phá.",
   run: async (client, msg) => {
     const users = loadUsers();
     const u = users[msg.author.id];
-    if (!u) return msg.reply("❌ Bạn chưa có nhân vật. Dùng `-create` để bắt đầu!");
+    if (!u) return msg.reply("❌ Bạn chưa bước vào con đường tu luyện. Dùng `-create` để khai mở nhân vật.");
 
     ensurePetShape(u);
 
@@ -354,7 +371,7 @@ module.exports = {
         embeds = [buildEquipEmbed(cur)];
         const row = equipMenuRow(`${baseId}:equip`, cur);
         components = [actionMenuRow(actionId), ...(row ? [row] : []), backRow(backId)];
-        if (!row) embeds[0].setDescription("Bạn chưa có linh thú nào. Hãy mua trứng trong `-shop`.");
+        if (!row) embeds[0].setDescription("Bạn chưa có linh thú nào. Ghé `-shop` để tìm trứng phù hợp.");
       } else if (view === "job") {
         embeds = [buildJobEmbed(cur)];
         const current = cur.pet.activePetId ? cur.pet.pets?.[cur.pet.activePetId]?.job : null;
@@ -386,7 +403,7 @@ module.exports = {
     collector.on("collect", async (i) => {
       try {
         if (i.user.id !== msg.author.id) {
-          return i.reply({ content: "❌ Không phải UI của bạn.", ephemeral: true });
+          return i.reply({ content: "❌ Đây không phải giao diện của bạn.", ephemeral: true });
         }
 
         if (!String(i.customId || "").startsWith(baseId)) return;
@@ -485,7 +502,7 @@ module.exports = {
       } catch (e) {
         console.error("pet ui error:", e);
         try {
-          await sent.edit({ content: "⚠️ Lỗi khi xử lý UI pet.", components: [] }).catch(() => {});
+          await sent.edit({ content: "⚠️ Có lỗi xảy ra trong giao diện linh thú.", components: [] }).catch(() => {});
         } catch {}
       }
     });

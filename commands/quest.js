@@ -35,7 +35,7 @@ function buildEmbed(user, daily, weekly) {
   const wClaim = countClaimable(weekly);
 
   return new EmbedBuilder()
-    .setTitle("🧭 Nhiệm vụ")
+    .setTitle("🧭 Sổ Nhiệm Vụ")
     .setColor(0x3498db)
     .setDescription(
       `Linh thạch hiện có: **${fmtLT(user.lt)}** 💎\n` +
@@ -43,17 +43,17 @@ function buildEmbed(user, daily, weekly) {
     )
     .addFields(
       {
-        name: "📅 Nhiệm vụ ngày",
+        name: "📅 Mục tiêu trong ngày",
         value: renderScopeLines(daily) || "(Trống)",
         inline: false,
       },
       {
-        name: "🗓️ Nhiệm vụ tuần",
+        name: "🗓️ Mục tiêu trong tuần",
         value: renderScopeLines(weekly) || "(Trống)",
         inline: false,
       }
     )
-    .setFooter({ text: "Nhận thưởng không cộng EXP (chỉ LT)." });
+    .setFooter({ text: "Thưởng nhiệm vụ hiện chỉ cộng linh thạch." });
 }
 
 function buildClaimMenu(userId, nonce, daily, weekly) {
@@ -83,7 +83,7 @@ function buildClaimMenu(userId, nonce, daily, weekly) {
   return new ActionRowBuilder().addComponents(
     new StringSelectMenuBuilder()
       .setCustomId(`quest_pick_${userId}_${nonce}`)
-      .setPlaceholder("Chọn nhiệm vụ để nhận thưởng...")
+      .setPlaceholder("Chọn mục tiêu để lĩnh thưởng...")
       .addOptions(options.slice(0, 25))
   );
 }
@@ -92,7 +92,7 @@ function buildButtons(userId, nonce) {
   return new ActionRowBuilder().addComponents(
     new ButtonBuilder()
       .setCustomId(`quest_claimall_${userId}_${nonce}`)
-      .setLabel("Nhận tất cả")
+      .setLabel("Lĩnh hết")
       .setStyle(ButtonStyle.Success),
     new ButtonBuilder()
       .setCustomId(`quest_close_${userId}_${nonce}`)
@@ -107,7 +107,7 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     const u = users[msg.author.id];
-    if (!u) return msg.reply("❌ Bạn chưa có nhân vật. Dùng `-create` trước.");
+    if (!u) return msg.reply("❌ Bạn chưa bước vào con đường tu luyện. Dùng `-create` để khai mở nhân vật.");
 
     ensureQuestState(u, Date.now());
     users[msg.author.id] = u;
@@ -157,7 +157,7 @@ module.exports = {
 
     col.on("collect", async (i) => {
       try {
-        if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải bảng của bạn.", ephemeral: true });
+        if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải bảng của bạn.", ephemeral: true });
 
         const cid = String(i.customId || "");
         const sessionSuffix = `_${nonce}`;
@@ -196,8 +196,8 @@ module.exports = {
           saveUsers(users2);
           await refresh();
 
-          if (count <= 0) return i.followUp({ content: "⚠️ Không có nhiệm vụ nào có thể nhận.", ephemeral: true });
-          return i.followUp({ content: `✅ Nhận **${count}** nhiệm vụ: **+${fmtLT(total)} LT**`, ephemeral: true });
+          if (count <= 0) return i.followUp({ content: "⚠️ Hiện chưa có mục tiêu nào đủ điều kiện lĩnh thưởng.", ephemeral: true });
+          return i.followUp({ content: `✅ Đã lĩnh **${count}** mục tiêu: **+${fmtLT(total)} LT**`, ephemeral: true });
         }
 
         // Claim single via menu
@@ -216,7 +216,7 @@ module.exports = {
             users2[msg.author.id] = u2;
             saveUsers(users2);
             await refresh();
-            return i.followUp({ content: "⚠️ Nhiệm vụ chưa đủ điều kiện hoặc đã nhận.", ephemeral: true });
+            return i.followUp({ content: "⚠️ Mục tiêu này chưa đủ điều kiện hoặc đã được lĩnh rồi.", ephemeral: true });
           }
 
           const res = claim(u2, scope, questId, Date.now());
@@ -225,7 +225,7 @@ module.exports = {
           await refresh();
 
           if (!res.ok) return i.followUp({ content: `❌ ${res.message}`, ephemeral: true });
-          return i.followUp({ content: `✅ Nhận thưởng: **+${fmtLT(res.rewardLt)} LT**`, ephemeral: true });
+          return i.followUp({ content: `✅ Đã lĩnh thưởng: **+${fmtLT(res.rewardLt)} LT**`, ephemeral: true });
         }
 
         // Ignore other components (session mismatch)

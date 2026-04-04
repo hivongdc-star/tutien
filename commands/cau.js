@@ -181,14 +181,14 @@ module.exports = {
 
     const users = loadUsers();
     const me = users[msg.author.id];
-    if (!me) return msg.reply("❌ Bạn chưa có nhân vật. Dùng `-create` để bắt đầu!");
+    if (!me) return msg.reply("❌ Bạn chưa bước vào con đường tu luyện. Dùng `-create` để khai mở nhân vật.");
 
     // cooldown
     const last = cooldown.get(msg.author.id) || 0;
     const now = Date.now();
     const remain = last + COOLDOWN_MS - now;
     if (remain > 0) {
-      return msg.reply(`⏳ Hãy nghỉ tay **${Math.ceil(remain / 1000)}s** rồi câu tiếp nhé.`);
+      return msg.reply(`⏳ Chờ **${Math.ceil(remain / 1000)} giây** để thả cần lượt tiếp theo.`);
     }
 
     const arg = (args?.[0] || "").toLowerCase();
@@ -201,9 +201,10 @@ module.exports = {
     const waitMs = randomInt(1500, 3501); // 1.5–3.5s
 
     const baseEmbed = new EmbedBuilder()
-      .setTitle("🎣 Thả câu")
-      .setDescription(`Bãi câu: **${spotText(spotKey)}** • Đang chờ cá cắn câu…`)
-      .setFooter({ text: "(Đã bỏ cơ chế thời cơ giật cần)" });
+      .setTitle("🎣 Thả Cần")
+      .setDescription(`Bạn đã thả cần ở **${spotText(spotKey)}**.
+Đang đợi con nước chuyển động...`)
+      .setFooter({ text: "Thu hoạch dưới ngưỡng lưu kho sẽ dùng để bồi dưỡng linh thú." });
 
     const sent = await msg.reply({ embeds: [baseEmbed] }).catch(() => null);
     if (!sent) return;
@@ -287,13 +288,16 @@ module.exports = {
         const meta = RARITY_META[rarityKey] || RARITY_META["thường"];
         const resEmbed = new EmbedBuilder()
           .setColor(meta.color)
-          .setTitle(`${meta.icon} ${fish.emoji || "🐟"} ${fish.name}`)
-          .setDescription(`**${spotLabel(spotKey)}** • ${meta.label}${size ? ` • ${size} cm` : ""}`);
+           .setTitle("🎣 Thu Hoạch Từ Thủy Vực")
+          .setDescription(`Bạn đã thả cần ở **${spotLabel(spotKey)}** và câu được:
+
+**${fish.emoji || "🐟"} ${fish.name}** • **${meta.label} phẩm**${size ? ` • **${size} cm**` : ""}`);
 
         if (willSave) {
           resEmbed.addFields({
-            name: "Kết quả",
-            value: `✅ Lưu kho • +${fmt(ltFinal)} LT · +${fmt(xp)} EXP`,
+            name: "Thu hoạch",
+            value: `Đã cất vào kho cá quý.
++**${fmt(ltFinal)} LT** • +**${fmt(xp)} EXP**`,
             inline: false,
           });
         } else {
@@ -303,8 +307,9 @@ module.exports = {
             ? `+${fmt(feedRes.xpGain)} XP`
             : `+${fmt(feedRes?.xpGain || 0)} XP`;
           resEmbed.addFields({
-            name: "🐾 Linh thú",
-            value: `${petNote} _(auto-feed)_`,
+            name: "🐾 Linh thú đồng hành",
+            value: `Linh thú đã ăn phần thu hoạch này.
+${petNote}`,
             inline: false,
           });
         }
@@ -317,16 +322,16 @@ module.exports = {
           if (oreKinds) extra.push(`+${oreKinds} loại khoáng`);
           const shardKinds = Object.keys(s.shards || {}).length;
           if (shardKinds) extra.push(`+${shardKinds} loại mảnh`);
-          if (extra.length) resEmbed.setFooter({ text: `🐾 Offline tick: ${s.ticksApplied} tick • ${extra.join(" • ")}` });
+          if (extra.length) resEmbed.setFooter({ text: `Thu hoạch khi vắng mặt: ${s.ticksApplied} lượt • ${extra.join(" • ")}` });
         } else {
-          resEmbed.setFooter({ text: "Cooldown 30s • (Đã bỏ thời cơ giật cần)" });
+          resEmbed.setFooter({ text: "Chờ 30 giây để thả cần lượt tiếp theo." });
         }
 
         await sent.edit({ embeds: [resEmbed], components: [] }).catch(() => {});
         cooldown.set(msg.author.id, Date.now());
       } catch (e) {
         console.error("cau error:", e);
-        await sent.edit({ content: "⚠️ Lỗi khi câu cá.", embeds: [], components: [] }).catch(() => {});
+        await sent.edit({ content: "⚠️ Có lỗi xảy ra khi thả cần.", embeds: [], components: [] }).catch(() => {});
       }
     }, waitMs);
   },

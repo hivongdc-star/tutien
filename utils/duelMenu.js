@@ -29,9 +29,9 @@ function safeField(u, elementEmoji, fallbackName) {
   let buffsText = "";
   if (u.buffs?.length > 0) {
     buffsText =
-      "\n🌀 Buff: " +
+      "\n🌀 Hiệu lực: " +
       u.buffs
-        .map((b) => `${b.name || b.type || "Buff"}(${b.turns})`)
+        .map((b) => `${b.name || b.type || "Hiệu lực"}(${b.turns})`)
         .join(", ");
   }
   let shieldText = u.shield > 0 ? `\n🛡️ Khiên: ${u.shield}` : "";
@@ -62,24 +62,24 @@ function createBattleEmbed(state, users) {
   let desc = "";
   if (state.finished) {
     desc =
-      "🏆 " + (state.logs?.[state.logs.length - 1] || "Trận đấu đã kết thúc!");
+      "🏆 " + (state.logs?.[state.logs.length - 1] || "Trận tỷ thí đã kết thúc.");
   } else {
     const turnLogs = state.logs?.length
       ? state.logs.map((l) => `📜 ${l}`).join("\n")
-      : "⚠️ Chưa có hành động.";
+      : "⚠️ Trận tỷ thí chưa có hành động nào.";
 
-    desc = `${turnLogs}\n\n👉 Lượt của **${users[state.turn]?.name || "???"}**`;
+    desc = `${turnLogs}\n\n👉 Đến lượt **${users[state.turn]?.name || "???"}**`;
   }
 
   return new EmbedBuilder()
-    .setTitle("⚔️ Sinh tử chiến")
-    .setDescription(desc || "⚠️ Chưa có log")
+    .setTitle("⚔️ Tỷ Thí")
+    .setDescription(desc || "⚠️ Nhật ký trận tỷ thí đang trống.")
     .addFields([
       safeField(p1, elementEmojis[p1?.element] || "", "Người chơi 1"),
       safeField(p2, elementEmojis[p2?.element] || "", "Người chơi 2"),
     ])
     .setColor(state.finished ? "Gold" : "Purple")
-    .setFooter({ text: "✨ Vận dụng linh lực để giành thắng lợi!" });
+    .setFooter({ text: "Dùng chiêu thức hợp lúc để xoay chuyển thế trận." });
 }
 
 // menu skill cho 1 người
@@ -87,11 +87,11 @@ function createSkillMenu(user, userId, isTurn) {
   const skillList = skills[user.element] || [];
   const menu = new StringSelectMenuBuilder()
     .setCustomId(`duel-skill-${userId}`)
-    .setPlaceholder(isTurn ? "Chọn skill" : "Chưa tới lượt")
+    .setPlaceholder(isTurn ? "Chọn chiêu thức" : "Chưa tới lượt của bạn")
     .setDisabled(!isTurn);
 
   if (skillList.length === 0) {
-    menu.addOptions([{ label: "Không có skill", value: "none" }]);
+    menu.addOptions([{ label: "Chưa có chiêu thức", value: "none" }]);
   } else {
     menu.addOptions(
       skillList.map((s) => {
@@ -142,7 +142,7 @@ async function handleSkillInteraction(interaction, client) {
   const battle = battles[clickerId];
   if (!battle) {
     return interaction.reply({
-      content: "❌ Trận đấu không tồn tại!",
+      content: "❌ Trận tỷ thí không còn tồn tại.",
       ephemeral: true,
     });
   }
@@ -150,7 +150,7 @@ async function handleSkillInteraction(interaction, client) {
   const state = battle.state;
   if (state.turn !== clickerId) {
     return interaction.reply({
-      content: "❌ Không phải lượt của bạn!",
+      content: "❌ Chưa tới lượt của bạn.",
       ephemeral: true,
     });
   }
@@ -174,7 +174,7 @@ async function handleSkillInteraction(interaction, client) {
   await sendBattleEmbeds(client, newState);
 
   await interaction.followUp({
-    content: `✅ Bạn đã dùng skill: **${skillName}**`,
+    content: `✅ Bạn đã dùng chiêu thức: **${skillName}**`,
     ephemeral: true,
   });
 }

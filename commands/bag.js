@@ -76,13 +76,13 @@ function buildSkillsSummaryEmbed(user) {
   const shards = user.skills.shards?.[el] || { rare: 0, epic: 0 };
   return new EmbedBuilder()
     .setColor(0x8e44ad)
-    .setTitle("📜 Bí kíp")
+    .setTitle("📜 Bí Kíp")
     .setDescription(`Hệ: ${elements.display[el] || el}`)
     .addFields(
-      { name: "Chủ động (4)", value: act.join("\n") || "_(trống)_" },
-      { name: "Bị động (1)", value: пас ? `**${пас.name}**` : "_(trống)_" },
+      { name: "Chiêu thức đang mang", value: act.join("\n") || "_(trống)_" },
+      { name: "Tâm pháp", value: пас ? `**${пас.name}**` : "_(trống)_" },
       {
-        name: "Mảnh bí kíp (hệ của bạn)",
+        name: "Mảnh bí kíp đồng hệ",
         value: `• ${fmtShardLabel(el, "rare")}: **${shards.rare || 0}**\n• ${fmtShardLabel(el, "epic")}: **${shards.epic || 0}**`,
       }
     );
@@ -106,16 +106,16 @@ async function openSkillsView(msg, user, nonce) {
 
   const buildSlotRow = () => {
     const options = [
-      { label: "Chủ động 1", value: "a1" },
-      { label: "Chủ động 2", value: "a2" },
-      { label: "Chủ động 3", value: "a3" },
-      { label: "Chủ động 4", value: "a4" },
-      { label: "Bị động", value: "passive" },
+      { label: "Chiêu thức 1", value: "a1" },
+      { label: "Chiêu thức 2", value: "a2" },
+      { label: "Chiêu thức 3", value: "a3" },
+      { label: "Chiêu thức 4", value: "a4" },
+      { label: "Tâm pháp", value: "passive" },
     ];
     return new ActionRowBuilder().addComponents(
       new StringSelectMenuBuilder()
         .setCustomId(slotMenuId)
-        .setPlaceholder("Chọn slot...")
+        .setPlaceholder("Chọn vị trí mang theo...")
         .addOptions(options)
     );
   };
@@ -143,7 +143,7 @@ async function openSkillsView(msg, user, nonce) {
     return new ActionRowBuilder().addComponents(
       new StringSelectMenuBuilder()
         .setCustomId(skillMenuId)
-        .setPlaceholder("Chọn bí kíp...")
+        .setPlaceholder("Chọn bí kíp muốn mang theo...")
         .addOptions(options)
     );
   };
@@ -171,7 +171,7 @@ async function openSkillsView(msg, user, nonce) {
     return new ActionRowBuilder().addComponents(
       new StringSelectMenuBuilder()
         .setCustomId(craftMenuId)
-        .setPlaceholder("Chọn bí kíp để ghép...")
+        .setPlaceholder("Chọn bí kíp muốn ghép...")
         .addOptions(options)
     );
   };
@@ -182,7 +182,7 @@ async function openSkillsView(msg, user, nonce) {
       rows.push(
         new ActionRowBuilder().addComponents(
           new ButtonBuilder().setCustomId(`bag_skill_equip_${msg.author.id}_${nonce}`).setLabel("Trang bị").setStyle(ButtonStyle.Primary).setDisabled(!state.slot || !state.skillId),
-          new ButtonBuilder().setCustomId(`bag_skill_unequip_${msg.author.id}_${nonce}`).setLabel("Gỡ").setStyle(ButtonStyle.Secondary).setDisabled(!state.slot),
+          new ButtonBuilder().setCustomId(`bag_skill_unequip_${msg.author.id}_${nonce}`).setLabel("Tháo").setStyle(ButtonStyle.Secondary).setDisabled(!state.slot),
           new ButtonBuilder().setCustomId(`bag_skill_craftr_${msg.author.id}_${nonce}`).setLabel("Ghép (Hiếm)").setStyle(ButtonStyle.Success),
           new ButtonBuilder().setCustomId(`bag_skill_crafte_${msg.author.id}_${nonce}`).setLabel("Ghép (Cực hiếm)").setStyle(ButtonStyle.Success),
           new ButtonBuilder().setCustomId(`bag_skill_close_${msg.author.id}_${nonce}`).setLabel("Đóng").setStyle(ButtonStyle.Danger)
@@ -208,7 +208,7 @@ async function openSkillsView(msg, user, nonce) {
 
     const baseEmbed = buildSkillsSummaryEmbed(u);
     if (state.mode === "craft") {
-      baseEmbed.setTitle(`📜 Ghép bí kíp • ${state.craftRarity === "epic" ? "Cực hiếm" : "Hiếm"}`);
+      baseEmbed.setTitle(`📜 Ghép Bí Kíp • ${state.craftRarity === "epic" ? "Cực hiếm" : "Hiếm"}`);
       const need = state.craftRarity === "epic" ? 40 : 12;
       const shards = u.skills.shards?.[el] || { rare: 0, epic: 0 };
       const have = state.craftRarity === "epic" ? (shards.epic || 0) : (shards.rare || 0);
@@ -217,7 +217,7 @@ async function openSkillsView(msg, user, nonce) {
         `Cần: **${need}** mảnh • Hiện có: **${have}** mảnh\n\nChọn bí kíp để ghép.`
       );
     } else if (state.slot) {
-      const slotName = state.slot === "passive" ? "Bị động" : `Chủ động ${Number(state.slot.slice(1))}`;
+      const slotName = state.slot === "passive" ? "Tâm pháp" : `Chiêu thức ${Number(state.slot.slice(1))}`;
       baseEmbed.setFooter({ text: `Đang chọn: ${slotName}` });
     }
 
@@ -228,7 +228,7 @@ async function openSkillsView(msg, user, nonce) {
   const col = sent.createMessageComponentCollector({ time: 180_000 });
 
   col.on("collect", async (i) => {
-    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải giao diện của bạn.", ephemeral: true });
     const cid = String(i.customId || "");
 
     if (i.isStringSelectMenu()) {
@@ -434,7 +434,7 @@ function describeAffixes(it) {
 async function openToolsMenu(msg, user, nonce) {
   const tools = user.mining.tools || [];
   if (!tools.length) {
-    return msg.reply("🧰 Túi khoáng cụ trống. Hãy vào `-shop` để mua.");
+    return msg.reply("🧰 Bạn chưa có khoáng cụ nào. Ghé `-shop` để chọn một món phù hợp.");
   }
 
   // ensure active
@@ -456,7 +456,7 @@ async function openToolsMenu(msg, user, nonce) {
 
   const embed = new EmbedBuilder()
     .setColor(0x95A5A6)
-    .setTitle("🧰 Khoáng Cụ")
+    .setTitle("🧰 Khoáng Cụ Đang Dùng")
     .setDescription(
       `Cảnh giới: **${user.realm || "(chưa rõ)"}**\n` +
       `Chọn khoáng cụ đang dùng (ảnh hưởng tỷ lệ ra khoáng hiếm).`
@@ -465,7 +465,7 @@ async function openToolsMenu(msg, user, nonce) {
   const row = new ActionRowBuilder().addComponents(
     new StringSelectMenuBuilder()
       .setCustomId(`bag_tools_${msg.author.id}_${nonce}`)
-      .setPlaceholder("Chọn khoáng cụ...")
+      .setPlaceholder("Chọn khoáng cụ muốn dùng...")
       .addOptions(options)
   );
 
@@ -473,7 +473,7 @@ async function openToolsMenu(msg, user, nonce) {
 
   const col = sent.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 90_000 });
   col.on("collect", async (i) => {
-    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải giao diện của bạn.", ephemeral: true });
     await i.deferUpdate();
     user.mining.activeToolId = i.values[0];
     const activeTool = (user.mining.tools || []).find((t) => t.iid === user.mining.activeToolId);
@@ -516,7 +516,7 @@ async function openOresView(msg, user, nonce) {
   };
 
   if (!listOwned().length) {
-    return msg.reply("🪨 Túi khoáng thạch trống. Dùng `-dao` để khai khoáng.");
+    return msg.reply("🪨 Kho khoáng hiện đang trống. Dùng `-dao` để khai khoáng.");
   }
 
   let selectedOreId = null;
@@ -531,7 +531,7 @@ async function openOresView(msg, user, nonce) {
     if (!selectedOreId) {
       return new EmbedBuilder()
         .setColor(0x3498db)
-        .setTitle("🪨 Khoáng Thạch")
+        .setTitle("🪨 Kho Khoáng Thạch")
         .setDescription(
           `Cảnh giới: **${u.realm || "(chưa rõ)"}**\n` +
             `LT: **${fmtLT(u.lt)}** 💎\n\n` +
@@ -574,7 +574,7 @@ async function openOresView(msg, user, nonce) {
     return new ActionRowBuilder().addComponents(
       new StringSelectMenuBuilder()
         .setCustomId(`bag_ores_${userId}_${n}`)
-        .setPlaceholder("Chọn khoáng để bán...")
+        .setPlaceholder("Chọn khoáng muốn bán...")
         .addOptions(options.length ? options : [{ label: "(Trống)", value: "none" }])
     );
   };
@@ -632,7 +632,7 @@ async function openOresView(msg, user, nonce) {
   };
 
   col.on("collect", async (i) => {
-    if (i.user.id !== userId) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+    if (i.user.id !== userId) return i.reply({ content: "❌ Đây không phải giao diện của bạn.", ephemeral: true });
     await i.deferUpdate();
 
     const cid = String(i.customId || "");
@@ -753,7 +753,7 @@ async function openGearView(msg, user, nonce) {
 
     return new EmbedBuilder()
       .setColor(0x9B59B6)
-      .setTitle("🛡️ Trang Bị")
+      .setTitle("🛡️ Trang Bị Đang Dùng")
       .setDescription(summary);
   };
 
@@ -777,7 +777,7 @@ async function openGearView(msg, user, nonce) {
     return new ActionRowBuilder().addComponents(
       new StringSelectMenuBuilder()
         .setCustomId(`bag_gear_${msg.author.id}_${nonce}`)
-        .setPlaceholder("Xem chi tiết / mặc / tháo...")
+        .setPlaceholder("Chọn một món để xem hoặc thay đổi...")
         .addOptions(options.length ? options : [{ label: "(Không có trang bị)", value: "none" }])
     );
   };
@@ -873,7 +873,7 @@ async function openGearView(msg, user, nonce) {
 
   col.on("collect", async (i) => {
     if (i.user.id !== msg.author.id) {
-      return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+      return i.reply({ content: "❌ Đây không phải giao diện của bạn.", ephemeral: true });
     }
 
     const cid = String(i.customId || "");
@@ -1070,14 +1070,14 @@ async function openGearView(msg, user, nonce) {
 async function openLegacyInventory(msg, user) {
   const inv = user.inventory || {};
   const items = Object.entries(inv).filter(([, q]) => (Number(q) || 0) > 0);
-  if (!items.length) return msg.reply("📦 Túi vật phẩm trống.");
+  if (!items.length) return msg.reply("🎒 Trong túi hiện chưa có gì đáng chú ý.");
   const lines = items
     .slice(0, 40)
     .map(([id, q]) => `• **${id}** x${Number(q) || 0}`);
   const embed = new EmbedBuilder()
     .setColor(0x95A5A6)
     .setTitle("📦 Vật Phẩm")
-    .setDescription(`(Legacy)\n\n${lines.join("\n")}`);
+    .setDescription(`Các vật phẩm hiện có:\n\n${lines.join("\n")}`);
   return msg.reply({ embeds: [embed] });
 }
 
@@ -1093,7 +1093,7 @@ async function openSkillsView(msg, user, nonce) {
 
   const slotLabel = (slot) => {
     if (!slot) return "(chưa chọn)";
-    if (slot === "passive") return "Bị động";
+    if (slot === "passive") return "Tâm pháp";
     const idx = Number(slot.slice(1) || 0);
     return `Chủ động ${idx}`;
   };
@@ -1111,7 +1111,7 @@ async function openSkillsView(msg, user, nonce) {
       return `• Chủ động ${i + 1}: ${sk ? `**${sk.name}**` : "_(trống)_"}`;
     });
     const pas = eq.passive ? getSkill(eq.passive) : null;
-    act.push(`• Bị động: ${pas ? `**${pas.name}**` : "_(trống)_"}`);
+    act.push(`• Tâm pháp: ${pas ? `**${pas.name}**` : "_(trống)_"}`);
     return act.join("\n");
   };
 
@@ -1137,7 +1137,7 @@ async function openSkillsView(msg, user, nonce) {
       .setDescription(
         `Cảnh giới: **${u.realm || "(chưa rõ)"}**\n` +
           `Hệ: ${elTxt}\n\n` +
-          `**Đang trang bị:**\n${equippedLine()}\n\n` +
+          `**Đang mang theo:**\n${equippedLine()}\n\n` +
           `**Sở hữu:** ${owned.length} bí kíp\n` +
           `**Mảnh bí kíp:** ${shardText}`
       );
@@ -1200,13 +1200,13 @@ async function openSkillsView(msg, user, nonce) {
     if (mode === "equip") {
       const slotMenu = new StringSelectMenuBuilder()
         .setCustomId(`bag_skill_slot_${msg.author.id}_${nonce}`)
-        .setPlaceholder("Chọn slot...")
+        .setPlaceholder("Chọn vị trí mang theo...")
         .addOptions(
-          { label: "Chủ động 1", value: "a1" },
-          { label: "Chủ động 2", value: "a2" },
-          { label: "Chủ động 3", value: "a3" },
-          { label: "Chủ động 4", value: "a4" },
-          { label: "Bị động", value: "passive" }
+          { label: "Chiêu thức 1", value: "a1" },
+          { label: "Chiêu thức 2", value: "a2" },
+          { label: "Chiêu thức 3", value: "a3" },
+          { label: "Chiêu thức 4", value: "a4" },
+          { label: "Tâm pháp", value: "passive" }
         );
 
       if (selectedSlot) {
@@ -1225,7 +1225,7 @@ async function openSkillsView(msg, user, nonce) {
 
         const skillMenu = new StringSelectMenuBuilder()
           .setCustomId(`bag_skill_pick_${msg.author.id}_${nonce}`)
-          .setPlaceholder("Chọn bí kíp...")
+          .setPlaceholder("Chọn bí kíp muốn mang theo...")
           .addOptions(opts);
 
         rows.push(new ActionRowBuilder().addComponents(slotMenu));
@@ -1290,7 +1290,7 @@ async function openSkillsView(msg, user, nonce) {
 
       const craftMenu = new StringSelectMenuBuilder()
         .setCustomId(`bag_skill_craftpick_${msg.author.id}_${nonce}`)
-        .setPlaceholder("Chọn bí kíp để ghép...")
+        .setPlaceholder("Chọn bí kíp muốn ghép...")
         .addOptions(opts);
       rows.push(new ActionRowBuilder().addComponents(craftMenu));
 
@@ -1329,7 +1329,7 @@ async function openSkillsView(msg, user, nonce) {
   };
 
   col.on("collect", async (i) => {
-    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải giao diện của bạn.", ephemeral: true });
 
     const cid = String(i.customId || "");
     if (cid.includes(`_${msg.author.id}_${nonce}`)) await i.deferUpdate();
@@ -1483,7 +1483,7 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     const user = users[msg.author.id];
-    if (!user) return msg.reply("❌ Bạn chưa có nhân vật. Dùng `-create` trước.");
+    if (!user) return msg.reply("❌ Bạn chưa bước vào con đường tu luyện. Dùng `-create` để khai mở nhân vật.");
 
     ensureMining(user);
     ensureGear(user);
@@ -1496,18 +1496,18 @@ module.exports = {
     const nonce = `${Date.now()}`;
     const embed = new EmbedBuilder()
       .setColor(0x5865F2)
-      .setTitle("🎒 Túi")
-      .setDescription(`Cảnh giới: **${user.realm || "(chưa rõ)"}**\nChọn mục để mở.`);
+      .setTitle("🎒 Túi Hành Trang")
+      .setDescription(`Cảnh giới: **${user.realm || "(chưa rõ)"}**\nChọn một khu vực để mở túi hành trang.`);
 
     const menu = new StringSelectMenuBuilder()
       .setCustomId(`bag_cat_${msg.author.id}_${nonce}`)
-      .setPlaceholder("Chọn mục...")
+      .setPlaceholder("Chọn một khu vực...")
       .addOptions(
-        { label: "🧰 Khoáng cụ", value: "tools", description: "Chọn khoáng cụ đang dùng" },
-        { label: "🪨 Khoáng thạch", value: "ores", description: "Xem khoáng thạch đã đào" },
-        { label: "📜 Bí kíp", value: "skills", description: "Xem/Trang bị/Ghép bí kíp" },
-        { label: "🛡️ Trang bị", value: "gear", description: "Xem trang bị đang mặc & trong túi" },
-        { label: "📦 Vật phẩm", value: "legacy", description: "Danh sách vật phẩm kiểu cũ" }
+        { label: "🧰 Khoáng cụ đang dùng", value: "tools", description: "Xem và đổi khoáng cụ" },
+        { label: "🪨 Kho khoáng thạch", value: "ores", description: "Xem khoáng thạch đã thu được" },
+        { label: "📜 Bí kíp", value: "skills", description: "Mang theo, tháo ra, ghép bí kíp" },
+        { label: "🛡️ Trang bị đang dùng", value: "gear", description: "Xem đồ đang mặc và đồ trong túi" },
+        { label: "📦 Vật phẩm", value: "legacy", description: "Xem các vật phẩm hiện có" }
       );
 
     const row = new ActionRowBuilder().addComponents(menu);
@@ -1515,7 +1515,7 @@ module.exports = {
 
     const col = sent.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 60_000 });
     col.on("collect", async (i) => {
-      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải giao diện của bạn.", ephemeral: true });
       await i.deferUpdate();
       const choice = i.values[0];
       await sent.edit({ components: [] }).catch(() => {});

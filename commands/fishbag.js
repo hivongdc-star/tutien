@@ -16,10 +16,10 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     const me = users[msg.author.id];
-    if (!me) return msg.reply("❌ Bạn chưa có nhân vật!");
+    if (!me) return msg.reply("❌ Bạn chưa bước vào con đường tu luyện. Dùng `-create` để khai mở nhân vật.");
 
     if (!me.fishInventory || Object.keys(me.fishInventory).length === 0)
-      return msg.reply("🐟 Bạn chưa có cá **Thiên Phẩm** trở lên.");
+      return msg.reply("🐟 Kho cá hiện chưa có thu hoạch từ **Thiên phẩm** trở lên.");
 
     // Dọn kho legacy: loại bỏ cá dưới Thiên Phẩm khỏi fishInventory
     let changed = false;
@@ -36,7 +36,7 @@ module.exports = {
     }
 
     if (Object.keys(me.fishInventory).length === 0)
-      return msg.reply("🐟 Bạn chưa có cá **Thiên Phẩm** trở lên.");
+      return msg.reply("🐟 Kho cá hiện chưa có thu hoạch từ **Thiên phẩm** trở lên.");
 
     const lines = [];
     const items = Object.keys(me.fishInventory)
@@ -57,7 +57,7 @@ module.exports = {
     }
 
     const embed = new EmbedBuilder()
-      .setTitle(`🎣 Kho cá (Thiên Phẩm+) của ${msg.author.username}`)
+      .setTitle(`🎣 Kho Cá Quý của ${msg.author.username}`)
       .setDescription(lines.join("\n"))
       .setColor("#F1C40F");
 

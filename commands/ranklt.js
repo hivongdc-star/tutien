@@ -1,37 +1,31 @@
-const { loadUsers } = require("../utils/storage");
 const { EmbedBuilder } = require("discord.js");
+const { loadUsers } = require("../utils/storage");
+
+function fmt(n) {
+  return Number(n || 0).toLocaleString("vi-VN");
+}
 
 module.exports = {
   name: "ranklt",
-  aliases: ["toplt", "leaderboardlt"],
-  description: "Xem bảng xếp hạng Linh Thạch",
-
+  aliases: ["toplt", "bxhlt"],
   run: async (client, msg) => {
     const users = loadUsers();
+    const all = Object.values(users || {})
+      .filter((u) => u)
+      .sort((a, b) => (Number(b.lt) || 0) - (Number(a.lt) || 0))
+      .slice(0, 10);
 
-    // lọc và sắp xếp theo Linh Thạch (lt)
-    const sorted = Object.values(users)
-      .filter((u) => u && u.lt !== undefined)
-      .sort((a, b) => (b.lt || 0) - (a.lt || 0))
-      .slice(0, 10); // top 10
+    if (!all.length) return msg.reply("❌ Hiện chưa có ai trên Bảng Tàng Phú.");
 
-    if (sorted.length === 0) {
-      return msg.reply("❌ Hiện chưa có ai trong bảng xếp hạng Linh Thạch.");
-    }
-
-    const desc = sorted
-      .map((u, i) => {
-        const name = u.name || "Ẩn danh";
-        const stones = u.lt || 0;
-        return `**${i + 1}. ${name}** — 💎 ${stones.toLocaleString()} LT`;
-      })
-      .join("\n");
+    const desc = all
+      .map((u, i) => `${i + 1}. **${u.title ? `[${u.title}] ` : ""}${u.name || "Ẩn danh"}**\nLinh thạch: **${fmt(u.lt)}**`)
+      .join("\n\n");
 
     const embed = new EmbedBuilder()
-      .setTitle("💎 Bảng Xếp Hạng Linh Thạch")
+      .setColor(0x00B0F4)
+      .setTitle("💎 Bảng Tàng Phú")
       .setDescription(desc)
-      .setColor("Blue")
-      .setFooter({ text: "✨ Ai sẽ trở thành đại gia Linh Thạch?" });
+      .setFooter({ text: "Những người đang nắm giữ nhiều linh thạch nhất." });
 
     msg.reply({ embeds: [embed] });
   },

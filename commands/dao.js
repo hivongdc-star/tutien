@@ -25,7 +25,7 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     const user = users[msg.author.id];
-    if (!user) return msg.reply("❌ Bạn chưa có nhân vật. Dùng `-create` trước.");
+    if (!user) return msg.reply("❌ Bạn chưa bước vào con đường tu luyện. Dùng `-create` để khai mở nhân vật.");
 
     ensureMining(user);
 
@@ -39,7 +39,7 @@ module.exports = {
     }
 
     if (!user.mining.tools.length) {
-      return msg.reply("❌ Bạn chưa có **Khoáng cụ**. Hãy vào `-shop` để mua.");
+      return msg.reply("❌ Bạn chưa có khoáng cụ. Ghé `-shop` để chuẩn bị trước khi khai khoáng.");
     }
 
     // Active tool
@@ -83,15 +83,15 @@ module.exports = {
       .setColor(m.color)
       .setTitle("⛏️ Khai Khoáng")
       .setDescription(
-        `Bạn vận khí nhập thổ, khai mở mạch khoáng...\n\n` +
-        `**Thu hoạch:** ${m.icon} **${ore.name}** _(${tierText(ore.tier)})_\n` +
-        `**Khoáng cụ:** **${tool.name || "Khoáng cụ"}** • Độ bền **${toolDurText}**` +
+        `Bạn xuống mỏ và thu được:\n\n` +
+        `${m.icon} **${ore.name}** • **${tierText(ore.tier)}**\n` +
+        `Khoáng cụ đang dùng: **${tool.name || "Khoáng cụ"}** • Độ bền **${toolDurText}**` +
         brokeText
       );
 
     if (unlockedTitles.length) {
       embed.addFields({
-        name: "Danh hiệu mới",
+        name: "Danh hiệu vừa mở",
         value: unlockedTitles.map((t) => `• **${t}**`).join("\n"),
         inline: false,
       });

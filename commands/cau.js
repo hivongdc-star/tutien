@@ -203,7 +203,7 @@ module.exports = {
     const baseEmbed = new EmbedBuilder()
       .setTitle("🎣 Thả câu")
       .setDescription(`Bãi câu: **${spotText(spotKey)}** • Đang chờ cá cắn câu…`)
-      ;
+      .setFooter({ text: "Đang chờ cá cắn câu..." });
 
     const sent = await msg.reply({ embeds: [baseEmbed] }).catch(() => null);
     if (!sent) return;
@@ -211,19 +211,8 @@ module.exports = {
     setTimeout(async () => {
       try {
         // ===== Chọn cá =====
-        // Roll ultra tier (0,001%) trước nếu có
-        const rollUltra = ULTRA_RARITY_KEY ? randomInt(0, TIEN_DENOM) === 0 : false;
-
-        const poolUltra = ULTRA_RARITY_KEY
-          ? poolAll.filter((f) => String(f.rarity || "").toLowerCase() === ULTRA_RARITY_KEY)
-          : [];
-        const poolNormal = ULTRA_RARITY_KEY
-          ? poolAll.filter((f) => String(f.rarity || "").toLowerCase() !== ULTRA_RARITY_KEY)
-          : poolAll;
-
-        let fish;
-        if (rollUltra && poolUltra.length) fish = pickWeightedInt(poolUltra, "weight");
-        else fish = pickWeightedInt(poolNormal.length ? poolNormal : poolAll, "weight");
+        // Tất cả loài cá trong cùng bãi câu có tỷ lệ như nhau.
+        const fish = poolAll[randomInt(0, poolAll.length)];
 
         // size
         const hasSize = fish.minSizeCm && fish.maxSizeCm && fish.maxSizeCm >= fish.minSizeCm;
@@ -324,7 +313,8 @@ Tinh hoa từ mẻ cá này đã được giữ lại: +**${fmt(feedRes.xpGain)}
           if (oreKinds) extra.push(`+${oreKinds} loại khoáng`);
           const shardKinds = Object.keys(s.shards || {}).length;
           if (shardKinds) extra.push(`+${shardKinds} loại mảnh`);
-          if (extra.length) resEmbed.setFooter({ text: `🐾 Thu hoạch khi vắng mặt: ${s.ticksApplied} lượt • ${extra.join(" • ")}` });
+          if (extra.length) resEmbed.setFooter({ text: `🐾 Thu hoạch khi vắng mặt: ${extra.join(" • ")}` });
+          else resEmbed.setFooter({ text: "Chờ 5 giây để câu lượt tiếp theo." });
         } else {
           resEmbed.setFooter({ text: "Chờ 5 giây để câu lượt tiếp theo." });
         }

@@ -38,7 +38,7 @@ function pickWeightedInt(list, weightField = "weight") {
   return list[list.length - 1];
 }
 
-const COOLDOWN_MS = 30_000;
+const COOLDOWN_MS = 5_000;
 const cooldown = new Map();
 
 // 0,001% = 1 / 100.000
@@ -181,14 +181,14 @@ module.exports = {
 
     const users = loadUsers();
     const me = users[msg.author.id];
-    if (!me) return msg.reply("❌ Bạn chưa bước vào con đường tu luyện. Dùng `-create` để khai mở nhân vật.");
+    if (!me) return msg.reply("❌ Bạn chưa có nhân vật. Dùng `-create` để bắt đầu!");
 
     // cooldown
     const last = cooldown.get(msg.author.id) || 0;
     const now = Date.now();
     const remain = last + COOLDOWN_MS - now;
     if (remain > 0) {
-      return msg.reply(`⏳ Chờ **${Math.ceil(remain / 1000)} giây** để thả cần lượt tiếp theo.`);
+      return msg.reply(`⏳ Hãy nghỉ tay **${Math.ceil(remain / 1000)}s** rồi câu tiếp nhé.`);
     }
 
     const arg = (args?.[0] || "").toLowerCase();
@@ -201,10 +201,9 @@ module.exports = {
     const waitMs = randomInt(1500, 3501); // 1.5–3.5s
 
     const baseEmbed = new EmbedBuilder()
-      .setTitle("🎣 Thả Cần")
-      .setDescription(`Bạn đã thả cần ở **${spotText(spotKey)}**.
-Đang đợi con nước chuyển động...`)
-      .setFooter({ text: "Thu hoạch dưới ngưỡng lưu kho sẽ dùng để bồi dưỡng linh thú." });
+      .setTitle("🎣 Thả câu")
+      .setDescription(`Bãi câu: **${spotText(spotKey)}** • Đang chờ cá cắn câu…`)
+      .setFooter({ text: "(Đã bỏ cơ chế thời cơ giật cần)" });
 
     const sent = await msg.reply({ embeds: [baseEmbed] }).catch(() => null);
     if (!sent) return;
@@ -288,28 +287,31 @@ module.exports = {
         const meta = RARITY_META[rarityKey] || RARITY_META["thường"];
         const resEmbed = new EmbedBuilder()
           .setColor(meta.color)
-           .setTitle("🎣 Thu Hoạch Từ Thủy Vực")
-          .setDescription(`Bạn đã thả cần ở **${spotLabel(spotKey)}** và câu được:
-
-**${fish.emoji || "🐟"} ${fish.name}** • **${meta.label} phẩm**${size ? ` • **${size} cm**` : ""}`);
+          .setTitle(`${meta.icon} ${fish.emoji || "🐟"} ${fish.name}`)
+          .setDescription(`**${spotLabel(spotKey)}** • ${meta.label}${size ? ` • ${size} cm` : ""}`);
 
         if (willSave) {
           resEmbed.addFields({
-            name: "Thu hoạch",
-            value: `Đã cất vào kho cá quý.
-+**${fmt(ltFinal)} LT** • +**${fmt(xp)} EXP**`,
+            name: "Kết quả",
+            value: `✅ Lưu kho • +${fmt(ltFinal)} LT · +${fmt(xp)} EXP`,
             inline: false,
           });
         } else {
-          const petNote = feedRes?.buffered
-            ? `+${fmt(feedRes.xpGain)} XP (buffer)`
-            : feedRes?.petId
-            ? `+${fmt(feedRes.xpGain)} XP`
-            : `+${fmt(feedRes?.xpGain || 0)} XP`;
+          let petFieldValue;
+
+          if (feedRes?.petId) {
+            petFieldValue = `Linh thú đã ăn phần thu hoạch này.
++**${fmt(feedRes.xpGain)} kinh nghiệm linh thú**`;
+          } else if (feedRes?.buffered) {
+            petFieldValue = `Bạn chưa có linh thú đồng hành.
+Tinh hoa từ mẻ cá này đã được giữ lại: +**${fmt(feedRes.xpGain)} XP chờ dùng**`;
+          } else {
+            petFieldValue = `Phần thu hoạch này chưa thể dùng để bồi dưỡng linh thú.`;
+          }
+
           resEmbed.addFields({
             name: "🐾 Linh thú đồng hành",
-            value: `Linh thú đã ăn phần thu hoạch này.
-${petNote}`,
+            value: petFieldValue,
             inline: false,
           });
         }
@@ -322,16 +324,16 @@ ${petNote}`,
           if (oreKinds) extra.push(`+${oreKinds} loại khoáng`);
           const shardKinds = Object.keys(s.shards || {}).length;
           if (shardKinds) extra.push(`+${shardKinds} loại mảnh`);
-          if (extra.length) resEmbed.setFooter({ text: `Thu hoạch khi vắng mặt: ${s.ticksApplied} lượt • ${extra.join(" • ")}` });
+          if (extra.length) resEmbed.setFooter({ text: `🐾 Offline tick: ${s.ticksApplied} tick • ${extra.join(" • ")}` });
         } else {
-          resEmbed.setFooter({ text: "Chờ 30 giây để thả cần lượt tiếp theo." });
+          resEmbed.setFooter({ text: "Cooldown 5s • (Đã bỏ thời cơ giật cần)" });
         }
 
         await sent.edit({ embeds: [resEmbed], components: [] }).catch(() => {});
         cooldown.set(msg.author.id, Date.now());
       } catch (e) {
         console.error("cau error:", e);
-        await sent.edit({ content: "⚠️ Có lỗi xảy ra khi thả cần.", embeds: [], components: [] }).catch(() => {});
+        await sent.edit({ content: "⚠️ Lỗi khi câu cá.", embeds: [], components: [] }).catch(() => {});
       }
     }, waitMs);
   },

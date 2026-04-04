@@ -1,31 +1,17 @@
 // utils/enhanceSystem.js
 // Cường hoá trang bị (2C): có thể thất bại và tụt cấp cường hoá.
+// Từ bản này, cường hoá dùng linh tài trong shop thay vì trừ khoáng thạch đào được.
 
-const { TIERS } = require("./tiers");
-const { oreSellValueByTier, tierOrder } = require("./pricing");
-const { loadOreDB, getOreById } = require("./mining");
+const { tierOrder, oreSellValueByTier } = require("./pricing");
+const { tierText } = require("./tiers");
+const { listItems } = require("../shop/shopUtils");
 
-// 2C: user chọn max +15
 const MAX_ENH = 15;
 
-// Tỷ lệ thành công theo cấp hiện tại (tăng lên cấp tiếp theo).
-// Ví dụ: đang +3 -> roll theo SUCCESS_RATE[3] để lên +4.
 const SUCCESS_RATE = [
-  0.90, // +0 -> +1
-  0.85, // +1 -> +2
-  0.78, // +2 -> +3
-  0.68, // +3 -> +4
-  0.55, // +4 -> +5
-  0.45, // +5 -> +6
-  0.35, // +6 -> +7
-  0.25, // +7 -> +8
-  0.18, // +8 -> +9
-  0.12, // +9 -> +10
-  0.10, // +10 -> +11
-  0.08, // +11 -> +12
-  0.06, // +12 -> +13
-  0.04, // +13 -> +14
-  0.03, // +14 -> +15
+  0.90, 0.85, 0.78, 0.68, 0.55,
+  0.45, 0.35, 0.25, 0.18, 0.12,
+  0.10, 0.08, 0.06, 0.04, 0.03,
 ];
 
 function ensureEnhanceFields(gear) {
@@ -47,37 +33,37 @@ function successRate(curEnh) {
 }
 
 function enhanceCost(gear) {
-  // Cost dựa trên tier + cấp hiện tại.
   const tier = String(gear?.tier || "pham");
   const lv = Math.max(0, Math.min(MAX_ENH, Math.floor(Number(gear?.enhanceLevel) || 0)));
-  // LT: tỉ lệ theo "giá khoáng" để đồng nhất economy.
   const base = oreSellValueByTier(tier) * 8;
-  // lv cao (10+) tăng chi phí nhanh hơn một chút
   const extra = lv > 10 ? (lv - 10) * 0.35 : 0;
   const lt = Math.max(50, Math.floor(base * (1 + lv * 0.55 + extra)));
-
-  // Ores: tự động tiêu thụ đá tier >= gear tier.
-  // 0-9: 1..5; 10-15: tăng chậm để không "đốt" khoáng quá mạnh
-  const oreNeed = 1 + Math.floor(lv / 2) + (lv >= 12 ? 1 : 0);
-  return { lt, oreNeed, minTier: tier };
+  const materialNeed = 1 + Math.floor(lv / 2) + (lv >= 12 ? 1 : 0);
+  return { lt, materialNeed, minTier: tier };
 }
 
-function pickOreIdsForConsume(user, minTier, need) {
-  loadOreDB();
-  const ores = user?.mining?.ores || {};
+function listEnhanceMaterials() {
+  const catalog = listItems();
+  return Object.entries(catalog)
+    .filter(([, it]) => it && it.type === "enhance_material")
+    .map(([id, it]) => ({ id, ...it }))
+    .sort((a, b) => tierOrder(a.tier) - tierOrder(b.tier));
+}
+
+function pickMaterialIdsForConsume(user, minTier, need) {
+  const inv = user?.inventory || {};
   const needN = Math.max(0, Math.floor(Number(need) || 0));
   if (needN <= 0) return [];
 
   const minIdx = tierOrder(minTier);
-  // gom theo tier tăng dần, ưu tiên tier thấp nhất vẫn hợp lệ.
-  const entries = Object.entries(ores)
-    .map(([id, qty]) => ({ id, qty: Math.max(0, Number(qty) || 0), ore: getOreById(id) }))
-    .filter((x) => x.qty > 0 && x.ore && tierOrder(x.ore.tier) >= minIdx)
+  const entries = listEnhanceMaterials()
+    .map((it) => ({ id: it.id, qty: Math.max(0, Number(inv[it.id]) || 0), item: it }))
+    .filter((x) => x.qty > 0 && tierOrder(x.item.tier) >= minIdx)
     .sort((a, b) => {
-      const ta = tierOrder(a.ore.tier);
-      const tb = tierOrder(b.ore.tier);
+      const ta = tierOrder(a.item.tier);
+      const tb = tierOrder(b.item.tier);
       if (ta !== tb) return ta - tb;
-      return String(a.ore.name).localeCompare(String(b.ore.name));
+      return String(a.item.name).localeCompare(String(b.item.name));
     });
 
   const picked = [];
@@ -88,21 +74,20 @@ function pickOreIdsForConsume(user, minTier, need) {
     for (let k = 0; k < take; k++) picked.push(it.id);
     left -= take;
   }
-
-  if (left > 0) return []; // không đủ đá
+  if (left > 0) return [];
   return picked;
 }
 
-function consumeOres(user, oreIds) {
-  const ores = user?.mining?.ores || {};
-  for (const id of oreIds) {
-    const cur = Math.max(0, Number(ores[id]) || 0);
+function consumeMaterials(user, itemIds) {
+  const inv = user?.inventory || {};
+  for (const id of itemIds) {
+    const cur = Math.max(0, Number(inv[id]) || 0);
     if (cur <= 0) continue;
     const next = cur - 1;
-    if (next <= 0) delete ores[id];
-    else ores[id] = next;
+    if (next <= 0) delete inv[id];
+    else inv[id] = next;
   }
-  if (user?.mining) user.mining.ores = ores;
+  user.inventory = inv;
 }
 
 function attemptEnhance({ user, gear }) {
@@ -111,9 +96,7 @@ function attemptEnhance({ user, gear }) {
   const lv = gear.enhanceLevel;
   if (lv >= MAX_ENH) return { ok: false, message: "Trang bị đã đạt cấp cường hoá tối đa." };
 
-  // shape mining
-  if (!user.mining) user.mining = {};
-  if (!user.mining.ores || typeof user.mining.ores !== "object") user.mining.ores = {};
+  if (!user.inventory || typeof user.inventory !== "object") user.inventory = {};
 
   const cost = enhanceCost(gear);
   const ltNow = Math.max(0, Number(user.lt) || 0);
@@ -121,14 +104,13 @@ function attemptEnhance({ user, gear }) {
     return { ok: false, message: `Không đủ LT (cần ${cost.lt}).` };
   }
 
-  const picked = pickOreIdsForConsume(user, cost.minTier, cost.oreNeed);
+  const picked = pickMaterialIdsForConsume(user, cost.minTier, cost.materialNeed);
   if (!picked.length) {
-    return { ok: false, message: `Không đủ khoáng để cường hoá (cần ${cost.oreNeed} viên ${cost.minTier} trở lên).` };
+    return { ok: false, message: `Không đủ linh tài cường hoá (cần ${cost.materialNeed} món ${tierText(cost.minTier)} trở lên).` };
   }
 
-  // deduct
   user.lt = ltNow - cost.lt;
-  consumeOres(user, picked);
+  consumeMaterials(user, picked);
 
   const rate = successRate(lv);
   const roll = Math.random();
@@ -146,7 +128,7 @@ function attemptEnhance({ user, gear }) {
     after,
     rate,
     cost,
-    consumedOreIds: picked,
+    consumedItemIds: picked,
   };
 }
 

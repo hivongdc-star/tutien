@@ -1,33 +1,148 @@
 {
   "basic_pickaxe": {
-    "name": "Cuốc Sắt",
+    "name": "Phá Thạch Chùy",
     "emoji": "⛏️",
     "price": 100,
     "type": "mining_tool",
-    "bonus": 1
+    "tier": "pham",
+    "durability": 40,
+    "bonusRare": 0,
+    "desc": "Khoáng cụ sơ khai, nện nứt mỏ đá nhỏ."
   },
   "iron_pickaxe": {
-    "name": "Cuốc Bạc",
+    "name": "Bạc Ảnh Cảo",
     "emoji": "⛏️",
     "price": 500,
     "type": "mining_tool",
-    "bonus": 2
+    "tier": "linh",
+    "durability": 80,
+    "bonusRare": 8,
+    "desc": "Mũi cảo ánh bạc, bẻ mạch quặng nhanh hơn thường."
   },
   "gold_pickaxe": {
-    "name": "Cuốc Vàng",
+    "name": "Kim Diệm Trạc",
     "emoji": "⛏️",
     "price": 2000,
     "type": "mining_tool",
-    "bonus": 3
+    "tier": "hoang",
+    "durability": 140,
+    "bonusRare": 18,
+    "desc": "Mũi trạc phủ kim quang, chuyên phá quặng cứng."
   },
   "diamond_pickaxe": {
-    "name": "Cuốc Kim Cương",
+    "name": "Tinh Cương Phá Sơn",
     "emoji": "⛏️",
     "price": 8000,
     "type": "mining_tool",
-    "bonus": 4
+    "tier": "huyen",
+    "durability": 240,
+    "bonusRare": 30,
+    "desc": "Thân cụ đúc từ tinh cương, một nhát chấn vỡ vách núi."
   },
-
+  "obsidian_pickaxe": {
+    "name": "Huyền Nham Trấn Mạch",
+    "emoji": "⛏️",
+    "price": 30000,
+    "type": "mining_tool",
+    "tier": "dia",
+    "durability": 400,
+    "bonusRare": 45,
+    "desc": "Huyền khí bọc lưỡi cảo, chạm tới mạch quặng sâu."
+  },
+  "meteor_pickaxe": {
+    "name": "Thiên Vẫn Khai Sơn",
+    "emoji": "⛏️",
+    "price": 120000,
+    "type": "mining_tool",
+    "tier": "thien",
+    "durability": 650,
+    "bonusRare": 65,
+    "desc": "Rèn từ thiên thạch rơi, đập tới đâu núi rạn tới đó."
+  },
+  "jade_pickaxe": {
+    "name": "Tiên Ngọc Phá Giới",
+    "emoji": "⛏️",
+    "price": 500000,
+    "type": "mining_tool",
+    "tier": "tien",
+    "durability": 1000,
+    "bonusRare": 90,
+    "desc": "Ngọc tiên hộ mạch, mở được quặng cực phẩm giữa địa mạch."
+  },
+  "divine_pickaxe": {
+    "name": "Thần Thiết Trấn Uyên",
+    "emoji": "⛏️",
+    "price": 2000000,
+    "type": "mining_tool",
+    "tier": "than",
+    "durability": 1500,
+    "bonusRare": 120,
+    "desc": "Khoáng cụ tối thượng, chấn động cả vực sâu cổ mạch."
+  },
+  "enhance_pham": {
+    "name": "Phàm Tinh Sa",
+    "emoji": "🪶",
+    "price": 12,
+    "type": "enhance_material",
+    "tier": "pham",
+    "desc": "Linh tài cường hoá cho trang bị Phàm phẩm trở lên."
+  },
+  "enhance_linh": {
+    "name": "Linh Tủy Thạch",
+    "emoji": "🟢",
+    "price": 33,
+    "type": "enhance_material",
+    "tier": "linh",
+    "desc": "Linh tài cường hoá cho trang bị Linh phẩm trở lên."
+  },
+  "enhance_hoang": {
+    "name": "Hoàng Hồn Tinh",
+    "emoji": "🟠",
+    "price": 72,
+    "type": "enhance_material",
+    "tier": "hoang",
+    "desc": "Linh tài cường hoá cho trang bị Hoàng phẩm trở lên."
+  },
+  "enhance_huyen": {
+    "name": "Huyền Phách Tinh",
+    "emoji": "🔵",
+    "price": 156,
+    "type": "enhance_material",
+    "tier": "huyen",
+    "desc": "Linh tài cường hoá cho trang bị Huyền phẩm trở lên."
+  },
+  "enhance_dia": {
+    "name": "Địa Mạch Kết Tinh",
+    "emoji": "🟣",
+    "price": 312,
+    "type": "enhance_material",
+    "tier": "dia",
+    "desc": "Linh tài cường hoá cho trang bị Địa phẩm trở lên."
+  },
+  "enhance_thien": {
+    "name": "Thiên Cương Huyền Tinh",
+    "emoji": "🟨",
+    "price": 570,
+    "type": "enhance_material",
+    "tier": "thien",
+    "desc": "Linh tài cường hoá cho trang bị Thiên phẩm trở lên."
+  },
+  "enhance_tien": {
+    "name": "Tiên Linh Tủy Tinh",
+    "emoji": "🔴",
+    "price": 990,
+    "type": "enhance_material",
+    "tier": "tien",
+    "desc": "Linh tài cường hoá cho trang bị Tiên phẩm trở lên."
+  },
+  "enhance_than": {
+    "name": "Thần Hỏa Tinh Hạch",
+    "emoji": "⚫",
+    "price": 1560,
+    "type": "enhance_material",
+    "tier": "than",
+    "desc": "Linh tài cường hoá cho trang bị Thần phẩm."
+  },
   "pet_egg_basic": {
     "name": "Trứng Linh Thú",
     "emoji": "🥚",

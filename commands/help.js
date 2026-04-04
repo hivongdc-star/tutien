@@ -5,31 +5,132 @@ module.exports = {
   aliases: ["h"],
   run: async (client, msg) => {
     const embed = new EmbedBuilder()
-      .setColor(0x5865F2)
-      .setTitle("📘 Sổ Tay Tu Luyện")
-      .setDescription("Các lối đi quan trọng trên hành trình tu luyện.")
+      .setColor("Blue")
+      .setTitle("📖 Danh sách lệnh cho người chơi")
+      .setDescription("Dưới đây là các lệnh bạn có thể sử dụng trong bot Tu Tiên:")
       .addFields(
-        { name: "✨ Khai mở nhân vật", value: "`-create` | alias: `-c`, `-crate`\nKhai mở nhân vật mới" },
-        { name: "🪪 Hồ sơ tu luyện", value: "`-profile` | alias: `-p`\nXem thẻ hồ sơ nhân vật" },
-        { name: "🧾 Nền tảng nhân vật", value: "`-nv` | alias: `-nhanvat`\nXem nền tảng và gia tăng hiện có" },
-        { name: "♻️ Tái lập nhân vật", value: "`-reset` | alias: `-rs`\nChọn lại tộc và ngũ hành" },
-        { name: "📖 Lời tự thuật", value: "`-bio` | alias: `-b`\nLưu giới thiệu của nhân vật" },
-        { name: "✍️ Đổi danh xưng", value: "`-doiten <tên>` | alias: `-rename`, `-name`\nĐổi tên nhân vật" },
-        { name: "🌟 Danh hiệu", value: "`-danhhieu` | alias: `-title`\nChọn danh hiệu đang dùng" },
-        { name: "🎁 Tích lũy mỗi ngày", value: "`-daily` | alias: `-dly`\nNhận linh thạch hằng ngày" },
-        { name: "🧭 Nhiệm vụ", value: "`-quest` | alias: `-q`\nXem mục tiêu ngày/tuần và nhận thưởng" },
-        { name: "🏅 Thành tựu", value: "`-thanhtuu` | alias: `-tt`\nTheo dõi cột mốc và danh hiệu mở khóa" },
-        { name: "🎒 Túi hành trang", value: "`-bag` | alias: `-tui`\nMở trang bị, khoáng cụ, khoáng thạch, bí kíp" },
-        { name: "🛒 Linh Bảo Các", value: "`-shop` | alias: `-s`\nMua khoáng cụ, trứng linh thú và bí kíp phù hợp" },
-        { name: "⛏️ Khai khoáng & rèn đúc", value: "`-dao` | alias: `-daokhoang`\nThu hoạch mạch khoáng\n`-ren` | alias: `-forge`\nRèn trang bị từ khoáng thạch" },
-        { name: "🎣 Thu hoạch thủy vực", value: "`-cau [song|ho|bien]` | alias: `-fish`\nThả cần, lưu cá quý và bồi dưỡng linh thú" },
-        { name: "🐾 Linh thú đồng hành", value: "`-pet` | alias: `-linhthu`, `-thu`\nẤp trứng, xuất chiến, công việc, bồi dưỡng" },
-        { name: "🐉 Chiến tuyến lớn", value: "`-boss` | alias: `-wb`\nTranh công với world boss" },
-        { name: "⚔️ Tỷ thí", value: "`-thachdau @user` | alias: `-td`\nGửi lời mời tỷ thí\n`-acp` | alias: `-accept`\nChấp nhận\n`-deny`\nTừ chối" },
-        { name: "🎲 May rủi", value: "`-taixiu <LT>` | alias: `-tx`\n`-flip <LT> <ngửa/sấp>` | alias: `-coin`\n`-slot <LT>` | alias: `-quay`\n`-lottery ...` | alias: `-loto`, `-xs`" },
-        { name: "🧚 Tiểu Nhu", value: "`-tieunhu` | alias: `-tn`\nGọi Tiểu Nhu để nhận thêm EXP" }
+        // --- Nhân vật ---
+        {
+          name: "✨ Tạo nhân vật",
+          value: "`-create` | alias: `-c`, `-crate`\nTạo nhân vật mới",
+        },
+        {
+          name: "📜 Hồ sơ",
+          value: "`-profile` | alias: `-p`, `-prof`\nXem thông tin nhân vật",
+        },
+        {
+          name: "🧾 Chỉ số nhân vật",
+          value: "`-nv` | alias: `-nhanvat`\nXem chỉ số (base + % tăng + phụ tố)",
+        },
+        {
+          name: "♻️ Reset nhân vật",
+          value: "`-reset` | alias: `-rs`\nReset lại nhân vật (chọn lại Tộc + Ngũ hành)",
+        },
+        {
+          name: "📖 Bio",
+          value: "`-bio` | alias: `-b`\nĐặt giới thiệu nhân vật",
+        },
+        {
+          name: "✍️ Đổi tên",
+          value: "`-doiten <tên>` | alias: `-rename`, `-name`\nĐổi tên nhân vật",
+        },
+        {
+          name: "🌟 Danh hiệu",
+          value: "`-danhhieu` | alias: `-title`\nĐổi danh hiệu nhân vật",
+        },
+
+        // --- Kinh tế ---
+        {
+          name: "🎁 Daily",
+          value: "`-daily` | alias: `-dly`\nNhận thưởng hàng ngày",
+        },
+        {
+          name: "🧭 Nhiệm vụ",
+          value: "`-quest` | alias: `-q`\nNhiệm vụ ngày/tuần + nhận thưởng",
+        },
+        {
+          name: "🏅 Thành tựu",
+          value: "`-thanhtuu` | alias: `-tt`\nXem tiến độ thành tựu + danh hiệu mở khoá",
+        },
+        {
+          name: "🛒 Shop",
+          value: "`-shop` | alias: `-s`\nXem cửa hàng (khoáng cụ / bí kíp / trứng linh thú)",
+        },
+        {
+          name: "🎒 Túi",
+          value: "`-bag` | alias: `-tui`\nXem khoáng cụ / khoáng thạch / trang bị / vật phẩm",
+        },
+        {
+          name: "⛏️ Khai khoáng",
+          value: "`-dao` | alias: `-daokhoang`\nKhai khoáng (5 giây/lần)",
+        },
+        {
+          name: "🛠️ Rèn đúc",
+          value: "`-ren` | alias: `-forge`\nRèn trang bị bằng 5 khoáng thạch",
+        },
+        {
+          name: "🧚 Tiểu Nhu",
+          value: "`-tieunhu` | alias: `-tn`\nGọi NPC Tiểu Nhu để nhận EXP",
+        },
+        {
+          name: "🎣 Câu cá",
+          value: "`-cau [địa điểm]` | alias: `-fish`\nCá không save sẽ tự động cho linh thú ăn",
+        },
+        {
+          name: "🐾 Linh thú",
+          value: "`-pet` | alias: `-linhthu`, `-thu`\nUI menu/button: Ấp trứng • Equip • Job • Đột phá",
+        },
+
+        // --- PvE ---
+        {
+          name: "🐉 World Boss",
+          value: "`-boss` | alias: `-wb`\nĐánh boss tuần, nhận thưởng theo đóng góp",
+        },
+
+        // --- PK ---
+        {
+          name: "⚔️ Thách đấu",
+          value: "`-thachdau @user` | alias: `-td`\nThách đấu một người chơi",
+        },
+        {
+          name: "🔥 Chấp nhận thách đấu",
+          value: "`-acp` | alias: `-accept`\nChấp nhận lời thách đấu",
+        },
+        {
+          name: "❌ Từ chối thách đấu",
+          value: "`-deny`\nTừ chối lời thách đấu",
+        },
+        {
+          name: "🚫 Hủy hành động",
+          value: "`-cancel` | alias: `-endall`\nHuỷ toàn bộ trận đấu (chỉ admin)",
+        },
+
+        // --- Cờ bạc & Xổ số ---
+        {
+          name: "🎲 Tài Xỉu",
+          value: "`-taixiu <LT>` | alias: `-tx`\nTung 3 xúc xắc, ≥13 điểm = thắng x2 LT",
+        },
+        {
+          name: "🪙 Tung Xu",
+          value: "`-flip <LT> <ngửa/sấp>` | alias: `-coin`\nĐoán mặt đồng xu, thắng x2 LT",
+        },
+        {
+          name: "🎰 Slot Machine",
+          value: "`-slot <LT>` | alias: `-quay`\nQuay 3 ô emoji (Ngũ hành + 💎), có jackpot x50",
+        },
+        {
+          name: "🎟️ Xổ số",
+          value:
+            "`-lottery buy <số vé>` | alias: `-loto`, `-xs`\nMua vé số (10 LT/vé)\n`-lottery pot` xem jackpot\n`-lottery draw` quay số thủ công (auto 20h)",
+        },
+
+        // --- Hỗ trợ ---
+        {
+          name: "ℹ️ Hướng dẫn",
+          value: "`-help` | alias: `-h`\nXem danh sách lệnh",
+        }
       )
-      .setFooter({ text: "Mở -bag để đi vào hầu hết tính năng quan trọng." });
+      .setFooter({ text: "✨ Hãy tu luyện chăm chỉ để mạnh hơn!" });
 
     msg.reply({ embeds: [embed] });
   },

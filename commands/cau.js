@@ -203,7 +203,7 @@ module.exports = {
     const baseEmbed = new EmbedBuilder()
       .setTitle("🎣 Thả câu")
       .setDescription(`Bãi câu: **${spotText(spotKey)}** • Đang chờ cá cắn câu…`)
-      .setFooter({ text: "(Đã bỏ cơ chế thời cơ giật cần)" });
+      ;
 
     const sent = await msg.reply({ embeds: [baseEmbed] }).catch(() => null);
     if (!sent) return;
@@ -324,9 +324,9 @@ Tinh hoa từ mẻ cá này đã được giữ lại: +**${fmt(feedRes.xpGain)}
           if (oreKinds) extra.push(`+${oreKinds} loại khoáng`);
           const shardKinds = Object.keys(s.shards || {}).length;
           if (shardKinds) extra.push(`+${shardKinds} loại mảnh`);
-          if (extra.length) resEmbed.setFooter({ text: `🐾 Offline tick: ${s.ticksApplied} tick • ${extra.join(" • ")}` });
+          if (extra.length) resEmbed.setFooter({ text: `🐾 Thu hoạch khi vắng mặt: ${s.ticksApplied} lượt • ${extra.join(" • ")}` });
         } else {
-          resEmbed.setFooter({ text: "Cooldown 5s • (Đã bỏ thời cơ giật cần)" });
+          resEmbed.setFooter({ text: "Chờ 5 giây để câu lượt tiếp theo." });
         }
 
         await sent.edit({ embeds: [resEmbed], components: [] }).catch(() => {});

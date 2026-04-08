@@ -6,11 +6,64 @@ const {
   clearChannel,
   getStatusText,
   getChannelState,
+  setChannelEmoji,
+  resetChannelEmojis,
   ROUND_RESTART_HINT,
 } = require("../utils/wordChain");
 
 function hasManageChannels(msg) {
   return !!msg.member?.permissions?.has(PermissionsBitField.Flags.ManageChannels);
+}
+
+function parseEmojiInput(raw = "") {
+  const input = String(raw || "").trim();
+  if (!input || /\s/.test(input)) return null;
+
+  const customMatch = input.match(/^<(a?):[A-Za-z0-9_~\-]+:(\d+)>$/);
+  if (customMatch) {
+    return {
+      display: input,
+      react: customMatch[2],
+      type: customMatch[1] ? "custom_animated" : "custom",
+    };
+  }
+
+  if (input.length <= 10) {
+    return {
+      display: input,
+      react: input,
+      type: "unicode",
+    };
+  }
+
+  return null;
+}
+
+async function validateEmojiResolvable(msg, client, emojiValue) {
+  try {
+    const reaction = await msg.react(emojiValue);
+    try {
+      await reaction.users.remove(client.user.id);
+    } catch (_) {}
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+function buildUsageText() {
+  return (
+    "📌 Dùng:\n" +
+    "`-noitu setup vi`\n" +
+    "`-noitu setup en`\n" +
+    "`-noitu stop`\n" +
+    "`-noitu clear`\n" +
+    "`-noitu status`\n" +
+    "`-noitu emoji dung ✅`\n" +
+    "`-noitu emoji sai ❌`\n" +
+    "`-noitu emoji reset`\n" +
+    "`-noitu emoji status`"
+  );
 }
 
 module.exports = {
@@ -28,14 +81,7 @@ module.exports = {
     const sub = (args[0] || "").toLowerCase();
 
     if (!sub) {
-      return msg.reply(
-        "📌 Dùng:\n" +
-          "`-noitu setup vi`\n" +
-          "`-noitu setup en`\n" +
-          "`-noitu stop`\n" +
-          "`-noitu clear`\n" +
-          "`-noitu status`"
-      );
+      return msg.reply(buildUsageText());
     }
 
     try {
@@ -50,12 +96,13 @@ module.exports = {
         return msg.reply("❌ Hãy chọn mode `vi` hoặc `en`.");
       }
 
-      const channelState = setupChannel(client, msg.channel.id, mode);
+      setupChannel(client, msg.channel.id, mode);
       const status = getStatusText(client, msg.channel.id);
 
       return msg.reply(
         `✅ Kênh ${msg.channel} đã được bật **nối từ ${mode === "vi" ? "tiếng Việt" : "tiếng Anh"}**.\n` +
           `📚 Từ điển khả dụng: **${status.dictionarySize.toLocaleString("vi-VN")}** từ.\n` +
+          `😀 Emoji đúng / sai: ${status.correctEmoji} / ${status.wrongEmoji}\n` +
           `🎮 Ván mới bắt đầu ngay. Người chơi có thể gửi từ đầu tiên bất kỳ.`
       );
     }
@@ -81,6 +128,62 @@ module.exports = {
       return msg.reply("🧹 Đã hủy setup nối từ của kênh này.");
     }
 
+    if (sub === "emoji") {
+      const channelState = getChannelState(client, msg.channel.id);
+      if (!channelState) {
+        return msg.reply("❌ Kênh này chưa được setup nối từ.");
+      }
+
+      const target = (args[1] || "").toLowerCase();
+
+      if (!target || target === "status") {
+        const status = getStatusText(client, msg.channel.id);
+        return msg.reply(
+          `😀 Emoji hiện tại của kênh này:\n` +
+            `- Đúng: ${status.correctEmoji}\n` +
+            `- Sai: ${status.wrongEmoji}\n\n` +
+            "Dùng `-noitu emoji dung <emoji>` hoặc `-noitu emoji sai <emoji>` để đổi.\n" +
+            "Dùng `-noitu emoji reset` để về mặc định."
+        );
+      }
+
+      if (target === "reset") {
+        resetChannelEmojis(client, msg.channel.id);
+        const status = getStatusText(client, msg.channel.id);
+        return msg.reply(`♻️ Đã đưa emoji về mặc định: ${status.correctEmoji} / ${status.wrongEmoji}`);
+      }
+
+      const mappedTarget = ["dung", "đung", "right", "correct", "ok"].includes(target)
+        ? "correct"
+        : ["sai", "wrong", "fail", "x"].includes(target)
+          ? "wrong"
+          : null;
+
+      if (!mappedTarget) {
+        return msg.reply("❌ Hãy dùng `dung` hoặc `sai`. Ví dụ: `-noitu emoji dung ✅`");
+      }
+
+      const rawEmoji = args.slice(2).join(" ").trim();
+      const parsedEmoji = parseEmojiInput(rawEmoji);
+      if (!parsedEmoji) {
+        return msg.reply("❌ Emoji không hợp lệ. Hãy gửi emoji Unicode hoặc emoji custom dạng `<:ten:id>`.");
+      }
+
+      const canUse = await validateEmojiResolvable(msg, client, parsedEmoji.react);
+      if (!canUse) {
+        return msg.reply("❌ Bot không thể dùng emoji này. Hãy kiểm tra quyền hoặc dùng emoji khác.");
+      }
+
+      setChannelEmoji(client, msg.channel.id, mappedTarget, parsedEmoji.display);
+      const status = getStatusText(client, msg.channel.id);
+
+      return msg.reply(
+        mappedTarget === "correct"
+          ? `✅ Đã đổi emoji đúng thành ${status.correctEmoji}. Emoji sai hiện tại: ${status.wrongEmoji}`
+          : `✅ Đã đổi emoji sai thành ${status.wrongEmoji}. Emoji đúng hiện tại: ${status.correctEmoji}`
+      );
+    }
+
     if (sub === "status") {
       const status = getStatusText(client, msg.channel.id);
       if (!status) {
@@ -100,6 +203,7 @@ module.exports = {
           { name: "Người đi gần nhất", value: status.lastPlayerId ? `<@${status.lastPlayerId}>` : "Chưa có", inline: true },
           { name: "Số người đang ghi điểm", value: `**${status.playerCount}**`, inline: true },
           { name: "Từ điển", value: `**${status.dictionarySize.toLocaleString("vi-VN")}** từ`, inline: true },
+          { name: "Emoji đúng / sai", value: `${status.correctEmoji} / ${status.wrongEmoji}`, inline: true },
           { name: "Bảng tạm thời", value: status.topPlayers, inline: false }
         )
         .setFooter({
@@ -111,6 +215,6 @@ module.exports = {
       return msg.reply({ embeds: [embed] });
     }
 
-    return msg.reply("❌ Subcommand không hợp lệ. Dùng `-noitu` để xem hướng dẫn.");
+    return msg.reply(`❌ Subcommand không hợp lệ.\n${buildUsageText()}`);
   },
 };

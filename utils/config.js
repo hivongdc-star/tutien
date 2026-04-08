@@ -7,4 +7,6 @@ module.exports = {
   // Nối từ
   wordChainRewardLT: 1, // Linh thạch mỗi từ hợp lệ
   wordChainRewardExp: 3, // EXP mỗi từ hợp lệ
+  wordChainCorrectEmoji: "✅", // Emoji khi nối đúng
+  wordChainWrongEmoji: "❌", // Emoji khi nối sai
 };

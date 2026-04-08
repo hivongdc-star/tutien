@@ -13,9 +13,10 @@ module.exports = {
   acp: ["accept"], // chấp nhận thách đấu
   deny: ["d"], // từ chối thách đấu
   cancel: ["cxl"], // hủy thách đấu hoặc hành động
-   pet: ["linhthu", "thu"], // linh thú
+  pet: ["linhthu", "thu"], // linh thú
   cau: ["fish"], // câu cá
   help: ["h"], // hướng dẫn
+  noitu: ["nt"], // setup nối từ
 
   // Lệnh cờ bạc
   taixiu: ["tx"], // tài xỉu

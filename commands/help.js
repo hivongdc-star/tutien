@@ -58,11 +58,11 @@ module.exports = {
         },
         {
           name: "🎒 Túi",
-          value: "`-bag` | alias: `-tui`\nXem khoáng cụ / khoáng thạch / trang bị / vật phẩm",
+          value: "`-bag` | alias: `-tui`\nXem khoáng cụ / khoáng thạch / trang bị",
         },
         {
           name: "⛏️ Khai khoáng",
-          value: "`-dao` | alias: `-daokhoang`\nKhai khoáng (5 giây/lần)",
+          value: "`-dao` | alias: `-daokhoang`\nKhai khoáng (5 phút/lần)",
         },
         {
           name: "🛠️ Rèn đúc",
@@ -122,6 +122,13 @@ module.exports = {
           name: "🎟️ Xổ số",
           value:
             "`-lottery buy <số vé>` | alias: `-loto`, `-xs`\nMua vé số (10 LT/vé)\n`-lottery pot` xem jackpot\n`-lottery draw` quay số thủ công (auto 20h)",
+        },
+
+        // --- Quản trị kênh nối từ ---
+        {
+          name: "🎮 Nối từ (quản trị kênh)",
+          value:
+            "`-noitu setup vi` / `-noitu setup en`\n`-noitu stop` • `-noitu clear` • `-noitu status`\nChỉ người có quyền **Quản lý kênh** mới dùng được",
         },
 
         // --- Hỗ trợ ---

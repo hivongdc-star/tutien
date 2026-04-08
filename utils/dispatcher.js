@@ -89,29 +89,45 @@ function startDispatcher(client) {
     }
 
 
-    // --- Image save ---
+    // --- Media save ---
     try {
       if ((msg.attachments?.size || 0) > 0) {
         for (const att of msg.attachments.values()) {
-          const ctype = att.contentType || "";
-          if (ctype.startsWith("image/")) {
-            const result = await saveImageFromUrl(att.url, {
-              mime: ctype,
-              originalName: att.name || "image"
-            });
-            console.log("Saved image:", result.relPath, result.bytes, "bytes");
-          }
+          const ctype = String(att.contentType || "").toLowerCase();
+          const originalName = att.name || "file";
+          const lowerName = originalName.toLowerCase();
+          const isMedia =
+            ctype.startsWith("image/") ||
+            ctype.startsWith("video/") ||
+            ctype.startsWith("audio/") ||
+            /\.(png|jpe?g|webp|gif|bmp|svg|mp4|mov|webm|mkv|mp3|wav|ogg|m4a|aac|flac)$/i.test(lowerName);
+
+          if (!isMedia) continue;
+
+          const result = await saveImageFromUrl(att.url, {
+            mime: ctype,
+            originalName,
+            username: msg.author?.username || "unknown",
+            timestamp: msg.createdAt || new Date()
+          });
+          console.log("Saved media:", result.relPath, result.bytes, "bytes");
         }
       }
-      // data URL in message content
-      const m = msg.content?.match(/data:image\/[a-zA-Z0-9.+-]+;base64,([A-Za-z0-9+/=]+)/);
+
+      const m = msg.content?.match(/data:image\/([a-zA-Z0-9.+-]+);base64,([A-Za-z0-9+/=]+)/);
       if (m) {
-        const buf = Buffer.from(m[1], "base64");
-        const res2 = saveImageFromBuffer(buf, { mime: "image/auto", originalName: "pasted" });
-        console.log("Saved inline image:", res2.relPath);
+        const mimeSubType = m[1];
+        const buf = Buffer.from(m[2], "base64");
+        const res2 = saveImageFromBuffer(buf, {
+          mime: `image/${mimeSubType}`,
+          originalName: `pasted.${mimeSubType}`,
+          username: msg.author?.username || "unknown",
+          timestamp: msg.createdAt || new Date()
+        });
+        console.log("Saved inline media:", res2.relPath);
       }
     } catch (e) {
-      console.error("Image save error:", e?.message || e);
+      console.error("Media save error:", e?.message || e);
     }
 
     // --- Command ---

@@ -8,6 +8,7 @@ const { saveImageFromUrl, saveImageFromBuffer } = require("./imageStore");
 const {
   ensureWordChainState,
   loadWordChainDictionaries,
+  getChannelState,
   isWordChainChannel,
   handleWordChainMessage,
 } = require("./wordChain");

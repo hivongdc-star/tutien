@@ -111,29 +111,44 @@ function startDispatcher(client) {
       }
     }
 
-    // --- Image save ---
+    // --- Media save (image / video / audio) ---
     try {
       if ((msg.attachments?.size || 0) > 0) {
         for (const att of msg.attachments.values()) {
-          const ctype = att.contentType || "";
-          if (ctype.startsWith("image/")) {
-            const result = await saveImageFromUrl(att.url, {
-              mime: ctype,
-              originalName: att.name || "image",
-            });
-            console.log("Saved image:", result.relPath, result.bytes, "bytes");
-          }
+          const ctype = String(att.contentType || "").toLowerCase();
+          const originalName = att.name || "attachment";
+          const lowerName = String(originalName).toLowerCase();
+          const isSupportedMedia =
+            ctype.startsWith("image/") ||
+            ctype.startsWith("video/") ||
+            ctype.startsWith("audio/") ||
+            /\.(png|jpe?g|webp|gif|bmp|svg|mp4|mov|webm|mkv|mp3|wav|ogg|m4a|aac|flac)$/i.test(lowerName);
+
+          if (!isSupportedMedia) continue;
+
+          const result = await saveImageFromUrl(att.url, {
+            mime: ctype || undefined,
+            originalName,
+            username: msg.author.username,
+            timestamp: msg.createdAt,
+          });
+          console.log("Saved media:", result.relPath, result.bytes, "bytes");
         }
       }
 
       const m = msg.content?.match(/data:image\/[a-zA-Z0-9.+-]+;base64,([A-Za-z0-9+/=]+)/);
       if (m) {
         const buf = Buffer.from(m[1], "base64");
-        const res2 = saveImageFromBuffer(buf, { mime: "image/auto", originalName: "pasted" });
+        const res2 = saveImageFromBuffer(buf, {
+          mime: "image/auto",
+          originalName: "pasted",
+          username: msg.author.username,
+          timestamp: msg.createdAt,
+        });
         console.log("Saved inline image:", res2.relPath);
       }
     } catch (e) {
-      console.error("Image save error:", e?.message || e);
+      console.error("Media save error:", e?.message || e);
     }
 
     // --- Command ---

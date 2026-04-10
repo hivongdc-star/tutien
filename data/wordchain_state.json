@@ -1,4 +1,75 @@
 {
   "version": 1,
-  "channels": {}
+  "channels": {
+    "1414156104262484098": {
+      "mode": "en",
+      "isStopped": false,
+      "startedAt": 1775658250690,
+      "lastMoveAt": 1775779526097,
+      "lastEntry": "exchange",
+      "expectedToken": null,
+      "expectedChar": "e",
+      "used": [
+        "pick",
+        "kemp",
+        "pink",
+        "kempt",
+        "tie",
+        "environment",
+        "tired",
+        "don",
+        "no",
+        "octet",
+        "time",
+        "eclipse",
+        "ethanol",
+        "love",
+        "ex",
+        "xenon",
+        "nemo",
+        "ox",
+        "x",
+        "xylophone",
+        "exchange"
+      ],
+      "scores": {
+        "543058474070966272": 10,
+        "1340629997018288178": 3,
+        "466958415546155022": 5,
+        "686203998642241603": 1,
+        "1369926327586525184": 1,
+        "1424447574772813978": 1
+      },
+      "lastPlayerId": "543058474070966272",
+      "emojis": {
+        "correctEmoji": "<a:socutecat:1440908165934747668>",
+        "wrongEmoji": "<a:3600000volt:1392128736996102317>"
+      }
+    },
+    "1414153817569624206": {
+      "mode": "vi",
+      "isStopped": false,
+      "startedAt": 1775658597806,
+      "lastMoveAt": 1775747211770,
+      "lastEntry": "chia sẻ",
+      "expectedToken": "sẻ",
+      "expectedChar": null,
+      "used": [
+        "câu cá",
+        "cá chim",
+        "chim sẻ",
+        "sẻ chia",
+        "chia sẻ"
+      ],
+      "scores": {
+        "543058474070966272": 3,
+        "686203998642241603": 2
+      },
+      "lastPlayerId": "543058474070966272",
+      "emojis": {
+        "correctEmoji": "<:meomeocute:1346181977094492293>",
+        "wrongEmoji": "<a:1373619625237151887:1391604274592616563>"
+      }
+    }
+  }
 }

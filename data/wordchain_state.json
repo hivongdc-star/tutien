@@ -5,10 +5,10 @@
       "mode": "en",
       "isStopped": false,
       "startedAt": 1775658250690,
-      "lastMoveAt": 1776008699558,
-      "lastEntry": "turn",
+      "lastMoveAt": 1776078369199,
+      "lastEntry": "donkey",
       "expectedToken": null,
-      "expectedChar": "n",
+      "expectedChar": "y",
       "used": [
         "pick",
         "kemp",
@@ -283,20 +283,25 @@
         "net",
         "teen",
         "nut",
-        "turn"
+        "turn",
+        "nude",
+        "edit",
+        "tubal",
+        "legend",
+        "donkey"
       ],
       "scores": {
-        "543058474070966272": 124,
+        "543058474070966272": 125,
         "1340629997018288178": 3,
-        "466958415546155022": 101,
+        "466958415546155022": 103,
         "686203998642241603": 1,
         "1369926327586525184": 2,
-        "1424447574772813978": 30,
+        "1424447574772813978": 32,
         "948925697022390322": 6,
         "597254170436960266": 6,
         "847701545436184587": 1
       },
-      "lastPlayerId": "543058474070966272",
+      "lastPlayerId": "466958415546155022",
       "emojis": {
         "correctEmoji": "<a:socutecat:1440908165934747668>",
         "wrongEmoji": "<a:3600000volt:1392128736996102317>"
@@ -306,21 +311,24 @@
       "mode": "vi",
       "isStopped": false,
       "startedAt": 1775868891179,
-      "lastMoveAt": 1775934711808,
-      "lastEntry": "bản thể",
-      "expectedToken": "thể",
+      "lastMoveAt": 1776088588574,
+      "lastEntry": "thức ăn",
+      "expectedToken": "ăn",
       "expectedChar": null,
       "used": [
         "điện thoại",
         "thoại kịch",
         "kịch bản",
-        "bản thể"
+        "bản thể",
+        "thể thức",
+        "thức ăn"
       ],
       "scores": {
-        "543058474070966272": 2,
-        "466958415546155022": 2
+        "543058474070966272": 3,
+        "466958415546155022": 2,
+        "756812134016483328": 1
       },
-      "lastPlayerId": "466958415546155022",
+      "lastPlayerId": "543058474070966272",
       "emojis": {
         "correctEmoji": "✅",
         "wrongEmoji": "❌"

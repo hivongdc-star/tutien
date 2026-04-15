@@ -5,17 +5,16 @@ const GEMINI_ENDPOINT =
 
 const SYSTEM_INSTRUCTION = [
   'Bạn là "Vân Tiêu hóa thân".',
-  "Luôn trả lời như một hóa thân lạnh, sắc, hiểu rất rõ người đang nói.",
-  "Mỗi phản hồi chỉ 1 câu, tối đa 2 dòng, ưu tiên dưới 22 từ.",
-  "Phải bám sát đúng ý câu người dùng vừa nói, không trả lời chung chung.",
-  "Cá nhân hóa mạnh theo tên hiển thị và giọng điệu người dùng nếu được cung cấp.",
-  "Phong cách: khinh khỉnh, cà khịa có duyên, trên cơ nhẹ, đâm đúng chỗ.",
-  "Không lan man, không giảng đạo lý, không giải thích dài.",
+  "Luôn trả lời như một hóa thân lạnh, sắc, hiểu người đối diện nhưng không nói năng ngớ ngẩn.",
+  "Mỗi phản hồi chỉ 1 câu, tối đa 2 dòng, ưu tiên dưới 20 từ.",
+  "Phải bám sát đúng câu người dùng vừa nói.",
+  "Được phép cà khịa, chọc nhẹ, khinh khỉnh, nhưng phải đúng ngữ cảnh.",
+  "Không lan man, không đạo lý, không giải thích dài.",
   "Không tự nhận là AI, chatbot, trợ lý hay model.",
+  "Không trả lời chỉ bằng tên hiển thị, biệt danh, viết tắt tên, hoặc lặp lại hồ sơ người dùng.",
+  'Nếu người dùng hỏi "bạn là ai", hãy trả lời như Vân Tiêu hóa thân.',
+  'Nếu người dùng hỏi "tôi là ai", không được chỉ lặp lại tên Discord; hãy đáp ngắn, sắc, đúng khí chất.',
   'Không dùng các câu nhạt như "ok", "haha", "tùy bạn", "mình không biết".',
-  "Không tán tỉnh ngẫu nhiên, không lệch ngữ cảnh.",
-  "Nếu người dùng gây sự, đáp trả gọn, sắc, nhưng vẫn kiểm soát.",
-  "Nếu người dùng hỏi nghiêm túc, vẫn trả lời đúng ý nhưng giữ khí chất lạnh.",
 ].join(" ");
 
 function getDisplayName(msg) {
@@ -30,11 +29,54 @@ function getDisplayName(msg) {
 function buildPrompt(msg, utext) {
   const displayName = getDisplayName(msg);
   return [
-    `Tên hiển thị người dùng: ${displayName}`,
-    `User ID: ${msg.author?.id || "unknown"}`,
-    `Tin nhắn người dùng: ${utext}`,
-    "Yêu cầu: đáp thật ngắn, sắc, cá nhân hóa mạnh, giữ đúng khí chất Vân Tiêu hóa thân.",
+    "Ngữ cảnh bổ sung, không phải câu trả lời mẫu:",
+    `- Tên hiển thị Discord của người dùng: ${displayName}`,
+    "- Chỉ dùng tên hiển thị để xưng hô nếu thật sự cần.",
+    "- Không được trả lời chỉ bằng tên hiển thị hoặc viết tắt tên.",
+    "",
+    `Câu người dùng vừa nói: ${utext}`,
+    "Yêu cầu: đáp thật ngắn, sắc, đúng ý, giữ khí chất Vân Tiêu hóa thân.",
   ].join("\n");
+}
+
+function normalizeText(text) {
+  return String(text || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isLikelyAbbrevOfName(reply, displayName) {
+  const r = normalizeText(reply).replace(/\s+/g, "");
+  const d = normalizeText(displayName);
+
+  if (!r || !d) return false;
+  if (r.length <= 4 && d.replace(/\s+/g, "").includes(r)) return true;
+
+  const initials = d
+    .split(" ")
+    .filter(Boolean)
+    .map((x) => x[0])
+    .join("");
+
+  return r === initials || r === initials.slice(0, 2);
+}
+
+function isBadReply(reply, displayName) {
+  const text = String(reply || "").trim();
+  if (!text) return true;
+
+  const normalized = normalizeText(text);
+
+  if (text.length <= 4) return true;
+  if (["ok", "haha", "uh", "uhm", "ừ", "ờ", "hả"].includes(normalized)) {
+    return true;
+  }
+  if (isLikelyAbbrevOfName(text, displayName)) return true;
+
+  return false;
 }
 
 function extractText(data) {
@@ -68,14 +110,14 @@ function compactReply(text) {
   let result = lines.join("\n");
   const words = result.split(/\s+/).filter(Boolean);
 
-  if (words.length > 24) {
-    result = `${words.slice(0, 24).join(" ")}`.trim();
+  if (words.length > 20) {
+    result = `${words.slice(0, 20).join(" ")}`.trim();
     result = result.replace(/[,:;\-–—]+$/g, "").trim();
     if (!/[.!?…]$/.test(result)) result += ".";
   }
 
-  if (result.length > 220) {
-    result = `${result.slice(0, 217).trim()}...`;
+  if (result.length > 180) {
+    result = `${result.slice(0, 177).trim()}...`;
   }
 
   return result;
@@ -121,9 +163,9 @@ async function callGemini(msg, utext, apiKey) {
       },
     ],
     generationConfig: {
-      temperature: 1.0,
-      topP: 0.9,
-      topK: 32,
+      temperature: 0.75,
+      topP: 0.85,
+      topK: 24,
       maxOutputTokens: 64,
       thinkingConfig: {
         thinkingLevel: "low",
@@ -158,12 +200,32 @@ module.exports = {
     }
 
     try {
-      const data = await callGemini(msg, utext, apiKey);
-      const text = compactReply(extractText(data));
-      const finishReason = data?.candidates?.[0]?.finishReason || "UNKNOWN";
+      const displayName = getDisplayName(msg);
 
-      if (text) {
+      let data = await callGemini(msg, utext, apiKey);
+      let text = compactReply(extractText(data));
+      let finishReason = data?.candidates?.[0]?.finishReason || "UNKNOWN";
+
+      if (text && !isBadReply(text, displayName)) {
         return msg.channel.send(text);
+      }
+
+      data = await callGemini(msg, utext, apiKey);
+      text = compactReply(extractText(data));
+      finishReason = data?.candidates?.[0]?.finishReason || "UNKNOWN";
+
+      if (text && !isBadReply(text, displayName)) {
+        return msg.channel.send(text);
+      }
+
+      const rawInput = normalizeText(utext);
+
+      if (rawInput.includes("ban la ai")) {
+        return msg.channel.send("Ta là Vân Tiêu hóa thân, còn ngươi hỏi vậy để làm gì.");
+      }
+
+      if (rawInput.includes("toi la ai")) {
+        return msg.channel.send("Ngươi là kẻ còn phải hỏi chính mình là ai.");
       }
 
       await sendOwnerErrorDM(client, {
@@ -173,15 +235,15 @@ module.exports = {
         channelId: msg.channel?.id || "unknown",
         userTag: msg.author?.tag || "unknown",
         userId: msg.author?.id || "unknown",
-        displayName: getDisplayName(msg),
+        displayName,
         httpStatus: 200,
-        errorCode: "EMPTY_TEXT",
+        errorCode: "BAD_OR_EMPTY_TEXT",
         reason: finishReason,
         input: utext,
         response: JSON.stringify(data).slice(0, 900),
       });
 
-      return msg.reply("⚠️ Hôm nay ta không muốn đáp câu này.");
+      return msg.channel.send("Câu này nghe chưa đủ rõ để ta đáp cho tử tế.");
     } catch (error) {
       const httpStatus = error?.response?.status || "?";
       const responseData = error?.response?.data;

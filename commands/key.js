@@ -9,7 +9,7 @@ function maskKey(key) {
 
 module.exports = {
   name: "key",
-  description: "Đổi SIMSIMI_API_KEY (Owner Only)",
+  description: "Đổi SIMSIMI_API_KEY dùng cho lệnh chat (Owner Only)",
   async run(client, msg, args) {
     if (msg.author.id !== process.env.OWNER_ID) {
       return msg.reply("❌ Bạn không có quyền dùng lệnh này.");
@@ -49,7 +49,7 @@ module.exports = {
         `✅ Đã cập nhật \`SIMSIMI_API_KEY\` thành công.\n🔑 Key hiện tại: \`${maskKey(newKey)}\``
       );
     } catch (error) {
-      console.error("SIMSIMI_KEY_UPDATE_ERROR:", error);
+      console.error("CHAT_KEY_UPDATE_ERROR:", error);
       return msg.reply(
         "❌ Không thể cập nhật file `.env`. Kiểm tra quyền ghi của thư mục bot."
       );

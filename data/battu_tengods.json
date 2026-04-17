@@ -1,0 +1,80 @@
+{
+  "same": {
+    "samePolarity": "Tỷ Kiên",
+    "oppositePolarity": "Kiếp Tài"
+  },
+  "generatedBy": {
+    "samePolarity": "Thiên Ấn",
+    "oppositePolarity": "Chính Ấn"
+  },
+  "generates": {
+    "samePolarity": "Thực Thần",
+    "oppositePolarity": "Thương Quan"
+  },
+  "controlledBy": {
+    "samePolarity": "Thất Sát",
+    "oppositePolarity": "Chính Quan"
+  },
+  "controls": {
+    "samePolarity": "Thiên Tài",
+    "oppositePolarity": "Chính Tài"
+  },
+  "profiles": {
+    "Tỷ Kiên": {
+      "core": "Đồng khí đồng hành, chủ tự chủ, gánh vác, đứng mũi chịu sào.",
+      "bright": "Dùng đúng thì tăng lực cạnh tranh và bản lĩnh.",
+      "shadow": "Lệch sẽ thành cố chấp, cứng đầu, tự tranh với người cùng phe."
+    },
+    "Kiếp Tài": {
+      "core": "Cùng hành khác khí, chủ tranh thủ cơ hội, xoay sở, phá thế cũ.",
+      "bright": "Giỏi xử tình huống gấp, dám nhập cục.",
+      "shadow": "Dễ nóng, dễ tiêu hao tài lực vì quyết quá tay."
+    },
+    "Chính Ấn": {
+      "core": "Nguồn dưỡng chính khí, chủ học hỏi, chở che, nền tảng, quy củ.",
+      "bright": "Tăng độ ổn định, học lực, khả năng hấp thụ.",
+      "shadow": "Quá nặng thì dễ lệ thuộc vùng an toàn."
+    },
+    "Thiên Ấn": {
+      "core": "Nguồn dưỡng biến hóa, chủ trực giác, nhìn khác, đi đường lệch mà trúng.",
+      "bright": "Hợp nghiên cứu, sáng tạo, xử bài khó.",
+      "shadow": "Lệch dễ thành cô lập hoặc quá tin trực giác."
+    },
+    "Thực Thần": {
+      "core": "Khí tiết ra có trật tự, chủ biểu đạt, nuôi dưỡng, tay nghề.",
+      "bright": "Hợp sáng tạo bền, dạy học, bồi dưỡng, sản xuất.",
+      "shadow": "Quá nhiều thì chậm quyết, ham an ổn."
+    },
+    "Thương Quan": {
+      "core": "Khí tiết ra sắc bén, chủ phá khuôn, phát biểu, đòi hỏi cao.",
+      "bright": "Hợp cải tiến, phản biện, mở lối mới.",
+      "shadow": "Lệch dễ khắc quan, khó chịu khuôn phép."
+    },
+    "Chính Tài": {
+      "core": "Khả năng quản tài chính, nguồn lực hữu hình, thu nạp có trật tự.",
+      "bright": "Hợp quản lý tiền, kế hoạch, trách nhiệm.",
+      "shadow": "Quá nặng dễ trọng an toàn hơn đột phá."
+    },
+    "Thiên Tài": {
+      "core": "Tài khí linh hoạt, cơ hội bên ngoài, xoay vốn, bắt nhịp nhanh.",
+      "bright": "Hợp thương lượng, quan hệ, xoay chuyển nguồn lực.",
+      "shadow": "Lệch dễ tham cơ hội, khó giữ ổn định."
+    },
+    "Chính Quan": {
+      "core": "Kỷ luật, chức trách, quy tắc, năng lực giữ trục.",
+      "bright": "Hợp hệ thống, quản trị, công việc cần chuẩn.",
+      "shadow": "Quá mạnh dễ tạo áp lực, tự trói mình bởi tiêu chuẩn."
+    },
+    "Thất Sát": {
+      "core": "Áp lực, chiến lực, quyết đoán, dám chém vào nút thắt.",
+      "bright": "Được hóa tốt thì thành bản lĩnh và uy lực.",
+      "shadow": "Không hóa thì dễ căng, gấp, xung trực diện."
+    }
+  },
+  "positionNotes": {
+    "year": "Niên trụ thiên về gốc gia hệ, khí chất lúc đầu đời và bề mặt xã hội.",
+    "month": "Nguyệt trụ là trục thời khí và môi trường vận hành chính, trọng số lớn nhất khi luận mạnh yếu.",
+    "day": "Nhật trụ là thân mệnh và hôn phối, lõi cảm nhận bản thân.",
+    "hour": "Thời trụ thiên về hậu vận, nội nguyện, điều ngươi muốn gieo về sau."
+  }
+}

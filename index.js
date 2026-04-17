@@ -2,6 +2,7 @@ require("dotenv").config();
 const { Client, GatewayIntentBits, Partials, Events } = require("discord.js");
 const { startDispatcher } = require("./utils/dispatcher");
 const { handleSkillInteraction } = require("./utils/duelMenu");
+const { handleBattuInteraction } = require("./utils/battuWizard");
 
 const client = new Client({
   intents: [
@@ -22,10 +23,18 @@ client.once(Events.ClientReady, () => {
 // xử lý interaction (skill menu)
 client.on(Events.InteractionCreate, async (interaction) => {
   try {
-    if (!interaction.isStringSelectMenu()) return;
+    const isSelect = interaction.isStringSelectMenu();
+    const isButton = interaction.isButton();
+    if (!isSelect && !isButton) return;
 
-    if (interaction.customId.startsWith("duel-skill-")) {
+    if (isSelect && interaction.customId.startsWith("duel-skill-")) {
       await handleSkillInteraction(interaction, client);
+      return;
+    }
+
+    if (interaction.customId.startsWith("battu:")) {
+      await handleBattuInteraction(interaction);
+      return;
     }
   } catch (err) {
     console.error("❌ Interaction error:", err);

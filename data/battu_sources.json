@@ -1,0 +1,17 @@
+{
+  "dataset": "battu internal v2",
+  "notes": "Bộ dữ liệu này tách rõ bảng quy tắc truyền thống và phần diễn giải biên soạn riêng cho bot.",
+  "files": {
+    "battu_stems.json": "Bảng 10 Thiên Can với ngũ hành và âm dương; dữ liệu bảng truyền thống.",
+    "battu_branches.json": "Bảng 12 Địa Chi với hành chính, âm dương và thời thần; dữ liệu bảng truyền thống.",
+    "battu_hidden_stems.json": "Bảng tàng can của 12 chi; dữ liệu bảng truyền thống.",
+    "battu_month_stem_rules.json": "Quy tắc ngũ hổ độn để xác định can tháng đầu từ can năm.",
+    "battu_hour_stem_rules.json": "Quy tắc ngũ thử độn để xác định can giờ Tý từ can ngày.",
+    "battu_relations.json": "Quan hệ sinh khắc, hợp/xung/hại/pha/hình, tam hợp, tam hội; tổng hợp từ hệ bảng quy tắc truyền thống.",
+    "battu_solar_terms.json": "Mốc 12 tiết khí chính (jie) theo từng năm 1900-2100, sinh bằng phép xấp xỉ thiên văn để xác định trụ tháng và mốc Lập Xuân/Đại Tuyết/Tiểu Hàn.",
+    "battu_ruleset.json": "Trọng số và ngưỡng chấm điểm do bot định nghĩa để luận mạnh yếu và lưu nhật; đây là lớp ứng dụng, không phải bảng cổ điển nguyên bản.",
+    "battu_content.json": "Văn án diễn giải do bot biên soạn dựa trên cấu trúc Bát Tự cơ bản; dùng cho trình bày, không phải nguồn tính toán.",
+    "battu_daily_guides.json": "Thư viện nên/không nên theo tầng vận và hành ngày; lớp ứng dụng.",
+    "battu_trigrams.json": "Ánh xạ hậu thiên bát quái dùng để sinh bản quẻ lưu nhật từ mệnh và khí ngày; lớp ứng dụng."
+  }
+}

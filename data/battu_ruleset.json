@@ -1,0 +1,79 @@
+{
+  "natalAnalysis": {
+    "positionWeights": {
+      "year": 0.9,
+      "month": 1.4,
+      "day": 1.1,
+      "hour": 0.8
+    },
+    "stemWeight": 2.0,
+    "branchWeight": 1.3,
+    "hiddenStemWeights": [
+      0.9,
+      0.55,
+      0.35
+    ],
+    "seasonalBonus": {
+      "same": 12,
+      "generatedBy": 8,
+      "generates": -4,
+      "controlledBy": -12,
+      "controls": -5
+    },
+    "scoreBase": 50,
+    "scoreMultiplier": 4.5,
+    "strengthBands": [
+      {
+        "min": 82,
+        "label": "veryStrong"
+      },
+      {
+        "min": 68,
+        "label": "strong"
+      },
+      {
+        "min": 54,
+        "label": "balanced"
+      },
+      {
+        "min": 40,
+        "label": "weak"
+      },
+      {
+        "min": 0,
+        "label": "veryWeak"
+      }
+    ]
+  },
+  "dailyAnalysis": {
+    "baseScore": 52,
+    "favorableElementBonus": 10,
+    "relationScores": {
+      "same": 6,
+      "generatedBy": 12,
+      "generates": -5,
+      "controlledBy": -15,
+      "controls": 4
+    },
+    "branchRelationScores": {
+      "lucHop": 8,
+      "tamHop": 6,
+      "tamHoi": 7,
+      "banHop": 4,
+      "xung": -10,
+      "hai": -6,
+      "pha": -5,
+      "hinh": -7
+    },
+    "pillarTouch": {
+      "year": 2,
+      "month": 4,
+      "day": 6,
+      "hour": 2
+    },
+    "balanceAdjust": {
+      "supportsWeak": 6,
+      "hitsExcess": -6
+    }
+  }
+}

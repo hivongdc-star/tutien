@@ -1,0 +1,39 @@
+{
+  "tiers": [
+    {
+      "min": 92,
+      "name": "Đại Cát",
+      "emoji": "✨",
+      "color": 16109754,
+      "descriptor": "Linh cơ kết tụ, thuận để phát động đại sự."
+    },
+    {
+      "min": 78,
+      "name": "Cát",
+      "emoji": "🌟",
+      "color": 3066993,
+      "descriptor": "Khí vận sáng, tiến vừa sẽ có thu hoạch."
+    },
+    {
+      "min": 60,
+      "name": "Bình",
+      "emoji": "🌤️",
+      "color": 9807270,
+      "descriptor": "Khí mạch ổn, hợp giữ tiết tấu và chỉnh nền."
+    },
+    {
+      "min": 40,
+      "name": "Hung",
+      "emoji": "⚠️",
+      "color": 15105570,
+      "descriptor": "Nghịch khí lộ ra, nên giảm va chạm và giữ lực."
+    },
+    {
+      "min": 0,
+      "name": "Đại Hung",
+      "emoji": "☠️",
+      "color": 15158332,
+      "descriptor": "Khí cục nghịch hành rõ, đại sự nên hoãn nếu còn đường lùi."
+    }
+  ]
+}

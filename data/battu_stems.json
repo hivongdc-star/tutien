@@ -1,0 +1,152 @@
+[
+  {
+    "key": "giap",
+    "han": "甲",
+    "name": "Giáp",
+    "element": "Mộc",
+    "polarity": "Dương",
+    "aliases": [
+      "Jia"
+    ],
+    "keywords": [
+      "đại thụ",
+      "khai mở",
+      "xương sống"
+    ]
+  },
+  {
+    "key": "at",
+    "han": "乙",
+    "name": "Ất",
+    "element": "Mộc",
+    "polarity": "Âm",
+    "aliases": [
+      "Yi"
+    ],
+    "keywords": [
+      "dây leo",
+      "linh hoạt",
+      "nuôi dưỡng"
+    ]
+  },
+  {
+    "key": "binh",
+    "han": "丙",
+    "name": "Bính",
+    "element": "Hỏa",
+    "polarity": "Dương",
+    "aliases": [
+      "Bing"
+    ],
+    "keywords": [
+      "thái dương",
+      "chiếu rọi",
+      "phát động"
+    ]
+  },
+  {
+    "key": "dinh",
+    "han": "丁",
+    "name": "Đinh",
+    "element": "Hỏa",
+    "polarity": "Âm",
+    "aliases": [
+      "Ding"
+    ],
+    "keywords": [
+      "đăng hỏa",
+      "tinh luyện",
+      "soi chiếu"
+    ]
+  },
+  {
+    "key": "mau",
+    "han": "戊",
+    "name": "Mậu",
+    "element": "Thổ",
+    "polarity": "Dương",
+    "aliases": [
+      "Wu"
+    ],
+    "keywords": [
+      "núi",
+      "trục đỡ",
+      "ổn định"
+    ]
+  },
+  {
+    "key": "ky",
+    "han": "己",
+    "name": "Kỷ",
+    "element": "Thổ",
+    "polarity": "Âm",
+    "aliases": [
+      "Ji"
+    ],
+    "keywords": [
+      "điền viên",
+      "dưỡng nuôi",
+      "thu nạp"
+    ]
+  },
+  {
+    "key": "canh",
+    "han": "庚",
+    "name": "Canh",
+    "element": "Kim",
+    "polarity": "Dương",
+    "aliases": [
+      "Geng"
+    ],
+    "keywords": [
+      "khoáng kim",
+      "khai đao",
+      "quyết đoán"
+    ]
+  },
+  {
+    "key": "tan",
+    "han": "辛",
+    "name": "Tân",
+    "element": "Kim",
+    "polarity": "Âm",
+    "aliases": [
+      "Xin"
+    ],
+    "keywords": [
+      "châu ngọc",
+      "chuẩn mực",
+      "tinh xảo"
+    ]
+  },
+  {
+    "key": "nham",
+    "han": "壬",
+    "name": "Nhâm",
+    "element": "Thủy",
+    "polarity": "Dương",
+    "aliases": [
+      "Ren"
+    ],
+    "keywords": [
+      "đại hải",
+      "lưu chuyển",
+      "dung nạp"
+    ]
+  },
+  {
+    "key": "quy",
+    "han": "癸",
+    "name": "Quý",
+    "element": "Thủy",
+    "polarity": "Âm",
+    "aliases": [
+      "Gui"
+    ],
+    "keywords": [
+      "vũ lộ",
+      "thẩm thấu",
+      "cảm ứng"
+    ]
+  }
+]

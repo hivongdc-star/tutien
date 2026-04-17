@@ -1,12 +1,16 @@
 const { handleSkillInteraction } = require("../utils/duelMenu");
+const { handleBattuInteraction } = require("../utils/battuWizard");
 
 module.exports = async (client, interaction) => {
   try {
-    if (
-      interaction.isStringSelectMenu() &&
-      interaction.customId.startsWith("duel-skill-")
-    ) {
+    if (interaction.isStringSelectMenu() && interaction.customId.startsWith("duel-skill-")) {
       await handleSkillInteraction(interaction, client);
+      return;
+    }
+
+    if ((interaction.isStringSelectMenu() || interaction.isButton()) && interaction.customId.startsWith("battu:")) {
+      await handleBattuInteraction(interaction);
+      return;
     }
   } catch (err) {
     console.error("❌ Interaction error:", err);

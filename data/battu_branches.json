@@ -1,0 +1,134 @@
+[
+  {
+    "key": "ty",
+    "han": "子",
+    "name": "Tý",
+    "element": "Thủy",
+    "polarity": "Dương",
+    "animal": "Chuột",
+    "hourRange": "23:00-00:59",
+    "season": "Đông",
+    "stage": "Đế Vượng"
+  },
+  {
+    "key": "suu",
+    "han": "丑",
+    "name": "Sửu",
+    "element": "Thổ",
+    "polarity": "Âm",
+    "animal": "Trâu",
+    "hourRange": "01:00-02:59",
+    "season": "Đông cuối",
+    "stage": "Suy"
+  },
+  {
+    "key": "dan",
+    "han": "寅",
+    "name": "Dần",
+    "element": "Mộc",
+    "polarity": "Dương",
+    "animal": "Hổ",
+    "hourRange": "03:00-04:59",
+    "season": "Xuân đầu",
+    "stage": "Trường Sinh"
+  },
+  {
+    "key": "mao",
+    "han": "卯",
+    "name": "Mão",
+    "element": "Mộc",
+    "polarity": "Âm",
+    "animal": "Mèo",
+    "hourRange": "05:00-06:59",
+    "season": "Xuân giữa",
+    "stage": "Đế Vượng"
+  },
+  {
+    "key": "thin",
+    "han": "辰",
+    "name": "Thìn",
+    "element": "Thổ",
+    "polarity": "Dương",
+    "animal": "Rồng",
+    "hourRange": "07:00-08:59",
+    "season": "Xuân cuối",
+    "stage": "Mộ"
+  },
+  {
+    "key": "ty2",
+    "han": "巳",
+    "name": "Tỵ",
+    "element": "Hỏa",
+    "polarity": "Âm",
+    "animal": "Rắn",
+    "hourRange": "09:00-10:59",
+    "season": "Hạ đầu",
+    "stage": "Lâm Quan"
+  },
+  {
+    "key": "ngo",
+    "han": "午",
+    "name": "Ngọ",
+    "element": "Hỏa",
+    "polarity": "Dương",
+    "animal": "Ngựa",
+    "hourRange": "11:00-12:59",
+    "season": "Hạ giữa",
+    "stage": "Đế Vượng"
+  },
+  {
+    "key": "mui",
+    "han": "未",
+    "name": "Mùi",
+    "element": "Thổ",
+    "polarity": "Âm",
+    "animal": "Dê",
+    "hourRange": "13:00-14:59",
+    "season": "Hạ cuối",
+    "stage": "Suy"
+  },
+  {
+    "key": "than",
+    "han": "申",
+    "name": "Thân",
+    "element": "Kim",
+    "polarity": "Dương",
+    "animal": "Khỉ",
+    "hourRange": "15:00-16:59",
+    "season": "Thu đầu",
+    "stage": "Lâm Quan"
+  },
+  {
+    "key": "dau",
+    "han": "酉",
+    "name": "Dậu",
+    "element": "Kim",
+    "polarity": "Âm",
+    "animal": "Gà",
+    "hourRange": "17:00-18:59",
+    "season": "Thu giữa",
+    "stage": "Đế Vượng"
+  },
+  {
+    "key": "tuat",
+    "han": "戌",
+    "name": "Tuất",
+    "element": "Thổ",
+    "polarity": "Dương",
+    "animal": "Chó",
+    "hourRange": "19:00-20:59",
+    "season": "Thu cuối",
+    "stage": "Mộ"
+  },
+  {
+    "key": "hoi",
+    "han": "亥",
+    "name": "Hợi",
+    "element": "Thủy",
+    "polarity": "Âm",
+    "animal": "Heo",
+    "hourRange": "21:00-22:59",
+    "season": "Đông đầu",
+    "stage": "Trường Sinh"
+  }
+]

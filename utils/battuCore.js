@@ -1,6 +1,16 @@
 const { loadBattuData } = require('./battuData');
 const { diffDays, mod, getEffectiveYear, getSolarMonthBoundary, getHourBranch } = require('./battuCalendar');
-const { relationType, getFavorableElements, scoreElementBalance, getYinYangBreakdown } = require('./battuRules');
+const {
+  relationType,
+  getFavorableElements,
+  scoreElementBalance,
+  getYinYangBreakdown,
+  aggregateTenGodInfluence,
+  determineUsefulGods,
+  determinePattern,
+  getChangShengSummary,
+  detectShenSha,
+} = require('./battuRules');
 
 const REF_DAY = { year: 1984, month: 2, day: 2 }; // Giáp Tý day reference
 const REF_DAY_STEM_INDEX = 0;
@@ -108,6 +118,8 @@ function assessChartStrength(chart) {
   const support = contributions.same + contributions.generatedBy;
   const drain = contributions.generates * 0.5;
   const pressure = contributions.controlledBy + contributions.controls * 0.6;
+  const supportRatio = support / Math.max(1, support + pressure + drain);
+  const pressureRatio = pressure / Math.max(1, support + pressure + drain);
   const score = Math.round(weights.scoreBase + (support - drain - pressure) * weights.scoreMultiplier + seasonalScore);
   const normalizedScore = Math.max(8, Math.min(96, score));
   const balanceScore = scoreElementBalance(elementCounts);
@@ -118,12 +130,19 @@ function assessChartStrength(chart) {
   const weakElements = ELEMENTS.filter((el) => elementCounts[el] <= avg * 0.8).sort((a, b) => elementCounts[a] - elementCounts[b]);
   const yinYang = getYinYangBreakdown(chart);
   const strengthBand = weights.strengthBands.find((x) => normalizedScore >= x.min)?.label || 'balanced';
+  const followCfg = weights.followThresholds || {};
+  let followMode = null;
+  if (normalizedScore >= (followCfg.followStrong || 88) && supportRatio >= (followCfg.supportRatio || 0.62)) followMode = 'followStrong';
+  if (normalizedScore <= (followCfg.followWeak || 26) && pressureRatio >= (followCfg.pressureRatio || 0.62)) followMode = 'followWeak';
 
   return {
     elementCounts,
     strengthScore: normalizedScore,
     strong,
-    strengthBand,
+    followMode,
+    supportRatio,
+    pressureRatio,
+    strengthBand: followMode || strengthBand,
     favorableElements,
     balanceScore,
     sameSupport: contributions.same,
@@ -136,6 +155,15 @@ function assessChartStrength(chart) {
     weakElements,
     yinYang,
   };
+}
+
+function enrichAnalysis(chart) {
+  chart.analysis.tenGodInfluence = aggregateTenGodInfluence(chart);
+  chart.analysis.usefulGods = determineUsefulGods(chart);
+  chart.analysis.pattern = determinePattern(chart);
+  chart.analysis.growthStages = getChangShengSummary(chart);
+  chart.analysis.shenSha = detectShenSha(chart);
+  return chart;
 }
 
 function buildNatalChart(input) {
@@ -174,6 +202,7 @@ function buildNatalChart(input) {
     dayMaster: dayPillar.stem,
   };
   chart.analysis = assessChartStrength(chart);
+  enrichAnalysis(chart);
   return chart;
 }
 
@@ -185,4 +214,5 @@ module.exports = {
   calcHourPillar,
   collectElementCounts,
   assessChartStrength,
+  enrichAnalysis,
 };

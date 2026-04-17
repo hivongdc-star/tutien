@@ -125,19 +125,19 @@
   },
   "byRelationType": {
     "same": {
-      "note": "Khí ngày đồng hành với nhật chủ, nội lực dễ tụ nhưng cũng dễ chủ quan."
+      "note": "Can ngày đồng hành với nhật chủ, trợ lực nhưng cũng làm khí cùng phe tăng."
     },
     "generatedBy": {
-      "note": "Khí ngày sinh thân, hợp tiến vừa và nhận trợ lực."
+      "note": "Can ngày sinh trợ nhật chủ, hợp dưỡng nền và bổ khí."
     },
     "generates": {
-      "note": "Nhật chủ phải sinh xuất cho ngày, hợp cho đi có tính toán hơn là bùng sức."
+      "note": "Can ngày khiến nhật chủ phải tiết khí sinh xuất, hợp làm việc đầu ra nhưng dễ hao lực."
     },
     "controlledBy": {
-      "note": "Khí ngày khắc thân, nên giảm va trực diện và ưu tiên giữ trục."
+      "note": "Can ngày trực khắc nhật chủ, cần giữ kỷ luật và tránh đối đầu nóng."
     },
     "controls": {
-      "note": "Nhật chủ có thể quản khí ngày, hợp quyết việc có chuẩn bị."
+      "note": "Can ngày nằm trong thế nhật chủ khắc chế, hợp xử lý việc cần nắm trục nhưng phải tránh cứng tay."
     }
   }
 }

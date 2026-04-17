@@ -26,6 +26,9 @@ function loadBattuData() {
   const ruleset = readJson('battu_ruleset.json');
   const sources = readJson('battu_sources.json');
   const trigrams = readJson('battu_trigrams.json');
+  const growthStages = readJson('battu_growth_stages.json');
+  const shensha = readJson('battu_shensha.json');
+  const patterns = readJson('battu_patterns.json');
 
   const stemByName = Object.fromEntries(stems.map((x) => [x.name, x]));
   const branchByName = Object.fromEntries(branches.map((x) => [x.name, x]));
@@ -48,6 +51,9 @@ function loadBattuData() {
     ruleset,
     sources,
     trigrams,
+    growthStages,
+    shensha,
+    patterns,
     stemByName,
     branchByName,
     stemIndex,

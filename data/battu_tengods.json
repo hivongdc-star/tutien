@@ -21,54 +21,64 @@
   },
   "profiles": {
     "Tỷ Kiên": {
-      "core": "Đồng khí đồng hành, chủ tự chủ, gánh vác, đứng mũi chịu sào.",
-      "bright": "Dùng đúng thì tăng lực cạnh tranh và bản lĩnh.",
-      "shadow": "Lệch sẽ thành cố chấp, cứng đầu, tự tranh với người cùng phe."
+      "core": "Tự chủ, giữ trục, đứng cùng hàng với nhật chủ.",
+      "bright": "Giỏi tự chống đỡ, dám vác việc, giữ lập trường.",
+      "shadow": "Dễ cố chấp, tranh quyền ngang vai, hao lực vì không chịu mượn thế.",
+      "career": "Hợp vai trò dẫn nhịp, đồng sáng lập, trưởng nhóm, nghề phải tự đứng trục."
     },
     "Kiếp Tài": {
-      "core": "Cùng hành khác khí, chủ tranh thủ cơ hội, xoay sở, phá thế cũ.",
-      "bright": "Giỏi xử tình huống gấp, dám nhập cục.",
-      "shadow": "Dễ nóng, dễ tiêu hao tài lực vì quyết quá tay."
+      "core": "Tranh lực, xoay nguồn, phá thế cũ để mở đường mới.",
+      "bright": "Nhanh xoay xở, dám đoạt cơ hội, cứu cục khi thế gấp.",
+      "shadow": "Dễ hao tài, rối quan hệ ngang hàng, tranh công hoặc tranh nguồn.",
+      "career": "Hợp môi trường cạnh tranh, deal, xoay vốn, mở cửa mới nhưng cần kỷ luật."
     },
     "Chính Ấn": {
-      "core": "Nguồn dưỡng chính khí, chủ học hỏi, chở che, nền tảng, quy củ.",
-      "bright": "Tăng độ ổn định, học lực, khả năng hấp thụ.",
-      "shadow": "Quá nặng thì dễ lệ thuộc vùng an toàn."
+      "core": "Ấn tinh chính, trọng học, tư cách, nền đỡ.",
+      "bright": "Được quý nhân, có chiều sâu học thuật, biết giữ chuẩn tri thức.",
+      "shadow": "Dễ chậm hành vì nặng học hơn làm hoặc quá cần che chắn.",
+      "career": "Hợp chuyên môn sâu, cố vấn, giáo dục, nghiên cứu, chứng chỉ."
     },
     "Thiên Ấn": {
-      "core": "Nguồn dưỡng biến hóa, chủ trực giác, nhìn khác, đi đường lệch mà trúng.",
-      "bright": "Hợp nghiên cứu, sáng tạo, xử bài khó.",
-      "shadow": "Lệch dễ thành cô lập hoặc quá tin trực giác."
+      "core": "Ấn tinh lệch, thiên ngộ tính, trực giác, đường lối khác thường.",
+      "bright": "Giỏi lĩnh hội nhanh, đọc bản chất, làm việc khó bằng lối riêng.",
+      "shadow": "Dễ cô độc, khó hòa môi trường cứng, có lúc thiếu thực tế.",
+      "career": "Hợp nghiên cứu, công nghệ sâu, phân tích, sáng tạo dị biệt, tu học."
     },
     "Thực Thần": {
-      "core": "Khí tiết ra có trật tự, chủ biểu đạt, nuôi dưỡng, tay nghề.",
-      "bright": "Hợp sáng tạo bền, dạy học, bồi dưỡng, sản xuất.",
-      "shadow": "Quá nhiều thì chậm quyết, ham an ổn."
+      "core": "Tiết khí ôn hòa, sinh sản phẩm, nuôi đầu ra.",
+      "bright": "Khéo nuôi việc, làm đều, bền, có chất lượng, có khả năng dạy và truyền.",
+      "shadow": "Dễ chậm nhịp nếu quá cầu toàn hoặc quá ham an ổn.",
+      "career": "Hợp sản phẩm, đào tạo, ẩm thực, nội dung, vận hành sinh giá trị bền."
     },
     "Thương Quan": {
-      "core": "Khí tiết ra sắc bén, chủ phá khuôn, phát biểu, đòi hỏi cao.",
-      "bright": "Hợp cải tiến, phản biện, mở lối mới.",
-      "shadow": "Lệch dễ khắc quan, khó chịu khuôn phép."
+      "core": "Biểu đạt sắc, phá khuôn, mở lối khác người.",
+      "bright": "Rất mạnh ở cải tiến, phản biện, sáng tạo, trình diễn năng lực.",
+      "shadow": "Dễ phạm cấp trên, khó chịu khuôn, lời sắc quá mức.",
+      "career": "Hợp sáng tạo, chiến lược, R&D, truyền thông, cải cách quy trình."
     },
     "Chính Tài": {
-      "core": "Khả năng quản tài chính, nguồn lực hữu hình, thu nạp có trật tự.",
-      "bright": "Hợp quản lý tiền, kế hoạch, trách nhiệm.",
-      "shadow": "Quá nặng dễ trọng an toàn hơn đột phá."
+      "core": "Tài tinh ổn, trọng tích lũy và quản trị nguồn.",
+      "bright": "Giữ tiền, giữ chuẩn, xây nền tốt, có ý thức trách nhiệm với tài nguyên.",
+      "shadow": "Dễ bó mình vào khuôn an toàn, chậm xoay khi thời thế đổi.",
+      "career": "Hợp quản trị, tài chính, kế toán, hậu cần, tích lũy tài sản bền."
     },
     "Thiên Tài": {
-      "core": "Tài khí linh hoạt, cơ hội bên ngoài, xoay vốn, bắt nhịp nhanh.",
-      "bright": "Hợp thương lượng, quan hệ, xoay chuyển nguồn lực.",
-      "shadow": "Lệch dễ tham cơ hội, khó giữ ổn định."
+      "core": "Tài tinh động, trọng cơ hội, quan hệ, đa nguồn.",
+      "bright": "Nhạy thời vận, giỏi gặp người, kéo nguồn, mở cửa thị trường.",
+      "shadow": "Dễ phân tán, ham ngắn hạn, khó giữ nhịp lâu nếu thiếu nền.",
+      "career": "Hợp kinh doanh, đầu mối, khai thác cơ hội, ngoại giao, sales."
     },
     "Chính Quan": {
-      "core": "Kỷ luật, chức trách, quy tắc, năng lực giữ trục.",
-      "bright": "Hợp hệ thống, quản trị, công việc cần chuẩn.",
-      "shadow": "Quá mạnh dễ tạo áp lực, tự trói mình bởi tiêu chuẩn."
+      "core": "Quan tinh chính, trọng pháp, vị, trách nhiệm.",
+      "bright": "Giữ chuẩn, biết tự quản, hợp đường danh vị và hệ thống rõ.",
+      "shadow": "Dễ áp lực bởi chuẩn mực, tự trói trong đúng-sai cứng.",
+      "career": "Hợp quản lý, hành chính, pháp chế, nhà nước, môi trường có thứ bậc."
     },
     "Thất Sát": {
-      "core": "Áp lực, chiến lực, quyết đoán, dám chém vào nút thắt.",
-      "bright": "Được hóa tốt thì thành bản lĩnh và uy lực.",
-      "shadow": "Không hóa thì dễ căng, gấp, xung trực diện."
+      "core": "Sát tinh cứng, lực áp mạnh, thiên về quyết đoán và gánh nặng.",
+      "bright": "Có gan gánh việc khó, chịu áp lực lớn, phản ứng nhanh khi biến cục.",
+      "shadow": "Nếu thiếu ấn/thực thần điều tiết dễ thành gấp, cứng, cực đoan.",
+      "career": "Hợp tuyến đầu, an ninh, kỹ thuật nặng, vận hành khủng hoảng, chỉ huy."
     }
   },
   "positionNotes": {
@@ -76,5 +86,10 @@
     "month": "Nguyệt trụ là trục thời khí và môi trường vận hành chính, trọng số lớn nhất khi luận mạnh yếu.",
     "day": "Nhật trụ là thân mệnh và hôn phối, lõi cảm nhận bản thân.",
     "hour": "Thời trụ thiên về hậu vận, nội nguyện, điều ngươi muốn gieo về sau."
+  },
+  "hiddenStemPriorities": {
+    "main": 1.0,
+    "secondary": 0.65,
+    "tertiary": 0.45
   }
 }

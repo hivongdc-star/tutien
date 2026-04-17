@@ -107,12 +107,16 @@
     "strong": "Nhật chủ tương đối vượng, có khả năng chủ động dẫn cục; hợp nắm trục và quyết đúng lúc.",
     "balanced": "Nhật chủ quân bình, trọng ở chọn môi trường và nhịp lực; không thiên hẳn một đầu.",
     "weak": "Nhật chủ hơi nhược, hợp mượn thế, dưỡng lực, lấy tích lũy làm trước.",
-    "veryWeak": "Nhật chủ rất nhược, ưu tiên giữ gốc, tránh nghịch khí kéo dài, cần dựa trợ lực rõ."
+    "veryWeak": "Nhật chủ rất nhược, ưu tiên giữ gốc, tránh nghịch khí kéo dài, cần dựa trợ lực rõ.",
+    "followStrong": "Nhật chủ theo thế vượng, gốc khí tụ đông, nếu cưỡng tiết quá mức sẽ phản cục; hợp dùng thế để dẫn, không hợp tự chém gốc.",
+    "followWeak": "Nhật chủ theo thế nhược, cục khí nghiêng rõ sang tài-quan-thực thương; nếu cưỡng dựng thân quá mạnh dễ thành nghịch khí."
   },
   "yinYangPatterns": {
     "balanced": "Âm dương khá quân, nội ngoại tương trợ, tiến lui đều có chỗ dựa.",
     "yangHeavy": "Dương nhiều hơn âm, khí dễ phát mà khó thu; hợp mở đường nhưng phải học cách giữ.",
-    "yinHeavy": "Âm nhiều hơn dương, khí dễ tích mà khó bộc; hợp dưỡng sâu nhưng cần thời điểm phát lực."
+    "yinHeavy": "Âm nhiều hơn dương, khí dễ tích mà khó bộc; hợp dưỡng sâu nhưng cần thời điểm phát lực.",
+    "yinExtreme": "Âm khí tích dày, hợp dưỡng, tàng, tinh luyện; bất lợi khi ép tiến liên hồi mà không có nguồn dương nâng.",
+    "yangExtreme": "Dương khí bốc mạnh, hợp khai, công, đột tiến; bất lợi khi thiếu tầng thu liễm và nền thổ giữ khí."
   },
   "monthCommand": {
     "Dần": "Nguyệt lệnh Dần mở xuân khí, Mộc khởi sinh, hợp khai mầm và mở hướng.",
@@ -195,5 +199,100 @@
     "month": "Nguyệt trụ là trục thời khí và môi trường, trọng số lớn nhất khi xét mạnh yếu.",
     "day": "Nhật trụ là thân mệnh, khí chất lõi và cảm nhận bản thân.",
     "hour": "Thời trụ nhìn phần hậu vận, ý nguyện và hạt giống ngươi muốn gieo về sau."
+  },
+  "stageDescriptions": {
+    "Trường Sinh": "Khí mới khởi, hợp nuôi mầm, học và nạp lực.",
+    "Mộc Dục": "Khí vừa sinh đã động, dễ đẹp mà tán, cần lọc tạp.",
+    "Quan Đới": "Khí bắt đầu có quy củ, hợp vào khuôn phép và dựng danh vị.",
+    "Lâm Quan": "Khí đứng vững, hành lực rõ, hợp gánh việc và chấp trục.",
+    "Đế Vượng": "Khí lên cực điểm, thành tựu nhanh nhưng cũng dễ quá tay.",
+    "Suy": "Khí đi qua đỉnh và bắt đầu giảm, hợp chỉnh lại nhịp, không hợp ép vượt.",
+    "Bệnh": "Khí vận hành khó tròn, chỗ mạnh yếu lộ rõ, cần dưỡng chứ đừng cưỡng.",
+    "Tử": "Khí cũ kết, hợp buông, đóng, cất, kết toán.",
+    "Mộ": "Khí thu tàng vào kho, hợp tích lũy, nghiên cứu, dưỡng căn.",
+    "Tuyệt": "Khí đứt mạch cũ, có tính thay da đổi xương, nên bỏ cái cũ đúng lúc.",
+    "Thai": "Khí mới kết hình, hợp nuôi ý, thai nghén kế hoạch.",
+    "Dưỡng": "Khí được nuôi trong nền kín, hợp chuẩn bị, gom nguồn, không hợp phô trương."
+  },
+  "usefulGods": {
+    "strong": {
+      "core": "Nhật chủ vượng nên lấy tiết, hao, chế làm chủ; tránh thêm khí đồng hành và thêm ấn quá mức.",
+      "priority": [
+        "Quan/Sát",
+        "Thực/Thương",
+        "Tài"
+      ],
+      "taboo": [
+        "Tỷ/Kiếp",
+        "Ấn"
+      ]
+    },
+    "weak": {
+      "core": "Nhật chủ nhược nên lấy phù, trợ, dưỡng làm chủ; tránh thêm tài quan quá mạnh khiến thân không kham nổi.",
+      "priority": [
+        "Ấn",
+        "Tỷ/Kiếp"
+      ],
+      "taboo": [
+        "Tài",
+        "Quan/Sát",
+        "Thực/Thương quá mức"
+      ]
+    },
+    "followStrong": {
+      "core": "Theo cường thì thuận thế mà dùng, ưu tiên giữ cục thông và tránh cưỡng kéo về trung dung giả tạo.",
+      "priority": [
+        "Thuận thế hành cục",
+        "Hành dẫn khí"
+      ],
+      "taboo": [
+        "Phá cục bằng hành khắc gốc"
+      ]
+    },
+    "followWeak": {
+      "core": "Theo nhược thì thuận dòng tài quan/thực thương, lấy thông quan làm trước, không nên cố chồng thêm thân ấn.",
+      "priority": [
+        "Thuận thế tài quan",
+        "Thông quan"
+      ],
+      "taboo": [
+        "Cưỡng bổ thân khi cục đã theo"
+      ]
+    }
+  },
+  "transitNarratives": {
+    "year": "Lưu niên là lớp ngoại cảnh và đại thế. Nó định sắc trời của năm, mở hay ép các cửa việc lớn.",
+    "month": "Lưu nguyệt là nhịp công việc và khí trường gần thân hơn. Nó cho biết nên phát hay nên thu trong giai đoạn gần.",
+    "day": "Lưu nhật là nhịp ứng tức thời, thiên về quyết định, va chạm và tiến lùi trong một ngày."
+  },
+  "shenShaDescriptions": {
+    "Đào Hoa": "Khí giao cảm mạnh, dễ hút ánh nhìn, hợp giao tiếp và biểu đạt; nếu cục bất ổn thì dễ phân tâm.",
+    "Dịch Mã": "Khí động, hợp đi lại, thay đổi, triển khai việc cần di chuyển hay chuyển trạng thái.",
+    "Hoa Cái": "Khí cô cao và nghiên cứu, hợp học thuật, nghệ thuật, tu hành, nhưng dễ thành cô lập nếu cục lạnh.",
+    "Thiên Ất Quý Nhân": "Quý nhân tinh, gặp đúng người dễ mở nút, hợp xin chỉ điểm và mượn thế thiện trợ.",
+    "Văn Xương": "Khí văn học và tư duy hệ thống, hợp thi cử, viết lách, chuẩn hóa tri thức.",
+    "Hồng Loan": "Khí hỷ hợp, thiên về kết nối, vui mừng, dễ có duyên gặp gỡ và tín hiệu thuận hòa."
+  },
+  "patternDescriptions": {
+    "Tỷ Kiên cách": "Trọng tự chủ, tự lập, tranh lực cùng hàng. Hợp dẫn đội, tự mở đường, nhưng phải tránh khí đoạt tài và tranh công.",
+    "Kiếp Tài cách": "Khí tranh đoạt và xoay chuyển nguồn lực mạnh. Dùng đúng thì dám phá thế cũ; dùng sai dễ hao tài và rối quan hệ.",
+    "Thực Thần cách": "Khí tiết mà sinh, hợp sáng tạo, nghề nuôi dưỡng đầu ra, truyền đạt, sản phẩm, đào tạo.",
+    "Thương Quan cách": "Khí biểu đạt sắc, phá khuôn mạnh, hợp cải cách và đột phá; nếu thiếu thu liễm dễ phạm thượng hoặc đứt nhịp.",
+    "Chính Tài cách": "Trọng quy củ, tích lũy, quản trị nguồn lực, làm bền; hợp đường ổn định và xây nền tài lực.",
+    "Thiên Tài cách": "Trọng cơ hội, quan hệ, chớp thời vận và vận hành đa nguồn; hợp linh hoạt, không hợp cứng một đường.",
+    "Chính Quan cách": "Trọng khuôn phép, vị trí, danh dự, nguyên tắc. Hợp con đường rõ hệ thống và trách nhiệm.",
+    "Thất Sát cách": "Áp lực và lực bộc phát mạnh, hợp nơi cần gánh nặng và quyết đoán; cần ấn hoặc thực thần điều tiết.",
+    "Chính Ấn cách": "Khí học, danh, che chở, bồi nền; hợp con đường chuyên môn, tri thức, bằng cấp, tư cách.",
+    "Thiên Ấn cách": "Khí ngộ, trực giác, nghiên cứu dị biệt. Hợp nghề sâu, hướng phân tích và độc lập.",
+    "Tòng Vượng cách": "Cục khí nghiêng hẳn về thân/ấn, nên thuận thế mà dùng, không nên cưỡng ép tiết phá quá tay.",
+    "Tòng Nhược cách": "Cục khí nghiêng hẳn sang tài/quan/thực thương, nên theo thế mạnh bên ngoài mà thành sự.",
+    "Tạp Khí cách": "Nội cục không thuần một cửa, cần luận theo ưu thế nổi rõ và xét nhịp vận để biết cửa mở chính."
+  },
+  "careerChannels": {
+    "Kim": "hợp các đường cần chuẩn hóa, cắt lọc, quy trình, pháp chế, kiểm soát chất lượng, tài chính-kiểm toán, cơ khí, kỹ thuật chính xác",
+    "Mộc": "hợp giáo dục, phát triển, sản phẩm, sáng tạo có hệ, tăng trưởng, y dược dưỡng sinh, đào tạo",
+    "Thủy": "hợp thương lượng, luồng dữ liệu, logistic, tài chính lưu chuyển, nghiên cứu, tư vấn, kết nối thị trường",
+    "Hỏa": "hợp truyền thông, trình bày, kinh doanh, lãnh đạo tuyến đầu, biểu đạt, vận hành tốc độ cao",
+    "Thổ": "hợp quản trị nền, bất động sản, hạ tầng, lưu trữ, quản lý tài nguyên, kế hoạch dài hơi"
   }
 }

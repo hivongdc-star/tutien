@@ -4,12 +4,12 @@
     "symbol": "䷀",
     "han": "",
     "pinyin": "",
-    "vn": "Càn trên Càn",
+    "vn": "Thuần Càn",
     "upper": "Càn",
     "lower": "Càn",
     "tier7": "Đại Cát",
-    "judgment": "Trời trên Trời: thuận lợi; lấy đức kiện – kiện mà xử việc.",
-    "image": "Trời ở trên Trời: quân tử kiện để kiện đúng thời.",
+    "judgment": "Trời ở trên Trời: quân tử kiện để hành đúng thời.",
+    "image": "Trời ở trên Trời: quân tử kiện để hành đúng thời.",
     "keywords": [],
     "do": [
       "chủ động lãnh đạo",
@@ -28,19 +28,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Vàng kim",
-    "directionHint": "Tây Bắc"
+    "directionHint": "Tây Bắc",
+    "fullName": "Thuần Càn",
+    "shortMeaning": "Trời ở trên Trời: quân tử kiện để hành đúng thời.",
+    "shortAction": "Nên quyết việc chính và giữ khí thế ngay ngắn; không nên tự mãn hoặc ép người quá mức."
   },
   {
     "no": 2,
     "symbol": "䷁",
     "han": "",
     "pinyin": "",
-    "vn": "Khôn trên Khôn",
+    "vn": "Thuần Khôn",
     "upper": "Khôn",
     "lower": "Khôn",
     "tier7": "Cát",
-    "judgment": "Đất trên Đất: thuận lợi; lấy đức nhu – nhu mà xử việc.",
-    "image": "Đất ở trên Đất: quân tử nhu để nhu đúng thời.",
+    "judgment": "Đất ở trên Đất: quân tử hậu đức để chở vật cho yên.",
+    "image": "Đất ở trên Đất: quân tử hậu đức để chở vật cho yên.",
     "keywords": [],
     "do": [
       "xây nền tảng",
@@ -59,19 +62,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Nâu đất",
-    "directionHint": "Tây Nam"
+    "directionHint": "Tây Nam",
+    "fullName": "Thuần Khôn",
+    "shortMeaning": "Đất ở trên Đất: quân tử hậu đức để chở vật cho yên.",
+    "shortAction": "Nên mềm mà bền, thuận mà giữ mực; không nên cố tranh hơn hoặc ôm quyền quá tay."
   },
   {
     "no": 3,
     "symbol": "䷂",
     "han": "",
     "pinyin": "",
-    "vn": "Khảm trên Chấn",
+    "vn": "Thủy Lôi Truân",
     "upper": "Khảm",
     "lower": "Chấn",
     "tier7": "Bình",
-    "judgment": "Nước trên Sấm: cân bằng; lấy đức hiểm – động mà xử việc.",
-    "image": "Nước ở trên Sấm: quân tử hiểm để động đúng thời.",
+    "judgment": "Nước ở trên Sấm: đầu việc còn trở, quý ở giữ chí mà mở đường.",
+    "image": "Nước ở trên Sấm: đầu việc còn trở, quý ở giữ chí mà mở đường.",
     "keywords": [],
     "do": [
       "đánh giá rủi ro",
@@ -90,19 +96,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Đen huyền",
-    "directionHint": "Bắc"
+    "directionHint": "Bắc",
+    "fullName": "Thủy Lôi Truân",
+    "shortMeaning": "Nước ở trên Sấm: đầu việc còn trở, quý ở giữ chí mà mở đường.",
+    "shortAction": "Nên đi chậm, dựng nền trước; không nên nóng vội hoặc ôm nhiều việc cùng lúc."
   },
   {
     "no": 4,
     "symbol": "䷃",
     "han": "",
     "pinyin": "",
-    "vn": "Cấn trên Khảm",
+    "vn": "Sơn Thủy Mông",
     "upper": "Cấn",
     "lower": "Khảm",
     "tier7": "Bình",
-    "judgment": "Núi trên Nước: cân bằng; lấy đức chỉ – hiểm mà xử việc.",
-    "image": "Núi ở trên Nước: quân tử chỉ để hiểm đúng thời.",
+    "judgment": "Núi ở trên Nước: mờ mà chưa tỏ, quý ở học hỏi rồi mới hành.",
+    "image": "Núi ở trên Nước: mờ mà chưa tỏ, quý ở học hỏi rồi mới hành.",
     "keywords": [],
     "do": [
       "dừng để quan sát",
@@ -121,19 +130,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Nâu đất",
-    "directionHint": "Đông Bắc"
+    "directionHint": "Đông Bắc",
+    "fullName": "Sơn Thủy Mông",
+    "shortMeaning": "Núi ở trên Nước: mờ mà chưa tỏ, quý ở học hỏi rồi mới hành.",
+    "shortAction": "Nên hỏi người hiểu việc và chỉnh lại nền tảng; không nên đoán mò hoặc cố chấp giữ ý."
   },
   {
     "no": 5,
     "symbol": "䷄",
     "han": "",
     "pinyin": "",
-    "vn": "Khảm trên Càn",
+    "vn": "Thủy Thiên Nhu",
     "upper": "Khảm",
     "lower": "Càn",
     "tier7": "Bình",
-    "judgment": "Nước trên Trời: cân bằng; lấy đức hiểm – kiện mà xử việc.",
-    "image": "Nước ở trên Trời: quân tử hiểm để kiện đúng thời.",
+    "judgment": "Nước ở trên Trời: chưa đến lúc ép tiến, biết chờ thời thì thông.",
+    "image": "Nước ở trên Trời: chưa đến lúc ép tiến, biết chờ thời thì thông.",
     "keywords": [],
     "do": [
       "đánh giá rủi ro",
@@ -152,19 +164,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Đen huyền",
-    "directionHint": "Bắc"
+    "directionHint": "Bắc",
+    "fullName": "Thủy Thiên Nhu",
+    "shortMeaning": "Nước ở trên Trời: chưa đến lúc ép tiến, biết chờ thời thì thông.",
+    "shortAction": "Nên giữ thế chờ và chuẩn bị cho kỹ; không nên vội chốt việc lớn hoặc cưỡng ép tình thế."
   },
   {
     "no": 6,
     "symbol": "䷅",
     "han": "",
     "pinyin": "",
-    "vn": "Càn trên Khảm",
+    "vn": "Thiên Thủy Tụng",
     "upper": "Càn",
     "lower": "Khảm",
     "tier7": "Hung",
-    "judgment": "Trời trên Nước: nhiều trở ngại; lấy đức kiện – hiểm mà xử việc.",
-    "image": "Trời ở trên Nước: quân tử kiện để hiểm đúng thời.",
+    "judgment": "Trời ở trên Nước: lời lẽ dễ nổi, quý ở biết dừng trước khi thành tranh.",
+    "image": "Trời ở trên Nước: lời lẽ dễ nổi, quý ở biết dừng trước khi thành tranh.",
     "keywords": [],
     "do": [
       "chủ động lãnh đạo",
@@ -183,19 +198,22 @@
       "health": "Ngủ đủ; giảm căng thẳng."
     },
     "colorHint": "Vàng kim",
-    "directionHint": "Tây Bắc"
+    "directionHint": "Tây Bắc",
+    "fullName": "Thiên Thủy Tụng",
+    "shortMeaning": "Trời ở trên Nước: lời lẽ dễ nổi, quý ở biết dừng trước khi thành tranh.",
+    "shortAction": "Nên giữ lý lẽ rõ ràng và nhường một bước đúng lúc; không nên tranh hơn thua hoặc đẩy việc vào đối đầu."
   },
   {
     "no": 7,
     "symbol": "䷆",
     "han": "",
     "pinyin": "",
-    "vn": "Khôn trên Khảm",
+    "vn": "Địa Thủy Sư",
     "upper": "Khôn",
     "lower": "Khảm",
     "tier7": "Cát",
-    "judgment": "Đất trên Nước: thuận lợi; lấy đức nhu – hiểm mà xử việc.",
-    "image": "Đất ở trên Nước: quân tử nhu để hiểm đúng thời.",
+    "judgment": "Đất ở trên Nước: dùng người phải nghiêm, hành việc phải có hàng ngũ.",
+    "image": "Đất ở trên Nước: dùng người phải nghiêm, hành việc phải có hàng ngũ.",
     "keywords": [],
     "do": [
       "xây nền tảng",
@@ -214,19 +232,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Nâu đất",
-    "directionHint": "Tây Nam"
+    "directionHint": "Tây Nam",
+    "fullName": "Địa Thủy Sư",
+    "shortMeaning": "Đất ở trên Nước: dùng người phải nghiêm, hành việc phải có hàng ngũ.",
+    "shortAction": "Nên giữ kỷ luật và gom lực cho đúng chỗ; không nên tùy hứng đổi lệnh hoặc kéo người đi sai nhịp."
   },
   {
     "no": 8,
     "symbol": "䷇",
     "han": "",
     "pinyin": "",
-    "vn": "Khảm trên Khôn",
+    "vn": "Thủy Địa Tỷ",
     "upper": "Khảm",
     "lower": "Khôn",
     "tier7": "Cát",
-    "judgment": "Nước trên Đất: thuận lợi; lấy đức hiểm – nhu mà xử việc.",
-    "image": "Nước ở trên Đất: quân tử hiểm để nhu đúng thời.",
+    "judgment": "Nước ở trên Đất: thuận ở gần nhau, quý ở lấy đức mà kết người.",
+    "image": "Nước ở trên Đất: thuận ở gần nhau, quý ở lấy đức mà kết người.",
     "keywords": [],
     "do": [
       "đánh giá rủi ro",
@@ -245,19 +266,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Đen huyền",
-    "directionHint": "Bắc"
+    "directionHint": "Bắc",
+    "fullName": "Thủy Địa Tỷ",
+    "shortMeaning": "Nước ở trên Đất: thuận ở gần nhau, quý ở lấy đức mà kết người.",
+    "shortAction": "Nên hợp tác và giữ hòa khí; không nên tách lẻ hoặc cố chấp làm một mình."
   },
   {
     "no": 9,
     "symbol": "䷈",
     "han": "",
     "pinyin": "",
-    "vn": "Tốn trên Càn",
+    "vn": "Phong Thiên Tiểu Súc",
     "upper": "Tốn",
     "lower": "Càn",
     "tier7": "Tiểu Cát",
-    "judgment": "Gió trên Trời: thuận lợi; lấy đức nhập – kiện mà xử việc.",
-    "image": "Gió ở trên Trời: quân tử nhập để kiện đúng thời.",
+    "judgment": "Gió ở trên Trời: việc nhỏ gom dần, chưa nên bung sức quá sớm.",
+    "image": "Gió ở trên Trời: việc nhỏ gom dần, chưa nên bung sức quá sớm.",
     "keywords": [],
     "do": [
       "thương lượng mềm dẻo",
@@ -276,19 +300,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Xanh lục",
-    "directionHint": "Đông Nam"
+    "directionHint": "Đông Nam",
+    "fullName": "Phong Thiên Tiểu Súc",
+    "shortMeaning": "Gió ở trên Trời: việc nhỏ gom dần, chưa nên bung sức quá sớm.",
+    "shortAction": "Nên tích lũy và chỉnh chi tiết; không nên nóng nảy muốn thấy kết quả ngay."
   },
   {
     "no": 10,
     "symbol": "䷉",
     "han": "",
     "pinyin": "",
-    "vn": "Càn trên Đoài",
+    "vn": "Thiên Trạch Lý",
     "upper": "Càn",
     "lower": "Đoài",
     "tier7": "Tiểu Cát",
-    "judgment": "Trời trên Đầm: thuận lợi; lấy đức kiện – duyệt mà xử việc.",
-    "image": "Trời ở trên Đầm: quân tử kiện để duyệt đúng thời.",
+    "judgment": "Trời ở trên Đầm: bước đi phải đúng lễ, càng giữ mực càng bớt họa.",
+    "image": "Trời ở trên Đầm: bước đi phải đúng lễ, càng giữ mực càng bớt họa.",
     "keywords": [],
     "do": [
       "chủ động lãnh đạo",
@@ -307,19 +334,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Vàng kim",
-    "directionHint": "Tây Bắc"
+    "directionHint": "Tây Bắc",
+    "fullName": "Thiên Trạch Lý",
+    "shortMeaning": "Trời ở trên Đầm: bước đi phải đúng lễ, càng giữ mực càng bớt họa.",
+    "shortAction": "Nên cư xử chừng mực và đi đúng phép; không nên thử giới hạn hoặc bước quá đà."
   },
   {
     "no": 11,
     "symbol": "䷊",
     "han": "",
     "pinyin": "",
-    "vn": "Khôn trên Càn",
+    "vn": "Địa Thiên Thái",
     "upper": "Khôn",
     "lower": "Càn",
     "tier7": "Đại Cát",
-    "judgment": "Đất trên Trời: thuận lợi; lấy đức nhu – kiện mà xử việc.",
-    "image": "Đất ở trên Trời: quân tử nhu để kiện đúng thời.",
+    "judgment": "Đất ở trên Trời: khí giao nhau, trên dưới thuận mà việc dễ thông.",
+    "image": "Đất ở trên Trời: khí giao nhau, trên dưới thuận mà việc dễ thông.",
     "keywords": [],
     "do": [
       "xây nền tảng",
@@ -338,19 +368,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Nâu đất",
-    "directionHint": "Tây Nam"
+    "directionHint": "Tây Nam",
+    "fullName": "Địa Thiên Thái",
+    "shortMeaning": "Đất ở trên Trời: khí giao nhau, trên dưới thuận mà việc dễ thông.",
+    "shortAction": "Nên mở việc và kết nối người đúng lúc; không nên lơ là kỷ cương hoặc chủ quan vì thuận thế."
   },
   {
     "no": 12,
     "symbol": "䷋",
     "han": "",
     "pinyin": "",
-    "vn": "Càn trên Khôn",
+    "vn": "Thiên Địa Bĩ",
     "upper": "Càn",
     "lower": "Khôn",
     "tier7": "Hung",
-    "judgment": "Trời trên Đất: nhiều trở ngại; lấy đức kiện – nhu mà xử việc.",
-    "image": "Trời ở trên Đất: quân tử kiện để nhu đúng thời.",
+    "judgment": "Trời ở trên Đất: khí không giao, muốn thông cũng phải đợi cửa mở.",
+    "image": "Trời ở trên Đất: khí không giao, muốn thông cũng phải đợi cửa mở.",
     "keywords": [],
     "do": [
       "chủ động lãnh đạo",
@@ -369,19 +402,22 @@
       "health": "Ngủ đủ; giảm căng thẳng."
     },
     "colorHint": "Vàng kim",
-    "directionHint": "Tây Bắc"
+    "directionHint": "Tây Bắc",
+    "fullName": "Thiên Địa Bĩ",
+    "shortMeaning": "Trời ở trên Đất: khí không giao, muốn thông cũng phải đợi cửa mở.",
+    "shortAction": "Nên thu mình giữ thế và bảo toàn phần nền; không nên cố thúc việc hoặc tranh công vô ích."
   },
   {
     "no": 13,
     "symbol": "䷌",
     "han": "",
     "pinyin": "",
-    "vn": "Càn trên Ly",
+    "vn": "Thiên Hỏa Đồng Nhân",
     "upper": "Càn",
     "lower": "Ly",
     "tier7": "Cát",
-    "judgment": "Trời trên Lửa: thuận lợi; lấy đức kiện – minh mà xử việc.",
-    "image": "Trời ở trên Lửa: quân tử kiện để minh đúng thời.",
+    "judgment": "Trời ở trên Lửa: cùng chí thì hợp, sáng lòng thì người mới theo.",
+    "image": "Trời ở trên Lửa: cùng chí thì hợp, sáng lòng thì người mới theo.",
     "keywords": [],
     "do": [
       "chủ động lãnh đạo",
@@ -400,19 +436,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Vàng kim",
-    "directionHint": "Tây Bắc"
+    "directionHint": "Tây Bắc",
+    "fullName": "Thiên Hỏa Đồng Nhân",
+    "shortMeaning": "Trời ở trên Lửa: cùng chí thì hợp, sáng lòng thì người mới theo.",
+    "shortAction": "Nên kết người đồng hướng và nói rõ mục tiêu; không nên kéo phe hoặc giữ lòng nghi kỵ."
   },
   {
     "no": 14,
     "symbol": "䷍",
     "han": "",
     "pinyin": "",
-    "vn": "Ly trên Càn",
+    "vn": "Hỏa Thiên Đại Hữu",
     "upper": "Ly",
     "lower": "Càn",
     "tier7": "Đại Cát",
-    "judgment": "Lửa trên Trời: thuận lợi; lấy đức minh – kiện mà xử việc.",
-    "image": "Lửa ở trên Trời: quân tử minh để kiện đúng thời.",
+    "judgment": "Lửa ở trên Trời: sáng mà có của, quý ở biết giữ lớn bằng đức.",
+    "image": "Lửa ở trên Trời: sáng mà có của, quý ở biết giữ lớn bằng đức.",
     "keywords": [],
     "do": [
       "làm rõ thông tin",
@@ -431,19 +470,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Đỏ son",
-    "directionHint": "Nam"
+    "directionHint": "Nam",
+    "fullName": "Hỏa Thiên Đại Hữu",
+    "shortMeaning": "Lửa ở trên Trời: sáng mà có của, quý ở biết giữ lớn bằng đức.",
+    "shortAction": "Nên dùng thế mạnh đúng chỗ và chia lợi hợp lý; không nên phô trương hoặc tiêu lực vô độ."
   },
   {
     "no": 15,
     "symbol": "䷎",
     "han": "",
     "pinyin": "",
-    "vn": "Khôn trên Cấn",
+    "vn": "Địa Sơn Khiêm",
     "upper": "Khôn",
     "lower": "Cấn",
     "tier7": "Bình",
-    "judgment": "Đất trên Núi: cân bằng; lấy đức nhu – chỉ mà xử việc.",
-    "image": "Đất ở trên Núi: quân tử nhu để chỉ đúng thời.",
+    "judgment": "Đất ở trên Núi: có cao mà biết hạ, nên đi xa mà không chuốc oán.",
+    "image": "Đất ở trên Núi: có cao mà biết hạ, nên đi xa mà không chuốc oán.",
     "keywords": [],
     "do": [
       "xây nền tảng",
@@ -462,19 +504,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Nâu đất",
-    "directionHint": "Tây Nam"
+    "directionHint": "Tây Nam",
+    "fullName": "Địa Sơn Khiêm",
+    "shortMeaning": "Đất ở trên Núi: có cao mà biết hạ, nên đi xa mà không chuốc oán.",
+    "shortAction": "Nên khiêm xuống để việc dễ thành; không nên tự cao hoặc muốn nhận hết phần sáng."
   },
   {
     "no": 16,
     "symbol": "䷏",
     "han": "",
     "pinyin": "",
-    "vn": "Chấn trên Khôn",
+    "vn": "Lôi Địa Dự",
     "upper": "Chấn",
     "lower": "Khôn",
     "tier7": "Cát",
-    "judgment": "Sấm trên Đất: thuận lợi; lấy đức động – nhu mà xử việc.",
-    "image": "Sấm ở trên Đất: quân tử động để nhu đúng thời.",
+    "judgment": "Sấm ở trên Đất: khí động mà người hưởng ứng, quý ở khởi đúng nhịp.",
+    "image": "Sấm ở trên Đất: khí động mà người hưởng ứng, quý ở khởi đúng nhịp.",
     "keywords": [],
     "do": [
       "khởi động nhanh",
@@ -493,19 +538,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Xanh lục",
-    "directionHint": "Đông"
+    "directionHint": "Đông",
+    "fullName": "Lôi Địa Dự",
+    "shortMeaning": "Sấm ở trên Đất: khí động mà người hưởng ứng, quý ở khởi đúng nhịp.",
+    "shortAction": "Nên khởi động việc cần lan tỏa và nâng tinh thần; không nên hưng phấn quá mức rồi bỏ dở."
   },
   {
     "no": 17,
     "symbol": "䷐",
     "han": "",
     "pinyin": "",
-    "vn": "Đoài trên Chấn",
+    "vn": "Trạch Lôi Tùy",
     "upper": "Đoài",
     "lower": "Chấn",
     "tier7": "Cát",
-    "judgment": "Đầm trên Sấm: thuận lợi; lấy đức duyệt – động mà xử việc.",
-    "image": "Đầm ở trên Sấm: quân tử duyệt để động đúng thời.",
+    "judgment": "Đầm ở trên Sấm: biết thuận thời thì nhẹ bước, biết theo đúng người thì bớt lệch.",
+    "image": "Đầm ở trên Sấm: biết thuận thời thì nhẹ bước, biết theo đúng người thì bớt lệch.",
     "keywords": [],
     "do": [
       "kết nối đội nhóm",
@@ -524,19 +572,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Xám bạc",
-    "directionHint": "Tây"
+    "directionHint": "Tây",
+    "fullName": "Trạch Lôi Tùy",
+    "shortMeaning": "Đầm ở trên Sấm: biết thuận thời thì nhẹ bước, biết theo đúng người thì bớt lệch.",
+    "shortAction": "Nên linh hoạt theo thế và theo điều hợp đạo; không nên chạy theo đám đông mù quáng."
   },
   {
     "no": 18,
     "symbol": "䷑",
     "han": "",
     "pinyin": "",
-    "vn": "Cấn trên Tốn",
+    "vn": "Sơn Phong Cổ",
     "upper": "Cấn",
     "lower": "Tốn",
     "tier7": "Tiểu Hung",
-    "judgment": "Núi trên Gió: nhiều trở ngại; lấy đức chỉ – nhập mà xử việc.",
-    "image": "Núi ở trên Gió: quân tử chỉ để nhập đúng thời.",
+    "judgment": "Núi ở trên Gió: việc cũ có sâu mọt, phải sửa gốc rồi mới yên.",
+    "image": "Núi ở trên Gió: việc cũ có sâu mọt, phải sửa gốc rồi mới yên.",
     "keywords": [],
     "do": [
       "dừng để quan sát",
@@ -555,19 +606,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Nâu đất",
-    "directionHint": "Đông Bắc"
+    "directionHint": "Đông Bắc",
+    "fullName": "Sơn Phong Cổ",
+    "shortMeaning": "Núi ở trên Gió: việc cũ có sâu mọt, phải sửa gốc rồi mới yên.",
+    "shortAction": "Nên dọn cái hỏng và sửa việc tồn đọng; không nên che lỗi hoặc đắp thêm phần mục."
   },
   {
     "no": 19,
     "symbol": "䷒",
     "han": "",
     "pinyin": "",
-    "vn": "Khôn trên Đoài",
+    "vn": "Địa Trạch Lâm",
     "upper": "Khôn",
     "lower": "Đoài",
     "tier7": "Cát",
-    "judgment": "Đất trên Đầm: thuận lợi; lấy đức nhu – duyệt mà xử việc.",
-    "image": "Đất ở trên Đầm: quân tử nhu để duyệt đúng thời.",
+    "judgment": "Đất ở trên Đầm: đến gần mà giữ mực, chăm người mà không lỏng tay.",
+    "image": "Đất ở trên Đầm: đến gần mà giữ mực, chăm người mà không lỏng tay.",
     "keywords": [],
     "do": [
       "xây nền tảng",
@@ -586,19 +640,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Nâu đất",
-    "directionHint": "Tây Nam"
+    "directionHint": "Tây Nam",
+    "fullName": "Địa Trạch Lâm",
+    "shortMeaning": "Đất ở trên Đầm: đến gần mà giữ mực, chăm người mà không lỏng tay.",
+    "shortAction": "Nên chủ động tiếp cận và chăm phần nền; không nên dễ dãi quá hoặc tiến quá gần quá sớm."
   },
   {
     "no": 20,
     "symbol": "䷓",
     "han": "",
     "pinyin": "",
-    "vn": "Tốn trên Khôn",
+    "vn": "Phong Địa Quán",
     "upper": "Tốn",
     "lower": "Khôn",
     "tier7": "Bình",
-    "judgment": "Gió trên Đất: cân bằng; lấy đức nhập – nhu mà xử việc.",
-    "image": "Gió ở trên Đất: quân tử nhập để nhu đúng thời.",
+    "judgment": "Gió ở trên Đất: trước hãy nhìn cho rõ, rồi mới nói và mới làm.",
+    "image": "Gió ở trên Đất: trước hãy nhìn cho rõ, rồi mới nói và mới làm.",
     "keywords": [],
     "do": [
       "thương lượng mềm dẻo",
@@ -617,19 +674,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Xanh lục",
-    "directionHint": "Đông Nam"
+    "directionHint": "Đông Nam",
+    "fullName": "Phong Địa Quán",
+    "shortMeaning": "Gió ở trên Đất: trước hãy nhìn cho rõ, rồi mới nói và mới làm.",
+    "shortAction": "Nên quan sát toàn cục và tự soi lại mình; không nên hấp tấp kết luận hoặc nói trước khi hiểu."
   },
   {
     "no": 21,
     "symbol": "䷔",
     "han": "",
     "pinyin": "",
-    "vn": "Ly trên Chấn",
+    "vn": "Hỏa Lôi Phệ Hạp",
     "upper": "Ly",
     "lower": "Chấn",
     "tier7": "Cát",
-    "judgment": "Lửa trên Sấm: thuận lợi; lấy đức minh – động mà xử việc.",
-    "image": "Lửa ở trên Sấm: quân tử minh để động đúng thời.",
+    "judgment": "Lửa ở trên Sấm: cắn mà mở lối, quyết mà dẹp vật cản.",
+    "image": "Lửa ở trên Sấm: cắn mà mở lối, quyết mà dẹp vật cản.",
     "keywords": [],
     "do": [
       "làm rõ thông tin",
@@ -648,19 +708,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Đỏ son",
-    "directionHint": "Nam"
+    "directionHint": "Nam",
+    "fullName": "Hỏa Lôi Phệ Hạp",
+    "shortMeaning": "Lửa ở trên Sấm: cắn mà mở lối, quyết mà dẹp vật cản.",
+    "shortAction": "Nên xử lý dứt điểm chỗ vướng và đặt lại kỷ cương; không nên nể nang quá mức hoặc để tồn đọng kéo dài."
   },
   {
     "no": 22,
     "symbol": "䷕",
     "han": "",
     "pinyin": "",
-    "vn": "Cấn trên Ly",
+    "vn": "Sơn Hỏa Bí",
     "upper": "Cấn",
     "lower": "Ly",
     "tier7": "Tiểu Cát",
-    "judgment": "Núi trên Lửa: thuận lợi; lấy đức chỉ – minh mà xử việc.",
-    "image": "Núi ở trên Lửa: quân tử chỉ để minh đúng thời.",
+    "judgment": "Núi ở trên Lửa: đẹp là để làm sáng điều thật, không phải để che cái rỗng.",
+    "image": "Núi ở trên Lửa: đẹp là để làm sáng điều thật, không phải để che cái rỗng.",
     "keywords": [],
     "do": [
       "dừng để quan sát",
@@ -679,19 +742,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Nâu đất",
-    "directionHint": "Đông Bắc"
+    "directionHint": "Đông Bắc",
+    "fullName": "Sơn Hỏa Bí",
+    "shortMeaning": "Núi ở trên Lửa: đẹp là để làm sáng điều thật, không phải để che cái rỗng.",
+    "shortAction": "Nên chỉnh hình thức cho gọn đẹp và đúng mực; không nên tô vẽ quá tay hoặc lấy ngoài che trong."
   },
   {
     "no": 23,
     "symbol": "䷖",
     "han": "",
     "pinyin": "",
-    "vn": "Cấn trên Khôn",
+    "vn": "Sơn Địa Bác",
     "upper": "Cấn",
     "lower": "Khôn",
     "tier7": "Hung",
-    "judgment": "Núi trên Đất: nhiều trở ngại; lấy đức chỉ – nhu mà xử việc.",
-    "image": "Núi ở trên Đất: quân tử chỉ để nhu đúng thời.",
+    "judgment": "Núi ở trên Đất: lớp ngoài đang bong, quý ở biết giữ lõi mà chờ hồi.",
+    "image": "Núi ở trên Đất: lớp ngoài đang bong, quý ở biết giữ lõi mà chờ hồi.",
     "keywords": [],
     "do": [
       "dừng để quan sát",
@@ -710,19 +776,22 @@
       "health": "Ngủ đủ; giảm căng thẳng."
     },
     "colorHint": "Nâu đất",
-    "directionHint": "Đông Bắc"
+    "directionHint": "Đông Bắc",
+    "fullName": "Sơn Địa Bác",
+    "shortMeaning": "Núi ở trên Đất: lớp ngoài đang bong, quý ở biết giữ lõi mà chờ hồi.",
+    "shortAction": "Nên bảo toàn phần cốt và thu bớt việc; không nên mở rộng hoặc cố gượng phần đang rã."
   },
   {
     "no": 24,
     "symbol": "䷗",
     "han": "",
     "pinyin": "",
-    "vn": "Khôn trên Chấn",
+    "vn": "Địa Lôi Phục",
     "upper": "Khôn",
     "lower": "Chấn",
     "tier7": "Cát",
-    "judgment": "Đất trên Sấm: thuận lợi; lấy đức nhu – động mà xử việc.",
-    "image": "Đất ở trên Sấm: quân tử nhu để động đúng thời.",
+    "judgment": "Đất ở trên Sấm: một dương trở lại, chậm mà có cơ hồi.",
+    "image": "Đất ở trên Sấm: một dương trở lại, chậm mà có cơ hồi.",
     "keywords": [],
     "do": [
       "xây nền tảng",
@@ -741,19 +810,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Nâu đất",
-    "directionHint": "Tây Nam"
+    "directionHint": "Tây Nam",
+    "fullName": "Địa Lôi Phục",
+    "shortMeaning": "Đất ở trên Sấm: một dương trở lại, chậm mà có cơ hồi.",
+    "shortAction": "Nên quay về đúng gốc và bắt đầu lại từ phần nhỏ; không nên nóng muốn lấy lại tất cả trong một lần."
   },
   {
     "no": 25,
     "symbol": "䷘",
     "han": "",
     "pinyin": "",
-    "vn": "Càn trên Chấn",
+    "vn": "Thiên Lôi Vô Vọng",
     "upper": "Càn",
     "lower": "Chấn",
     "tier7": "Cát",
-    "judgment": "Trời trên Sấm: thuận lợi; lấy đức kiện – động mà xử việc.",
-    "image": "Trời ở trên Sấm: quân tử kiện để động đúng thời.",
+    "judgment": "Trời ở trên Sấm: chân thì thông, vọng thì dễ chuốc họa.",
+    "image": "Trời ở trên Sấm: chân thì thông, vọng thì dễ chuốc họa.",
     "keywords": [],
     "do": [
       "chủ động lãnh đạo",
@@ -772,19 +844,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Vàng kim",
-    "directionHint": "Tây Bắc"
+    "directionHint": "Tây Bắc",
+    "fullName": "Thiên Lôi Vô Vọng",
+    "shortMeaning": "Trời ở trên Sấm: chân thì thông, vọng thì dễ chuốc họa.",
+    "shortAction": "Nên giữ ý ngay và làm điều hợp lẽ; không nên toan tính quanh co hoặc cầu may trái đạo."
   },
   {
     "no": 26,
     "symbol": "䷙",
     "han": "",
     "pinyin": "",
-    "vn": "Cấn trên Càn",
+    "vn": "Sơn Thiên Đại Súc",
     "upper": "Cấn",
     "lower": "Càn",
     "tier7": "Đại Cát",
-    "judgment": "Núi trên Trời: thuận lợi; lấy đức chỉ – kiện mà xử việc.",
-    "image": "Núi ở trên Trời: quân tử chỉ để kiện đúng thời.",
+    "judgment": "Núi ở trên Trời: có lực mà biết giữ, càng dưỡng càng thành lớn.",
+    "image": "Núi ở trên Trời: có lực mà biết giữ, càng dưỡng càng thành lớn.",
     "keywords": [],
     "do": [
       "dừng để quan sát",
@@ -803,19 +878,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Nâu đất",
-    "directionHint": "Đông Bắc"
+    "directionHint": "Đông Bắc",
+    "fullName": "Sơn Thiên Đại Súc",
+    "shortMeaning": "Núi ở trên Trời: có lực mà biết giữ, càng dưỡng càng thành lớn.",
+    "shortAction": "Nên tích lực, học sâu và giữ kỷ luật; không nên bung hết vốn liếng khi chưa đủ thời."
   },
   {
     "no": 27,
     "symbol": "䷚",
     "han": "",
     "pinyin": "",
-    "vn": "Cấn trên Chấn",
+    "vn": "Sơn Lôi Di",
     "upper": "Cấn",
     "lower": "Chấn",
     "tier7": "Bình",
-    "judgment": "Núi trên Sấm: cân bằng; lấy đức chỉ – động mà xử việc.",
-    "image": "Núi ở trên Sấm: quân tử chỉ để động đúng thời.",
+    "judgment": "Núi ở trên Sấm: nuôi thân nuôi lời, nuôi đúng thì mạnh, nuôi lệch thì hại.",
+    "image": "Núi ở trên Sấm: nuôi thân nuôi lời, nuôi đúng thì mạnh, nuôi lệch thì hại.",
     "keywords": [],
     "do": [
       "dừng để quan sát",
@@ -834,19 +912,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Nâu đất",
-    "directionHint": "Đông Bắc"
+    "directionHint": "Đông Bắc",
+    "fullName": "Sơn Lôi Di",
+    "shortMeaning": "Núi ở trên Sấm: nuôi thân nuôi lời, nuôi đúng thì mạnh, nuôi lệch thì hại.",
+    "shortAction": "Nên giữ ăn nói và dưỡng sức cho đều; không nên phung phí khí lực hoặc nói lời thiếu cân nhắc."
   },
   {
     "no": 28,
     "symbol": "䷛",
     "han": "",
     "pinyin": "",
-    "vn": "Đoài trên Tốn",
+    "vn": "Trạch Phong Đại Quá",
     "upper": "Đoài",
     "lower": "Tốn",
     "tier7": "Tiểu Hung",
-    "judgment": "Đầm trên Gió: nhiều trở ngại; lấy đức duyệt – nhập mà xử việc.",
-    "image": "Đầm ở trên Gió: quân tử duyệt để nhập đúng thời.",
+    "judgment": "Đầm ở trên Gió: gánh đang nặng, vượt được nhờ biết chống đúng chỗ.",
+    "image": "Đầm ở trên Gió: gánh đang nặng, vượt được nhờ biết chống đúng chỗ.",
     "keywords": [],
     "do": [
       "kết nối đội nhóm",
@@ -865,19 +946,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Xám bạc",
-    "directionHint": "Tây"
+    "directionHint": "Tây",
+    "fullName": "Trạch Phong Đại Quá",
+    "shortMeaning": "Đầm ở trên Gió: gánh đang nặng, vượt được nhờ biết chống đúng chỗ.",
+    "shortAction": "Nên chọn việc trọng tâm và chịu lực có tính toán; không nên ôm thêm gánh hoặc cậy sức quá đà."
   },
   {
     "no": 29,
     "symbol": "䷜",
     "han": "",
     "pinyin": "",
-    "vn": "Khảm trên Khảm",
+    "vn": "Thuần Khảm",
     "upper": "Khảm",
     "lower": "Khảm",
     "tier7": "Hung",
-    "judgment": "Nước trên Nước: nhiều trở ngại; lấy đức hiểm – hiểm mà xử việc.",
-    "image": "Nước ở trên Nước: quân tử hiểm để hiểm đúng thời.",
+    "judgment": "Nước ở trên Nước: hiểm chồng lên hiểm, đi được nhờ giữ lòng không loạn.",
+    "image": "Nước ở trên Nước: hiểm chồng lên hiểm, đi được nhờ giữ lòng không loạn.",
     "keywords": [],
     "do": [
       "đánh giá rủi ro",
@@ -896,19 +980,22 @@
       "health": "Ngủ đủ; giảm căng thẳng."
     },
     "colorHint": "Đen huyền",
-    "directionHint": "Bắc"
+    "directionHint": "Bắc",
+    "fullName": "Thuần Khảm",
+    "shortMeaning": "Nước ở trên Nước: hiểm chồng lên hiểm, đi được nhờ giữ lòng không loạn.",
+    "shortAction": "Nên cẩn thận từng bước và giữ đầu óc tỉnh; không nên mạo hiểm hoặc lao vào chỗ chưa rõ."
   },
   {
     "no": 30,
     "symbol": "䷝",
     "han": "",
     "pinyin": "",
-    "vn": "Ly trên Ly",
+    "vn": "Thuần Ly",
     "upper": "Ly",
     "lower": "Ly",
     "tier7": "Cát",
-    "judgment": "Lửa trên Lửa: thuận lợi; lấy đức minh – minh mà xử việc.",
-    "image": "Lửa ở trên Lửa: quân tử minh để minh đúng thời.",
+    "judgment": "Lửa ở trên Lửa: sáng nhờ bám đúng chỗ, rực mà không bốc loạn.",
+    "image": "Lửa ở trên Lửa: sáng nhờ bám đúng chỗ, rực mà không bốc loạn.",
     "keywords": [],
     "do": [
       "làm rõ thông tin",
@@ -927,19 +1014,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Đỏ son",
-    "directionHint": "Nam"
+    "directionHint": "Nam",
+    "fullName": "Thuần Ly",
+    "shortMeaning": "Lửa ở trên Lửa: sáng nhờ bám đúng chỗ, rực mà không bốc loạn.",
+    "shortAction": "Nên soi rõ, nói rõ và làm rõ; không nên khoa trương hoặc để cảm xúc bùng quá tay."
   },
   {
     "no": 31,
     "symbol": "䷞",
     "han": "",
     "pinyin": "",
-    "vn": "Đoài trên Cấn",
+    "vn": "Trạch Sơn Hàm",
     "upper": "Đoài",
     "lower": "Cấn",
     "tier7": "Cát",
-    "judgment": "Đầm trên Núi: thuận lợi; lấy đức duyệt – chỉ mà xử việc.",
-    "image": "Đầm ở trên Núi: quân tử duyệt để chỉ đúng thời.",
+    "judgment": "Đầm ở trên Núi: cảm mà động, hợp ở sự chân thành và đúng mực.",
+    "image": "Đầm ở trên Núi: cảm mà động, hợp ở sự chân thành và đúng mực.",
     "keywords": [],
     "do": [
       "kết nối đội nhóm",
@@ -958,19 +1048,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Xám bạc",
-    "directionHint": "Tây"
+    "directionHint": "Tây",
+    "fullName": "Trạch Sơn Hàm",
+    "shortMeaning": "Đầm ở trên Núi: cảm mà động, hợp ở sự chân thành và đúng mực.",
+    "shortAction": "Nên mở lòng vừa đủ và dùng sự tinh tế để kết nối; không nên thử lòng hoặc dẫn dắt bằng cảm xúc thất thường."
   },
   {
     "no": 32,
     "symbol": "䷟",
     "han": "",
     "pinyin": "",
-    "vn": "Chấn trên Tốn",
+    "vn": "Lôi Phong Hằng",
     "upper": "Chấn",
     "lower": "Tốn",
     "tier7": "Cát",
-    "judgment": "Sấm trên Gió: thuận lợi; lấy đức động – nhập mà xử việc.",
-    "image": "Sấm ở trên Gió: quân tử động để nhập đúng thời.",
+    "judgment": "Sấm ở trên Gió: có động mà giữ được lâu, quý ở bền chí không đổi đạo.",
+    "image": "Sấm ở trên Gió: có động mà giữ được lâu, quý ở bền chí không đổi đạo.",
     "keywords": [],
     "do": [
       "khởi động nhanh",
@@ -989,19 +1082,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Xanh lục",
-    "directionHint": "Đông"
+    "directionHint": "Đông",
+    "fullName": "Lôi Phong Hằng",
+    "shortMeaning": "Sấm ở trên Gió: có động mà giữ được lâu, quý ở bền chí không đổi đạo.",
+    "shortAction": "Nên giữ việc đã chọn và làm đều tay; không nên đổi ý liên tục hoặc bỏ nửa đường."
   },
   {
     "no": 33,
     "symbol": "䷠",
     "han": "",
     "pinyin": "",
-    "vn": "Càn trên Cấn",
+    "vn": "Thiên Sơn Độn",
     "upper": "Càn",
     "lower": "Cấn",
     "tier7": "Bình",
-    "judgment": "Trời trên Núi: cân bằng; lấy đức kiện – chỉ mà xử việc.",
-    "image": "Trời ở trên Núi: quân tử kiện để chỉ đúng thời.",
+    "judgment": "Trời ở trên Núi: biết lui là để giữ thế, không phải vì yếu.",
+    "image": "Trời ở trên Núi: biết lui là để giữ thế, không phải vì yếu.",
     "keywords": [],
     "do": [
       "chủ động lãnh đạo",
@@ -1020,19 +1116,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Vàng kim",
-    "directionHint": "Tây Bắc"
+    "directionHint": "Tây Bắc",
+    "fullName": "Thiên Sơn Độn",
+    "shortMeaning": "Trời ở trên Núi: biết lui là để giữ thế, không phải vì yếu.",
+    "shortAction": "Nên lùi một bước để bảo toàn lực; không nên cố chống khi thế đã nghịch."
   },
   {
     "no": 34,
     "symbol": "䷡",
     "han": "",
     "pinyin": "",
-    "vn": "Chấn trên Càn",
+    "vn": "Lôi Thiên Đại Tráng",
     "upper": "Chấn",
     "lower": "Càn",
     "tier7": "Đại Cát",
-    "judgment": "Sấm trên Trời: thuận lợi; lấy đức động – kiện mà xử việc.",
-    "image": "Sấm ở trên Trời: quân tử động để kiện đúng thời.",
+    "judgment": "Sấm ở trên Trời: mạnh mà không biết giữ mực thì dễ hóa thành va chạm.",
+    "image": "Sấm ở trên Trời: mạnh mà không biết giữ mực thì dễ hóa thành va chạm.",
     "keywords": [],
     "do": [
       "khởi động nhanh",
@@ -1051,19 +1150,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Xanh lục",
-    "directionHint": "Đông"
+    "directionHint": "Đông",
+    "fullName": "Lôi Thiên Đại Tráng",
+    "shortMeaning": "Sấm ở trên Trời: mạnh mà không biết giữ mực thì dễ hóa thành va chạm.",
+    "shortAction": "Nên tiến bằng chính khí và có giới hạn; không nên cậy mạnh hoặc ép người theo mình."
   },
   {
     "no": 35,
     "symbol": "䷢",
     "han": "",
     "pinyin": "",
-    "vn": "Ly trên Khôn",
+    "vn": "Hỏa Địa Tấn",
     "upper": "Ly",
     "lower": "Khôn",
     "tier7": "Cát",
-    "judgment": "Lửa trên Đất: thuận lợi; lấy đức minh – nhu mà xử việc.",
-    "image": "Lửa ở trên Đất: quân tử minh để nhu đúng thời.",
+    "judgment": "Lửa ở trên Đất: sáng dần mà đi lên, thuận ở chỗ minh và chính.",
+    "image": "Lửa ở trên Đất: sáng dần mà đi lên, thuận ở chỗ minh và chính.",
     "keywords": [],
     "do": [
       "làm rõ thông tin",
@@ -1082,19 +1184,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Đỏ son",
-    "directionHint": "Nam"
+    "directionHint": "Nam",
+    "fullName": "Hỏa Địa Tấn",
+    "shortMeaning": "Lửa ở trên Đất: sáng dần mà đi lên, thuận ở chỗ minh và chính.",
+    "shortAction": "Nên chủ động bước tới và trình bày rõ năng lực; không nên giấu mình quá mức hoặc chần chừ bỏ cơ."
   },
   {
     "no": 36,
     "symbol": "䷣",
     "han": "",
     "pinyin": "",
-    "vn": "Khôn trên Ly",
+    "vn": "Địa Hỏa Minh Di",
     "upper": "Khôn",
     "lower": "Ly",
     "tier7": "Tiểu Hung",
-    "judgment": "Đất trên Lửa: nhiều trở ngại; lấy đức nhu – minh mà xử việc.",
-    "image": "Đất ở trên Lửa: quân tử nhu để minh đúng thời.",
+    "judgment": "Đất ở trên Lửa: sáng mà bị che, giữ sáng trong lòng mới vượt được tối ngoài.",
+    "image": "Đất ở trên Lửa: sáng mà bị che, giữ sáng trong lòng mới vượt được tối ngoài.",
     "keywords": [],
     "do": [
       "xây nền tảng",
@@ -1113,19 +1218,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Nâu đất",
-    "directionHint": "Tây Nam"
+    "directionHint": "Tây Nam",
+    "fullName": "Địa Hỏa Minh Di",
+    "shortMeaning": "Đất ở trên Lửa: sáng mà bị che, giữ sáng trong lòng mới vượt được tối ngoài.",
+    "shortAction": "Nên kín đáo giữ lực và bảo toàn điều quý; không nên phô bày hết hoặc chống đầu diện khi bất lợi."
   },
   {
     "no": 37,
     "symbol": "䷤",
     "han": "",
     "pinyin": "",
-    "vn": "Tốn trên Ly",
+    "vn": "Phong Hỏa Gia Nhân",
     "upper": "Tốn",
     "lower": "Ly",
     "tier7": "Cát",
-    "judgment": "Gió trên Lửa: thuận lợi; lấy đức nhập – minh mà xử việc.",
-    "image": "Gió ở trên Lửa: quân tử nhập để minh đúng thời.",
+    "judgment": "Gió ở trên Lửa: trong ngoài có nề nếp thì việc nhà việc nhóm mới yên.",
+    "image": "Gió ở trên Lửa: trong ngoài có nề nếp thì việc nhà việc nhóm mới yên.",
     "keywords": [],
     "do": [
       "thương lượng mềm dẻo",
@@ -1144,19 +1252,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Xanh lục",
-    "directionHint": "Đông Nam"
+    "directionHint": "Đông Nam",
+    "fullName": "Phong Hỏa Gia Nhân",
+    "shortMeaning": "Gió ở trên Lửa: trong ngoài có nề nếp thì việc nhà việc nhóm mới yên.",
+    "shortAction": "Nên giữ trật tự nội bộ và nói chuyện rõ ràng; không nên buông nề nếp hoặc đem việc riêng làm loạn việc chung."
   },
   {
     "no": 38,
     "symbol": "䷥",
     "han": "",
     "pinyin": "",
-    "vn": "Ly trên Đoài",
+    "vn": "Hỏa Trạch Khuê",
     "upper": "Ly",
     "lower": "Đoài",
     "tier7": "Bình",
-    "judgment": "Lửa trên Đầm: cân bằng; lấy đức minh – duyệt mà xử việc.",
-    "image": "Lửa ở trên Đầm: quân tử minh để duyệt đúng thời.",
+    "judgment": "Lửa ở trên Đầm: cùng sáng mà khác hướng, quý ở biết phân mà không vỡ.",
+    "image": "Lửa ở trên Đầm: cùng sáng mà khác hướng, quý ở biết phân mà không vỡ.",
     "keywords": [],
     "do": [
       "làm rõ thông tin",
@@ -1175,19 +1286,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Đỏ son",
-    "directionHint": "Nam"
+    "directionHint": "Nam",
+    "fullName": "Hỏa Trạch Khuê",
+    "shortMeaning": "Lửa ở trên Đầm: cùng sáng mà khác hướng, quý ở biết phân mà không vỡ.",
+    "shortAction": "Nên tôn trọng khác biệt và chốt điểm chung trước; không nên cố đồng nhất mọi người bằng ép buộc."
   },
   {
     "no": 39,
     "symbol": "䷦",
     "han": "",
     "pinyin": "",
-    "vn": "Khảm trên Cấn",
+    "vn": "Thủy Sơn Kiển",
     "upper": "Khảm",
     "lower": "Cấn",
     "tier7": "Tiểu Hung",
-    "judgment": "Nước trên Núi: nhiều trở ngại; lấy đức hiểm – chỉ mà xử việc.",
-    "image": "Nước ở trên Núi: quân tử hiểm để chỉ đúng thời.",
+    "judgment": "Nước ở trên Núi: trước mặt có cản, vượt được nhờ biết vòng chứ không đâm thẳng.",
+    "image": "Nước ở trên Núi: trước mặt có cản, vượt được nhờ biết vòng chứ không đâm thẳng.",
     "keywords": [],
     "do": [
       "đánh giá rủi ro",
@@ -1206,19 +1320,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Đen huyền",
-    "directionHint": "Bắc"
+    "directionHint": "Bắc",
+    "fullName": "Thủy Sơn Kiển",
+    "shortMeaning": "Nước ở trên Núi: trước mặt có cản, vượt được nhờ biết vòng chứ không đâm thẳng.",
+    "shortAction": "Nên đổi lối đi và cầu người trợ giúp; không nên cưỡng vượt chướng ngại bằng sức đơn độc."
   },
   {
     "no": 40,
     "symbol": "䷧",
     "han": "",
     "pinyin": "",
-    "vn": "Chấn trên Khảm",
+    "vn": "Lôi Thủy Giải",
     "upper": "Chấn",
     "lower": "Khảm",
     "tier7": "Cát",
-    "judgment": "Sấm trên Nước: thuận lợi; lấy đức động – hiểm mà xử việc.",
-    "image": "Sấm ở trên Nước: quân tử động để hiểm đúng thời.",
+    "judgment": "Sấm ở trên Nước: động mà mở khóa, tan được nhờ dám gỡ đúng chỗ.",
+    "image": "Sấm ở trên Nước: động mà mở khóa, tan được nhờ dám gỡ đúng chỗ.",
     "keywords": [],
     "do": [
       "khởi động nhanh",
@@ -1237,19 +1354,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Xanh lục",
-    "directionHint": "Đông"
+    "directionHint": "Đông",
+    "fullName": "Lôi Thủy Giải",
+    "shortMeaning": "Sấm ở trên Nước: động mà mở khóa, tan được nhờ dám gỡ đúng chỗ.",
+    "shortAction": "Nên tháo nút, giải áp và xử lý việc mắc lại; không nên giữ oán hoặc kéo dài điều đã đến lúc gỡ."
   },
   {
     "no": 41,
     "symbol": "䷨",
     "han": "",
     "pinyin": "",
-    "vn": "Cấn trên Đoài",
+    "vn": "Sơn Trạch Tổn",
     "upper": "Cấn",
     "lower": "Đoài",
     "tier7": "Bình",
-    "judgment": "Núi trên Đầm: cân bằng; lấy đức chỉ – duyệt mà xử việc.",
-    "image": "Núi ở trên Đầm: quân tử chỉ để duyệt đúng thời.",
+    "judgment": "Núi ở trên Đầm: bớt đi để giữ phần tinh, lùi bớt để việc khỏi vỡ.",
+    "image": "Núi ở trên Đầm: bớt đi để giữ phần tinh, lùi bớt để việc khỏi vỡ.",
     "keywords": [],
     "do": [
       "dừng để quan sát",
@@ -1268,19 +1388,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Nâu đất",
-    "directionHint": "Đông Bắc"
+    "directionHint": "Đông Bắc",
+    "fullName": "Sơn Trạch Tổn",
+    "shortMeaning": "Núi ở trên Đầm: bớt đi để giữ phần tinh, lùi bớt để việc khỏi vỡ.",
+    "shortAction": "Nên giảm phần thừa và giữ nhịp tiết chế; không nên tham thêm hoặc cố ôm mọi thứ."
   },
   {
     "no": 42,
     "symbol": "䷩",
     "han": "",
     "pinyin": "",
-    "vn": "Tốn trên Chấn",
+    "vn": "Phong Lôi Ích",
     "upper": "Tốn",
     "lower": "Chấn",
     "tier7": "Đại Cát",
-    "judgment": "Gió trên Sấm: thuận lợi; lấy đức nhập – động mà xử việc.",
-    "image": "Gió ở trên Sấm: quân tử nhập để động đúng thời.",
+    "judgment": "Gió ở trên Sấm: thêm đúng chỗ thì lớn nhanh, giúp đúng người thì lực mạnh.",
+    "image": "Gió ở trên Sấm: thêm đúng chỗ thì lớn nhanh, giúp đúng người thì lực mạnh.",
     "keywords": [],
     "do": [
       "thương lượng mềm dẻo",
@@ -1299,19 +1422,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Xanh lục",
-    "directionHint": "Đông Nam"
+    "directionHint": "Đông Nam",
+    "fullName": "Phong Lôi Ích",
+    "shortMeaning": "Gió ở trên Sấm: thêm đúng chỗ thì lớn nhanh, giúp đúng người thì lực mạnh.",
+    "shortAction": "Nên bồi thêm vào phần có ích và chia lực hợp lý; không nên vun sai chỗ hoặc cho ra vô độ."
   },
   {
     "no": 43,
     "symbol": "䷪",
     "han": "",
     "pinyin": "",
-    "vn": "Đoài trên Càn",
+    "vn": "Trạch Thiên Quải",
     "upper": "Đoài",
     "lower": "Càn",
     "tier7": "Tiểu Hung",
-    "judgment": "Đầm trên Trời: nhiều trở ngại; lấy đức duyệt – kiện mà xử việc.",
-    "image": "Đầm ở trên Trời: quân tử duyệt để kiện đúng thời.",
+    "judgment": "Đầm ở trên Trời: đã đến lúc quyết, nhưng quyết phải sáng và thẳng.",
+    "image": "Đầm ở trên Trời: đã đến lúc quyết, nhưng quyết phải sáng và thẳng.",
     "keywords": [],
     "do": [
       "kết nối đội nhóm",
@@ -1330,19 +1456,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Xám bạc",
-    "directionHint": "Tây"
+    "directionHint": "Tây",
+    "fullName": "Trạch Thiên Quải",
+    "shortMeaning": "Đầm ở trên Trời: đã đến lúc quyết, nhưng quyết phải sáng và thẳng.",
+    "shortAction": "Nên nói rõ điều cần cắt và chốt việc tồn đọng; không nên nửa vời hoặc quyết trong giận."
   },
   {
     "no": 44,
     "symbol": "䷫",
     "han": "",
     "pinyin": "",
-    "vn": "Càn trên Tốn",
+    "vn": "Thiên Phong Cấu",
     "upper": "Càn",
     "lower": "Tốn",
     "tier7": "Tiểu Hung",
-    "judgment": "Trời trên Gió: nhiều trở ngại; lấy đức kiện – nhập mà xử việc.",
-    "image": "Trời ở trên Gió: quân tử kiện để nhập đúng thời.",
+    "judgment": "Trời ở trên Gió: sự gặp gỡ đến nhanh, quý ở tỉnh táo hơn là ham theo.",
+    "image": "Trời ở trên Gió: sự gặp gỡ đến nhanh, quý ở tỉnh táo hơn là ham theo.",
     "keywords": [],
     "do": [
       "chủ động lãnh đạo",
@@ -1361,19 +1490,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Vàng kim",
-    "directionHint": "Tây Bắc"
+    "directionHint": "Tây Bắc",
+    "fullName": "Thiên Phong Cấu",
+    "shortMeaning": "Trời ở trên Gió: sự gặp gỡ đến nhanh, quý ở tỉnh táo hơn là ham theo.",
+    "shortAction": "Nên giữ chừng mực khi tiếp xúc điều mới; không nên để hấp dẫn nhất thời kéo lệch đường."
   },
   {
     "no": 45,
     "symbol": "䷬",
     "han": "",
     "pinyin": "",
-    "vn": "Đoài trên Khôn",
+    "vn": "Trạch Địa Tụy",
     "upper": "Đoài",
     "lower": "Khôn",
     "tier7": "Cát",
-    "judgment": "Đầm trên Đất: thuận lợi; lấy đức duyệt – nhu mà xử việc.",
-    "image": "Đầm ở trên Đất: quân tử duyệt để nhu đúng thời.",
+    "judgment": "Đầm ở trên Đất: người về một chỗ, quý ở có tâm điểm để gom lòng.",
+    "image": "Đầm ở trên Đất: người về một chỗ, quý ở có tâm điểm để gom lòng.",
     "keywords": [],
     "do": [
       "kết nối đội nhóm",
@@ -1392,19 +1524,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Xám bạc",
-    "directionHint": "Tây"
+    "directionHint": "Tây",
+    "fullName": "Trạch Địa Tụy",
+    "shortMeaning": "Đầm ở trên Đất: người về một chỗ, quý ở có tâm điểm để gom lòng.",
+    "shortAction": "Nên tụ lực, gom người và dựng trung tâm rõ; không nên tụ mà thiếu nguyên tắc hoặc kéo bè theo cảm tính."
   },
   {
     "no": 46,
     "symbol": "䷭",
     "han": "",
     "pinyin": "",
-    "vn": "Khôn trên Tốn",
+    "vn": "Địa Phong Thăng",
     "upper": "Khôn",
     "lower": "Tốn",
     "tier7": "Cát",
-    "judgment": "Đất trên Gió: thuận lợi; lấy đức nhu – nhập mà xử việc.",
-    "image": "Đất ở trên Gió: quân tử nhu để nhập đúng thời.",
+    "judgment": "Đất ở trên Gió: đi lên nhờ rễ bền, tiến chậm mà lên thật.",
+    "image": "Đất ở trên Gió: đi lên nhờ rễ bền, tiến chậm mà lên thật.",
     "keywords": [],
     "do": [
       "xây nền tảng",
@@ -1423,19 +1558,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Nâu đất",
-    "directionHint": "Tây Nam"
+    "directionHint": "Tây Nam",
+    "fullName": "Địa Phong Thăng",
+    "shortMeaning": "Đất ở trên Gió: đi lên nhờ rễ bền, tiến chậm mà lên thật.",
+    "shortAction": "Nên đi từng nấc và xây nền chắc; không nên nóng muốn nhảy cấp hoặc phô công quá sớm."
   },
   {
     "no": 47,
     "symbol": "䷮",
     "han": "",
     "pinyin": "",
-    "vn": "Đoài trên Khảm",
+    "vn": "Trạch Thủy Khốn",
     "upper": "Đoài",
     "lower": "Khảm",
     "tier7": "Hung",
-    "judgment": "Đầm trên Nước: nhiều trở ngại; lấy đức duyệt – hiểm mà xử việc.",
-    "image": "Đầm ở trên Nước: quân tử duyệt để hiểm đúng thời.",
+    "judgment": "Đầm ở trên Nước: trong thiếu ngoài ép, vượt được nhờ giữ chí và bớt tiêu hao.",
+    "image": "Đầm ở trên Nước: trong thiếu ngoài ép, vượt được nhờ giữ chí và bớt tiêu hao.",
     "keywords": [],
     "do": [
       "kết nối đội nhóm",
@@ -1454,19 +1592,22 @@
       "health": "Ngủ đủ; giảm căng thẳng."
     },
     "colorHint": "Xám bạc",
-    "directionHint": "Tây"
+    "directionHint": "Tây",
+    "fullName": "Trạch Thủy Khốn",
+    "shortMeaning": "Đầm ở trên Nước: trong thiếu ngoài ép, vượt được nhờ giữ chí và bớt tiêu hao.",
+    "shortAction": "Nên giữ sức, co lực và làm phần cốt lõi; không nên than vãn hoặc cố bung khi nguồn đã mỏng."
   },
   {
     "no": 48,
     "symbol": "䷯",
     "han": "",
     "pinyin": "",
-    "vn": "Khảm trên Tốn",
+    "vn": "Thủy Phong Tỉnh",
     "upper": "Khảm",
     "lower": "Tốn",
     "tier7": "Cát",
-    "judgment": "Nước trên Gió: thuận lợi; lấy đức hiểm – nhập mà xử việc.",
-    "image": "Nước ở trên Gió: quân tử hiểm để nhập đúng thời.",
+    "judgment": "Nước ở trên Gió: giếng còn đó, quý ở sửa miệng giếng chứ không bỏ nguồn.",
+    "image": "Nước ở trên Gió: giếng còn đó, quý ở sửa miệng giếng chứ không bỏ nguồn.",
     "keywords": [],
     "do": [
       "đánh giá rủi ro",
@@ -1485,19 +1626,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Đen huyền",
-    "directionHint": "Bắc"
+    "directionHint": "Bắc",
+    "fullName": "Thủy Phong Tỉnh",
+    "shortMeaning": "Nước ở trên Gió: giếng còn đó, quý ở sửa miệng giếng chứ không bỏ nguồn.",
+    "shortAction": "Nên chỉnh hệ nền và chăm nguồn lực lâu dài; không nên chỉ vá phần ngọn hoặc đổi hướng vô căn."
   },
   {
     "no": 49,
     "symbol": "䷰",
     "han": "",
     "pinyin": "",
-    "vn": "Ly trên Đoài",
+    "vn": "Trạch Hỏa Cách",
     "upper": "Ly",
     "lower": "Đoài",
     "tier7": "Cát",
-    "judgment": "Lửa trên Đầm: thuận lợi; lấy đức minh – duyệt mà xử việc.",
-    "image": "Lửa ở trên Đầm: quân tử minh để duyệt đúng thời.",
+    "judgment": "Đầm ở trên Lửa: đã đến lúc thay, đổi đúng thời thì mới hóa mới.",
+    "image": "Đầm ở trên Lửa: đã đến lúc thay, đổi đúng thời thì mới hóa mới.",
     "keywords": [],
     "do": [
       "làm rõ thông tin",
@@ -1516,19 +1660,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Đỏ son",
-    "directionHint": "Nam"
+    "directionHint": "Nam",
+    "fullName": "Trạch Hỏa Cách",
+    "shortMeaning": "Đầm ở trên Lửa: đã đến lúc thay, đổi đúng thời thì mới hóa mới.",
+    "shortAction": "Nên cải tổ điều đã cũ và cắt phần không hợp nữa; không nên đổi bốc đồng hoặc lật bàn vì cảm xúc."
   },
   {
     "no": 50,
     "symbol": "䷱",
     "han": "",
     "pinyin": "",
-    "vn": "Ly trên Tốn",
+    "vn": "Hỏa Phong Đỉnh",
     "upper": "Ly",
     "lower": "Tốn",
     "tier7": "Đại Cát",
-    "judgment": "Lửa trên Gió: thuận lợi; lấy đức minh – nhập mà xử việc.",
-    "image": "Lửa ở trên Gió: quân tử minh để nhập đúng thời.",
+    "judgment": "Lửa ở trên Gió: nấu mà thành vị, quý ở dụng người và dưỡng thành quả.",
+    "image": "Lửa ở trên Gió: nấu mà thành vị, quý ở dụng người và dưỡng thành quả.",
     "keywords": [],
     "do": [
       "làm rõ thông tin",
@@ -1547,19 +1694,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Đỏ son",
-    "directionHint": "Nam"
+    "directionHint": "Nam",
+    "fullName": "Hỏa Phong Đỉnh",
+    "shortMeaning": "Lửa ở trên Gió: nấu mà thành vị, quý ở dụng người và dưỡng thành quả.",
+    "shortAction": "Nên nâng chất lượng và nuôi việc tới độ chín; không nên làm vội cho xong hoặc dùng sai người."
   },
   {
     "no": 51,
     "symbol": "䷲",
     "han": "",
     "pinyin": "",
-    "vn": "Chấn trên Chấn",
+    "vn": "Thuần Chấn",
     "upper": "Chấn",
     "lower": "Chấn",
     "tier7": "Tiểu Hung",
-    "judgment": "Sấm trên Sấm: nhiều trở ngại; lấy đức động – động mà xử việc.",
-    "image": "Sấm ở trên Sấm: quân tử động để động đúng thời.",
+    "judgment": "Sấm ở trên Sấm: động đến bất ngờ, giữ tâm vững mới không loạn bước.",
+    "image": "Sấm ở trên Sấm: động đến bất ngờ, giữ tâm vững mới không loạn bước.",
     "keywords": [],
     "do": [
       "làm thử nhỏ trước",
@@ -1578,19 +1728,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Xanh lục",
-    "directionHint": "Đông"
+    "directionHint": "Đông",
+    "fullName": "Thuần Chấn",
+    "shortMeaning": "Sấm ở trên Sấm: động đến bất ngờ, giữ tâm vững mới không loạn bước.",
+    "shortAction": "Nên bình tĩnh phản ứng và chấn chỉnh ngay điều lệch; không nên hốt hoảng hoặc quyết bừa trong chấn động."
   },
   {
     "no": 52,
     "symbol": "䷳",
     "han": "",
     "pinyin": "",
-    "vn": "Cấn trên Cấn",
+    "vn": "Thuần Cấn",
     "upper": "Cấn",
     "lower": "Cấn",
     "tier7": "Bình",
-    "judgment": "Núi trên Núi: cân bằng; lấy đức chỉ – chỉ mà xử việc.",
-    "image": "Núi ở trên Núi: quân tử chỉ để chỉ đúng thời.",
+    "judgment": "Núi ở trên Núi: biết dừng đúng chỗ thì tâm yên, việc cũng khỏi loạn.",
+    "image": "Núi ở trên Núi: biết dừng đúng chỗ thì tâm yên, việc cũng khỏi loạn.",
     "keywords": [],
     "do": [
       "dừng để quan sát",
@@ -1609,19 +1762,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Nâu đất",
-    "directionHint": "Đông Bắc"
+    "directionHint": "Đông Bắc",
+    "fullName": "Thuần Cấn",
+    "shortMeaning": "Núi ở trên Núi: biết dừng đúng chỗ thì tâm yên, việc cũng khỏi loạn.",
+    "shortAction": "Nên dừng lại để nhìn rõ và giữ mình; không nên cố chạy tiếp khi khí đã rối."
   },
   {
     "no": 53,
     "symbol": "䷴",
     "han": "",
     "pinyin": "",
-    "vn": "Tốn trên Cấn",
+    "vn": "Phong Sơn Tiệm",
     "upper": "Tốn",
     "lower": "Cấn",
     "tier7": "Cát",
-    "judgment": "Gió trên Núi: thuận lợi; lấy đức nhập – chỉ mà xử việc.",
-    "image": "Gió ở trên Núi: quân tử nhập để chỉ đúng thời.",
+    "judgment": "Gió ở trên Núi: tiến dần từng bậc, chậm mà chắc mới thành lâu.",
+    "image": "Gió ở trên Núi: tiến dần từng bậc, chậm mà chắc mới thành lâu.",
     "keywords": [],
     "do": [
       "thương lượng mềm dẻo",
@@ -1640,19 +1796,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Xanh lục",
-    "directionHint": "Đông Nam"
+    "directionHint": "Đông Nam",
+    "fullName": "Phong Sơn Tiệm",
+    "shortMeaning": "Gió ở trên Núi: tiến dần từng bậc, chậm mà chắc mới thành lâu.",
+    "shortAction": "Nên tiến từng bước và để việc chín dần; không nên hấp tấp đòi kết quả vượt nhịp."
   },
   {
     "no": 54,
     "symbol": "䷵",
     "han": "",
     "pinyin": "",
-    "vn": "Chấn trên Đoài",
+    "vn": "Lôi Trạch Quy Muội",
     "upper": "Chấn",
     "lower": "Đoài",
     "tier7": "Tiểu Hung",
-    "judgment": "Sấm trên Đầm: nhiều trở ngại; lấy đức động – duyệt mà xử việc.",
-    "image": "Sấm ở trên Đầm: quân tử động để duyệt đúng thời.",
+    "judgment": "Sấm ở trên Đầm: hợp mà chưa chính vị, ham kết sớm dễ sinh bất ổn.",
+    "image": "Sấm ở trên Đầm: hợp mà chưa chính vị, ham kết sớm dễ sinh bất ổn.",
     "keywords": [],
     "do": [
       "làm thử nhỏ trước",
@@ -1671,19 +1830,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Xanh lục",
-    "directionHint": "Đông"
+    "directionHint": "Đông",
+    "fullName": "Lôi Trạch Quy Muội",
+    "shortMeaning": "Sấm ở trên Đầm: hợp mà chưa chính vị, ham kết sớm dễ sinh bất ổn.",
+    "shortAction": "Nên giữ lễ và xem kỹ vị trí của mình; không nên vội ràng buộc hoặc quyết theo cảm xúc nhất thời."
   },
   {
     "no": 55,
     "symbol": "䷶",
     "han": "",
     "pinyin": "",
-    "vn": "Chấn trên Ly",
+    "vn": "Lôi Hỏa Phong",
     "upper": "Chấn",
     "lower": "Ly",
     "tier7": "Đại Cát",
-    "judgment": "Sấm trên Lửa: thuận lợi; lấy đức động – minh mà xử việc.",
-    "image": "Sấm ở trên Lửa: quân tử động để minh đúng thời.",
+    "judgment": "Sấm ở trên Lửa: sáng mạnh mà rực lớn, càng thịnh càng cần giữ tâm không loạn.",
+    "image": "Sấm ở trên Lửa: sáng mạnh mà rực lớn, càng thịnh càng cần giữ tâm không loạn.",
     "keywords": [],
     "do": [
       "khởi động nhanh",
@@ -1702,19 +1864,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Xanh lục",
-    "directionHint": "Đông"
+    "directionHint": "Đông",
+    "fullName": "Lôi Hỏa Phong",
+    "shortMeaning": "Sấm ở trên Lửa: sáng mạnh mà rực lớn, càng thịnh càng cần giữ tâm không loạn.",
+    "shortAction": "Nên nắm cơ hội khi thế đang lên; không nên say thắng hoặc để việc vượt khỏi tay mình."
   },
   {
     "no": 56,
     "symbol": "䷷",
     "han": "",
     "pinyin": "",
-    "vn": "Ly trên Cấn",
+    "vn": "Hỏa Sơn Lữ",
     "upper": "Ly",
     "lower": "Cấn",
     "tier7": "Tiểu Hung",
-    "judgment": "Lửa trên Núi: nhiều trở ngại; lấy đức minh – chỉ mà xử việc.",
-    "image": "Lửa ở trên Núi: quân tử minh để chỉ đúng thời.",
+    "judgment": "Lửa ở trên Núi: đi xa nên giữ mình, đến đâu cũng phải biết phận và biết mực.",
+    "image": "Lửa ở trên Núi: đi xa nên giữ mình, đến đâu cũng phải biết phận và biết mực.",
     "keywords": [],
     "do": [
       "làm rõ thông tin",
@@ -1733,19 +1898,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Đỏ son",
-    "directionHint": "Nam"
+    "directionHint": "Nam",
+    "fullName": "Hỏa Sơn Lữ",
+    "shortMeaning": "Lửa ở trên Núi: đi xa nên giữ mình, đến đâu cũng phải biết phận và biết mực.",
+    "shortAction": "Nên linh hoạt mà giữ lễ; không nên coi nhẹ chỗ người hoặc hành động như đang ở sân nhà."
   },
   {
     "no": 57,
     "symbol": "䷸",
     "han": "",
     "pinyin": "",
-    "vn": "Tốn trên Tốn",
+    "vn": "Thuần Tốn",
     "upper": "Tốn",
     "lower": "Tốn",
     "tier7": "Cát",
-    "judgment": "Gió trên Gió: thuận lợi; lấy đức nhập – nhập mà xử việc.",
-    "image": "Gió ở trên Gió: quân tử nhập để nhập đúng thời.",
+    "judgment": "Gió ở trên Gió: vào sâu bằng nhu, thấm lâu thì việc mới đổi.",
+    "image": "Gió ở trên Gió: vào sâu bằng nhu, thấm lâu thì việc mới đổi.",
     "keywords": [],
     "do": [
       "thương lượng mềm dẻo",
@@ -1764,19 +1932,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Xanh lục",
-    "directionHint": "Đông Nam"
+    "directionHint": "Đông Nam",
+    "fullName": "Thuần Tốn",
+    "shortMeaning": "Gió ở trên Gió: vào sâu bằng nhu, thấm lâu thì việc mới đổi.",
+    "shortAction": "Nên mềm mà bền, đi từng lớp cho thấu; không nên ép thẳng hoặc nóng muốn thấy chuyển ngay."
   },
   {
     "no": 58,
     "symbol": "䷹",
     "han": "",
     "pinyin": "",
-    "vn": "Đoài trên Đoài",
+    "vn": "Thuần Đoài",
     "upper": "Đoài",
     "lower": "Đoài",
     "tier7": "Cát",
-    "judgment": "Đầm trên Đầm: thuận lợi; lấy đức duyệt – duyệt mà xử việc.",
-    "image": "Đầm ở trên Đầm: quân tử duyệt để duyệt đúng thời.",
+    "judgment": "Đầm ở trên Đầm: vui nhờ hòa khí, nhưng vui quá đà thì tâm dễ tán.",
+    "image": "Đầm ở trên Đầm: vui nhờ hòa khí, nhưng vui quá đà thì tâm dễ tán.",
     "keywords": [],
     "do": [
       "kết nối đội nhóm",
@@ -1795,19 +1966,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Xám bạc",
-    "directionHint": "Tây"
+    "directionHint": "Tây",
+    "fullName": "Thuần Đoài",
+    "shortMeaning": "Đầm ở trên Đầm: vui nhờ hòa khí, nhưng vui quá đà thì tâm dễ tán.",
+    "shortAction": "Nên dùng lời mềm và giữ không khí thuận; không nên vui miệng quá mức hoặc hứa điều chưa chắc."
   },
   {
     "no": 59,
     "symbol": "䷺",
     "han": "",
     "pinyin": "",
-    "vn": "Tốn trên Khảm",
+    "vn": "Phong Thủy Hoán",
     "upper": "Tốn",
     "lower": "Khảm",
     "tier7": "Cát",
-    "judgment": "Gió trên Nước: thuận lợi; lấy đức nhập – hiểm mà xử việc.",
-    "image": "Gió ở trên Nước: quân tử nhập để hiểm đúng thời.",
+    "judgment": "Gió ở trên Nước: tán để thông, gỡ được nghẽn thì dòng mới chảy.",
+    "image": "Gió ở trên Nước: tán để thông, gỡ được nghẽn thì dòng mới chảy.",
     "keywords": [],
     "do": [
       "thương lượng mềm dẻo",
@@ -1826,19 +2000,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Xanh lục",
-    "directionHint": "Đông Nam"
+    "directionHint": "Đông Nam",
+    "fullName": "Phong Thủy Hoán",
+    "shortMeaning": "Gió ở trên Nước: tán để thông, gỡ được nghẽn thì dòng mới chảy.",
+    "shortAction": "Nên giải tỏa, khai thông và nói cho rõ; không nên giữ cục nghẹn hoặc gom chuyện thành nút lớn."
   },
   {
     "no": 60,
     "symbol": "䷻",
     "han": "",
     "pinyin": "",
-    "vn": "Khảm trên Đoài",
+    "vn": "Thủy Trạch Tiết",
     "upper": "Khảm",
     "lower": "Đoài",
     "tier7": "Bình",
-    "judgment": "Nước trên Đầm: cân bằng; lấy đức hiểm – duyệt mà xử việc.",
-    "image": "Nước ở trên Đầm: quân tử hiểm để duyệt đúng thời.",
+    "judgment": "Nước ở trên Đầm: có giới hạn thì mới bền, có tiết chế thì việc mới lâu.",
+    "image": "Nước ở trên Đầm: có giới hạn thì mới bền, có tiết chế thì việc mới lâu.",
     "keywords": [],
     "do": [
       "đánh giá rủi ro",
@@ -1857,19 +2034,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Đen huyền",
-    "directionHint": "Bắc"
+    "directionHint": "Bắc",
+    "fullName": "Thủy Trạch Tiết",
+    "shortMeaning": "Nước ở trên Đầm: có giới hạn thì mới bền, có tiết chế thì việc mới lâu.",
+    "shortAction": "Nên đặt khuôn rõ và giữ chừng mực; không nên buông tay quá mức hoặc siết người đến ngột."
   },
   {
     "no": 61,
     "symbol": "䷼",
     "han": "",
     "pinyin": "",
-    "vn": "Tốn trên Đoài",
+    "vn": "Phong Trạch Trung Phu",
     "upper": "Tốn",
     "lower": "Đoài",
     "tier7": "Cát",
-    "judgment": "Gió trên Đầm: thuận lợi; lấy đức nhập – duyệt mà xử việc.",
-    "image": "Gió ở trên Đầm: quân tử nhập để duyệt đúng thời.",
+    "judgment": "Gió ở trên Đầm: lòng thật thì lời có sức, trong vững thì ngoài mới tin.",
+    "image": "Gió ở trên Đầm: lòng thật thì lời có sức, trong vững thì ngoài mới tin.",
     "keywords": [],
     "do": [
       "thương lượng mềm dẻo",
@@ -1888,19 +2068,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Xanh lục",
-    "directionHint": "Đông Nam"
+    "directionHint": "Đông Nam",
+    "fullName": "Phong Trạch Trung Phu",
+    "shortMeaning": "Gió ở trên Đầm: lòng thật thì lời có sức, trong vững thì ngoài mới tin.",
+    "shortAction": "Nên lấy thành ý mà nói và lấy chân thật mà làm; không nên sáo rỗng hoặc hứa nhiều hơn khả năng."
   },
   {
     "no": 62,
     "symbol": "䷽",
     "han": "",
     "pinyin": "",
-    "vn": "Chấn trên Cấn",
+    "vn": "Lôi Sơn Tiểu Quá",
     "upper": "Chấn",
     "lower": "Cấn",
     "tier7": "Tiểu Hung",
-    "judgment": "Sấm trên Núi: nhiều trở ngại; lấy đức động – chỉ mà xử việc.",
-    "image": "Sấm ở trên Núi: quân tử động để chỉ đúng thời.",
+    "judgment": "Sấm ở trên Núi: việc nhỏ có thể qua, việc lớn không nên miễn cưỡng.",
+    "image": "Sấm ở trên Núi: việc nhỏ có thể qua, việc lớn không nên miễn cưỡng.",
     "keywords": [],
     "do": [
       "làm thử nhỏ trước",
@@ -1919,19 +2102,22 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Xanh lục",
-    "directionHint": "Đông"
+    "directionHint": "Đông",
+    "fullName": "Lôi Sơn Tiểu Quá",
+    "shortMeaning": "Sấm ở trên Núi: việc nhỏ có thể qua, việc lớn không nên miễn cưỡng.",
+    "shortAction": "Nên lo phần gần và sửa điều nhỏ cho kín; không nên ôm đại sự hoặc làm vượt khả năng lúc này."
   },
   {
     "no": 63,
     "symbol": "䷾",
     "han": "",
     "pinyin": "",
-    "vn": "Khảm trên Ly",
+    "vn": "Thủy Hỏa Ký Tế",
     "upper": "Khảm",
     "lower": "Ly",
     "tier7": "Cát",
-    "judgment": "Nước trên Lửa: thuận lợi; lấy đức hiểm – minh mà xử việc.",
-    "image": "Nước ở trên Lửa: quân tử hiểm để minh đúng thời.",
+    "judgment": "Nước ở trên Lửa: việc đã qua sông, quý ở giữ nếp để đừng sinh loạn sau thành.",
+    "image": "Nước ở trên Lửa: việc đã qua sông, quý ở giữ nếp để đừng sinh loạn sau thành.",
     "keywords": [],
     "do": [
       "đánh giá rủi ro",
@@ -1950,19 +2136,22 @@
       "health": "Giữ nhịp sinh hoạt điều độ."
     },
     "colorHint": "Đen huyền",
-    "directionHint": "Bắc"
+    "directionHint": "Bắc",
+    "fullName": "Thủy Hỏa Ký Tế",
+    "shortMeaning": "Nước ở trên Lửa: việc đã qua sông, quý ở giữ nếp để đừng sinh loạn sau thành.",
+    "shortAction": "Nên giữ khuôn và chăm khâu sau cùng; không nên chủ quan vì tưởng việc đã xong."
   },
   {
     "no": 64,
     "symbol": "䷿",
     "han": "",
     "pinyin": "",
-    "vn": "Ly trên Khảm",
+    "vn": "Hỏa Thủy Vị Tế",
     "upper": "Ly",
     "lower": "Khảm",
     "tier7": "Tiểu Hung",
-    "judgment": "Lửa trên Nước: nhiều trở ngại; lấy đức minh – hiểm mà xử việc.",
-    "image": "Lửa ở trên Nước: quân tử minh để hiểm đúng thời.",
+    "judgment": "Lửa ở trên Nước: chưa qua sông, nóng lên trước chỉ làm việc thêm dở.",
+    "image": "Lửa ở trên Nước: chưa qua sông, nóng lên trước chỉ làm việc thêm dở.",
     "keywords": [],
     "do": [
       "làm rõ thông tin",
@@ -1981,6 +2170,9 @@
       "health": "Ăn nhạt, vận động nhẹ."
     },
     "colorHint": "Đỏ son",
-    "directionHint": "Nam"
+    "directionHint": "Nam",
+    "fullName": "Hỏa Thủy Vị Tế",
+    "shortMeaning": "Lửa ở trên Nước: chưa qua sông, nóng lên trước chỉ làm việc thêm dở.",
+    "shortAction": "Nên hoàn thiện nốt phần còn thiếu và chờ thời chín; không nên kết luận sớm hoặc mở việc mới khi nền chưa xong."
   }
 ]

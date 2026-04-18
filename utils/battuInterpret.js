@@ -2,7 +2,6 @@ const { EmbedBuilder } = require('discord.js');
 const { loadBattuData } = require('./battuData');
 const {
   detectRelations,
-  getTenGod,
   getHiddenStemDetails,
   summarizeStagePattern,
   analyzeTransitAgainstNatal,
@@ -15,187 +14,220 @@ function clamp(text, max = 1024) {
   return text.length > max ? `${text.slice(0, max - 1)}…` : text;
 }
 
-function formatElementCounts(counts) {
-  return Object.entries(counts)
-    .sort((a, b) => b[1] - a[1])
-    .map(([k, v]) => `• ${k}: **${v.toFixed(2)}**`)
-    .join('\n');
+
+function pillarDisplay(pillar) {
+  return `${pillar.stem.han}${pillar.branch.han} ${pillar.stem.name} ${pillar.branch.name}`;
 }
 
 function summarizeElementBias(counts) {
   const arr = Object.entries(counts).sort((a, b) => b[1] - a[1]);
   return {
     dominant: arr[0]?.[0] || '—',
-    weakest: arr[arr.length - 1]?.[0] || '—',
     second: arr[1]?.[0] || '—',
+    weakest: arr[arr.length - 1]?.[0] || '—',
   };
 }
 
-function buildNarrative(chart) {
-  const { content } = loadBattuData();
-  const dm = chart.dayMaster.name;
-  const dayElement = chart.dayMaster.element;
-  const bias = summarizeElementBias(chart.analysis.elementCounts);
-  const monthBranch = chart.month.branch.name;
-  const dayMasterCfg = content.dayMasters[dm] || {};
-  const strongText = chart.analysis.strong ? dayMasterCfg.strong : dayMasterCfg.weak;
-  const monthText = content.monthCommand[monthBranch] || `Nguyệt lệnh ${monthBranch} là nền thời khí chính của lá số.`;
-  const strengthText = content.strengthPatterns[chart.analysis.strengthBand] || 'Lá số đang ở trạng thái quân bình tương đối.';
-  const yinYangText = content.yinYangPatterns[chart.analysis.yinYang.pattern] || 'Âm dương đang ở thế khó phân thiên lệch.';
-  return {
-    portrait: dayMasterCfg.portrait || '—',
-    strongText: strongText || '—',
-    monthText,
-    strengthText,
-    yinYangText,
-    favorableText: `Hành nên ưu tiên để cân bằng cục diện: **${chart.analysis.favorableElements.join(', ')}**.`,
-    biasText: `Ngũ hành nổi hơn là **${bias.dominant}**, kế đó là **${bias.second}**; yếu hơn là **${bias.weakest}**.`,
-    excessText: chart.analysis.excessElements.length ? chart.analysis.excessElements.join(', ') : 'không có hành nào vượt trội quá mạnh',
-    weakText: chart.analysis.weakElements.length ? chart.analysis.weakElements.join(', ') : 'không có hành nào bị rỗng rõ',
-    strongModeText: chart.analysis.strong ? dayMasterCfg.favorableWhenStrong : dayMasterCfg.favorableWhenWeak,
-    pillarMeanings: content.pillarMeanings,
-    dayElementText: content.elements[dayElement]?.traits || '—',
-    dayElementExcess: content.elements[dayElement]?.excess || '—',
-    dayElementWeak: content.elements[dayElement]?.weak || '—',
-  };
+function strengthTier(score) {
+  if (score >= 85) return 'rất vượng';
+  if (score >= 70) return 'khá vượng';
+  if (score >= 55) return 'quân bình thiên vượng';
+  if (score >= 45) return 'quân bình';
+  if (score >= 30) return 'hơi nhược';
+  return 'khá nhược';
 }
 
-function buildPillarBlock(chart) {
-  const { content } = loadBattuData();
+function balanceTier(score) {
+  if (score >= 85) return 'rất cân';
+  if (score >= 70) return 'khá cân';
+  if (score >= 55) return 'có lệch nhẹ';
+  if (score >= 40) return 'lệch vừa';
+  return 'lệch rõ';
+}
+
+function yinYangText(yinYang) {
+  const diff = Math.abs((yinYang?.yang || 0) - (yinYang?.yin || 0));
+  if (diff <= 1) return 'Âm dương khá cân, nên khí trong mệnh dễ giữ nhịp ổn định.';
+  if ((yinYang?.yang || 0) > (yinYang?.yin || 0)) {
+    return 'Dương khí nổi hơn, nên mệnh này dễ chủ động, quyết nhanh và thích tự mở đường. Điểm cần giữ là đừng nóng tay quá sớm.';
+  }
+  return 'Âm khí nổi hơn, nên mệnh này thiên về cảm nhận, suy nghĩ sâu và chọn thời mà đi. Điểm cần giữ là đừng chần chừ quá lâu.';
+}
+
+function buildBirthSummary(chart) {
   return [
-    `• **Niên trụ:** ${chart.year.label} — ${content.pillarMeanings.year}`,
-    `• **Nguyệt trụ:** ${chart.month.label} — ${content.pillarMeanings.month}`,
-    `• **Nhật trụ:** ${chart.day.label} — ${content.pillarMeanings.day}`,
-    `• **Thời trụ:** ${chart.hour.label} — ${content.pillarMeanings.hour}`,
+    `• **Niên trụ:** ${pillarDisplay(chart.year)}`,
+    `• **Nguyệt trụ:** ${pillarDisplay(chart.month)}`,
+    `• **Nhật trụ:** ${pillarDisplay(chart.day)}`,
+    `• **Thời trụ:** ${pillarDisplay(chart.hour)}`,
   ].join('\n');
 }
 
-function buildTenGodSummary(chart) {
-  const { tenGods } = loadBattuData();
-  const pairs = [
-    ['Niên can', chart.year.stem.name],
-    ['Nguyệt can', chart.month.stem.name],
-    ['Thời can', chart.hour.stem.name],
-  ];
-  const gods = pairs.map(([label, stem]) => {
-    const god = getTenGod(chart.day.stem.name, stem);
-    const profile = tenGods.profiles[god] || {};
-    return { label, stem, god, profile };
-  });
-  const lines = gods.map((x) => `• ${x.label} **${x.stem}** → **${x.god}**: ${x.profile.core || '—'}`);
-  const focus = chart.analysis.tenGodInfluence?.top || gods[1] || gods[0];
-  return {
-    lines: lines.join('\n'),
-    focusTitle: focus?.name || focus?.god || '—',
-    focusText: [focus?.profile?.bright, focus?.profile?.shadow, focus?.profile?.career].filter(Boolean).join(' ') || '—',
-    rankedText: (chart.analysis.tenGodInfluence?.ranked || []).slice(0, 5).map((x) => `• **${x.name}**: ${x.score}`).join('\n') || '—',
-  };
-}
-
-function buildHiddenStemSummary(chart) {
-  const details = getHiddenStemDetails(chart);
-  return details.map((pillar) => {
-    const line = pillar.hidden
-      .map((x) => `${x.han}${x.name} (${x.element}) → ${x.tenGod}`)
-      .join(' • ');
-    return `• **${pillar.position} chi ${pillar.branch}**: ${line || '—'}`;
-  }).join('\n');
-}
-
-function buildRelationSummary(chart) {
-  const rel = detectRelations(chart);
-  const lines = [];
-  for (const item of rel.canCombos) lines.push(`• Can hợp ${item.pair.join('-')} → thiên hướng hóa ${item.transform}. ${item.note}`);
-  for (const item of rel.chiLucHop) lines.push(`• Lục hợp ${item.pair.join('-')}: ${item.note}`);
-  for (const item of rel.tamHop) lines.push(`• Tam hợp ${item.group.join('-')} → cục ${item.element}. ${item.note}`);
-  for (const item of rel.tamHoi) lines.push(`• Tam hội ${item.group.join('-')} → khí ${item.element} liền mạch. ${item.note}`);
-  for (const item of rel.banHop || []) lines.push(`• Bán hợp ${item.pair.join('-')} → mầm ${item.element}. ${item.note}`);
-  for (const item of rel.chiXung) lines.push(`• Xung ${item.pair.join('-')}: ${item.note}`);
-  for (const item of rel.chiHai) lines.push(`• Hại ${item.pair.join('-')}: ${item.note}`);
-  for (const item of rel.chiPha) lines.push(`• Phá ${item.pair.join('-')}: ${item.note}`);
-  for (const item of rel.chiHinh) lines.push(`• ${item.type} ${item.group.join('-')}: ${item.note}`);
-  return lines.length ? lines.slice(0, 12).join('\n') : '• Nội cục không lộ cặp hợp/xung lớn ở tầng cơ bản.';
-}
-
-function buildUsefulGodSummary(chart) {
-  const ug = chart.analysis.usefulGods;
-  const lines = [
-    `• **Dụng thần:** ${ug.dungThan.join(' / ')}`,
-    `• **Hỷ thần:** ${ug.hyThan.join(' / ') || 'chưa nổi rõ'}`,
-    `• **Kỵ thần:** ${ug.kyThan.join(' / ')}`,
-    `• **Nhàn thần:** ${ug.nhanThan.join(' / ') || 'không đáng kể'}`,
-  ];
-  return { lines: lines.join('\n'), explanation: ug.explanation };
-}
-
-function buildPatternSummary(chart) {
-  const p = chart.analysis.pattern;
-  return {
-    title: p.label,
-    text: [p.supportText, p.description, p.synergy].filter(Boolean).join(' '),
-  };
-}
-
-function buildGrowthSummary(chart) {
+function buildDayMasterStory(chart) {
   const { content } = loadBattuData();
-  const stages = chart.analysis.growthStages;
-  const lines = [
-    `• Niên chi **${chart.year.branch.name}** → **${stages.year}**`,
-    `• Nguyệt chi **${chart.month.branch.name}** → **${stages.month}**`,
-    `• Nhật chi **${chart.day.branch.name}** → **${stages.day}**`,
-    `• Thời chi **${chart.hour.branch.name}** → **${stages.hour}**`,
-  ];
-  const stageNotes = [stages.year, stages.month, stages.day, stages.hour]
-    .map((s) => `• **${s}**: ${content.stageDescriptions?.[s] || '—'}`)
-    .filter((v, i, arr) => arr.indexOf(v) === i)
-    .slice(0, 4)
-    .join('\n');
-  return {
-    lines: lines.join('\n'),
-    note: summarizeStagePattern(stages),
-    stageNotes,
-  };
+  const dmCfg = content.dayMasters?.[chart.dayMaster.name] || {};
+  const strength = chart.analysis.strong ? dmCfg.strong : dmCfg.weak;
+  const portrait = dmCfg.portrait || `Nhật chủ ${chart.dayMaster.name} thiên về cách sống hợp với khí ${chart.dayMaster.element}.`;
+  return `${portrait}\n\n${strength || 'Nhật chủ này phát huy tốt khi đi đúng nhịp của mình, không nên ép mình vào khuôn quá cứng.'}`;
 }
 
-function buildShenShaSummary(chart) {
-  const active = chart.analysis.shenSha || [];
-  if (!active.length) return '• Lá số không lộ thần sát mạnh ở bộ cơ bản đang xét.';
-  return active.map((x) => `• **${x.name}** (${x.target}) — ${x.desc}`).join('\n');
+function buildElementStory(chart) {
+  const bias = summarizeElementBias(chart.analysis.elementCounts);
+  const useful = chart.analysis.usefulGods || { dungThan: [], hyThan: [], kyThan: [], nhanThan: [] };
+  const strongness = strengthTier(chart.analysis.strengthScore);
+  const balance = balanceTier(chart.analysis.balanceScore);
+  const weakText = chart.analysis.weakElements.length ? chart.analysis.weakElements.join(', ') : 'chưa có hành nào hụt quá rõ';
+  const excessText = chart.analysis.excessElements.length ? chart.analysis.excessElements.join(', ') : 'chưa có hành nào dư quá mạnh';
+
+  return [
+    `Ngũ hành trong mệnh nghiêng rõ về **${bias.dominant}** và **${bias.second}**, còn phần yếu hơn nằm ở **${bias.weakest}**. Điều này cho thấy cách bạn vận hành tự nhiên có trọng tâm rõ: mạnh ở chỗ nào thì đi rất nhanh, nhưng phần yếu lại cần được bồi dần chứ không thể ép ngay.`,
+    `Sức mệnh hiện ở mức **${strongness}** (${chart.analysis.strengthScore}/100), còn độ cân bằng tổng thể ở mức **${balance}** (${chart.analysis.balanceScore}/100). Nói dễ hiểu hơn: đây không phải lá số mỏng lực, nhưng nếu đi sai nhịp thì vẫn dễ bị lệch về một phía.`,
+    `Phần đang dư trong mệnh là **${excessText}**; phần đang thiếu là **${weakText}**. Vì vậy, khi chọn môi trường sống, cách học hay cách làm việc, bạn hợp nhất với những yếu tố giúp mệnh bớt gắt và trở nên có nhịp hơn.`,
+    `**Dụng thần** nên ưu tiên là **${useful.dungThan.join(' / ') || 'chưa nổi rõ'}**. **Hỷ thần** là **${useful.hyThan.join(' / ') || 'chưa nổi rõ'}**. **Kỵ thần** là **${useful.kyThan.join(' / ') || 'chưa nổi rõ'}**. **Nhàn thần** là **${useful.nhanThan.join(' / ') || 'không đáng kể'}**.`,
+  ].join('\n\n');
+}
+
+function buildUsefulGodStory(chart) {
+  const useful = chart.analysis.usefulGods || {};
+  const dung = useful.dungThan?.join(' / ') || 'chưa nổi rõ';
+  const hy = useful.hyThan?.join(' / ') || 'chưa nổi rõ';
+  const ky = useful.kyThan?.join(' / ') || 'chưa nổi rõ';
+  const nhan = useful.nhanThan?.join(' / ') || 'không đáng kể';
+  return [
+    `Yếu tố nên mượn để mở vận trước tiên là **${dung}**. Đây là phần khí giúp mệnh của bạn vào nhịp, bớt lệch và dễ phát huy đúng chỗ.`,
+    `Yếu tố đi cùng để tăng độ thuận là **${hy}**. Khi môi trường sống, công việc hoặc cách hành động chạm được vào nhóm khí này, bạn thường thấy mình đỡ hao lực hơn.`,
+    `Yếu tố nên tiết chế là **${ky}**. Gặp quá nhiều khí này, bạn dễ rơi vào trạng thái gắng quá tay hoặc tự kéo mình lệch nhịp.`,
+    `**Nhàn thần** là **${nhan}**. Đây là phần khí không quyết định thắng thua ngay, nhưng cũng cho biết nơi nào trong đời có thể để tự nhiên hơn mà không cần cưỡng ép.`,
+  ].join(' ');
+}
+
+function buildTenGodStory(chart) {
+  const top = chart.analysis.tenGodInfluence?.top;
+  const second = chart.analysis.tenGodInfluence?.second;
+  if (!top) return 'Thập thần trong lá số không lộ thiên lệch quá mạnh, nên mệnh này đi theo kiểu cân bằng dần qua trải nghiệm.';
+
+  const pieces = [
+    `**${top.name}** là khí nổi nhất trong lá số. Điều này cho thấy nét vận hành rõ nhất của bạn là: ${top.profile?.core || 'có một trục hành động rất rõ trong nội tâm.'}`,
+    top.profile?.bright ? `Điểm mạnh của khí này là ${top.profile.bright.toLowerCase()}` : null,
+    top.profile?.shadow ? `Điểm cần giữ là ${top.profile.shadow.toLowerCase()}` : null,
+    second?.name && second?.profile?.core ? `Khí đi cùng đáng chú ý là **${second.name}**. Nó bổ sung cho lá số theo hướng: ${second.profile.core.toLowerCase()}` : null,
+  ].filter(Boolean);
+
+  return pieces.join('. ') + '.';
+}
+
+function buildHiddenStemStory(chart) {
+  const details = getHiddenStemDetails(chart);
+  const lines = details.map((pillar) => {
+    const names = pillar.hidden.map((x) => `${x.name} (${x.tenGod})`);
+    return `• **${pillar.position} chi ${pillar.branch}** ẩn ${names.join(', ') || 'không lộ rõ'}`;
+  });
+
+  return [
+    'Tàng can là phần khí ẩn nằm trong địa chi. Đây là phần không lộ ngay ra ngoài, nhưng lại ảnh hưởng rất mạnh đến cách mệnh vận hành khi gặp thời.',
+    lines.join('\n'),
+  ].join('\n\n');
+}
+
+function buildPatternStory(chart) {
+  const p = chart.analysis.pattern || {};
+  return [
+    `Lá số hiện thiên về **${p.label || 'một cục hỗn hợp'}**.`,
+    p.description || 'Nói đơn giản, đây là kiểu mệnh có một trục phát huy khá rõ chứ không tản đều mọi phía.',
+    p.synergy || 'Muốn đi xa, lá số này cần chọn đúng cửa phát lực thay vì làm mọi thứ cùng lúc.',
+  ].filter(Boolean).join(' ');
+}
+
+function buildGrowthStory(chart) {
+  const stages = chart.analysis.growthStages || {};
+  const lines = [
+    `• **Niên chi ${chart.year.branch.name}** ở thế **${stages.year}**`,
+    `• **Nguyệt chi ${chart.month.branch.name}** ở thế **${stages.month}**`,
+    `• **Nhật chi ${chart.day.branch.name}** ở thế **${stages.day}**`,
+    `• **Thời chi ${chart.hour.branch.name}** ở thế **${stages.hour}**`,
+  ].join('\n');
+
+  return `${summarizeStagePattern(stages)}\n\n${lines}`;
+}
+
+function buildShenShaStory(chart) {
+  const active = (chart.analysis.shenSha || []).slice(0, 4);
+  if (!active.length) return 'Phần thần sát trong lá số không lộ dấu hiệu quá mạnh ở bộ cơ bản, nên mệnh này vẫn nên đọc theo trục chính của tứ trụ hơn là bám vào tín hiệu phụ.';
+  return active.map((x) => `• **${x.name}**: ${x.desc}`).join('\n');
+}
+
+function buildRelationStory(chart) {
+  const rel = detectRelations(chart);
+  const chunks = [];
+  if (rel.canCombos.length || rel.chiLucHop.length || rel.tamHop.length || rel.tamHoi.length || (rel.banHop || []).length) {
+    chunks.push('Trong nội cục có lực hòa và lực nâng đỡ nhất định, nghĩa là khi giữ đúng nhịp thì lá số này tự gom lại khá nhanh, không dễ tan lực hoàn toàn.');
+  }
+  if (rel.chiXung.length || rel.chiHai.length || rel.chiPha.length || rel.chiHinh.length) {
+    chunks.push('Đồng thời cũng có những thế va chạm nội tại, nên có lúc suy nghĩ và hành động của bạn không đi cùng một hướng. Khi áp lực tăng, bạn càng cần môi trường ổn định để tránh tự kéo mình lệch nhịp.');
+  }
+  if (!chunks.length) {
+    chunks.push('Nội cục không lộ hợp xung quá gắt ở tầng cơ bản, nên lá số này thắng ở chỗ đi bền và chỉnh nhịp đều hơn là đánh đổi bằng những cú bứt quá mạnh.');
+  }
+
+  const notable = [];
+  if (rel.tamHop[0]) notable.push(`• Có **tam hợp ${rel.tamHop[0].group.join('-')}**, cho thấy một phần khí trong mệnh có khả năng tự nối thành dòng khi gặp đúng thời.`);
+  if (rel.tamHoi[0]) notable.push(`• Có **tam hội ${rel.tamHoi[0].group.join('-')}**, nghĩa là khí cùng nhóm rất dễ nổi lên thành xu hướng rõ.`);
+  if (rel.chiLucHop[0]) notable.push(`• Có **lục hợp ${rel.chiLucHop[0].pair.join('-')}**, nên vài mặt trong đời dễ được người hoặc hoàn cảnh hỗ trợ đúng lúc.`);
+  if (rel.chiXung[0]) notable.push(`• Có **xung ${rel.chiXung[0].pair.join('-')}**, báo hiệu những giai đoạn phải đổi hướng, dịch chuyển hoặc tự chỉnh lại trật tự cũ.`);
+  if (rel.chiHai[0]) notable.push(`• Có **hại ${rel.chiHai[0].pair.join('-')}**, nên khi cảm xúc rối hoặc môi trường nhiễu, bạn dễ thấy việc đang ổn bỗng thành khó thông.`);
+
+  return [chunks.join(' '), notable.join('\n')].filter(Boolean).join('\n\n');
+}
+
+function transitBaseSentence(type, tier, relStem) {
+  const period = type === 'year' ? 'Lưu niên' : 'Lưu nguyệt';
+  const tierLead = {
+    'Đại Cát': `${period} hiện tại đang mở vận rất rõ, hợp tiến việc quan trọng nếu đã có nền sẵn.`,
+    'Cát': `${period} hiện tại khá thuận, hợp đẩy việc chính nhưng vẫn cần giữ tiết tấu.`,
+    'Tiểu Cát': `${period} hiện tại có lợi nhẹ, hợp chỉnh việc và tiến từng bước.`,
+    'Bình': `${period} hiện tại thiên về giữ nhịp và làm chắc hơn là bứt mạnh.`,
+    'Tiểu Hung': `${period} hiện tại hơi lệch, nên cẩn thận với quyết định nóng.`,
+    'Hung': `${period} hiện tại có lực cản rõ, hợp thủ hơn công.`,
+    'Đại Hung': `${period} hiện tại nghịch khí khá mạnh, đại sự nên lùi một nhịp.`,
+  };
+  const relationLead = {
+    same: 'Khí đang đồng hành với bản mệnh, nên sức tự thân mạnh lên nhưng cũng dễ quá tay.',
+    generatedBy: 'Khí đang nâng đỡ bản mệnh, nên nhiều việc sẽ vào tay hơn nếu đi đúng nhịp.',
+    generates: 'Khí buộc bản mệnh phải xuất lực ra ngoài, hợp làm việc nhưng không hợp ôm quá nhiều.',
+    controlledBy: 'Khí đang ép bản mệnh vào khuôn, hợp việc cần kỷ luật và chuẩn hóa.',
+    controls: 'Khí đang nằm dưới tay bản mệnh, hợp chủ động xử lý nhưng không hợp cứng quá mức.',
+  };
+  return `${tierLead[tier] || `${period} hiện tại đang vận động theo nhịp riêng.`} ${relationLead[relStem] || ''}`.trim();
 }
 
 function buildTransitSummary(chart) {
-  const { content } = loadBattuData();
   const now = getVietnamNowParts();
   const yearPillar = calcYearPillar(now.year, now.month, now.day, now.hour);
   const monthPillar = calcMonthPillar(now.year, now.month, now.day, now.hour, yearPillar.stem.name).pillar;
   const yearHit = analyzeTransitAgainstNatal(chart, yearPillar, 'year');
   const monthHit = analyzeTransitAgainstNatal(chart, monthPillar, 'month');
   return {
-    year: {
-      pillar: yearPillar,
-      analysis: yearHit,
-      note: content.transitNarratives?.year || '',
-    },
-    month: {
-      pillar: monthPillar,
-      analysis: monthHit,
-      note: content.transitNarratives?.month || '',
-    },
-    now,
+    year: { pillar: yearPillar, analysis: yearHit },
+    month: { pillar: monthPillar, analysis: monthHit },
   };
+}
+
+function buildTransitStory(type, hit) {
+  const periodTitle = type === 'year' ? 'Lưu niên' : 'Lưu nguyệt';
+  const movement = type === 'year'
+    ? 'Đây là lớp khí của cả năm, thường định hình bối cảnh lớn và áp lực chung.'
+    : 'Đây là lớp khí gần hơn, thường cho biết giai đoạn hiện tại nên phát hay nên thu.';
+  const line = transitBaseSentence(type, hit.analysis.tier, hit.analysis.relStem);
+  return [
+    `${periodTitle} hiện hành là **${pillarDisplay(hit.pillar)}**. ${movement}`,
+    `${line} Mức vận hiện tại ở ngưỡng **${hit.analysis.tier}** (${hit.analysis.score}/100).`,
+  ].join(' ');
 }
 
 function createBattuEmbeds(user, chart) {
   if (!chart.analysis?.usefulGods || !chart.analysis?.pattern || !chart.analysis?.growthStages) enrichAnalysis(chart);
-  const { sources, content } = loadBattuData();
-  const n = buildNarrative(chart);
-  const counts = chart.analysis.elementCounts;
-  const tenGod = buildTenGodSummary(chart);
-  const useful = buildUsefulGodSummary(chart);
-  const pattern = buildPatternSummary(chart);
-  const growth = buildGrowthSummary(chart);
-  const transit = buildTransitSummary(chart);
   const embeds = [];
+  const transit = buildTransitSummary(chart);
 
   embeds.push(
     new EmbedBuilder()
@@ -204,14 +236,19 @@ function createBattuEmbeds(user, chart) {
       .setDescription(
         `**${user.username}** — mệnh bàn lấy theo múi giờ **${chart.birth.timezone}**\n` +
         `Sinh thời: **${String(chart.birth.day).padStart(2, '0')}/${String(chart.birth.month).padStart(2, '0')}/${chart.birth.year} ${chart.birth.hourRange}**\n\n` +
-        buildPillarBlock(chart)
+        buildBirthSummary(chart)
       )
       .addFields(
-        { name: 'Nhật chủ', value: `**${chart.dayMaster.han} ${chart.dayMaster.name}** — ${chart.dayMaster.element} ${chart.dayMaster.polarity}`, inline: true },
-        { name: 'Điểm lực nhật chủ', value: `**${chart.analysis.strengthScore}/100**`, inline: true },
-        { name: 'Cân bằng ngũ hành', value: `**${chart.analysis.balanceScore}/100**`, inline: true },
-        { name: 'Tiết khí quy chiếu', value: `${chart.solarBoundary.name} (**${String(chart.solarBoundary.day).padStart(2, '0')}/${String(chart.solarBoundary.month).padStart(2, '0')} ${String(chart.solarBoundary.hour).padStart(2, '0')}:${String(chart.solarBoundary.minute).padStart(2, '0')}**) → tháng **${chart.month.branch.name}**`, inline: false },
-        { name: 'Chân dung nhật chủ', value: clamp(n.portrait), inline: false },
+        {
+          name: 'Nhật chủ',
+          value: clamp(`**${chart.dayMaster.han} ${chart.dayMaster.name}** — ${chart.dayMaster.element} ${chart.dayMaster.polarity}\n\n${buildDayMasterStory(chart)}`),
+          inline: false,
+        },
+        {
+          name: 'Tiết khí quy chiếu',
+          value: clamp(`Tháng trong mệnh được tính từ **${chart.solarBoundary.name}** (${String(chart.solarBoundary.day).padStart(2, '0')}/${String(chart.solarBoundary.month).padStart(2, '0')} ${String(chart.solarBoundary.hour).padStart(2, '0')}:${String(chart.solarBoundary.minute).padStart(2, '0')}). Vì vậy, **nguyệt trụ** của lá số là **${pillarDisplay(chart.month)}**.`),
+          inline: false,
+        },
       )
       .setFooter({ text: 'Trụ tháng lấy theo tiết khí. Mốc Lập Xuân dùng để phân niên trụ.' })
   );
@@ -219,52 +256,64 @@ function createBattuEmbeds(user, chart) {
   embeds.push(
     new EmbedBuilder()
       .setColor(0x00A86B)
-      .setTitle('Thời Khí Và Sức Mệnh')
-      .setDescription(`${n.monthText}\n${n.strengthText}`)
+      .setTitle('Ngũ Hành Và Sức Mệnh')
       .addFields(
-        { name: 'Diễn giải mạnh/yếu', value: clamp(n.strongText), inline: false },
-        { name: 'Ngũ hành nhật chủ', value: `${n.dayElementText}\n${chart.analysis.strong ? n.dayElementExcess : n.dayElementWeak}`.slice(0, 1024), inline: false },
-        { name: 'Thiên lệch', value: `${n.biasText}\n${n.favorableText}`.slice(0, 1024), inline: false },
-        { name: 'Hành dư / hành thiếu', value: `• Dư khí: **${n.excessText}**\n• Khuyết lực: **${n.weakText}**`, inline: false },
-        { name: 'Gợi ý cân bằng', value: clamp(n.strongModeText), inline: false },
+        {
+          name: 'Ngũ hành trong mệnh',
+          value: clamp(buildElementStory(chart)),
+          inline: false,
+        },
+        {
+          name: 'Âm dương trong mệnh',
+          value: clamp(`Âm: **${chart.analysis.yinYang.yin}** • Dương: **${chart.analysis.yinYang.yang}**\n\n${yinYangText(chart.analysis.yinYang)}`),
+          inline: false,
+        },
+        {
+          name: 'Dụng thần, hỷ thần, kỵ thần và nhàn thần',
+          value: clamp(buildUsefulGodStory(chart)),
+          inline: false,
+        },
       )
   );
 
   embeds.push(
     new EmbedBuilder()
       .setColor(0xF39C12)
-      .setTitle('Kết Cấu Nội Mệnh')
+      .setTitle('Thập Thần, Tàng Can Và Cách Cục')
       .addFields(
-        { name: 'Phân bố ngũ hành', value: formatElementCounts(counts), inline: true },
-        { name: 'Âm dương', value: `• Âm: **${chart.analysis.yinYang.yin}**\n• Dương: **${chart.analysis.yinYang.yang}**\n• Nhận xét: ${n.yinYangText}`.slice(0, 1024), inline: true },
-        { name: 'Thập thần quanh nhật chủ', value: clamp(tenGod.lines), inline: false },
-        { name: 'Tàng can & thập thần ẩn', value: clamp(buildHiddenStemSummary(chart), 1024), inline: false },
-        { name: 'Độ nổi của thập thần', value: clamp(tenGod.rankedText), inline: false },
-        { name: `Điểm nhấn ${tenGod.focusTitle}`, value: clamp(tenGod.focusText), inline: false },
+        {
+          name: 'Thập thần nổi bật',
+          value: clamp(buildTenGodStory(chart)),
+          inline: false,
+        },
+        {
+          name: 'Tàng can trong bốn trụ',
+          value: clamp(buildHiddenStemStory(chart)),
+          inline: false,
+        },
+        {
+          name: 'Cách cục của lá số',
+          value: clamp(buildPatternStory(chart)),
+          inline: false,
+        },
       )
   );
 
   embeds.push(
     new EmbedBuilder()
       .setColor(0x9B59B6)
-      .setTitle('Dụng Thần, Cách Cục Và Cửa Mở')
+      .setTitle('Trường Sinh Và Thần Sát')
       .addFields(
-        { name: 'Cách cục', value: `**${pattern.title}**\n${clamp(pattern.text)}`, inline: false },
-        { name: 'Dụng / Hỷ / Kỵ', value: clamp(useful.lines), inline: false },
-        { name: 'Luận dụng thần', value: clamp(useful.explanation), inline: false },
-        { name: 'Định hướng nghề khí', value: clamp(`Hành chủ đạo nên mượn để mở đường là **${chart.analysis.usefulGods.dungThan[0]}**; ở tầng thực tế, khí này ${content.careerChannels?.[chart.analysis.usefulGods.dungThan[0]] || 'hợp đường cần đúng nhịp và đúng vai.'}`), inline: false },
-      )
-  );
-
-  embeds.push(
-    new EmbedBuilder()
-      .setColor(0x3498DB)
-      .setTitle('Trường Sinh 12 Vận Và Thần Sát')
-      .addFields(
-        { name: '12 vận của nhật chủ trên 4 chi', value: clamp(growth.lines), inline: false },
-        { name: 'Nhận xét khí trưởng thành', value: clamp(growth.note), inline: false },
-        { name: 'Giải nghĩa các vận nổi bật', value: clamp(growth.stageNotes), inline: false },
-        { name: 'Thần sát đang lộ', value: clamp(buildShenShaSummary(chart), 1024), inline: false },
+        {
+          name: 'Trường sinh của bốn chi',
+          value: clamp(buildGrowthStory(chart)),
+          inline: false,
+        },
+        {
+          name: 'Thần sát đang lộ',
+          value: clamp(buildShenShaStory(chart)),
+          inline: false,
+        },
       )
   );
 
@@ -273,12 +322,23 @@ function createBattuEmbeds(user, chart) {
       .setColor(0xE67E22)
       .setTitle('Lưu Niên, Lưu Nguyệt Và Quan Hệ Nội Cục')
       .addFields(
-        { name: `Lưu niên hiện hành — ${transit.year.pillar.label}`, value: clamp(`${content.transitNarratives?.year || ''}\n• ${transit.year.analysis.emoji} **${transit.year.analysis.tier}** (${transit.year.analysis.score}/100)\n${transit.year.analysis.reasons.map((x) => `• ${x}`).join('\n')}`), inline: false },
-        { name: `Lưu nguyệt hiện hành — ${transit.month.pillar.label}`, value: clamp(`${content.transitNarratives?.month || ''}\n• ${transit.month.analysis.emoji} **${transit.month.analysis.tier}** (${transit.month.analysis.score}/100)\n${transit.month.analysis.reasons.map((x) => `• ${x}`).join('\n')}`), inline: false },
-        { name: 'Quan hệ nội cục', value: clamp(buildRelationSummary(chart), 1024), inline: false },
-        { name: 'Nguồn quy chiếu dữ liệu', value: clamp(`• ${sources.files['battu_month_stem_rules.json']}\n• ${sources.files['battu_hour_stem_rules.json']}\n• ${sources.files['battu_solar_terms.json']}\n• ${sources.files['battu_growth_stages.json']}\n• ${sources.files['battu_shensha.json']}\n• ${sources.files['battu_patterns.json']}`, 1024), inline: false },
+        {
+          name: 'Lưu niên hiện tại',
+          value: clamp(buildTransitStory('year', transit.year)),
+          inline: false,
+        },
+        {
+          name: 'Lưu nguyệt hiện tại',
+          value: clamp(buildTransitStory('month', transit.month)),
+          inline: false,
+        },
+        {
+          name: 'Quan hệ nội cục',
+          value: clamp(buildRelationStory(chart)),
+          inline: false,
+        },
       )
-      .setFooter({ text: 'Đây là bản nền mệnh + lưu niên/lưu nguyệt hiện hành. Lưu nhật cụ thể xem tại -khivan theo giờ Việt Nam.' })
+      .setFooter({ text: 'Đây là bản nền mệnh. Khí vận từng ngày xem tại -khivan theo giờ Việt Nam.' })
   );
 
   return embeds;

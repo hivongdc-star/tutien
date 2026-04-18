@@ -1,1 +1,3236 @@
-{}
+{
+  "543058474070966272": {
+    "userId": "543058474070966272",
+    "birth": {
+      "year": 2004,
+      "month": 11,
+      "day": 11,
+      "hour": 15,
+      "hourRange": "15:00-16:59",
+      "timezone": "Asia/Ho_Chi_Minh"
+    },
+    "solarBoundary": {
+      "branch": "Hợi",
+      "month": 11,
+      "day": 7,
+      "hour": 8,
+      "minute": 57,
+      "iso": "2004-11-07T08:57:28",
+      "name": "Lập Đông",
+      "year": 2004
+    },
+    "natalChart": {
+      "birth": {
+        "year": 2004,
+        "month": 11,
+        "day": 11,
+        "hour": 15,
+        "hourRange": "15:00-16:59",
+        "timezone": "Asia/Ho_Chi_Minh"
+      },
+      "year": {
+        "stem": {
+          "key": "giap",
+          "han": "甲",
+          "name": "Giáp",
+          "element": "Mộc",
+          "polarity": "Dương",
+          "aliases": [
+            "Jia"
+          ],
+          "keywords": [
+            "đại thụ",
+            "khai mở",
+            "xương sống"
+          ]
+        },
+        "branch": {
+          "key": "than",
+          "han": "申",
+          "name": "Thân",
+          "element": "Kim",
+          "polarity": "Dương",
+          "animal": "Khỉ",
+          "hourRange": "15:00-16:59",
+          "season": "Thu đầu",
+          "stage": "Lâm Quan"
+        },
+        "label": "甲申 GiápThân"
+      },
+      "month": {
+        "stem": {
+          "key": "at",
+          "han": "乙",
+          "name": "Ất",
+          "element": "Mộc",
+          "polarity": "Âm",
+          "aliases": [
+            "Yi"
+          ],
+          "keywords": [
+            "dây leo",
+            "linh hoạt",
+            "nuôi dưỡng"
+          ]
+        },
+        "branch": {
+          "key": "hoi",
+          "han": "亥",
+          "name": "Hợi",
+          "element": "Thủy",
+          "polarity": "Âm",
+          "animal": "Heo",
+          "hourRange": "21:00-22:59",
+          "season": "Đông đầu",
+          "stage": "Trường Sinh"
+        },
+        "label": "乙亥 ẤtHợi"
+      },
+      "day": {
+        "stem": {
+          "key": "nham",
+          "han": "壬",
+          "name": "Nhâm",
+          "element": "Thủy",
+          "polarity": "Dương",
+          "aliases": [
+            "Ren"
+          ],
+          "keywords": [
+            "đại hải",
+            "lưu chuyển",
+            "dung nạp"
+          ]
+        },
+        "branch": {
+          "key": "thin",
+          "han": "辰",
+          "name": "Thìn",
+          "element": "Thổ",
+          "polarity": "Dương",
+          "animal": "Rồng",
+          "hourRange": "07:00-08:59",
+          "season": "Xuân cuối",
+          "stage": "Mộ"
+        },
+        "label": "壬辰 NhâmThìn"
+      },
+      "hour": {
+        "stem": {
+          "key": "mau",
+          "han": "戊",
+          "name": "Mậu",
+          "element": "Thổ",
+          "polarity": "Dương",
+          "aliases": [
+            "Wu"
+          ],
+          "keywords": [
+            "núi",
+            "trục đỡ",
+            "ổn định"
+          ]
+        },
+        "branch": {
+          "key": "than",
+          "han": "申",
+          "name": "Thân",
+          "element": "Kim",
+          "polarity": "Dương",
+          "animal": "Khỉ",
+          "hourRange": "15:00-16:59",
+          "season": "Thu đầu",
+          "stage": "Lâm Quan"
+        },
+        "label": "戊申 MậuThân"
+      },
+      "solarBoundary": {
+        "branch": "Hợi",
+        "month": 11,
+        "day": 7,
+        "hour": 8,
+        "minute": 57,
+        "iso": "2004-11-07T08:57:28",
+        "name": "Lập Đông",
+        "year": 2004
+      },
+      "dayMaster": {
+        "key": "nham",
+        "han": "壬",
+        "name": "Nhâm",
+        "element": "Thủy",
+        "polarity": "Dương",
+        "aliases": [
+          "Ren"
+        ],
+        "keywords": [
+          "đại hải",
+          "lưu chuyển",
+          "dung nạp"
+        ]
+      },
+      "analysis": {
+        "elementCounts": {
+          "Kim": 3.7400000000000007,
+          "Mộc": 5.975,
+          "Thủy": 6.6000000000000005,
+          "Hỏa": 0,
+          "Thổ": 4.615000000000001
+        },
+        "strengthScore": 74,
+        "strong": true,
+        "strengthBand": "strong",
+        "favorableElements": [
+          "Thổ",
+          "Hỏa",
+          "Mộc"
+        ],
+        "balanceScore": 79,
+        "sameSupport": 6.6000000000000005,
+        "generatingSupport": 3.7400000000000007,
+        "outputDrain": 5.975,
+        "controlPressure": 4.615000000000001,
+        "controlOutbound": 0,
+        "seasonalScore": 12,
+        "excessElements": [
+          "Thủy",
+          "Mộc"
+        ],
+        "weakElements": [
+          "Hỏa"
+        ],
+        "yinYang": {
+          "yin": 3,
+          "yang": 9,
+          "pattern": "yangHeavy"
+        }
+      }
+    },
+    "analysis": {
+      "elementCounts": {
+        "Kim": 3.7400000000000007,
+        "Mộc": 5.975,
+        "Thủy": 6.6000000000000005,
+        "Hỏa": 0,
+        "Thổ": 4.615000000000001
+      },
+      "strengthScore": 74,
+      "strong": true,
+      "strengthBand": "strong",
+      "favorableElements": [
+        "Thổ",
+        "Hỏa",
+        "Mộc"
+      ],
+      "balanceScore": 79,
+      "sameSupport": 6.6000000000000005,
+      "generatingSupport": 3.7400000000000007,
+      "outputDrain": 5.975,
+      "controlPressure": 4.615000000000001,
+      "controlOutbound": 0,
+      "seasonalScore": 12,
+      "excessElements": [
+        "Thủy",
+        "Mộc"
+      ],
+      "weakElements": [
+        "Hỏa"
+      ],
+      "yinYang": {
+        "yin": 3,
+        "yang": 9,
+        "pattern": "yangHeavy"
+      }
+    },
+    "meta": {
+      "timezone": "Asia/Ho_Chi_Minh",
+      "createdAt": 1776432119232,
+      "updatedAt": 1776432119232,
+      "version": 1
+    }
+  },
+  "906490001880141826": {
+    "userId": "906490001880141826",
+    "birth": {
+      "year": 2023,
+      "month": 8,
+      "day": 15,
+      "hour": 5,
+      "hourRange": "05:00-06:59",
+      "timezone": "Asia/Ho_Chi_Minh"
+    },
+    "solarBoundary": {
+      "branch": "Thân",
+      "month": 8,
+      "day": 8,
+      "hour": 1,
+      "minute": 23,
+      "iso": "2023-08-08T01:23:05",
+      "name": "Lập Thu",
+      "year": 2023
+    },
+    "natalChart": {
+      "birth": {
+        "year": 2023,
+        "month": 8,
+        "day": 15,
+        "hour": 5,
+        "hourRange": "05:00-06:59",
+        "timezone": "Asia/Ho_Chi_Minh"
+      },
+      "year": {
+        "stem": {
+          "key": "quy",
+          "han": "癸",
+          "name": "Quý",
+          "element": "Thủy",
+          "polarity": "Âm",
+          "aliases": [
+            "Gui"
+          ],
+          "keywords": [
+            "vũ lộ",
+            "thẩm thấu",
+            "cảm ứng"
+          ]
+        },
+        "branch": {
+          "key": "mao",
+          "han": "卯",
+          "name": "Mão",
+          "element": "Mộc",
+          "polarity": "Âm",
+          "animal": "Mèo",
+          "hourRange": "05:00-06:59",
+          "season": "Xuân giữa",
+          "stage": "Đế Vượng"
+        },
+        "label": "癸卯 QuýMão"
+      },
+      "month": {
+        "stem": {
+          "key": "canh",
+          "han": "庚",
+          "name": "Canh",
+          "element": "Kim",
+          "polarity": "Dương",
+          "aliases": [
+            "Geng"
+          ],
+          "keywords": [
+            "khoáng kim",
+            "khai đao",
+            "quyết đoán"
+          ]
+        },
+        "branch": {
+          "key": "than",
+          "han": "申",
+          "name": "Thân",
+          "element": "Kim",
+          "polarity": "Dương",
+          "animal": "Khỉ",
+          "hourRange": "15:00-16:59",
+          "season": "Thu đầu",
+          "stage": "Lâm Quan"
+        },
+        "label": "庚申 CanhThân"
+      },
+      "day": {
+        "stem": {
+          "key": "quy",
+          "han": "癸",
+          "name": "Quý",
+          "element": "Thủy",
+          "polarity": "Âm",
+          "aliases": [
+            "Gui"
+          ],
+          "keywords": [
+            "vũ lộ",
+            "thẩm thấu",
+            "cảm ứng"
+          ]
+        },
+        "branch": {
+          "key": "mao",
+          "han": "卯",
+          "name": "Mão",
+          "element": "Mộc",
+          "polarity": "Âm",
+          "animal": "Mèo",
+          "hourRange": "05:00-06:59",
+          "season": "Xuân giữa",
+          "stage": "Đế Vượng"
+        },
+        "label": "癸卯 QuýMão"
+      },
+      "hour": {
+        "stem": {
+          "key": "at",
+          "han": "乙",
+          "name": "Ất",
+          "element": "Mộc",
+          "polarity": "Âm",
+          "aliases": [
+            "Yi"
+          ],
+          "keywords": [
+            "dây leo",
+            "linh hoạt",
+            "nuôi dưỡng"
+          ]
+        },
+        "branch": {
+          "key": "mao",
+          "han": "卯",
+          "name": "Mão",
+          "element": "Mộc",
+          "polarity": "Âm",
+          "animal": "Mèo",
+          "hourRange": "05:00-06:59",
+          "season": "Xuân giữa",
+          "stage": "Đế Vượng"
+        },
+        "label": "乙卯 ẤtMão"
+      },
+      "solarBoundary": {
+        "branch": "Thân",
+        "month": 8,
+        "day": 8,
+        "hour": 1,
+        "minute": 23,
+        "iso": "2023-08-08T01:23:05",
+        "name": "Lập Thu",
+        "year": 2023
+      },
+      "dayMaster": {
+        "key": "quy",
+        "han": "癸",
+        "name": "Quý",
+        "element": "Thủy",
+        "polarity": "Âm",
+        "aliases": [
+          "Gui"
+        ],
+        "keywords": [
+          "vũ lộ",
+          "thẩm thấu",
+          "cảm ứng"
+        ]
+      },
+      "analysis": {
+        "elementCounts": {
+          "Kim": 5.879999999999999,
+          "Mộc": 7.76,
+          "Thủy": 4.7700000000000005,
+          "Hỏa": 0,
+          "Thổ": 0.48999999999999994
+        },
+        "strengthScore": 90,
+        "strong": true,
+        "followMode": "followStrong",
+        "supportRatio": 0.7090545938748335,
+        "pressureRatio": 0.03262316910785619,
+        "strengthBand": "followStrong",
+        "favorableElements": [
+          "Thổ",
+          "Hỏa",
+          "Mộc"
+        ],
+        "balanceScore": 70,
+        "sameSupport": 4.7700000000000005,
+        "generatingSupport": 5.879999999999999,
+        "outputDrain": 7.76,
+        "controlPressure": 0.48999999999999994,
+        "controlOutbound": 0,
+        "seasonalScore": 12,
+        "excessElements": [
+          "Mộc",
+          "Kim",
+          "Thủy"
+        ],
+        "weakElements": [
+          "Hỏa",
+          "Thổ"
+        ],
+        "yinYang": {
+          "yin": 9,
+          "yang": 3,
+          "pattern": "yinExtreme"
+        },
+        "tenGodInfluence": {
+          "counts": {
+            "Tỷ Kiên": 1.8,
+            "Chính Ấn": 2.4,
+            "Thực Thần": 3.9,
+            "Kiếp Tài": 0.65,
+            "Chính Quan": 0.45
+          },
+          "ranked": [
+            {
+              "name": "Thực Thần",
+              "score": 3.9,
+              "profile": {
+                "core": "Tiết khí ôn hòa, sinh sản phẩm, nuôi đầu ra.",
+                "bright": "Khéo nuôi việc, làm đều, bền, có chất lượng, có khả năng dạy và truyền.",
+                "shadow": "Dễ chậm nhịp nếu quá cầu toàn hoặc quá ham an ổn.",
+                "career": "Hợp sản phẩm, đào tạo, ẩm thực, nội dung, vận hành sinh giá trị bền."
+              }
+            },
+            {
+              "name": "Chính Ấn",
+              "score": 2.4,
+              "profile": {
+                "core": "Ấn tinh chính, trọng học, tư cách, nền đỡ.",
+                "bright": "Được quý nhân, có chiều sâu học thuật, biết giữ chuẩn tri thức.",
+                "shadow": "Dễ chậm hành vì nặng học hơn làm hoặc quá cần che chắn.",
+                "career": "Hợp chuyên môn sâu, cố vấn, giáo dục, nghiên cứu, chứng chỉ."
+              }
+            },
+            {
+              "name": "Tỷ Kiên",
+              "score": 1.8,
+              "profile": {
+                "core": "Tự chủ, giữ trục, đứng cùng hàng với nhật chủ.",
+                "bright": "Giỏi tự chống đỡ, dám vác việc, giữ lập trường.",
+                "shadow": "Dễ cố chấp, tranh quyền ngang vai, hao lực vì không chịu mượn thế.",
+                "career": "Hợp vai trò dẫn nhịp, đồng sáng lập, trưởng nhóm, nghề phải tự đứng trục."
+              }
+            },
+            {
+              "name": "Kiếp Tài",
+              "score": 0.65,
+              "profile": {
+                "core": "Tranh lực, xoay nguồn, phá thế cũ để mở đường mới.",
+                "bright": "Nhanh xoay xở, dám đoạt cơ hội, cứu cục khi thế gấp.",
+                "shadow": "Dễ hao tài, rối quan hệ ngang hàng, tranh công hoặc tranh nguồn.",
+                "career": "Hợp môi trường cạnh tranh, deal, xoay vốn, mở cửa mới nhưng cần kỷ luật."
+              }
+            },
+            {
+              "name": "Chính Quan",
+              "score": 0.45,
+              "profile": {
+                "core": "Quan tinh chính, trọng pháp, vị, trách nhiệm.",
+                "bright": "Giữ chuẩn, biết tự quản, hợp đường danh vị và hệ thống rõ.",
+                "shadow": "Dễ áp lực bởi chuẩn mực, tự trói trong đúng-sai cứng.",
+                "career": "Hợp quản lý, hành chính, pháp chế, nhà nước, môi trường có thứ bậc."
+              }
+            }
+          ],
+          "top": {
+            "name": "Thực Thần",
+            "score": 3.9,
+            "profile": {
+              "core": "Tiết khí ôn hòa, sinh sản phẩm, nuôi đầu ra.",
+              "bright": "Khéo nuôi việc, làm đều, bền, có chất lượng, có khả năng dạy và truyền.",
+              "shadow": "Dễ chậm nhịp nếu quá cầu toàn hoặc quá ham an ổn.",
+              "career": "Hợp sản phẩm, đào tạo, ẩm thực, nội dung, vận hành sinh giá trị bền."
+            }
+          },
+          "second": {
+            "name": "Chính Ấn",
+            "score": 2.4,
+            "profile": {
+              "core": "Ấn tinh chính, trọng học, tư cách, nền đỡ.",
+              "bright": "Được quý nhân, có chiều sâu học thuật, biết giữ chuẩn tri thức.",
+              "shadow": "Dễ chậm hành vì nặng học hơn làm hoặc quá cần che chắn.",
+              "career": "Hợp chuyên môn sâu, cố vấn, giáo dục, nghiên cứu, chứng chỉ."
+            }
+          }
+        },
+        "usefulGods": {
+          "mode": "followStrong",
+          "scores": {
+            "Kim": -12,
+            "Mộc": 8,
+            "Thủy": -12,
+            "Hỏa": 16,
+            "Thổ": 30
+          },
+          "dungThan": [
+            "Thổ",
+            "Hỏa"
+          ],
+          "hyThan": [
+            "Mộc"
+          ],
+          "kyThan": [
+            "Thủy",
+            "Kim"
+          ],
+          "nhanThan": [],
+          "explanation": "Theo cường thì thuận thế mà dùng, ưu tiên giữ cục thông và tránh cưỡng kéo về trung dung giả tạo. Cục hiện vượng thân với trọng tâm mùa khí ở **Kim**. Ưu tiên dùng **Thổ / Hỏa** để điều nhịp; vui dùng **Mộc**; kỵ nhất **Thủy / Kim**."
+        },
+        "pattern": {
+          "label": "Tòng Vượng cách",
+          "base": "Chính Ấn cách",
+          "monthGod": "Chính Ấn",
+          "mainHidden": "Canh",
+          "description": "Cục khí nghiêng hẳn về thân/ấn, nên thuận thế mà dùng, không nên cưỡng ép tiết phá quá tay.",
+          "supportText": "Nội cục tụ nhiều thân-ấn, khí tự đứng thành cục; xét theo thế thuận, lá số nghiêng về **Tòng Vượng cách**.",
+          "synergy": "Khí cục đi theo lối hỗn hợp, phải xem vận đến mới biết cửa nào mở rõ nhất."
+        },
+        "growthStages": {
+          "year": "Trường Sinh",
+          "month": "Tử",
+          "day": "Trường Sinh",
+          "hour": "Trường Sinh"
+        },
+        "shenSha": [
+          {
+            "name": "Thiên Ất Quý Nhân",
+            "by": "Quý",
+            "target": "Mão",
+            "desc": "Quý nhân tinh, gặp đúng người dễ mở nút, hợp xin chỉ điểm và mượn thế thiện trợ."
+          },
+          {
+            "name": "Văn Xương",
+            "by": "Quý",
+            "target": "Mão",
+            "desc": "Khí văn học và tư duy hệ thống, hợp thi cử, viết lách, chuẩn hóa tri thức."
+          }
+        ]
+      }
+    },
+    "analysis": {
+      "elementCounts": {
+        "Kim": 5.879999999999999,
+        "Mộc": 7.76,
+        "Thủy": 4.7700000000000005,
+        "Hỏa": 0,
+        "Thổ": 0.48999999999999994
+      },
+      "strengthScore": 90,
+      "strong": true,
+      "followMode": "followStrong",
+      "supportRatio": 0.7090545938748335,
+      "pressureRatio": 0.03262316910785619,
+      "strengthBand": "followStrong",
+      "favorableElements": [
+        "Thổ",
+        "Hỏa",
+        "Mộc"
+      ],
+      "balanceScore": 70,
+      "sameSupport": 4.7700000000000005,
+      "generatingSupport": 5.879999999999999,
+      "outputDrain": 7.76,
+      "controlPressure": 0.48999999999999994,
+      "controlOutbound": 0,
+      "seasonalScore": 12,
+      "excessElements": [
+        "Mộc",
+        "Kim",
+        "Thủy"
+      ],
+      "weakElements": [
+        "Hỏa",
+        "Thổ"
+      ],
+      "yinYang": {
+        "yin": 9,
+        "yang": 3,
+        "pattern": "yinExtreme"
+      },
+      "tenGodInfluence": {
+        "counts": {
+          "Tỷ Kiên": 1.8,
+          "Chính Ấn": 2.4,
+          "Thực Thần": 3.9,
+          "Kiếp Tài": 0.65,
+          "Chính Quan": 0.45
+        },
+        "ranked": [
+          {
+            "name": "Thực Thần",
+            "score": 3.9,
+            "profile": {
+              "core": "Tiết khí ôn hòa, sinh sản phẩm, nuôi đầu ra.",
+              "bright": "Khéo nuôi việc, làm đều, bền, có chất lượng, có khả năng dạy và truyền.",
+              "shadow": "Dễ chậm nhịp nếu quá cầu toàn hoặc quá ham an ổn.",
+              "career": "Hợp sản phẩm, đào tạo, ẩm thực, nội dung, vận hành sinh giá trị bền."
+            }
+          },
+          {
+            "name": "Chính Ấn",
+            "score": 2.4,
+            "profile": {
+              "core": "Ấn tinh chính, trọng học, tư cách, nền đỡ.",
+              "bright": "Được quý nhân, có chiều sâu học thuật, biết giữ chuẩn tri thức.",
+              "shadow": "Dễ chậm hành vì nặng học hơn làm hoặc quá cần che chắn.",
+              "career": "Hợp chuyên môn sâu, cố vấn, giáo dục, nghiên cứu, chứng chỉ."
+            }
+          },
+          {
+            "name": "Tỷ Kiên",
+            "score": 1.8,
+            "profile": {
+              "core": "Tự chủ, giữ trục, đứng cùng hàng với nhật chủ.",
+              "bright": "Giỏi tự chống đỡ, dám vác việc, giữ lập trường.",
+              "shadow": "Dễ cố chấp, tranh quyền ngang vai, hao lực vì không chịu mượn thế.",
+              "career": "Hợp vai trò dẫn nhịp, đồng sáng lập, trưởng nhóm, nghề phải tự đứng trục."
+            }
+          },
+          {
+            "name": "Kiếp Tài",
+            "score": 0.65,
+            "profile": {
+              "core": "Tranh lực, xoay nguồn, phá thế cũ để mở đường mới.",
+              "bright": "Nhanh xoay xở, dám đoạt cơ hội, cứu cục khi thế gấp.",
+              "shadow": "Dễ hao tài, rối quan hệ ngang hàng, tranh công hoặc tranh nguồn.",
+              "career": "Hợp môi trường cạnh tranh, deal, xoay vốn, mở cửa mới nhưng cần kỷ luật."
+            }
+          },
+          {
+            "name": "Chính Quan",
+            "score": 0.45,
+            "profile": {
+              "core": "Quan tinh chính, trọng pháp, vị, trách nhiệm.",
+              "bright": "Giữ chuẩn, biết tự quản, hợp đường danh vị và hệ thống rõ.",
+              "shadow": "Dễ áp lực bởi chuẩn mực, tự trói trong đúng-sai cứng.",
+              "career": "Hợp quản lý, hành chính, pháp chế, nhà nước, môi trường có thứ bậc."
+            }
+          }
+        ],
+        "top": {
+          "name": "Thực Thần",
+          "score": 3.9,
+          "profile": {
+            "core": "Tiết khí ôn hòa, sinh sản phẩm, nuôi đầu ra.",
+            "bright": "Khéo nuôi việc, làm đều, bền, có chất lượng, có khả năng dạy và truyền.",
+            "shadow": "Dễ chậm nhịp nếu quá cầu toàn hoặc quá ham an ổn.",
+            "career": "Hợp sản phẩm, đào tạo, ẩm thực, nội dung, vận hành sinh giá trị bền."
+          }
+        },
+        "second": {
+          "name": "Chính Ấn",
+          "score": 2.4,
+          "profile": {
+            "core": "Ấn tinh chính, trọng học, tư cách, nền đỡ.",
+            "bright": "Được quý nhân, có chiều sâu học thuật, biết giữ chuẩn tri thức.",
+            "shadow": "Dễ chậm hành vì nặng học hơn làm hoặc quá cần che chắn.",
+            "career": "Hợp chuyên môn sâu, cố vấn, giáo dục, nghiên cứu, chứng chỉ."
+          }
+        }
+      },
+      "usefulGods": {
+        "mode": "followStrong",
+        "scores": {
+          "Kim": -12,
+          "Mộc": 8,
+          "Thủy": -12,
+          "Hỏa": 16,
+          "Thổ": 30
+        },
+        "dungThan": [
+          "Thổ",
+          "Hỏa"
+        ],
+        "hyThan": [
+          "Mộc"
+        ],
+        "kyThan": [
+          "Thủy",
+          "Kim"
+        ],
+        "nhanThan": [],
+        "explanation": "Theo cường thì thuận thế mà dùng, ưu tiên giữ cục thông và tránh cưỡng kéo về trung dung giả tạo. Cục hiện vượng thân với trọng tâm mùa khí ở **Kim**. Ưu tiên dùng **Thổ / Hỏa** để điều nhịp; vui dùng **Mộc**; kỵ nhất **Thủy / Kim**."
+      },
+      "pattern": {
+        "label": "Tòng Vượng cách",
+        "base": "Chính Ấn cách",
+        "monthGod": "Chính Ấn",
+        "mainHidden": "Canh",
+        "description": "Cục khí nghiêng hẳn về thân/ấn, nên thuận thế mà dùng, không nên cưỡng ép tiết phá quá tay.",
+        "supportText": "Nội cục tụ nhiều thân-ấn, khí tự đứng thành cục; xét theo thế thuận, lá số nghiêng về **Tòng Vượng cách**.",
+        "synergy": "Khí cục đi theo lối hỗn hợp, phải xem vận đến mới biết cửa nào mở rõ nhất."
+      },
+      "growthStages": {
+        "year": "Trường Sinh",
+        "month": "Tử",
+        "day": "Trường Sinh",
+        "hour": "Trường Sinh"
+      },
+      "shenSha": [
+        {
+          "name": "Thiên Ất Quý Nhân",
+          "by": "Quý",
+          "target": "Mão",
+          "desc": "Quý nhân tinh, gặp đúng người dễ mở nút, hợp xin chỉ điểm và mượn thế thiện trợ."
+        },
+        {
+          "name": "Văn Xương",
+          "by": "Quý",
+          "target": "Mão",
+          "desc": "Khí văn học và tư duy hệ thống, hợp thi cử, viết lách, chuẩn hóa tri thức."
+        }
+      ]
+    },
+    "meta": {
+      "timezone": "Asia/Ho_Chi_Minh",
+      "createdAt": 1776433997883,
+      "updatedAt": 1776433997883,
+      "version": 1
+    }
+  },
+  "1359360311702061250": {
+    "userId": "1359360311702061250",
+    "birth": {
+      "year": 2005,
+      "month": 10,
+      "day": 11,
+      "hour": 11,
+      "hourRange": "11:00-12:59",
+      "timezone": "Asia/Ho_Chi_Minh"
+    },
+    "solarBoundary": {
+      "branch": "Tuất",
+      "month": 10,
+      "day": 8,
+      "hour": 11,
+      "minute": 32,
+      "iso": "2005-10-08T11:32:31",
+      "name": "Hàn Lộ",
+      "year": 2005
+    },
+    "natalChart": {
+      "birth": {
+        "year": 2005,
+        "month": 10,
+        "day": 11,
+        "hour": 11,
+        "hourRange": "11:00-12:59",
+        "timezone": "Asia/Ho_Chi_Minh"
+      },
+      "year": {
+        "stem": {
+          "key": "at",
+          "han": "乙",
+          "name": "Ất",
+          "element": "Mộc",
+          "polarity": "Âm",
+          "aliases": [
+            "Yi"
+          ],
+          "keywords": [
+            "dây leo",
+            "linh hoạt",
+            "nuôi dưỡng"
+          ]
+        },
+        "branch": {
+          "key": "dau",
+          "han": "酉",
+          "name": "Dậu",
+          "element": "Kim",
+          "polarity": "Âm",
+          "animal": "Gà",
+          "hourRange": "17:00-18:59",
+          "season": "Thu giữa",
+          "stage": "Đế Vượng"
+        },
+        "label": "乙酉 ẤtDậu"
+      },
+      "month": {
+        "stem": {
+          "key": "binh",
+          "han": "丙",
+          "name": "Bính",
+          "element": "Hỏa",
+          "polarity": "Dương",
+          "aliases": [
+            "Bing"
+          ],
+          "keywords": [
+            "thái dương",
+            "chiếu rọi",
+            "phát động"
+          ]
+        },
+        "branch": {
+          "key": "tuat",
+          "han": "戌",
+          "name": "Tuất",
+          "element": "Thổ",
+          "polarity": "Dương",
+          "animal": "Chó",
+          "hourRange": "19:00-20:59",
+          "season": "Thu cuối",
+          "stage": "Mộ"
+        },
+        "label": "丙戌 BínhTuất"
+      },
+      "day": {
+        "stem": {
+          "key": "binh",
+          "han": "丙",
+          "name": "Bính",
+          "element": "Hỏa",
+          "polarity": "Dương",
+          "aliases": [
+            "Bing"
+          ],
+          "keywords": [
+            "thái dương",
+            "chiếu rọi",
+            "phát động"
+          ]
+        },
+        "branch": {
+          "key": "dan",
+          "han": "寅",
+          "name": "Dần",
+          "element": "Mộc",
+          "polarity": "Dương",
+          "animal": "Hổ",
+          "hourRange": "03:00-04:59",
+          "season": "Xuân đầu",
+          "stage": "Trường Sinh"
+        },
+        "label": "丙寅 BínhDần"
+      },
+      "hour": {
+        "stem": {
+          "key": "giap",
+          "han": "甲",
+          "name": "Giáp",
+          "element": "Mộc",
+          "polarity": "Dương",
+          "aliases": [
+            "Jia"
+          ],
+          "keywords": [
+            "đại thụ",
+            "khai mở",
+            "xương sống"
+          ]
+        },
+        "branch": {
+          "key": "ngo",
+          "han": "午",
+          "name": "Ngọ",
+          "element": "Hỏa",
+          "polarity": "Dương",
+          "animal": "Ngựa",
+          "hourRange": "11:00-12:59",
+          "season": "Hạ giữa",
+          "stage": "Đế Vượng"
+        },
+        "label": "甲午 GiápNgọ"
+      },
+      "solarBoundary": {
+        "branch": "Tuất",
+        "month": 10,
+        "day": 8,
+        "hour": 11,
+        "minute": 32,
+        "iso": "2005-10-08T11:32:31",
+        "name": "Hàn Lộ",
+        "year": 2005
+      },
+      "dayMaster": {
+        "key": "binh",
+        "han": "丙",
+        "name": "Bính",
+        "element": "Hỏa",
+        "polarity": "Dương",
+        "aliases": [
+          "Bing"
+        ],
+        "keywords": [
+          "thái dương",
+          "chiếu rọi",
+          "phát động"
+        ]
+      },
+      "analysis": {
+        "elementCounts": {
+          "Kim": 2.75,
+          "Mộc": 5.82,
+          "Thủy": 0,
+          "Hỏa": 7.855,
+          "Thổ": 3.905
+        },
+        "strengthScore": 91,
+        "strong": true,
+        "followMode": "followStrong",
+        "supportRatio": 0.7914918246274056,
+        "pressureRatio": 0.09549992765156996,
+        "strengthBand": "followStrong",
+        "favorableElements": [
+          "Thủy",
+          "Kim",
+          "Thổ"
+        ],
+        "balanceScore": 76,
+        "sameSupport": 7.855,
+        "generatingSupport": 5.82,
+        "outputDrain": 3.905,
+        "controlPressure": 0,
+        "controlOutbound": 2.75,
+        "seasonalScore": -4,
+        "excessElements": [
+          "Hỏa",
+          "Mộc"
+        ],
+        "weakElements": [
+          "Thủy",
+          "Kim"
+        ],
+        "yinYang": {
+          "yin": 3,
+          "yang": 9,
+          "pattern": "yangExtreme"
+        },
+        "tenGodInfluence": {
+          "counts": {
+            "Chính Ấn": 1,
+            "Tỷ Kiên": 2.85,
+            "Thiên Ấn": 1.9,
+            "Chính Tài": 1.65,
+            "Thực Thần": 1.45,
+            "Kiếp Tài": 1.45,
+            "Thương Quan": 0.65
+          },
+          "ranked": [
+            {
+              "name": "Tỷ Kiên",
+              "score": 2.85,
+              "profile": {
+                "core": "Tự chủ, giữ trục, đứng cùng hàng với nhật chủ.",
+                "bright": "Giỏi tự chống đỡ, dám vác việc, giữ lập trường.",
+                "shadow": "Dễ cố chấp, tranh quyền ngang vai, hao lực vì không chịu mượn thế.",
+                "career": "Hợp vai trò dẫn nhịp, đồng sáng lập, trưởng nhóm, nghề phải tự đứng trục."
+              }
+            },
+            {
+              "name": "Thiên Ấn",
+              "score": 1.9,
+              "profile": {
+                "core": "Ấn tinh lệch, thiên ngộ tính, trực giác, đường lối khác thường.",
+                "bright": "Giỏi lĩnh hội nhanh, đọc bản chất, làm việc khó bằng lối riêng.",
+                "shadow": "Dễ cô độc, khó hòa môi trường cứng, có lúc thiếu thực tế.",
+                "career": "Hợp nghiên cứu, công nghệ sâu, phân tích, sáng tạo dị biệt, tu học."
+              }
+            },
+            {
+              "name": "Chính Tài",
+              "score": 1.65,
+              "profile": {
+                "core": "Tài tinh ổn, trọng tích lũy và quản trị nguồn.",
+                "bright": "Giữ tiền, giữ chuẩn, xây nền tốt, có ý thức trách nhiệm với tài nguyên.",
+                "shadow": "Dễ bó mình vào khuôn an toàn, chậm xoay khi thời thế đổi.",
+                "career": "Hợp quản trị, tài chính, kế toán, hậu cần, tích lũy tài sản bền."
+              }
+            },
+            {
+              "name": "Thực Thần",
+              "score": 1.45,
+              "profile": {
+                "core": "Tiết khí ôn hòa, sinh sản phẩm, nuôi đầu ra.",
+                "bright": "Khéo nuôi việc, làm đều, bền, có chất lượng, có khả năng dạy và truyền.",
+                "shadow": "Dễ chậm nhịp nếu quá cầu toàn hoặc quá ham an ổn.",
+                "career": "Hợp sản phẩm, đào tạo, ẩm thực, nội dung, vận hành sinh giá trị bền."
+              }
+            },
+            {
+              "name": "Kiếp Tài",
+              "score": 1.45,
+              "profile": {
+                "core": "Tranh lực, xoay nguồn, phá thế cũ để mở đường mới.",
+                "bright": "Nhanh xoay xở, dám đoạt cơ hội, cứu cục khi thế gấp.",
+                "shadow": "Dễ hao tài, rối quan hệ ngang hàng, tranh công hoặc tranh nguồn.",
+                "career": "Hợp môi trường cạnh tranh, deal, xoay vốn, mở cửa mới nhưng cần kỷ luật."
+              }
+            },
+            {
+              "name": "Chính Ấn",
+              "score": 1,
+              "profile": {
+                "core": "Ấn tinh chính, trọng học, tư cách, nền đỡ.",
+                "bright": "Được quý nhân, có chiều sâu học thuật, biết giữ chuẩn tri thức.",
+                "shadow": "Dễ chậm hành vì nặng học hơn làm hoặc quá cần che chắn.",
+                "career": "Hợp chuyên môn sâu, cố vấn, giáo dục, nghiên cứu, chứng chỉ."
+              }
+            },
+            {
+              "name": "Thương Quan",
+              "score": 0.65,
+              "profile": {
+                "core": "Biểu đạt sắc, phá khuôn, mở lối khác người.",
+                "bright": "Rất mạnh ở cải tiến, phản biện, sáng tạo, trình diễn năng lực.",
+                "shadow": "Dễ phạm cấp trên, khó chịu khuôn, lời sắc quá mức.",
+                "career": "Hợp sáng tạo, chiến lược, R&D, truyền thông, cải cách quy trình."
+              }
+            }
+          ],
+          "top": {
+            "name": "Tỷ Kiên",
+            "score": 2.85,
+            "profile": {
+              "core": "Tự chủ, giữ trục, đứng cùng hàng với nhật chủ.",
+              "bright": "Giỏi tự chống đỡ, dám vác việc, giữ lập trường.",
+              "shadow": "Dễ cố chấp, tranh quyền ngang vai, hao lực vì không chịu mượn thế.",
+              "career": "Hợp vai trò dẫn nhịp, đồng sáng lập, trưởng nhóm, nghề phải tự đứng trục."
+            }
+          },
+          "second": {
+            "name": "Thiên Ấn",
+            "score": 1.9,
+            "profile": {
+              "core": "Ấn tinh lệch, thiên ngộ tính, trực giác, đường lối khác thường.",
+              "bright": "Giỏi lĩnh hội nhanh, đọc bản chất, làm việc khó bằng lối riêng.",
+              "shadow": "Dễ cô độc, khó hòa môi trường cứng, có lúc thiếu thực tế.",
+              "career": "Hợp nghiên cứu, công nghệ sâu, phân tích, sáng tạo dị biệt, tu học."
+            }
+          }
+        },
+        "usefulGods": {
+          "mode": "followStrong",
+          "scores": {
+            "Kim": 16,
+            "Mộc": -20,
+            "Thủy": 30,
+            "Hỏa": -20,
+            "Thổ": 16
+          },
+          "dungThan": [
+            "Thủy",
+            "Kim"
+          ],
+          "hyThan": [
+            "Thổ"
+          ],
+          "kyThan": [
+            "Hỏa",
+            "Mộc"
+          ],
+          "nhanThan": [],
+          "explanation": "Theo cường thì thuận thế mà dùng, ưu tiên giữ cục thông và tránh cưỡng kéo về trung dung giả tạo. Cục hiện vượng thân với trọng tâm mùa khí ở **Thổ**. Ưu tiên dùng **Thủy / Kim** để điều nhịp; vui dùng **Thổ**; kỵ nhất **Hỏa / Mộc**."
+        },
+        "pattern": {
+          "label": "Tòng Vượng cách",
+          "base": "Thực Thần cách",
+          "monthGod": "Thực Thần",
+          "mainHidden": "Mậu",
+          "description": "Cục khí nghiêng hẳn về thân/ấn, nên thuận thế mà dùng, không nên cưỡng ép tiết phá quá tay.",
+          "supportText": "Nội cục tụ nhiều thân-ấn, khí tự đứng thành cục; xét theo thế thuận, lá số nghiêng về **Tòng Vượng cách**.",
+          "synergy": "Khí cục đi theo lối hỗn hợp, phải xem vận đến mới biết cửa nào mở rõ nhất."
+        },
+        "growthStages": {
+          "year": "Tử",
+          "month": "Mộ",
+          "day": "Trường Sinh",
+          "hour": "Đế Vượng"
+        },
+        "shenSha": [
+          {
+            "name": "Hoa Cái",
+            "by": "Dần",
+            "target": "Tuất",
+            "desc": "Khí cô cao và nghiên cứu, hợp học thuật, nghệ thuật, tu hành, nhưng dễ thành cô lập nếu cục lạnh."
+          },
+          {
+            "name": "Hồng Loan",
+            "by": "Dần",
+            "target": "Dậu",
+            "desc": "Khí hỷ hợp, thiên về kết nối, vui mừng, dễ có duyên gặp gỡ và tín hiệu thuận hòa."
+          },
+          {
+            "name": "Đào Hoa",
+            "by": "Dậu",
+            "target": "Ngọ",
+            "desc": "Khí giao cảm mạnh, dễ hút ánh nhìn, hợp giao tiếp và biểu đạt; nếu cục bất ổn thì dễ phân tâm."
+          },
+          {
+            "name": "Hồng Loan",
+            "by": "Dậu",
+            "target": "Ngọ",
+            "desc": "Khí hỷ hợp, thiên về kết nối, vui mừng, dễ có duyên gặp gỡ và tín hiệu thuận hòa."
+          },
+          {
+            "name": "Thiên Ất Quý Nhân",
+            "by": "Bính",
+            "target": "Dậu",
+            "desc": "Quý nhân tinh, gặp đúng người dễ mở nút, hợp xin chỉ điểm và mượn thế thiện trợ."
+          }
+        ]
+      }
+    },
+    "analysis": {
+      "elementCounts": {
+        "Kim": 2.75,
+        "Mộc": 5.82,
+        "Thủy": 0,
+        "Hỏa": 7.855,
+        "Thổ": 3.905
+      },
+      "strengthScore": 91,
+      "strong": true,
+      "followMode": "followStrong",
+      "supportRatio": 0.7914918246274056,
+      "pressureRatio": 0.09549992765156996,
+      "strengthBand": "followStrong",
+      "favorableElements": [
+        "Thủy",
+        "Kim",
+        "Thổ"
+      ],
+      "balanceScore": 76,
+      "sameSupport": 7.855,
+      "generatingSupport": 5.82,
+      "outputDrain": 3.905,
+      "controlPressure": 0,
+      "controlOutbound": 2.75,
+      "seasonalScore": -4,
+      "excessElements": [
+        "Hỏa",
+        "Mộc"
+      ],
+      "weakElements": [
+        "Thủy",
+        "Kim"
+      ],
+      "yinYang": {
+        "yin": 3,
+        "yang": 9,
+        "pattern": "yangExtreme"
+      },
+      "tenGodInfluence": {
+        "counts": {
+          "Chính Ấn": 1,
+          "Tỷ Kiên": 2.85,
+          "Thiên Ấn": 1.9,
+          "Chính Tài": 1.65,
+          "Thực Thần": 1.45,
+          "Kiếp Tài": 1.45,
+          "Thương Quan": 0.65
+        },
+        "ranked": [
+          {
+            "name": "Tỷ Kiên",
+            "score": 2.85,
+            "profile": {
+              "core": "Tự chủ, giữ trục, đứng cùng hàng với nhật chủ.",
+              "bright": "Giỏi tự chống đỡ, dám vác việc, giữ lập trường.",
+              "shadow": "Dễ cố chấp, tranh quyền ngang vai, hao lực vì không chịu mượn thế.",
+              "career": "Hợp vai trò dẫn nhịp, đồng sáng lập, trưởng nhóm, nghề phải tự đứng trục."
+            }
+          },
+          {
+            "name": "Thiên Ấn",
+            "score": 1.9,
+            "profile": {
+              "core": "Ấn tinh lệch, thiên ngộ tính, trực giác, đường lối khác thường.",
+              "bright": "Giỏi lĩnh hội nhanh, đọc bản chất, làm việc khó bằng lối riêng.",
+              "shadow": "Dễ cô độc, khó hòa môi trường cứng, có lúc thiếu thực tế.",
+              "career": "Hợp nghiên cứu, công nghệ sâu, phân tích, sáng tạo dị biệt, tu học."
+            }
+          },
+          {
+            "name": "Chính Tài",
+            "score": 1.65,
+            "profile": {
+              "core": "Tài tinh ổn, trọng tích lũy và quản trị nguồn.",
+              "bright": "Giữ tiền, giữ chuẩn, xây nền tốt, có ý thức trách nhiệm với tài nguyên.",
+              "shadow": "Dễ bó mình vào khuôn an toàn, chậm xoay khi thời thế đổi.",
+              "career": "Hợp quản trị, tài chính, kế toán, hậu cần, tích lũy tài sản bền."
+            }
+          },
+          {
+            "name": "Thực Thần",
+            "score": 1.45,
+            "profile": {
+              "core": "Tiết khí ôn hòa, sinh sản phẩm, nuôi đầu ra.",
+              "bright": "Khéo nuôi việc, làm đều, bền, có chất lượng, có khả năng dạy và truyền.",
+              "shadow": "Dễ chậm nhịp nếu quá cầu toàn hoặc quá ham an ổn.",
+              "career": "Hợp sản phẩm, đào tạo, ẩm thực, nội dung, vận hành sinh giá trị bền."
+            }
+          },
+          {
+            "name": "Kiếp Tài",
+            "score": 1.45,
+            "profile": {
+              "core": "Tranh lực, xoay nguồn, phá thế cũ để mở đường mới.",
+              "bright": "Nhanh xoay xở, dám đoạt cơ hội, cứu cục khi thế gấp.",
+              "shadow": "Dễ hao tài, rối quan hệ ngang hàng, tranh công hoặc tranh nguồn.",
+              "career": "Hợp môi trường cạnh tranh, deal, xoay vốn, mở cửa mới nhưng cần kỷ luật."
+            }
+          },
+          {
+            "name": "Chính Ấn",
+            "score": 1,
+            "profile": {
+              "core": "Ấn tinh chính, trọng học, tư cách, nền đỡ.",
+              "bright": "Được quý nhân, có chiều sâu học thuật, biết giữ chuẩn tri thức.",
+              "shadow": "Dễ chậm hành vì nặng học hơn làm hoặc quá cần che chắn.",
+              "career": "Hợp chuyên môn sâu, cố vấn, giáo dục, nghiên cứu, chứng chỉ."
+            }
+          },
+          {
+            "name": "Thương Quan",
+            "score": 0.65,
+            "profile": {
+              "core": "Biểu đạt sắc, phá khuôn, mở lối khác người.",
+              "bright": "Rất mạnh ở cải tiến, phản biện, sáng tạo, trình diễn năng lực.",
+              "shadow": "Dễ phạm cấp trên, khó chịu khuôn, lời sắc quá mức.",
+              "career": "Hợp sáng tạo, chiến lược, R&D, truyền thông, cải cách quy trình."
+            }
+          }
+        ],
+        "top": {
+          "name": "Tỷ Kiên",
+          "score": 2.85,
+          "profile": {
+            "core": "Tự chủ, giữ trục, đứng cùng hàng với nhật chủ.",
+            "bright": "Giỏi tự chống đỡ, dám vác việc, giữ lập trường.",
+            "shadow": "Dễ cố chấp, tranh quyền ngang vai, hao lực vì không chịu mượn thế.",
+            "career": "Hợp vai trò dẫn nhịp, đồng sáng lập, trưởng nhóm, nghề phải tự đứng trục."
+          }
+        },
+        "second": {
+          "name": "Thiên Ấn",
+          "score": 1.9,
+          "profile": {
+            "core": "Ấn tinh lệch, thiên ngộ tính, trực giác, đường lối khác thường.",
+            "bright": "Giỏi lĩnh hội nhanh, đọc bản chất, làm việc khó bằng lối riêng.",
+            "shadow": "Dễ cô độc, khó hòa môi trường cứng, có lúc thiếu thực tế.",
+            "career": "Hợp nghiên cứu, công nghệ sâu, phân tích, sáng tạo dị biệt, tu học."
+          }
+        }
+      },
+      "usefulGods": {
+        "mode": "followStrong",
+        "scores": {
+          "Kim": 16,
+          "Mộc": -20,
+          "Thủy": 30,
+          "Hỏa": -20,
+          "Thổ": 16
+        },
+        "dungThan": [
+          "Thủy",
+          "Kim"
+        ],
+        "hyThan": [
+          "Thổ"
+        ],
+        "kyThan": [
+          "Hỏa",
+          "Mộc"
+        ],
+        "nhanThan": [],
+        "explanation": "Theo cường thì thuận thế mà dùng, ưu tiên giữ cục thông và tránh cưỡng kéo về trung dung giả tạo. Cục hiện vượng thân với trọng tâm mùa khí ở **Thổ**. Ưu tiên dùng **Thủy / Kim** để điều nhịp; vui dùng **Thổ**; kỵ nhất **Hỏa / Mộc**."
+      },
+      "pattern": {
+        "label": "Tòng Vượng cách",
+        "base": "Thực Thần cách",
+        "monthGod": "Thực Thần",
+        "mainHidden": "Mậu",
+        "description": "Cục khí nghiêng hẳn về thân/ấn, nên thuận thế mà dùng, không nên cưỡng ép tiết phá quá tay.",
+        "supportText": "Nội cục tụ nhiều thân-ấn, khí tự đứng thành cục; xét theo thế thuận, lá số nghiêng về **Tòng Vượng cách**.",
+        "synergy": "Khí cục đi theo lối hỗn hợp, phải xem vận đến mới biết cửa nào mở rõ nhất."
+      },
+      "growthStages": {
+        "year": "Tử",
+        "month": "Mộ",
+        "day": "Trường Sinh",
+        "hour": "Đế Vượng"
+      },
+      "shenSha": [
+        {
+          "name": "Hoa Cái",
+          "by": "Dần",
+          "target": "Tuất",
+          "desc": "Khí cô cao và nghiên cứu, hợp học thuật, nghệ thuật, tu hành, nhưng dễ thành cô lập nếu cục lạnh."
+        },
+        {
+          "name": "Hồng Loan",
+          "by": "Dần",
+          "target": "Dậu",
+          "desc": "Khí hỷ hợp, thiên về kết nối, vui mừng, dễ có duyên gặp gỡ và tín hiệu thuận hòa."
+        },
+        {
+          "name": "Đào Hoa",
+          "by": "Dậu",
+          "target": "Ngọ",
+          "desc": "Khí giao cảm mạnh, dễ hút ánh nhìn, hợp giao tiếp và biểu đạt; nếu cục bất ổn thì dễ phân tâm."
+        },
+        {
+          "name": "Hồng Loan",
+          "by": "Dậu",
+          "target": "Ngọ",
+          "desc": "Khí hỷ hợp, thiên về kết nối, vui mừng, dễ có duyên gặp gỡ và tín hiệu thuận hòa."
+        },
+        {
+          "name": "Thiên Ất Quý Nhân",
+          "by": "Bính",
+          "target": "Dậu",
+          "desc": "Quý nhân tinh, gặp đúng người dễ mở nút, hợp xin chỉ điểm và mượn thế thiện trợ."
+        }
+      ]
+    },
+    "meta": {
+      "timezone": "Asia/Ho_Chi_Minh",
+      "createdAt": 1776436164917,
+      "updatedAt": 1776436164917,
+      "version": 1
+    }
+  },
+  "756812134016483328": {
+    "userId": "756812134016483328",
+    "birth": {
+      "year": 2007,
+      "month": 4,
+      "day": 26,
+      "hour": 1,
+      "hourRange": "01:00-02:59",
+      "timezone": "Asia/Ho_Chi_Minh"
+    },
+    "solarBoundary": {
+      "branch": "Thìn",
+      "month": 4,
+      "day": 5,
+      "hour": 11,
+      "minute": 2,
+      "iso": "2007-04-05T11:02:05",
+      "name": "Thanh Minh",
+      "year": 2007
+    },
+    "natalChart": {
+      "birth": {
+        "year": 2007,
+        "month": 4,
+        "day": 26,
+        "hour": 1,
+        "hourRange": "01:00-02:59",
+        "timezone": "Asia/Ho_Chi_Minh"
+      },
+      "year": {
+        "stem": {
+          "key": "dinh",
+          "han": "丁",
+          "name": "Đinh",
+          "element": "Hỏa",
+          "polarity": "Âm",
+          "aliases": [
+            "Ding"
+          ],
+          "keywords": [
+            "đăng hỏa",
+            "tinh luyện",
+            "soi chiếu"
+          ]
+        },
+        "branch": {
+          "key": "hoi",
+          "han": "亥",
+          "name": "Hợi",
+          "element": "Thủy",
+          "polarity": "Âm",
+          "animal": "Heo",
+          "hourRange": "21:00-22:59",
+          "season": "Đông đầu",
+          "stage": "Trường Sinh"
+        },
+        "label": "丁亥 ĐinhHợi"
+      },
+      "month": {
+        "stem": {
+          "key": "giap",
+          "han": "甲",
+          "name": "Giáp",
+          "element": "Mộc",
+          "polarity": "Dương",
+          "aliases": [
+            "Jia"
+          ],
+          "keywords": [
+            "đại thụ",
+            "khai mở",
+            "xương sống"
+          ]
+        },
+        "branch": {
+          "key": "thin",
+          "han": "辰",
+          "name": "Thìn",
+          "element": "Thổ",
+          "polarity": "Dương",
+          "animal": "Rồng",
+          "hourRange": "07:00-08:59",
+          "season": "Xuân cuối",
+          "stage": "Mộ"
+        },
+        "label": "甲辰 GiápThìn"
+      },
+      "day": {
+        "stem": {
+          "key": "mau",
+          "han": "戊",
+          "name": "Mậu",
+          "element": "Thổ",
+          "polarity": "Dương",
+          "aliases": [
+            "Wu"
+          ],
+          "keywords": [
+            "núi",
+            "trục đỡ",
+            "ổn định"
+          ]
+        },
+        "branch": {
+          "key": "ty",
+          "han": "子",
+          "name": "Tý",
+          "element": "Thủy",
+          "polarity": "Dương",
+          "animal": "Chuột",
+          "hourRange": "23:00-00:59",
+          "season": "Đông",
+          "stage": "Đế Vượng"
+        },
+        "label": "戊子 MậuTý"
+      },
+      "hour": {
+        "stem": {
+          "key": "quy",
+          "han": "癸",
+          "name": "Quý",
+          "element": "Thủy",
+          "polarity": "Âm",
+          "aliases": [
+            "Gui"
+          ],
+          "keywords": [
+            "vũ lộ",
+            "thẩm thấu",
+            "cảm ứng"
+          ]
+        },
+        "branch": {
+          "key": "suu",
+          "han": "丑",
+          "name": "Sửu",
+          "element": "Thổ",
+          "polarity": "Âm",
+          "animal": "Trâu",
+          "hourRange": "01:00-02:59",
+          "season": "Đông cuối",
+          "stage": "Suy"
+        },
+        "label": "癸丑 QuýSửu"
+      },
+      "solarBoundary": {
+        "branch": "Thìn",
+        "month": 4,
+        "day": 5,
+        "hour": 11,
+        "minute": 2,
+        "iso": "2007-04-05T11:02:05",
+        "name": "Thanh Minh",
+        "year": 2007
+      },
+      "dayMaster": {
+        "key": "mau",
+        "han": "戊",
+        "name": "Mậu",
+        "element": "Thổ",
+        "polarity": "Dương",
+        "aliases": [
+          "Wu"
+        ],
+        "keywords": [
+          "núi",
+          "trục đỡ",
+          "ổn định"
+        ]
+      },
+      "analysis": {
+        "elementCounts": {
+          "Kim": 0.27999999999999997,
+          "Mộc": 4.0649999999999995,
+          "Thủy": 6.930000000000001,
+          "Hỏa": 1.8,
+          "Thổ": 7.04
+        },
+        "strengthScore": 64,
+        "strong": true,
+        "followMode": null,
+        "supportRatio": 0.5138638609544847,
+        "pressureRatio": 0.4779980236005347,
+        "strengthBand": "balanced",
+        "favorableElements": [
+          "Mộc",
+          "Thủy",
+          "Kim"
+        ],
+        "balanceScore": 74,
+        "sameSupport": 7.04,
+        "generatingSupport": 1.8,
+        "outputDrain": 0.27999999999999997,
+        "controlPressure": 4.0649999999999995,
+        "controlOutbound": 6.930000000000001,
+        "seasonalScore": 12,
+        "excessElements": [
+          "Thổ",
+          "Thủy"
+        ],
+        "weakElements": [
+          "Kim",
+          "Hỏa"
+        ],
+        "yinYang": {
+          "yin": 6,
+          "yang": 6,
+          "pattern": "balanced"
+        },
+        "tenGodInfluence": {
+          "counts": {
+            "Chính Ấn": 1,
+            "Thất Sát": 2.05,
+            "Tỷ Kiên": 1.8,
+            "Chính Tài": 3,
+            "Thiên Tài": 1,
+            "Chính Quan": 0.65,
+            "Kiếp Tài": 1,
+            "Thương Quan": 0.45
+          },
+          "ranked": [
+            {
+              "name": "Chính Tài",
+              "score": 3,
+              "profile": {
+                "core": "Tài tinh ổn, trọng tích lũy và quản trị nguồn.",
+                "bright": "Giữ tiền, giữ chuẩn, xây nền tốt, có ý thức trách nhiệm với tài nguyên.",
+                "shadow": "Dễ bó mình vào khuôn an toàn, chậm xoay khi thời thế đổi.",
+                "career": "Hợp quản trị, tài chính, kế toán, hậu cần, tích lũy tài sản bền."
+              }
+            },
+            {
+              "name": "Thất Sát",
+              "score": 2.05,
+              "profile": {
+                "core": "Sát tinh cứng, lực áp mạnh, thiên về quyết đoán và gánh nặng.",
+                "bright": "Có gan gánh việc khó, chịu áp lực lớn, phản ứng nhanh khi biến cục.",
+                "shadow": "Nếu thiếu ấn/thực thần điều tiết dễ thành gấp, cứng, cực đoan.",
+                "career": "Hợp tuyến đầu, an ninh, kỹ thuật nặng, vận hành khủng hoảng, chỉ huy."
+              }
+            },
+            {
+              "name": "Tỷ Kiên",
+              "score": 1.8,
+              "profile": {
+                "core": "Tự chủ, giữ trục, đứng cùng hàng với nhật chủ.",
+                "bright": "Giỏi tự chống đỡ, dám vác việc, giữ lập trường.",
+                "shadow": "Dễ cố chấp, tranh quyền ngang vai, hao lực vì không chịu mượn thế.",
+                "career": "Hợp vai trò dẫn nhịp, đồng sáng lập, trưởng nhóm, nghề phải tự đứng trục."
+              }
+            },
+            {
+              "name": "Chính Ấn",
+              "score": 1,
+              "profile": {
+                "core": "Ấn tinh chính, trọng học, tư cách, nền đỡ.",
+                "bright": "Được quý nhân, có chiều sâu học thuật, biết giữ chuẩn tri thức.",
+                "shadow": "Dễ chậm hành vì nặng học hơn làm hoặc quá cần che chắn.",
+                "career": "Hợp chuyên môn sâu, cố vấn, giáo dục, nghiên cứu, chứng chỉ."
+              }
+            },
+            {
+              "name": "Thiên Tài",
+              "score": 1,
+              "profile": {
+                "core": "Tài tinh động, trọng cơ hội, quan hệ, đa nguồn.",
+                "bright": "Nhạy thời vận, giỏi gặp người, kéo nguồn, mở cửa thị trường.",
+                "shadow": "Dễ phân tán, ham ngắn hạn, khó giữ nhịp lâu nếu thiếu nền.",
+                "career": "Hợp kinh doanh, đầu mối, khai thác cơ hội, ngoại giao, sales."
+              }
+            },
+            {
+              "name": "Kiếp Tài",
+              "score": 1,
+              "profile": {
+                "core": "Tranh lực, xoay nguồn, phá thế cũ để mở đường mới.",
+                "bright": "Nhanh xoay xở, dám đoạt cơ hội, cứu cục khi thế gấp.",
+                "shadow": "Dễ hao tài, rối quan hệ ngang hàng, tranh công hoặc tranh nguồn.",
+                "career": "Hợp môi trường cạnh tranh, deal, xoay vốn, mở cửa mới nhưng cần kỷ luật."
+              }
+            },
+            {
+              "name": "Chính Quan",
+              "score": 0.65,
+              "profile": {
+                "core": "Quan tinh chính, trọng pháp, vị, trách nhiệm.",
+                "bright": "Giữ chuẩn, biết tự quản, hợp đường danh vị và hệ thống rõ.",
+                "shadow": "Dễ áp lực bởi chuẩn mực, tự trói trong đúng-sai cứng.",
+                "career": "Hợp quản lý, hành chính, pháp chế, nhà nước, môi trường có thứ bậc."
+              }
+            },
+            {
+              "name": "Thương Quan",
+              "score": 0.45,
+              "profile": {
+                "core": "Biểu đạt sắc, phá khuôn, mở lối khác người.",
+                "bright": "Rất mạnh ở cải tiến, phản biện, sáng tạo, trình diễn năng lực.",
+                "shadow": "Dễ phạm cấp trên, khó chịu khuôn, lời sắc quá mức.",
+                "career": "Hợp sáng tạo, chiến lược, R&D, truyền thông, cải cách quy trình."
+              }
+            }
+          ],
+          "top": {
+            "name": "Chính Tài",
+            "score": 3,
+            "profile": {
+              "core": "Tài tinh ổn, trọng tích lũy và quản trị nguồn.",
+              "bright": "Giữ tiền, giữ chuẩn, xây nền tốt, có ý thức trách nhiệm với tài nguyên.",
+              "shadow": "Dễ bó mình vào khuôn an toàn, chậm xoay khi thời thế đổi.",
+              "career": "Hợp quản trị, tài chính, kế toán, hậu cần, tích lũy tài sản bền."
+            }
+          },
+          "second": {
+            "name": "Thất Sát",
+            "score": 2.05,
+            "profile": {
+              "core": "Sát tinh cứng, lực áp mạnh, thiên về quyết đoán và gánh nặng.",
+              "bright": "Có gan gánh việc khó, chịu áp lực lớn, phản ứng nhanh khi biến cục.",
+              "shadow": "Nếu thiếu ấn/thực thần điều tiết dễ thành gấp, cứng, cực đoan.",
+              "career": "Hợp tuyến đầu, an ninh, kỹ thuật nặng, vận hành khủng hoảng, chỉ huy."
+            }
+          }
+        },
+        "usefulGods": {
+          "mode": "strong",
+          "scores": {
+            "Kim": 28,
+            "Mộc": 22,
+            "Thủy": 0,
+            "Hỏa": -2,
+            "Thổ": -12
+          },
+          "dungThan": [
+            "Kim",
+            "Mộc"
+          ],
+          "hyThan": [],
+          "kyThan": [
+            "Thổ",
+            "Hỏa"
+          ],
+          "nhanThan": [
+            "Thủy",
+            "Hỏa"
+          ],
+          "explanation": "Nhật chủ vượng nên lấy tiết, hao, chế làm chủ; tránh thêm khí đồng hành và thêm ấn quá mức. Cục hiện vượng thân với trọng tâm mùa khí ở **Thổ**. Ưu tiên dùng **Kim / Mộc** để điều nhịp; vui dùng **không rõ**; kỵ nhất **Thổ / Hỏa**."
+        },
+        "pattern": {
+          "label": "Tỷ Kiên cách",
+          "base": "Tỷ Kiên cách",
+          "monthGod": "Tỷ Kiên",
+          "mainHidden": "Mậu",
+          "description": "Trọng tự chủ, tự lập, tranh lực cùng hàng. Hợp dẫn đội, tự mở đường, nhưng phải tránh khí đoạt tài và tranh công.",
+          "supportText": "Nguyệt lệnh lấy **Mậu** làm khí chính, quy ra **Tỷ Kiên** nên cục thiên về **Tỷ Kiên cách**.",
+          "synergy": "Khí cục đi theo lối hỗn hợp, phải xem vận đến mới biết cửa nào mở rõ nhất."
+        },
+        "growthStages": {
+          "year": "Tuyệt",
+          "month": "Quan Đới",
+          "day": "Thai",
+          "hour": "Dưỡng"
+        },
+        "shenSha": [
+          {
+            "name": "Hoa Cái",
+            "by": "Tý",
+            "target": "Thìn",
+            "desc": "Khí cô cao và nghiên cứu, hợp học thuật, nghệ thuật, tu hành, nhưng dễ thành cô lập nếu cục lạnh."
+          },
+          {
+            "name": "Đào Hoa",
+            "by": "Hợi",
+            "target": "Tý",
+            "desc": "Khí giao cảm mạnh, dễ hút ánh nhìn, hợp giao tiếp và biểu đạt; nếu cục bất ổn thì dễ phân tâm."
+          },
+          {
+            "name": "Hồng Loan",
+            "by": "Hợi",
+            "target": "Tý",
+            "desc": "Khí hỷ hợp, thiên về kết nối, vui mừng, dễ có duyên gặp gỡ và tín hiệu thuận hòa."
+          },
+          {
+            "name": "Thiên Ất Quý Nhân",
+            "by": "Mậu",
+            "target": "Sửu",
+            "desc": "Quý nhân tinh, gặp đúng người dễ mở nút, hợp xin chỉ điểm và mượn thế thiện trợ."
+          }
+        ]
+      }
+    },
+    "analysis": {
+      "elementCounts": {
+        "Kim": 0.27999999999999997,
+        "Mộc": 4.0649999999999995,
+        "Thủy": 6.930000000000001,
+        "Hỏa": 1.8,
+        "Thổ": 7.04
+      },
+      "strengthScore": 64,
+      "strong": true,
+      "followMode": null,
+      "supportRatio": 0.5138638609544847,
+      "pressureRatio": 0.4779980236005347,
+      "strengthBand": "balanced",
+      "favorableElements": [
+        "Mộc",
+        "Thủy",
+        "Kim"
+      ],
+      "balanceScore": 74,
+      "sameSupport": 7.04,
+      "generatingSupport": 1.8,
+      "outputDrain": 0.27999999999999997,
+      "controlPressure": 4.0649999999999995,
+      "controlOutbound": 6.930000000000001,
+      "seasonalScore": 12,
+      "excessElements": [
+        "Thổ",
+        "Thủy"
+      ],
+      "weakElements": [
+        "Kim",
+        "Hỏa"
+      ],
+      "yinYang": {
+        "yin": 6,
+        "yang": 6,
+        "pattern": "balanced"
+      },
+      "tenGodInfluence": {
+        "counts": {
+          "Chính Ấn": 1,
+          "Thất Sát": 2.05,
+          "Tỷ Kiên": 1.8,
+          "Chính Tài": 3,
+          "Thiên Tài": 1,
+          "Chính Quan": 0.65,
+          "Kiếp Tài": 1,
+          "Thương Quan": 0.45
+        },
+        "ranked": [
+          {
+            "name": "Chính Tài",
+            "score": 3,
+            "profile": {
+              "core": "Tài tinh ổn, trọng tích lũy và quản trị nguồn.",
+              "bright": "Giữ tiền, giữ chuẩn, xây nền tốt, có ý thức trách nhiệm với tài nguyên.",
+              "shadow": "Dễ bó mình vào khuôn an toàn, chậm xoay khi thời thế đổi.",
+              "career": "Hợp quản trị, tài chính, kế toán, hậu cần, tích lũy tài sản bền."
+            }
+          },
+          {
+            "name": "Thất Sát",
+            "score": 2.05,
+            "profile": {
+              "core": "Sát tinh cứng, lực áp mạnh, thiên về quyết đoán và gánh nặng.",
+              "bright": "Có gan gánh việc khó, chịu áp lực lớn, phản ứng nhanh khi biến cục.",
+              "shadow": "Nếu thiếu ấn/thực thần điều tiết dễ thành gấp, cứng, cực đoan.",
+              "career": "Hợp tuyến đầu, an ninh, kỹ thuật nặng, vận hành khủng hoảng, chỉ huy."
+            }
+          },
+          {
+            "name": "Tỷ Kiên",
+            "score": 1.8,
+            "profile": {
+              "core": "Tự chủ, giữ trục, đứng cùng hàng với nhật chủ.",
+              "bright": "Giỏi tự chống đỡ, dám vác việc, giữ lập trường.",
+              "shadow": "Dễ cố chấp, tranh quyền ngang vai, hao lực vì không chịu mượn thế.",
+              "career": "Hợp vai trò dẫn nhịp, đồng sáng lập, trưởng nhóm, nghề phải tự đứng trục."
+            }
+          },
+          {
+            "name": "Chính Ấn",
+            "score": 1,
+            "profile": {
+              "core": "Ấn tinh chính, trọng học, tư cách, nền đỡ.",
+              "bright": "Được quý nhân, có chiều sâu học thuật, biết giữ chuẩn tri thức.",
+              "shadow": "Dễ chậm hành vì nặng học hơn làm hoặc quá cần che chắn.",
+              "career": "Hợp chuyên môn sâu, cố vấn, giáo dục, nghiên cứu, chứng chỉ."
+            }
+          },
+          {
+            "name": "Thiên Tài",
+            "score": 1,
+            "profile": {
+              "core": "Tài tinh động, trọng cơ hội, quan hệ, đa nguồn.",
+              "bright": "Nhạy thời vận, giỏi gặp người, kéo nguồn, mở cửa thị trường.",
+              "shadow": "Dễ phân tán, ham ngắn hạn, khó giữ nhịp lâu nếu thiếu nền.",
+              "career": "Hợp kinh doanh, đầu mối, khai thác cơ hội, ngoại giao, sales."
+            }
+          },
+          {
+            "name": "Kiếp Tài",
+            "score": 1,
+            "profile": {
+              "core": "Tranh lực, xoay nguồn, phá thế cũ để mở đường mới.",
+              "bright": "Nhanh xoay xở, dám đoạt cơ hội, cứu cục khi thế gấp.",
+              "shadow": "Dễ hao tài, rối quan hệ ngang hàng, tranh công hoặc tranh nguồn.",
+              "career": "Hợp môi trường cạnh tranh, deal, xoay vốn, mở cửa mới nhưng cần kỷ luật."
+            }
+          },
+          {
+            "name": "Chính Quan",
+            "score": 0.65,
+            "profile": {
+              "core": "Quan tinh chính, trọng pháp, vị, trách nhiệm.",
+              "bright": "Giữ chuẩn, biết tự quản, hợp đường danh vị và hệ thống rõ.",
+              "shadow": "Dễ áp lực bởi chuẩn mực, tự trói trong đúng-sai cứng.",
+              "career": "Hợp quản lý, hành chính, pháp chế, nhà nước, môi trường có thứ bậc."
+            }
+          },
+          {
+            "name": "Thương Quan",
+            "score": 0.45,
+            "profile": {
+              "core": "Biểu đạt sắc, phá khuôn, mở lối khác người.",
+              "bright": "Rất mạnh ở cải tiến, phản biện, sáng tạo, trình diễn năng lực.",
+              "shadow": "Dễ phạm cấp trên, khó chịu khuôn, lời sắc quá mức.",
+              "career": "Hợp sáng tạo, chiến lược, R&D, truyền thông, cải cách quy trình."
+            }
+          }
+        ],
+        "top": {
+          "name": "Chính Tài",
+          "score": 3,
+          "profile": {
+            "core": "Tài tinh ổn, trọng tích lũy và quản trị nguồn.",
+            "bright": "Giữ tiền, giữ chuẩn, xây nền tốt, có ý thức trách nhiệm với tài nguyên.",
+            "shadow": "Dễ bó mình vào khuôn an toàn, chậm xoay khi thời thế đổi.",
+            "career": "Hợp quản trị, tài chính, kế toán, hậu cần, tích lũy tài sản bền."
+          }
+        },
+        "second": {
+          "name": "Thất Sát",
+          "score": 2.05,
+          "profile": {
+            "core": "Sát tinh cứng, lực áp mạnh, thiên về quyết đoán và gánh nặng.",
+            "bright": "Có gan gánh việc khó, chịu áp lực lớn, phản ứng nhanh khi biến cục.",
+            "shadow": "Nếu thiếu ấn/thực thần điều tiết dễ thành gấp, cứng, cực đoan.",
+            "career": "Hợp tuyến đầu, an ninh, kỹ thuật nặng, vận hành khủng hoảng, chỉ huy."
+          }
+        }
+      },
+      "usefulGods": {
+        "mode": "strong",
+        "scores": {
+          "Kim": 28,
+          "Mộc": 22,
+          "Thủy": 0,
+          "Hỏa": -2,
+          "Thổ": -12
+        },
+        "dungThan": [
+          "Kim",
+          "Mộc"
+        ],
+        "hyThan": [],
+        "kyThan": [
+          "Thổ",
+          "Hỏa"
+        ],
+        "nhanThan": [
+          "Thủy",
+          "Hỏa"
+        ],
+        "explanation": "Nhật chủ vượng nên lấy tiết, hao, chế làm chủ; tránh thêm khí đồng hành và thêm ấn quá mức. Cục hiện vượng thân với trọng tâm mùa khí ở **Thổ**. Ưu tiên dùng **Kim / Mộc** để điều nhịp; vui dùng **không rõ**; kỵ nhất **Thổ / Hỏa**."
+      },
+      "pattern": {
+        "label": "Tỷ Kiên cách",
+        "base": "Tỷ Kiên cách",
+        "monthGod": "Tỷ Kiên",
+        "mainHidden": "Mậu",
+        "description": "Trọng tự chủ, tự lập, tranh lực cùng hàng. Hợp dẫn đội, tự mở đường, nhưng phải tránh khí đoạt tài và tranh công.",
+        "supportText": "Nguyệt lệnh lấy **Mậu** làm khí chính, quy ra **Tỷ Kiên** nên cục thiên về **Tỷ Kiên cách**.",
+        "synergy": "Khí cục đi theo lối hỗn hợp, phải xem vận đến mới biết cửa nào mở rõ nhất."
+      },
+      "growthStages": {
+        "year": "Tuyệt",
+        "month": "Quan Đới",
+        "day": "Thai",
+        "hour": "Dưỡng"
+      },
+      "shenSha": [
+        {
+          "name": "Hoa Cái",
+          "by": "Tý",
+          "target": "Thìn",
+          "desc": "Khí cô cao và nghiên cứu, hợp học thuật, nghệ thuật, tu hành, nhưng dễ thành cô lập nếu cục lạnh."
+        },
+        {
+          "name": "Đào Hoa",
+          "by": "Hợi",
+          "target": "Tý",
+          "desc": "Khí giao cảm mạnh, dễ hút ánh nhìn, hợp giao tiếp và biểu đạt; nếu cục bất ổn thì dễ phân tâm."
+        },
+        {
+          "name": "Hồng Loan",
+          "by": "Hợi",
+          "target": "Tý",
+          "desc": "Khí hỷ hợp, thiên về kết nối, vui mừng, dễ có duyên gặp gỡ và tín hiệu thuận hòa."
+        },
+        {
+          "name": "Thiên Ất Quý Nhân",
+          "by": "Mậu",
+          "target": "Sửu",
+          "desc": "Quý nhân tinh, gặp đúng người dễ mở nút, hợp xin chỉ điểm và mượn thế thiện trợ."
+        }
+      ]
+    },
+    "meta": {
+      "timezone": "Asia/Ho_Chi_Minh",
+      "createdAt": 1776438650671,
+      "updatedAt": 1776438650671,
+      "version": 1
+    }
+  },
+  "948925697022390322": {
+    "userId": "948925697022390322",
+    "birth": {
+      "year": 2009,
+      "month": 7,
+      "day": 10,
+      "hour": 13,
+      "hourRange": "13:00-14:59",
+      "timezone": "Asia/Ho_Chi_Minh"
+    },
+    "solarBoundary": {
+      "branch": "Mùi",
+      "month": 7,
+      "day": 7,
+      "hour": 6,
+      "minute": 12,
+      "iso": "2009-07-07T06:12:47",
+      "name": "Tiểu Thử",
+      "year": 2009
+    },
+    "natalChart": {
+      "birth": {
+        "year": 2009,
+        "month": 7,
+        "day": 10,
+        "hour": 13,
+        "hourRange": "13:00-14:59",
+        "timezone": "Asia/Ho_Chi_Minh"
+      },
+      "year": {
+        "stem": {
+          "key": "ky",
+          "han": "己",
+          "name": "Kỷ",
+          "element": "Thổ",
+          "polarity": "Âm",
+          "aliases": [
+            "Ji"
+          ],
+          "keywords": [
+            "điền viên",
+            "dưỡng nuôi",
+            "thu nạp"
+          ]
+        },
+        "branch": {
+          "key": "suu",
+          "han": "丑",
+          "name": "Sửu",
+          "element": "Thổ",
+          "polarity": "Âm",
+          "animal": "Trâu",
+          "hourRange": "01:00-02:59",
+          "season": "Đông cuối",
+          "stage": "Suy"
+        },
+        "label": "己丑 KỷSửu"
+      },
+      "month": {
+        "stem": {
+          "key": "tan",
+          "han": "辛",
+          "name": "Tân",
+          "element": "Kim",
+          "polarity": "Âm",
+          "aliases": [
+            "Xin"
+          ],
+          "keywords": [
+            "châu ngọc",
+            "chuẩn mực",
+            "tinh xảo"
+          ]
+        },
+        "branch": {
+          "key": "mui",
+          "han": "未",
+          "name": "Mùi",
+          "element": "Thổ",
+          "polarity": "Âm",
+          "animal": "Dê",
+          "hourRange": "13:00-14:59",
+          "season": "Hạ cuối",
+          "stage": "Suy"
+        },
+        "label": "辛未 TânMùi"
+      },
+      "day": {
+        "stem": {
+          "key": "giap",
+          "han": "甲",
+          "name": "Giáp",
+          "element": "Mộc",
+          "polarity": "Dương",
+          "aliases": [
+            "Jia"
+          ],
+          "keywords": [
+            "đại thụ",
+            "khai mở",
+            "xương sống"
+          ]
+        },
+        "branch": {
+          "key": "dan",
+          "han": "寅",
+          "name": "Dần",
+          "element": "Mộc",
+          "polarity": "Dương",
+          "animal": "Hổ",
+          "hourRange": "03:00-04:59",
+          "season": "Xuân đầu",
+          "stage": "Trường Sinh"
+        },
+        "label": "甲寅 GiápDần"
+      },
+      "hour": {
+        "stem": {
+          "key": "tan",
+          "han": "辛",
+          "name": "Tân",
+          "element": "Kim",
+          "polarity": "Âm",
+          "aliases": [
+            "Xin"
+          ],
+          "keywords": [
+            "châu ngọc",
+            "chuẩn mực",
+            "tinh xảo"
+          ]
+        },
+        "branch": {
+          "key": "mui",
+          "han": "未",
+          "name": "Mùi",
+          "element": "Thổ",
+          "polarity": "Âm",
+          "animal": "Dê",
+          "hourRange": "13:00-14:59",
+          "season": "Hạ cuối",
+          "stage": "Suy"
+        },
+        "label": "辛未 TânMùi"
+      },
+      "solarBoundary": {
+        "branch": "Mùi",
+        "month": 7,
+        "day": 7,
+        "hour": 6,
+        "minute": 12,
+        "iso": "2009-07-07T06:12:47",
+        "name": "Tiểu Thử",
+        "year": 2009
+      },
+      "dayMaster": {
+        "key": "giap",
+        "han": "甲",
+        "name": "Giáp",
+        "element": "Mộc",
+        "polarity": "Dương",
+        "aliases": [
+          "Jia"
+        ],
+        "keywords": [
+          "đại thụ",
+          "khai mở",
+          "xương sống"
+        ]
+      },
+      "analysis": {
+        "elementCounts": {
+          "Kim": 4.715,
+          "Mộc": 5.390000000000001,
+          "Thủy": 0.49500000000000005,
+          "Hỏa": 1.815,
+          "Thổ": 9.005
+        },
+        "strengthScore": 15,
+        "strong": false,
+        "followMode": null,
+        "supportRatio": 0.3480086336891281,
+        "pressureRatio": 0.598326483545726,
+        "strengthBand": "veryWeak",
+        "favorableElements": [
+          "Thủy",
+          "Mộc",
+          "Hỏa"
+        ],
+        "balanceScore": 74,
+        "sameSupport": 5.390000000000001,
+        "generatingSupport": 0.49500000000000005,
+        "outputDrain": 1.815,
+        "controlPressure": 4.715,
+        "controlOutbound": 9.005,
+        "seasonalScore": -12,
+        "excessElements": [
+          "Thổ",
+          "Mộc"
+        ],
+        "weakElements": [
+          "Thủy",
+          "Hỏa"
+        ],
+        "yinYang": {
+          "yin": 9,
+          "yang": 3,
+          "pattern": "yinExtreme"
+        },
+        "tenGodInfluence": {
+          "counts": {
+            "Chính Tài": 4,
+            "Chính Quan": 2.75,
+            "Tỷ Kiên": 1.8,
+            "Chính Ấn": 0.65,
+            "Thương Quan": 1.3,
+            "Kiếp Tài": 0.9,
+            "Thực Thần": 0.65,
+            "Thiên Tài": 0.45
+          },
+          "ranked": [
+            {
+              "name": "Chính Tài",
+              "score": 4,
+              "profile": {
+                "core": "Tài tinh ổn, trọng tích lũy và quản trị nguồn.",
+                "bright": "Giữ tiền, giữ chuẩn, xây nền tốt, có ý thức trách nhiệm với tài nguyên.",
+                "shadow": "Dễ bó mình vào khuôn an toàn, chậm xoay khi thời thế đổi.",
+                "career": "Hợp quản trị, tài chính, kế toán, hậu cần, tích lũy tài sản bền."
+              }
+            },
+            {
+              "name": "Chính Quan",
+              "score": 2.75,
+              "profile": {
+                "core": "Quan tinh chính, trọng pháp, vị, trách nhiệm.",
+                "bright": "Giữ chuẩn, biết tự quản, hợp đường danh vị và hệ thống rõ.",
+                "shadow": "Dễ áp lực bởi chuẩn mực, tự trói trong đúng-sai cứng.",
+                "career": "Hợp quản lý, hành chính, pháp chế, nhà nước, môi trường có thứ bậc."
+              }
+            },
+            {
+              "name": "Tỷ Kiên",
+              "score": 1.8,
+              "profile": {
+                "core": "Tự chủ, giữ trục, đứng cùng hàng với nhật chủ.",
+                "bright": "Giỏi tự chống đỡ, dám vác việc, giữ lập trường.",
+                "shadow": "Dễ cố chấp, tranh quyền ngang vai, hao lực vì không chịu mượn thế.",
+                "career": "Hợp vai trò dẫn nhịp, đồng sáng lập, trưởng nhóm, nghề phải tự đứng trục."
+              }
+            },
+            {
+              "name": "Thương Quan",
+              "score": 1.3,
+              "profile": {
+                "core": "Biểu đạt sắc, phá khuôn, mở lối khác người.",
+                "bright": "Rất mạnh ở cải tiến, phản biện, sáng tạo, trình diễn năng lực.",
+                "shadow": "Dễ phạm cấp trên, khó chịu khuôn, lời sắc quá mức.",
+                "career": "Hợp sáng tạo, chiến lược, R&D, truyền thông, cải cách quy trình."
+              }
+            },
+            {
+              "name": "Kiếp Tài",
+              "score": 0.9,
+              "profile": {
+                "core": "Tranh lực, xoay nguồn, phá thế cũ để mở đường mới.",
+                "bright": "Nhanh xoay xở, dám đoạt cơ hội, cứu cục khi thế gấp.",
+                "shadow": "Dễ hao tài, rối quan hệ ngang hàng, tranh công hoặc tranh nguồn.",
+                "career": "Hợp môi trường cạnh tranh, deal, xoay vốn, mở cửa mới nhưng cần kỷ luật."
+              }
+            },
+            {
+              "name": "Chính Ấn",
+              "score": 0.65,
+              "profile": {
+                "core": "Ấn tinh chính, trọng học, tư cách, nền đỡ.",
+                "bright": "Được quý nhân, có chiều sâu học thuật, biết giữ chuẩn tri thức.",
+                "shadow": "Dễ chậm hành vì nặng học hơn làm hoặc quá cần che chắn.",
+                "career": "Hợp chuyên môn sâu, cố vấn, giáo dục, nghiên cứu, chứng chỉ."
+              }
+            },
+            {
+              "name": "Thực Thần",
+              "score": 0.65,
+              "profile": {
+                "core": "Tiết khí ôn hòa, sinh sản phẩm, nuôi đầu ra.",
+                "bright": "Khéo nuôi việc, làm đều, bền, có chất lượng, có khả năng dạy và truyền.",
+                "shadow": "Dễ chậm nhịp nếu quá cầu toàn hoặc quá ham an ổn.",
+                "career": "Hợp sản phẩm, đào tạo, ẩm thực, nội dung, vận hành sinh giá trị bền."
+              }
+            },
+            {
+              "name": "Thiên Tài",
+              "score": 0.45,
+              "profile": {
+                "core": "Tài tinh động, trọng cơ hội, quan hệ, đa nguồn.",
+                "bright": "Nhạy thời vận, giỏi gặp người, kéo nguồn, mở cửa thị trường.",
+                "shadow": "Dễ phân tán, ham ngắn hạn, khó giữ nhịp lâu nếu thiếu nền.",
+                "career": "Hợp kinh doanh, đầu mối, khai thác cơ hội, ngoại giao, sales."
+              }
+            }
+          ],
+          "top": {
+            "name": "Chính Tài",
+            "score": 4,
+            "profile": {
+              "core": "Tài tinh ổn, trọng tích lũy và quản trị nguồn.",
+              "bright": "Giữ tiền, giữ chuẩn, xây nền tốt, có ý thức trách nhiệm với tài nguyên.",
+              "shadow": "Dễ bó mình vào khuôn an toàn, chậm xoay khi thời thế đổi.",
+              "career": "Hợp quản trị, tài chính, kế toán, hậu cần, tích lũy tài sản bền."
+            }
+          },
+          "second": {
+            "name": "Chính Quan",
+            "score": 2.75,
+            "profile": {
+              "core": "Quan tinh chính, trọng pháp, vị, trách nhiệm.",
+              "bright": "Giữ chuẩn, biết tự quản, hợp đường danh vị và hệ thống rõ.",
+              "shadow": "Dễ áp lực bởi chuẩn mực, tự trói trong đúng-sai cứng.",
+              "career": "Hợp quản lý, hành chính, pháp chế, nhà nước, môi trường có thứ bậc."
+            }
+          }
+        },
+        "usefulGods": {
+          "mode": "weak",
+          "scores": {
+            "Kim": 0,
+            "Mộc": 10,
+            "Thủy": 32,
+            "Hỏa": 4,
+            "Thổ": -16
+          },
+          "dungThan": [
+            "Thủy",
+            "Mộc"
+          ],
+          "hyThan": [
+            "Hỏa"
+          ],
+          "kyThan": [
+            "Thổ",
+            "Kim"
+          ],
+          "nhanThan": [
+            "Kim"
+          ],
+          "explanation": "Nhật chủ nhược nên lấy phù, trợ, dưỡng làm chủ; tránh thêm tài quan quá mạnh khiến thân không kham nổi. Cục hiện nhược thân với trọng tâm mùa khí ở **Thổ**. Ưu tiên dùng **Thủy / Mộc** để điều nhịp; vui dùng **Hỏa**; kỵ nhất **Thổ / Kim**."
+        },
+        "pattern": {
+          "label": "Chính Tài cách",
+          "base": "Chính Tài cách",
+          "monthGod": "Chính Tài",
+          "mainHidden": "Kỷ",
+          "description": "Trọng quy củ, tích lũy, quản trị nguồn lực, làm bền; hợp đường ổn định và xây nền tài lực.",
+          "supportText": "Nguyệt lệnh lấy **Kỷ** làm khí chính, quy ra **Chính Tài** nên cục thiên về **Chính Tài cách**.",
+          "synergy": "Khí cục đi theo lối hỗn hợp, phải xem vận đến mới biết cửa nào mở rõ nhất."
+        },
+        "growthStages": {
+          "year": "Quan Đới",
+          "month": "Mộ",
+          "day": "Lâm Quan",
+          "hour": "Mộ"
+        },
+        "shenSha": [
+          {
+            "name": "Hoa Cái",
+            "by": "Sửu",
+            "target": "Sửu",
+            "desc": "Khí cô cao và nghiên cứu, hợp học thuật, nghệ thuật, tu hành, nhưng dễ thành cô lập nếu cục lạnh."
+          },
+          {
+            "name": "Thiên Ất Quý Nhân",
+            "by": "Giáp",
+            "target": "Sửu, Mùi",
+            "desc": "Quý nhân tinh, gặp đúng người dễ mở nút, hợp xin chỉ điểm và mượn thế thiện trợ."
+          }
+        ]
+      }
+    },
+    "analysis": {
+      "elementCounts": {
+        "Kim": 4.715,
+        "Mộc": 5.390000000000001,
+        "Thủy": 0.49500000000000005,
+        "Hỏa": 1.815,
+        "Thổ": 9.005
+      },
+      "strengthScore": 15,
+      "strong": false,
+      "followMode": null,
+      "supportRatio": 0.3480086336891281,
+      "pressureRatio": 0.598326483545726,
+      "strengthBand": "veryWeak",
+      "favorableElements": [
+        "Thủy",
+        "Mộc",
+        "Hỏa"
+      ],
+      "balanceScore": 74,
+      "sameSupport": 5.390000000000001,
+      "generatingSupport": 0.49500000000000005,
+      "outputDrain": 1.815,
+      "controlPressure": 4.715,
+      "controlOutbound": 9.005,
+      "seasonalScore": -12,
+      "excessElements": [
+        "Thổ",
+        "Mộc"
+      ],
+      "weakElements": [
+        "Thủy",
+        "Hỏa"
+      ],
+      "yinYang": {
+        "yin": 9,
+        "yang": 3,
+        "pattern": "yinExtreme"
+      },
+      "tenGodInfluence": {
+        "counts": {
+          "Chính Tài": 4,
+          "Chính Quan": 2.75,
+          "Tỷ Kiên": 1.8,
+          "Chính Ấn": 0.65,
+          "Thương Quan": 1.3,
+          "Kiếp Tài": 0.9,
+          "Thực Thần": 0.65,
+          "Thiên Tài": 0.45
+        },
+        "ranked": [
+          {
+            "name": "Chính Tài",
+            "score": 4,
+            "profile": {
+              "core": "Tài tinh ổn, trọng tích lũy và quản trị nguồn.",
+              "bright": "Giữ tiền, giữ chuẩn, xây nền tốt, có ý thức trách nhiệm với tài nguyên.",
+              "shadow": "Dễ bó mình vào khuôn an toàn, chậm xoay khi thời thế đổi.",
+              "career": "Hợp quản trị, tài chính, kế toán, hậu cần, tích lũy tài sản bền."
+            }
+          },
+          {
+            "name": "Chính Quan",
+            "score": 2.75,
+            "profile": {
+              "core": "Quan tinh chính, trọng pháp, vị, trách nhiệm.",
+              "bright": "Giữ chuẩn, biết tự quản, hợp đường danh vị và hệ thống rõ.",
+              "shadow": "Dễ áp lực bởi chuẩn mực, tự trói trong đúng-sai cứng.",
+              "career": "Hợp quản lý, hành chính, pháp chế, nhà nước, môi trường có thứ bậc."
+            }
+          },
+          {
+            "name": "Tỷ Kiên",
+            "score": 1.8,
+            "profile": {
+              "core": "Tự chủ, giữ trục, đứng cùng hàng với nhật chủ.",
+              "bright": "Giỏi tự chống đỡ, dám vác việc, giữ lập trường.",
+              "shadow": "Dễ cố chấp, tranh quyền ngang vai, hao lực vì không chịu mượn thế.",
+              "career": "Hợp vai trò dẫn nhịp, đồng sáng lập, trưởng nhóm, nghề phải tự đứng trục."
+            }
+          },
+          {
+            "name": "Thương Quan",
+            "score": 1.3,
+            "profile": {
+              "core": "Biểu đạt sắc, phá khuôn, mở lối khác người.",
+              "bright": "Rất mạnh ở cải tiến, phản biện, sáng tạo, trình diễn năng lực.",
+              "shadow": "Dễ phạm cấp trên, khó chịu khuôn, lời sắc quá mức.",
+              "career": "Hợp sáng tạo, chiến lược, R&D, truyền thông, cải cách quy trình."
+            }
+          },
+          {
+            "name": "Kiếp Tài",
+            "score": 0.9,
+            "profile": {
+              "core": "Tranh lực, xoay nguồn, phá thế cũ để mở đường mới.",
+              "bright": "Nhanh xoay xở, dám đoạt cơ hội, cứu cục khi thế gấp.",
+              "shadow": "Dễ hao tài, rối quan hệ ngang hàng, tranh công hoặc tranh nguồn.",
+              "career": "Hợp môi trường cạnh tranh, deal, xoay vốn, mở cửa mới nhưng cần kỷ luật."
+            }
+          },
+          {
+            "name": "Chính Ấn",
+            "score": 0.65,
+            "profile": {
+              "core": "Ấn tinh chính, trọng học, tư cách, nền đỡ.",
+              "bright": "Được quý nhân, có chiều sâu học thuật, biết giữ chuẩn tri thức.",
+              "shadow": "Dễ chậm hành vì nặng học hơn làm hoặc quá cần che chắn.",
+              "career": "Hợp chuyên môn sâu, cố vấn, giáo dục, nghiên cứu, chứng chỉ."
+            }
+          },
+          {
+            "name": "Thực Thần",
+            "score": 0.65,
+            "profile": {
+              "core": "Tiết khí ôn hòa, sinh sản phẩm, nuôi đầu ra.",
+              "bright": "Khéo nuôi việc, làm đều, bền, có chất lượng, có khả năng dạy và truyền.",
+              "shadow": "Dễ chậm nhịp nếu quá cầu toàn hoặc quá ham an ổn.",
+              "career": "Hợp sản phẩm, đào tạo, ẩm thực, nội dung, vận hành sinh giá trị bền."
+            }
+          },
+          {
+            "name": "Thiên Tài",
+            "score": 0.45,
+            "profile": {
+              "core": "Tài tinh động, trọng cơ hội, quan hệ, đa nguồn.",
+              "bright": "Nhạy thời vận, giỏi gặp người, kéo nguồn, mở cửa thị trường.",
+              "shadow": "Dễ phân tán, ham ngắn hạn, khó giữ nhịp lâu nếu thiếu nền.",
+              "career": "Hợp kinh doanh, đầu mối, khai thác cơ hội, ngoại giao, sales."
+            }
+          }
+        ],
+        "top": {
+          "name": "Chính Tài",
+          "score": 4,
+          "profile": {
+            "core": "Tài tinh ổn, trọng tích lũy và quản trị nguồn.",
+            "bright": "Giữ tiền, giữ chuẩn, xây nền tốt, có ý thức trách nhiệm với tài nguyên.",
+            "shadow": "Dễ bó mình vào khuôn an toàn, chậm xoay khi thời thế đổi.",
+            "career": "Hợp quản trị, tài chính, kế toán, hậu cần, tích lũy tài sản bền."
+          }
+        },
+        "second": {
+          "name": "Chính Quan",
+          "score": 2.75,
+          "profile": {
+            "core": "Quan tinh chính, trọng pháp, vị, trách nhiệm.",
+            "bright": "Giữ chuẩn, biết tự quản, hợp đường danh vị và hệ thống rõ.",
+            "shadow": "Dễ áp lực bởi chuẩn mực, tự trói trong đúng-sai cứng.",
+            "career": "Hợp quản lý, hành chính, pháp chế, nhà nước, môi trường có thứ bậc."
+          }
+        }
+      },
+      "usefulGods": {
+        "mode": "weak",
+        "scores": {
+          "Kim": 0,
+          "Mộc": 10,
+          "Thủy": 32,
+          "Hỏa": 4,
+          "Thổ": -16
+        },
+        "dungThan": [
+          "Thủy",
+          "Mộc"
+        ],
+        "hyThan": [
+          "Hỏa"
+        ],
+        "kyThan": [
+          "Thổ",
+          "Kim"
+        ],
+        "nhanThan": [
+          "Kim"
+        ],
+        "explanation": "Nhật chủ nhược nên lấy phù, trợ, dưỡng làm chủ; tránh thêm tài quan quá mạnh khiến thân không kham nổi. Cục hiện nhược thân với trọng tâm mùa khí ở **Thổ**. Ưu tiên dùng **Thủy / Mộc** để điều nhịp; vui dùng **Hỏa**; kỵ nhất **Thổ / Kim**."
+      },
+      "pattern": {
+        "label": "Chính Tài cách",
+        "base": "Chính Tài cách",
+        "monthGod": "Chính Tài",
+        "mainHidden": "Kỷ",
+        "description": "Trọng quy củ, tích lũy, quản trị nguồn lực, làm bền; hợp đường ổn định và xây nền tài lực.",
+        "supportText": "Nguyệt lệnh lấy **Kỷ** làm khí chính, quy ra **Chính Tài** nên cục thiên về **Chính Tài cách**.",
+        "synergy": "Khí cục đi theo lối hỗn hợp, phải xem vận đến mới biết cửa nào mở rõ nhất."
+      },
+      "growthStages": {
+        "year": "Quan Đới",
+        "month": "Mộ",
+        "day": "Lâm Quan",
+        "hour": "Mộ"
+      },
+      "shenSha": [
+        {
+          "name": "Hoa Cái",
+          "by": "Sửu",
+          "target": "Sửu",
+          "desc": "Khí cô cao và nghiên cứu, hợp học thuật, nghệ thuật, tu hành, nhưng dễ thành cô lập nếu cục lạnh."
+        },
+        {
+          "name": "Thiên Ất Quý Nhân",
+          "by": "Giáp",
+          "target": "Sửu, Mùi",
+          "desc": "Quý nhân tinh, gặp đúng người dễ mở nút, hợp xin chỉ điểm và mượn thế thiện trợ."
+        }
+      ]
+    },
+    "meta": {
+      "timezone": "Asia/Ho_Chi_Minh",
+      "createdAt": 1776438703391,
+      "updatedAt": 1776438703391,
+      "version": 1
+    }
+  },
+  "597254170436960266": {
+    "userId": "597254170436960266",
+    "birth": {
+      "year": 2004,
+      "month": 9,
+      "day": 27,
+      "hour": 7,
+      "hourRange": "07:00-08:59",
+      "timezone": "Asia/Ho_Chi_Minh"
+    },
+    "solarBoundary": {
+      "branch": "Dậu",
+      "month": 9,
+      "day": 7,
+      "hour": 14,
+      "minute": 6,
+      "iso": "2004-09-07T14:06:59",
+      "name": "Bạch Lộ",
+      "year": 2004
+    },
+    "natalChart": {
+      "birth": {
+        "year": 2004,
+        "month": 9,
+        "day": 27,
+        "hour": 7,
+        "hourRange": "07:00-08:59",
+        "timezone": "Asia/Ho_Chi_Minh"
+      },
+      "year": {
+        "stem": {
+          "key": "giap",
+          "han": "甲",
+          "name": "Giáp",
+          "element": "Mộc",
+          "polarity": "Dương",
+          "aliases": [
+            "Jia"
+          ],
+          "keywords": [
+            "đại thụ",
+            "khai mở",
+            "xương sống"
+          ]
+        },
+        "branch": {
+          "key": "than",
+          "han": "申",
+          "name": "Thân",
+          "element": "Kim",
+          "polarity": "Dương",
+          "animal": "Khỉ",
+          "hourRange": "15:00-16:59",
+          "season": "Thu đầu",
+          "stage": "Lâm Quan"
+        },
+        "label": "甲申 GiápThân"
+      },
+      "month": {
+        "stem": {
+          "key": "quy",
+          "han": "癸",
+          "name": "Quý",
+          "element": "Thủy",
+          "polarity": "Âm",
+          "aliases": [
+            "Gui"
+          ],
+          "keywords": [
+            "vũ lộ",
+            "thẩm thấu",
+            "cảm ứng"
+          ]
+        },
+        "branch": {
+          "key": "dau",
+          "han": "酉",
+          "name": "Dậu",
+          "element": "Kim",
+          "polarity": "Âm",
+          "animal": "Gà",
+          "hourRange": "17:00-18:59",
+          "season": "Thu giữa",
+          "stage": "Đế Vượng"
+        },
+        "label": "癸酉 QuýDậu"
+      },
+      "day": {
+        "stem": {
+          "key": "dinh",
+          "han": "丁",
+          "name": "Đinh",
+          "element": "Hỏa",
+          "polarity": "Âm",
+          "aliases": [
+            "Ding"
+          ],
+          "keywords": [
+            "đăng hỏa",
+            "tinh luyện",
+            "soi chiếu"
+          ]
+        },
+        "branch": {
+          "key": "mui",
+          "han": "未",
+          "name": "Mùi",
+          "element": "Thổ",
+          "polarity": "Âm",
+          "animal": "Dê",
+          "hourRange": "13:00-14:59",
+          "season": "Hạ cuối",
+          "stage": "Suy"
+        },
+        "label": "丁未 ĐinhMùi"
+      },
+      "hour": {
+        "stem": {
+          "key": "giap",
+          "han": "甲",
+          "name": "Giáp",
+          "element": "Mộc",
+          "polarity": "Dương",
+          "aliases": [
+            "Jia"
+          ],
+          "keywords": [
+            "đại thụ",
+            "khai mở",
+            "xương sống"
+          ]
+        },
+        "branch": {
+          "key": "thin",
+          "han": "辰",
+          "name": "Thìn",
+          "element": "Thổ",
+          "polarity": "Dương",
+          "animal": "Rồng",
+          "hourRange": "07:00-08:59",
+          "season": "Xuân cuối",
+          "stage": "Mộ"
+        },
+        "label": "甲辰 GiápThìn"
+      },
+      "solarBoundary": {
+        "branch": "Dậu",
+        "month": 9,
+        "day": 7,
+        "hour": 14,
+        "minute": 6,
+        "iso": "2004-09-07T14:06:59",
+        "name": "Bạch Lộ",
+        "year": 2004
+      },
+      "dayMaster": {
+        "key": "dinh",
+        "han": "丁",
+        "name": "Đinh",
+        "element": "Hỏa",
+        "polarity": "Âm",
+        "aliases": [
+          "Ding"
+        ],
+        "keywords": [
+          "đăng hỏa",
+          "tinh luyện",
+          "soi chiếu"
+        ]
+      },
+      "analysis": {
+        "elementCounts": {
+          "Kim": 5.06,
+          "Mộc": 4.2250000000000005,
+          "Thủy": 3.5749999999999997,
+          "Hỏa": 2.805,
+          "Thổ": 4.495
+        },
+        "strengthScore": 30,
+        "strong": false,
+        "followMode": null,
+        "supportRatio": 0.44245838184850683,
+        "pressureRatio": 0.416087107027095,
+        "strengthBand": "veryWeak",
+        "favorableElements": [
+          "Mộc",
+          "Hỏa",
+          "Thổ"
+        ],
+        "balanceScore": 87,
+        "sameSupport": 2.805,
+        "generatingSupport": 4.2250000000000005,
+        "outputDrain": 4.495,
+        "controlPressure": 3.5749999999999997,
+        "controlOutbound": 5.06,
+        "seasonalScore": -12,
+        "excessElements": [
+          "Kim"
+        ],
+        "weakElements": [
+          "Hỏa"
+        ],
+        "yinYang": {
+          "yin": 6,
+          "yang": 6,
+          "pattern": "balanced"
+        },
+        "tenGodInfluence": {
+          "counts": {
+            "Chính Ấn": 1.9,
+            "Thất Sát": 1.8499999999999999,
+            "Tỷ Kiên": 1.4500000000000002,
+            "Chính Tài": 1,
+            "Chính Quan": 0.65,
+            "Thương Quan": 1.45,
+            "Thiên Tài": 1,
+            "Thực Thần": 1,
+            "Thiên Ấn": 1.1
+          },
+          "ranked": [
+            {
+              "name": "Chính Ấn",
+              "score": 1.9,
+              "profile": {
+                "core": "Ấn tinh chính, trọng học, tư cách, nền đỡ.",
+                "bright": "Được quý nhân, có chiều sâu học thuật, biết giữ chuẩn tri thức.",
+                "shadow": "Dễ chậm hành vì nặng học hơn làm hoặc quá cần che chắn.",
+                "career": "Hợp chuyên môn sâu, cố vấn, giáo dục, nghiên cứu, chứng chỉ."
+              }
+            },
+            {
+              "name": "Thất Sát",
+              "score": 1.85,
+              "profile": {
+                "core": "Sát tinh cứng, lực áp mạnh, thiên về quyết đoán và gánh nặng.",
+                "bright": "Có gan gánh việc khó, chịu áp lực lớn, phản ứng nhanh khi biến cục.",
+                "shadow": "Nếu thiếu ấn/thực thần điều tiết dễ thành gấp, cứng, cực đoan.",
+                "career": "Hợp tuyến đầu, an ninh, kỹ thuật nặng, vận hành khủng hoảng, chỉ huy."
+              }
+            },
+            {
+              "name": "Tỷ Kiên",
+              "score": 1.45,
+              "profile": {
+                "core": "Tự chủ, giữ trục, đứng cùng hàng với nhật chủ.",
+                "bright": "Giỏi tự chống đỡ, dám vác việc, giữ lập trường.",
+                "shadow": "Dễ cố chấp, tranh quyền ngang vai, hao lực vì không chịu mượn thế.",
+                "career": "Hợp vai trò dẫn nhịp, đồng sáng lập, trưởng nhóm, nghề phải tự đứng trục."
+              }
+            },
+            {
+              "name": "Thương Quan",
+              "score": 1.45,
+              "profile": {
+                "core": "Biểu đạt sắc, phá khuôn, mở lối khác người.",
+                "bright": "Rất mạnh ở cải tiến, phản biện, sáng tạo, trình diễn năng lực.",
+                "shadow": "Dễ phạm cấp trên, khó chịu khuôn, lời sắc quá mức.",
+                "career": "Hợp sáng tạo, chiến lược, R&D, truyền thông, cải cách quy trình."
+              }
+            },
+            {
+              "name": "Thiên Ấn",
+              "score": 1.1,
+              "profile": {
+                "core": "Ấn tinh lệch, thiên ngộ tính, trực giác, đường lối khác thường.",
+                "bright": "Giỏi lĩnh hội nhanh, đọc bản chất, làm việc khó bằng lối riêng.",
+                "shadow": "Dễ cô độc, khó hòa môi trường cứng, có lúc thiếu thực tế.",
+                "career": "Hợp nghiên cứu, công nghệ sâu, phân tích, sáng tạo dị biệt, tu học."
+              }
+            },
+            {
+              "name": "Chính Tài",
+              "score": 1,
+              "profile": {
+                "core": "Tài tinh ổn, trọng tích lũy và quản trị nguồn.",
+                "bright": "Giữ tiền, giữ chuẩn, xây nền tốt, có ý thức trách nhiệm với tài nguyên.",
+                "shadow": "Dễ bó mình vào khuôn an toàn, chậm xoay khi thời thế đổi.",
+                "career": "Hợp quản trị, tài chính, kế toán, hậu cần, tích lũy tài sản bền."
+              }
+            },
+            {
+              "name": "Thiên Tài",
+              "score": 1,
+              "profile": {
+                "core": "Tài tinh động, trọng cơ hội, quan hệ, đa nguồn.",
+                "bright": "Nhạy thời vận, giỏi gặp người, kéo nguồn, mở cửa thị trường.",
+                "shadow": "Dễ phân tán, ham ngắn hạn, khó giữ nhịp lâu nếu thiếu nền.",
+                "career": "Hợp kinh doanh, đầu mối, khai thác cơ hội, ngoại giao, sales."
+              }
+            },
+            {
+              "name": "Thực Thần",
+              "score": 1,
+              "profile": {
+                "core": "Tiết khí ôn hòa, sinh sản phẩm, nuôi đầu ra.",
+                "bright": "Khéo nuôi việc, làm đều, bền, có chất lượng, có khả năng dạy và truyền.",
+                "shadow": "Dễ chậm nhịp nếu quá cầu toàn hoặc quá ham an ổn.",
+                "career": "Hợp sản phẩm, đào tạo, ẩm thực, nội dung, vận hành sinh giá trị bền."
+              }
+            },
+            {
+              "name": "Chính Quan",
+              "score": 0.65,
+              "profile": {
+                "core": "Quan tinh chính, trọng pháp, vị, trách nhiệm.",
+                "bright": "Giữ chuẩn, biết tự quản, hợp đường danh vị và hệ thống rõ.",
+                "shadow": "Dễ áp lực bởi chuẩn mực, tự trói trong đúng-sai cứng.",
+                "career": "Hợp quản lý, hành chính, pháp chế, nhà nước, môi trường có thứ bậc."
+              }
+            }
+          ],
+          "top": {
+            "name": "Chính Ấn",
+            "score": 1.9,
+            "profile": {
+              "core": "Ấn tinh chính, trọng học, tư cách, nền đỡ.",
+              "bright": "Được quý nhân, có chiều sâu học thuật, biết giữ chuẩn tri thức.",
+              "shadow": "Dễ chậm hành vì nặng học hơn làm hoặc quá cần che chắn.",
+              "career": "Hợp chuyên môn sâu, cố vấn, giáo dục, nghiên cứu, chứng chỉ."
+            }
+          },
+          "second": {
+            "name": "Thất Sát",
+            "score": 1.85,
+            "profile": {
+              "core": "Sát tinh cứng, lực áp mạnh, thiên về quyết đoán và gánh nặng.",
+              "bright": "Có gan gánh việc khó, chịu áp lực lớn, phản ứng nhanh khi biến cục.",
+              "shadow": "Nếu thiếu ấn/thực thần điều tiết dễ thành gấp, cứng, cực đoan.",
+              "career": "Hợp tuyến đầu, an ninh, kỹ thuật nặng, vận hành khủng hoảng, chỉ huy."
+            }
+          }
+        },
+        "usefulGods": {
+          "mode": "weak",
+          "scores": {
+            "Kim": -16,
+            "Mộc": 22,
+            "Thủy": 0,
+            "Hỏa": 28,
+            "Thổ": -6
+          },
+          "dungThan": [
+            "Hỏa",
+            "Mộc"
+          ],
+          "hyThan": [],
+          "kyThan": [
+            "Kim",
+            "Thổ"
+          ],
+          "nhanThan": [
+            "Thủy"
+          ],
+          "explanation": "Nhật chủ nhược nên lấy phù, trợ, dưỡng làm chủ; tránh thêm tài quan quá mạnh khiến thân không kham nổi. Cục hiện nhược thân với trọng tâm mùa khí ở **Kim**. Ưu tiên dùng **Hỏa / Mộc** để điều nhịp; vui dùng **không rõ**; kỵ nhất **Kim / Thổ**."
+        },
+        "pattern": {
+          "label": "Thiên Tài cách",
+          "base": "Thiên Tài cách",
+          "monthGod": "Thiên Tài",
+          "mainHidden": "Tân",
+          "description": "Trọng cơ hội, quan hệ, chớp thời vận và vận hành đa nguồn; hợp linh hoạt, không hợp cứng một đường.",
+          "supportText": "Nguyệt lệnh lấy **Tân** làm khí chính, quy ra **Thiên Tài** nên cục thiên về **Thiên Tài cách**.",
+          "synergy": "Cục có dấu **Sát Ấn tương sinh**, áp lực lớn nhưng nếu học lực đủ thì càng ép càng thành danh."
+        },
+        "growthStages": {
+          "year": "Mộc Dục",
+          "month": "Trường Sinh",
+          "day": "Quan Đới",
+          "hour": "Suy"
+        },
+        "shenSha": [
+          {
+            "name": "Hoa Cái",
+            "by": "Mùi",
+            "target": "Mùi",
+            "desc": "Khí cô cao và nghiên cứu, hợp học thuật, nghệ thuật, tu hành, nhưng dễ thành cô lập nếu cục lạnh."
+          },
+          {
+            "name": "Đào Hoa",
+            "by": "Thân",
+            "target": "Dậu",
+            "desc": "Khí giao cảm mạnh, dễ hút ánh nhìn, hợp giao tiếp và biểu đạt; nếu cục bất ổn thì dễ phân tâm."
+          },
+          {
+            "name": "Hoa Cái",
+            "by": "Thân",
+            "target": "Thìn",
+            "desc": "Khí cô cao và nghiên cứu, hợp học thuật, nghệ thuật, tu hành, nhưng dễ thành cô lập nếu cục lạnh."
+          },
+          {
+            "name": "Thiên Ất Quý Nhân",
+            "by": "Đinh",
+            "target": "Dậu",
+            "desc": "Quý nhân tinh, gặp đúng người dễ mở nút, hợp xin chỉ điểm và mượn thế thiện trợ."
+          },
+          {
+            "name": "Văn Xương",
+            "by": "Đinh",
+            "target": "Dậu",
+            "desc": "Khí văn học và tư duy hệ thống, hợp thi cử, viết lách, chuẩn hóa tri thức."
+          }
+        ]
+      }
+    },
+    "analysis": {
+      "elementCounts": {
+        "Kim": 5.06,
+        "Mộc": 4.2250000000000005,
+        "Thủy": 3.5749999999999997,
+        "Hỏa": 2.805,
+        "Thổ": 4.495
+      },
+      "strengthScore": 30,
+      "strong": false,
+      "followMode": null,
+      "supportRatio": 0.44245838184850683,
+      "pressureRatio": 0.416087107027095,
+      "strengthBand": "veryWeak",
+      "favorableElements": [
+        "Mộc",
+        "Hỏa",
+        "Thổ"
+      ],
+      "balanceScore": 87,
+      "sameSupport": 2.805,
+      "generatingSupport": 4.2250000000000005,
+      "outputDrain": 4.495,
+      "controlPressure": 3.5749999999999997,
+      "controlOutbound": 5.06,
+      "seasonalScore": -12,
+      "excessElements": [
+        "Kim"
+      ],
+      "weakElements": [
+        "Hỏa"
+      ],
+      "yinYang": {
+        "yin": 6,
+        "yang": 6,
+        "pattern": "balanced"
+      },
+      "tenGodInfluence": {
+        "counts": {
+          "Chính Ấn": 1.9,
+          "Thất Sát": 1.8499999999999999,
+          "Tỷ Kiên": 1.4500000000000002,
+          "Chính Tài": 1,
+          "Chính Quan": 0.65,
+          "Thương Quan": 1.45,
+          "Thiên Tài": 1,
+          "Thực Thần": 1,
+          "Thiên Ấn": 1.1
+        },
+        "ranked": [
+          {
+            "name": "Chính Ấn",
+            "score": 1.9,
+            "profile": {
+              "core": "Ấn tinh chính, trọng học, tư cách, nền đỡ.",
+              "bright": "Được quý nhân, có chiều sâu học thuật, biết giữ chuẩn tri thức.",
+              "shadow": "Dễ chậm hành vì nặng học hơn làm hoặc quá cần che chắn.",
+              "career": "Hợp chuyên môn sâu, cố vấn, giáo dục, nghiên cứu, chứng chỉ."
+            }
+          },
+          {
+            "name": "Thất Sát",
+            "score": 1.85,
+            "profile": {
+              "core": "Sát tinh cứng, lực áp mạnh, thiên về quyết đoán và gánh nặng.",
+              "bright": "Có gan gánh việc khó, chịu áp lực lớn, phản ứng nhanh khi biến cục.",
+              "shadow": "Nếu thiếu ấn/thực thần điều tiết dễ thành gấp, cứng, cực đoan.",
+              "career": "Hợp tuyến đầu, an ninh, kỹ thuật nặng, vận hành khủng hoảng, chỉ huy."
+            }
+          },
+          {
+            "name": "Tỷ Kiên",
+            "score": 1.45,
+            "profile": {
+              "core": "Tự chủ, giữ trục, đứng cùng hàng với nhật chủ.",
+              "bright": "Giỏi tự chống đỡ, dám vác việc, giữ lập trường.",
+              "shadow": "Dễ cố chấp, tranh quyền ngang vai, hao lực vì không chịu mượn thế.",
+              "career": "Hợp vai trò dẫn nhịp, đồng sáng lập, trưởng nhóm, nghề phải tự đứng trục."
+            }
+          },
+          {
+            "name": "Thương Quan",
+            "score": 1.45,
+            "profile": {
+              "core": "Biểu đạt sắc, phá khuôn, mở lối khác người.",
+              "bright": "Rất mạnh ở cải tiến, phản biện, sáng tạo, trình diễn năng lực.",
+              "shadow": "Dễ phạm cấp trên, khó chịu khuôn, lời sắc quá mức.",
+              "career": "Hợp sáng tạo, chiến lược, R&D, truyền thông, cải cách quy trình."
+            }
+          },
+          {
+            "name": "Thiên Ấn",
+            "score": 1.1,
+            "profile": {
+              "core": "Ấn tinh lệch, thiên ngộ tính, trực giác, đường lối khác thường.",
+              "bright": "Giỏi lĩnh hội nhanh, đọc bản chất, làm việc khó bằng lối riêng.",
+              "shadow": "Dễ cô độc, khó hòa môi trường cứng, có lúc thiếu thực tế.",
+              "career": "Hợp nghiên cứu, công nghệ sâu, phân tích, sáng tạo dị biệt, tu học."
+            }
+          },
+          {
+            "name": "Chính Tài",
+            "score": 1,
+            "profile": {
+              "core": "Tài tinh ổn, trọng tích lũy và quản trị nguồn.",
+              "bright": "Giữ tiền, giữ chuẩn, xây nền tốt, có ý thức trách nhiệm với tài nguyên.",
+              "shadow": "Dễ bó mình vào khuôn an toàn, chậm xoay khi thời thế đổi.",
+              "career": "Hợp quản trị, tài chính, kế toán, hậu cần, tích lũy tài sản bền."
+            }
+          },
+          {
+            "name": "Thiên Tài",
+            "score": 1,
+            "profile": {
+              "core": "Tài tinh động, trọng cơ hội, quan hệ, đa nguồn.",
+              "bright": "Nhạy thời vận, giỏi gặp người, kéo nguồn, mở cửa thị trường.",
+              "shadow": "Dễ phân tán, ham ngắn hạn, khó giữ nhịp lâu nếu thiếu nền.",
+              "career": "Hợp kinh doanh, đầu mối, khai thác cơ hội, ngoại giao, sales."
+            }
+          },
+          {
+            "name": "Thực Thần",
+            "score": 1,
+            "profile": {
+              "core": "Tiết khí ôn hòa, sinh sản phẩm, nuôi đầu ra.",
+              "bright": "Khéo nuôi việc, làm đều, bền, có chất lượng, có khả năng dạy và truyền.",
+              "shadow": "Dễ chậm nhịp nếu quá cầu toàn hoặc quá ham an ổn.",
+              "career": "Hợp sản phẩm, đào tạo, ẩm thực, nội dung, vận hành sinh giá trị bền."
+            }
+          },
+          {
+            "name": "Chính Quan",
+            "score": 0.65,
+            "profile": {
+              "core": "Quan tinh chính, trọng pháp, vị, trách nhiệm.",
+              "bright": "Giữ chuẩn, biết tự quản, hợp đường danh vị và hệ thống rõ.",
+              "shadow": "Dễ áp lực bởi chuẩn mực, tự trói trong đúng-sai cứng.",
+              "career": "Hợp quản lý, hành chính, pháp chế, nhà nước, môi trường có thứ bậc."
+            }
+          }
+        ],
+        "top": {
+          "name": "Chính Ấn",
+          "score": 1.9,
+          "profile": {
+            "core": "Ấn tinh chính, trọng học, tư cách, nền đỡ.",
+            "bright": "Được quý nhân, có chiều sâu học thuật, biết giữ chuẩn tri thức.",
+            "shadow": "Dễ chậm hành vì nặng học hơn làm hoặc quá cần che chắn.",
+            "career": "Hợp chuyên môn sâu, cố vấn, giáo dục, nghiên cứu, chứng chỉ."
+          }
+        },
+        "second": {
+          "name": "Thất Sát",
+          "score": 1.85,
+          "profile": {
+            "core": "Sát tinh cứng, lực áp mạnh, thiên về quyết đoán và gánh nặng.",
+            "bright": "Có gan gánh việc khó, chịu áp lực lớn, phản ứng nhanh khi biến cục.",
+            "shadow": "Nếu thiếu ấn/thực thần điều tiết dễ thành gấp, cứng, cực đoan.",
+            "career": "Hợp tuyến đầu, an ninh, kỹ thuật nặng, vận hành khủng hoảng, chỉ huy."
+          }
+        }
+      },
+      "usefulGods": {
+        "mode": "weak",
+        "scores": {
+          "Kim": -16,
+          "Mộc": 22,
+          "Thủy": 0,
+          "Hỏa": 28,
+          "Thổ": -6
+        },
+        "dungThan": [
+          "Hỏa",
+          "Mộc"
+        ],
+        "hyThan": [],
+        "kyThan": [
+          "Kim",
+          "Thổ"
+        ],
+        "nhanThan": [
+          "Thủy"
+        ],
+        "explanation": "Nhật chủ nhược nên lấy phù, trợ, dưỡng làm chủ; tránh thêm tài quan quá mạnh khiến thân không kham nổi. Cục hiện nhược thân với trọng tâm mùa khí ở **Kim**. Ưu tiên dùng **Hỏa / Mộc** để điều nhịp; vui dùng **không rõ**; kỵ nhất **Kim / Thổ**."
+      },
+      "pattern": {
+        "label": "Thiên Tài cách",
+        "base": "Thiên Tài cách",
+        "monthGod": "Thiên Tài",
+        "mainHidden": "Tân",
+        "description": "Trọng cơ hội, quan hệ, chớp thời vận và vận hành đa nguồn; hợp linh hoạt, không hợp cứng một đường.",
+        "supportText": "Nguyệt lệnh lấy **Tân** làm khí chính, quy ra **Thiên Tài** nên cục thiên về **Thiên Tài cách**.",
+        "synergy": "Cục có dấu **Sát Ấn tương sinh**, áp lực lớn nhưng nếu học lực đủ thì càng ép càng thành danh."
+      },
+      "growthStages": {
+        "year": "Mộc Dục",
+        "month": "Trường Sinh",
+        "day": "Quan Đới",
+        "hour": "Suy"
+      },
+      "shenSha": [
+        {
+          "name": "Hoa Cái",
+          "by": "Mùi",
+          "target": "Mùi",
+          "desc": "Khí cô cao và nghiên cứu, hợp học thuật, nghệ thuật, tu hành, nhưng dễ thành cô lập nếu cục lạnh."
+        },
+        {
+          "name": "Đào Hoa",
+          "by": "Thân",
+          "target": "Dậu",
+          "desc": "Khí giao cảm mạnh, dễ hút ánh nhìn, hợp giao tiếp và biểu đạt; nếu cục bất ổn thì dễ phân tâm."
+        },
+        {
+          "name": "Hoa Cái",
+          "by": "Thân",
+          "target": "Thìn",
+          "desc": "Khí cô cao và nghiên cứu, hợp học thuật, nghệ thuật, tu hành, nhưng dễ thành cô lập nếu cục lạnh."
+        },
+        {
+          "name": "Thiên Ất Quý Nhân",
+          "by": "Đinh",
+          "target": "Dậu",
+          "desc": "Quý nhân tinh, gặp đúng người dễ mở nút, hợp xin chỉ điểm và mượn thế thiện trợ."
+        },
+        {
+          "name": "Văn Xương",
+          "by": "Đinh",
+          "target": "Dậu",
+          "desc": "Khí văn học và tư duy hệ thống, hợp thi cử, viết lách, chuẩn hóa tri thức."
+        }
+      ]
+    },
+    "meta": {
+      "timezone": "Asia/Ho_Chi_Minh",
+      "createdAt": 1776438990920,
+      "updatedAt": 1776438990920,
+      "version": 1
+    }
+  }
+}

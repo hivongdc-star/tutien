@@ -2,14 +2,15 @@ const fs = require("fs");
 const path = require("path");
 
 const USERS_PATH = path.join(__dirname, "..", "data", "users.json");
+const BATTU_PROFILES_PATH = path.join(__dirname, "..", "data", "battu_profiles.json");
 const MAX_MESSAGE = 1900;
 
-function loadUsers() {
-  if (!fs.existsSync(USERS_PATH)) return {};
+function loadJson(filePath) {
+  if (!fs.existsSync(filePath)) return {};
   try {
-    return JSON.parse(fs.readFileSync(USERS_PATH, "utf8"));
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
   } catch (err) {
-    console.error("[userdata] Failed to parse users.json:", err);
+    console.error(`[userdata] Failed to parse ${filePath}:`, err);
     return {};
   }
 }
@@ -35,7 +36,7 @@ function splitIntoChunks(text, size = MAX_MESSAGE) {
 module.exports = {
   name: "userdata",
   aliases: ["udata", "uinfojson"],
-  description: "Owner-only: DM toàn bộ data của 1 user từ users.json",
+  description: "Owner-only: DM toàn bộ data của 1 user từ users.json và battu_profiles.json",
 
   run: async (client, msg, args) => {
     const ownerId = process.env.OWNER_ID;
@@ -53,17 +54,27 @@ module.exports = {
       return msg.reply("Dùng: `-userdata @user` hoặc `-userdata <userId>`");
     }
 
-    const users = loadUsers();
-    const userData = users[targetId];
+    const users = loadJson(USERS_PATH);
+    const battuProfiles = loadJson(BATTU_PROFILES_PATH);
 
-    if (!userData) {
+    const coreUserData = users[targetId] ?? null;
+    const battuProfile = battuProfiles[targetId] ?? null;
+
+    if (!coreUserData && !battuProfile) {
       return msg.reply(`Không tìm thấy dữ liệu cho user \`${targetId}\`.`);
     }
 
     const payload = JSON.stringify(
       {
         userId: targetId,
-        data: userData,
+        sources: {
+          usersJson: USERS_PATH,
+          battuProfilesJson: BATTU_PROFILES_PATH,
+        },
+        data: {
+          users: coreUserData,
+          battuProfile: battuProfile,
+        },
       },
       null,
       2
@@ -71,7 +82,7 @@ module.exports = {
 
     try {
       await msg.author.send(
-        `📦 Dữ liệu của user \`${targetId}\` trong \`data/users.json\`:`
+        `📦 Dữ liệu của user \`${targetId}\`:\n- users.json: ${coreUserData ? "có" : "không"}\n- battu_profiles.json: ${battuProfile ? "có" : "không"}`
       );
 
       if (payload.length <= MAX_MESSAGE) {

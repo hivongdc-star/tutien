@@ -2,6 +2,14 @@
 node_modules/
 dist/
 build/
+.next/
+.cache/
+.npm/
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
 
 # Logs
 npm-debug.log*
@@ -16,13 +24,33 @@ Thumbs.db
 
 # Env (bot token, DB, secret)
 .env
+.env.*
+!.env.example
 
-# Data files (runtime, không sync)
+# Runtime data - không sync dữ liệu người dùng
 data/users.json
 
+# Runtime data - bát tự / birth profile
+data/battu.json
+data/battu_users.json
+data/bat_tu.json
+data/bat_tu_users.json
+data/bazi.json
+data/bazi_users.json
+data/birth.json
+data/birth_users.json
+data/*battu*.json
+data/*bat_tu*.json
+data/*bazi*.json
+data/*birth*.json
+
+# Runtime generated images/cache
+data/images/
+
 # PM2 logs
-pids
+pids/
 *.pid
 *.seed
 *.pid.lock
 logs/
+EOF

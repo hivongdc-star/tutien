@@ -44,8 +44,6 @@ data/*bat_tu*.json
 data/*bazi*.json
 data/*birth*.json
 
-# Runtime generated images/cache
-data/images/
 
 # PM2 logs
 pids/

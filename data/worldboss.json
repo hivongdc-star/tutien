@@ -1,16 +1,15 @@
 {
   "version": 1,
-  "weekKey": "2026-W15",
+  "weekKey": "2026-W21",
   "boss": {
-    "name": "Tà Ảnh Ma Vương",
-    "element": "hoa",
-    "maxHp": 1400000,
-    "hp": 1385215,
-    "createdAt": 1775543359574,
+    "name": "Cổ Ấn Hung Thú",
+    "element": "thuy",
+    "maxHp": 1040000,
+    "hp": 1022555,
+    "createdAt": 1779180391518,
     "killedAt": null,
     "contributions": {
-      "1369926327586525184": 13414,
-      "543058474070966272": 1371
+      "1369926327586525184": 17445
     },
     "claimed": {},
     "redDrops": {},

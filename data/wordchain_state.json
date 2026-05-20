@@ -5,10 +5,10 @@
       "mode": "en",
       "isStopped": false,
       "startedAt": 1775658250690,
-      "lastMoveAt": 1776511333224,
-      "lastEntry": "reaction",
+      "lastMoveAt": 1778819213495,
+      "lastEntry": "nozzle",
       "expectedToken": null,
-      "expectedChar": "n",
+      "expectedChar": "e",
       "used": [
         "pick",
         "kemp",
@@ -629,10 +629,11 @@
         "monstrous",
         "solomon",
         "nuclear",
-        "reaction"
+        "reaction",
+        "nozzle"
       ],
       "scores": {
-        "543058474070966272": 199,
+        "543058474070966272": 200,
         "1340629997018288178": 3,
         "466958415546155022": 130,
         "686203998642241603": 1,
@@ -645,7 +646,7 @@
         "1396520825590517891": 121,
         "756812134016483328": 83
       },
-      "lastPlayerId": "756812134016483328",
+      "lastPlayerId": "543058474070966272",
       "emojis": {
         "correctEmoji": "<a:socutecat:1440908165934747668>",
         "wrongEmoji": "<a:3600000volt:1392128736996102317>"
@@ -655,9 +656,9 @@
       "mode": "vi",
       "isStopped": false,
       "startedAt": 1776435159715,
-      "lastMoveAt": 1776443551803,
-      "lastEntry": "phương tiện",
-      "expectedToken": "tiện",
+      "lastMoveAt": 1778819238577,
+      "lastEntry": "tiện tay",
+      "expectedToken": "tay",
       "expectedChar": null,
       "used": [
         "con cá",
@@ -667,16 +668,17 @@
         "sự tình",
         "tình tứ",
         "tứ phương",
-        "phương tiện"
+        "phương tiện",
+        "tiện tay"
       ],
       "scores": {
-        "543058474070966272": 2,
+        "543058474070966272": 3,
         "756812134016483328": 2,
         "1382478806232727643": 2,
         "948925697022390322": 1,
         "1369926327586525184": 1
       },
-      "lastPlayerId": "1382478806232727643",
+      "lastPlayerId": "543058474070966272",
       "emojis": {
         "correctEmoji": "✅",
         "wrongEmoji": "❌"

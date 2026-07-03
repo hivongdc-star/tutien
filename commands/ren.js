@@ -114,13 +114,13 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     const user = users[msg.author.id];
-    if (!user) return msg.reply("❌ Bạn chưa có nhân vật. Dùng `-create` trước.");
+    if (!user) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
 
     ensureMining(user);
     ensureGear(user);
 
     if (countTotalOres(user) < 5) {
-      return msg.reply("🪨 Bạn chưa đủ khoáng thạch để rèn (cần **5 viên**). Dùng `-dao` để khai khoáng.");
+      return msg.reply("🪨 Khoáng thạch chưa đủ để khai lò, cần **5 viên**. Dùng `-dao` để khai khoáng.");
     }
 
     const nonce = `${Date.now()}`;
@@ -150,7 +150,7 @@ module.exports = {
     });
 
     slotCollector.on("collect", async (i) => {
-      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải lò rèn của đạo hữu.", ephemeral: true });
       await i.deferUpdate();
 
       const slot = i.values[0];
@@ -238,7 +238,7 @@ module.exports = {
       };
 
       collector.on("collect", async (j) => {
-        if (j.user.id !== msg.author.id) return j.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+        if (j.user.id !== msg.author.id) return j.reply({ content: "❌ Đây không phải lò rèn của đạo hữu.", ephemeral: true });
 
         const cid = String(j.customId || "");
 
@@ -262,7 +262,7 @@ module.exports = {
           const owned = Math.max(0, Number(user.mining.ores?.[id]) || 0);
           const used = Math.max(0, Number(selectedCounts[id]) || 0);
           if (used >= owned) {
-            return j.followUp({ content: "⚠️ Bạn không còn đủ khoáng thạch này.", ephemeral: true });
+            return j.followUp({ content: "⚠️ Khoáng thạch này không còn đủ để rèn.", ephemeral: true });
           }
 
           picked.push(id);

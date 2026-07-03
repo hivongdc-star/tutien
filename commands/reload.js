@@ -5,7 +5,7 @@ module.exports = {
   name: "reload",
   run: (client, msg, args) => {
     if (msg.author.id !== process.env.OWNER_ID) {
-      return msg.channel.send("❌ Bạn không có quyền dùng lệnh này.");
+      return msg.channel.send("❌ Đạo hữu không có quyền dùng lệnh này.");
     }
 
     if (!args[0]) return msg.channel.send("❌ Hãy nhập tên lệnh hoặc `all`.");
@@ -23,19 +23,19 @@ module.exports = {
         client.commands.set(cmd.name, cmd);
       }
 
-      return msg.channel.send("✅ Reload tất cả lệnh thành công.");
+      return msg.channel.send("✅ Đã vận chuyển lại toàn bộ pháp lệnh.");
     }
 
     const cmdName = args[0].toLowerCase();
     const filePath = path.join(__dirname, `${cmdName}.js`);
 
     if (!fs.existsSync(filePath))
-      return msg.channel.send("❌ Không tìm thấy file lệnh.");
+      return msg.channel.send("❌ Không tìm thấy pháp lệnh cần nạp lại.");
 
     delete require.cache[require.resolve(filePath)];
     const cmd = require(filePath);
     client.commands.set(cmd.name, cmd);
 
-    msg.channel.send(`✅ Reload lệnh \`${cmdName}\` thành công.`);
+    msg.channel.send(`✅ Đã vận chuyển lại pháp lệnh \`${cmdName}\`.`);
   },
 };

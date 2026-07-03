@@ -207,7 +207,7 @@ function claim(user, scope, questId, now = Date.now()) {
   if (!st?.items?.[questId]) st.items[questId] = { progress: 0, claimed: false };
 
   const it = st.items[questId];
-  if (it.claimed) return { ok: false, message: "⚠️ Bạn đã nhận thưởng nhiệm vụ này rồi." };
+  if (it.claimed) return { ok: false, message: "⚠️ Đạo hữu đã nhận thưởng nhiệm vụ này rồi." };
 
   const prog = Math.max(0, Math.floor(Number(it.progress) || 0));
   if (prog < q.target) return { ok: false, message: "❌ Chưa hoàn thành nhiệm vụ." };

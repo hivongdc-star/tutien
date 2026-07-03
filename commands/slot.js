@@ -12,13 +12,13 @@ module.exports = {
     try {
       const bet = Number.parseInt(args[0], 10);
       if (!Number.isFinite(bet) || bet <= 0)
-        return msg.reply("❌ Hãy nhập số LT muốn cược!");
+        return msg.reply("❌ Hãy nhập số Linh thạch muốn đặt cược.");
 
       // Commit cược + RNG trước (nhanh), UI chỉ là reveal.
       const result = playSlot(msg.author.id, bet);
       if (!result?.success) return msg.reply(result?.msg || "❌ Có lỗi xảy ra.");
 
-      const sent = await msg.reply(`🎰 Đang quay... ${SPIN} ${SPIN} ${SPIN}`);
+      const sent = await msg.reply(`🎰 Trận bàn đang xoay... ${SPIN} ${SPIN} ${SPIN}`);
 
       // 1.2–1.8s như vibe OwO
       const delayMs = 1200 + Math.floor(Math.random() * 601);
@@ -29,21 +29,21 @@ module.exports = {
 
       let finalMsg;
       if (spin && spin.length === 3) {
-        finalMsg = `🎰 Kết quả: [ ${spin.join(" | ")} ]\n`;
+        finalMsg = `🎰 Kết quả trận bàn: [ ${spin.join(" | ")} ]\n`;
 
         if (result.outcome === "jackpot") {
           const win = Number(result.win) || 0;
           const tax = Number(result.tax) || 0;
-          finalMsg += `✨ Jackpot! +${win} LT (trích ${tax} LT vào Jackpot)`;
+          finalMsg += `✨ Đại vận khai mở! +${win} LT (trích ${tax} LT vào bảo khố)`;
         } else if (result.outcome === "smallwin") {
           const win = Number(result.win) || 0;
           const tax = Number(result.tax) || 0;
-          finalMsg += `✨ Thắng nhỏ! +${win} LT (trích ${tax} LT vào Jackpot)`;
+          finalMsg += `✨ Tiểu vận hanh thông! +${win} LT (trích ${tax} LT vào bảo khố)`;
         } else {
-          finalMsg += `💀 Bạn thua! -${bet} LT`;
+          finalMsg += `💀 Đạo hữu thua ván này. -${bet} LT`;
         }
 
-        if (Number.isFinite(jackpot)) finalMsg += `\n💰 Jackpot: ${jackpot} LT`;
+        if (Number.isFinite(jackpot)) finalMsg += `\n💰 Bảo khố: ${jackpot} LT`;
       } else {
         // Fallback nếu thiếu metadata
         finalMsg = result.msg;
@@ -52,7 +52,7 @@ module.exports = {
       await sent.edit(finalMsg);
     } catch (e) {
       try {
-        await msg.reply("❌ Lỗi khi xử lý slot. Vui lòng thử lại.");
+        await msg.reply("❌ Trận bàn bị nhiễu. Hãy thử lại sau.");
       } catch {}
       console.error("[slot] error:", e);
     }

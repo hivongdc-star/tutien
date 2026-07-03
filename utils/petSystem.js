@@ -233,7 +233,7 @@ function convertShardsIfPossible(user, petId) {
 function equipPet(user, petId) {
   ensurePetShape(user);
   const st = user.pet.pets[petId];
-  if (!st || (st.count || 0) <= 0) return { ok: false, message: "❌ Bạn không sở hữu linh thú này." };
+  if (!st || (st.count || 0) <= 0) return { ok: false, message: "❌ Đạo hữu không sở hữu linh thú này." };
   user.pet.activePetId = petId;
 
   // apply buffer XP ngay khi equip
@@ -245,7 +245,7 @@ function setPetJob(user, job) {
   ensurePetShape(user);
   if (!JOBS.includes(job)) return { ok: false, message: "❌ Job không hợp lệ." };
   const pid = user.pet.activePetId;
-  if (!pid) return { ok: false, message: "❌ Bạn chưa trang bị linh thú." };
+  if (!pid) return { ok: false, message: "❌ Đạo hữu chưa cho linh thú xuất chiến." };
 
   user.pet.pets[pid].job = job;
   return { ok: true, message: `✅ Linh thú chuyển sang **${job}**.` };
@@ -254,9 +254,9 @@ function setPetJob(user, job) {
 function breakthroughPet(user, petId) {
   ensurePetShape(user);
   const pid = petId || user.pet.activePetId;
-  if (!pid) return { ok: false, message: "❌ Bạn chưa trang bị linh thú." };
+  if (!pid) return { ok: false, message: "❌ Đạo hữu chưa cho linh thú xuất chiến." };
   const st = user.pet.pets[pid];
-  if (!st || (st.count || 0) <= 0) return { ok: false, message: "❌ Bạn không sở hữu linh thú này." };
+  if (!st || (st.count || 0) <= 0) return { ok: false, message: "❌ Đạo hữu không sở hữu linh thú này." };
 
   // Gate: phải đạt cấp tối đa của cảnh giới hiện tại mới được đột phá
   const capLv = getPetLevelCap(st.realm);

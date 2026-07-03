@@ -171,19 +171,19 @@ module.exports = {
   description: "Câu cá kiếm LT + EXP. Dùng: -cau [song|ho|bien]",
   run: async (client, msg, args) => {
     if (!FISH_DB.length) {
-      return msg.reply("❌ Thiếu dữ liệu cá (data/fish_db.json). Hãy khôi phục file này trong thư mục `data/`.");
+      return msg.reply("❌ Thủy vực tạm thời chưa có linh ngư. Hãy báo quản sự kiểm tra.");
     }
 
     const users = loadUsers();
     const me = users[msg.author.id];
-    if (!me) return msg.reply("❌ Bạn chưa có nhân vật. Dùng `-create` để bắt đầu!");
+    if (!me) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` để bắt đầu.");
 
     // cooldown
     const last = cooldown.get(msg.author.id) || 0;
     const now = Date.now();
     const remain = last + COOLDOWN_MS - now;
     if (remain > 0) {
-      return msg.reply(`⏳ Hãy nghỉ tay **${Math.ceil(remain / 1000)}s** rồi câu tiếp nhé.`);
+      return msg.reply(`⏳ Cần câu còn vương linh tức. Hãy chờ **${Math.ceil(remain / 1000)}s** rồi thả tiếp.`);
     }
 
     const arg = (args?.[0] || "").toLowerCase();
@@ -191,13 +191,13 @@ module.exports = {
     const spotKey = validSpots.includes(arg) ? arg : validSpots[randomInt(0, validSpots.length)];
 
     const poolAll = FISH_DB.filter((f) => (f.habitats || []).includes(spotKey));
-    if (!poolAll.length) return msg.reply("❌ Data cá không có loài phù hợp bãi câu.");
+    if (!poolAll.length) return msg.reply("❌ Bãi câu này hiện chưa có linh ngư phù hợp.");
 
     const waitMs = randomInt(1500, 3501); // 1.5–3.5s
 
     const baseEmbed = new EmbedBuilder()
       .setTitle("🎣 Thả Cần")
-      .setDescription(`Bạn đã thả cần ở **${spotText(spotKey)}**.
+      .setDescription(`Đạo hữu thả cần ở **${spotText(spotKey)}**.
 Mặt nước khẽ động, chờ thời khắc thu lưới...`);
 
     const sent = await msg.reply({ embeds: [baseEmbed] }).catch(() => null);
@@ -272,7 +272,7 @@ Mặt nước khẽ động, chờ thời khắc thu lưới...`);
         const resEmbed = new EmbedBuilder()
           .setColor(meta.color)
           .setTitle(`${fish.emoji || "🐟"} ${fish.name}`)
-          .setDescription(`Bạn đã thả cần ở **${spotText(spotKey)}** và câu được:
+          .setDescription(`Đạo hữu thả cần ở **${spotText(spotKey)}** và câu được:
 
 **${fish.name}** • **${rarityText}**${size ? ` • **${size} cm**` : ""}`);
 
@@ -289,7 +289,7 @@ Mặt nước khẽ động, chờ thời khắc thu lưới...`);
             petFieldValue = `Linh thú đã ăn phần thu hoạch này.
 + **${fmt(feedRes.xpGain)}** kinh nghiệm linh thú`;
           } else if (feedRes?.buffered) {
-            petFieldValue = `Bạn chưa có linh thú đồng hành.
+            petFieldValue = `Đạo hữu chưa có linh thú đồng hành.
 Tinh hoa từ mẻ cá này đã được giữ lại: + **${fmt(feedRes.xpGain)}** XP chờ dùng`;
           } else {
             petFieldValue = `Phần thu hoạch này chưa thể dùng để bồi dưỡng linh thú.`;

@@ -81,9 +81,9 @@ function buildElementStory(chart) {
 
   return [
     `Ngũ hành trong mệnh nghiêng rõ về **${bias.dominant}** và **${bias.second}**, còn phần yếu hơn nằm ở **${bias.weakest}**. Điều này cho thấy cách bạn vận hành tự nhiên có trọng tâm rõ: mạnh ở chỗ nào thì đi rất nhanh, nhưng phần yếu lại cần được bồi dần chứ không thể ép ngay.`,
-    `Sức mệnh hiện ở mức **${strongness}** (${chart.analysis.strengthScore}/100), còn độ cân bằng tổng thể ở mức **${balance}** (${chart.analysis.balanceScore}/100). Nói dễ hiểu hơn: đây không phải lá số mỏng lực, nhưng nếu đi sai nhịp thì vẫn dễ bị lệch về một phía.`,
+    `Tổng hợp mệnh bàn cho thấy thân khí ở mức **${strongness}** (${chart.analysis.strengthScore}/100), còn độ cân bằng tổng thể ở mức **${balance}** (${chart.analysis.balanceScore}/100). Nói dễ hiểu hơn: mệnh này không phải kiểu mỏng lực, nhưng nếu đi sai nhịp thì vẫn dễ bị lệch về một phía.`,
     `Phần đang dư trong mệnh là **${excessText}**; phần đang thiếu là **${weakText}**. Vì vậy, khi chọn môi trường sống, cách học hay cách làm việc, bạn hợp nhất với những yếu tố giúp mệnh bớt gắt và trở nên có nhịp hơn.`,
-    `**Dụng thần** nên ưu tiên là **${useful.dungThan.join(' / ') || 'chưa nổi rõ'}**. **Hỷ thần** là **${useful.hyThan.join(' / ') || 'chưa nổi rõ'}**. **Kỵ thần** là **${useful.kyThan.join(' / ') || 'chưa nổi rõ'}**. **Nhàn thần** là **${useful.nhanThan.join(' / ') || 'không đáng kể'}**.`,
+    `**Dụng thần tham khảo** nên ưu tiên là **${useful.dungThan.join(' / ') || 'chưa nổi rõ'}**. **Hỷ thần** là **${useful.hyThan.join(' / ') || 'chưa nổi rõ'}**. **Kỵ thần** là **${useful.kyThan.join(' / ') || 'chưa nổi rõ'}**. **Nhàn thần** là **${useful.nhanThan.join(' / ') || 'không đáng kể'}**.`,
   ].join('\n\n');
 }
 
@@ -202,8 +202,8 @@ function transitBaseSentence(type, tier, relStem) {
 
 function buildTransitSummary(chart) {
   const now = getVietnamNowParts();
-  const yearPillar = calcYearPillar(now.year, now.month, now.day, now.hour);
-  const monthPillar = calcMonthPillar(now.year, now.month, now.day, now.hour, yearPillar.stem.name).pillar;
+  const yearPillar = calcYearPillar(now.year, now.month, now.day, now.hour, now.minute);
+  const monthPillar = calcMonthPillar(now.year, now.month, now.day, now.hour, now.minute, yearPillar.stem.name).pillar;
   const yearHit = analyzeTransitAgainstNatal(chart, yearPillar, 'year');
   const monthHit = analyzeTransitAgainstNatal(chart, monthPillar, 'month');
   return {
@@ -224,18 +224,47 @@ function buildTransitStory(type, hit) {
   ].join(' ');
 }
 
+function buildLuckStory(chart) {
+  const luck = chart.luck;
+  if (!luck?.cycles?.length) return 'Chưa có dữ liệu Đại vận. Hãy lập lại mệnh bàn bằng `-battu` bản mới.';
+  const boundary = luck.boundary;
+  const head = `Đại vận tính theo quy tắc **${luck.genderLabel} sinh năm ${chart.year.stem.polarity}** nên đi **${luck.directionLabel}**. Mốc khởi vận lấy từ khoảng cách tới tiết khí **${boundary.name}** (${String(boundary.day).padStart(2, '0')}/${String(boundary.month).padStart(2, '0')}/${boundary.year} ${String(boundary.hour).padStart(2, '0')}:${String(boundary.minute).padStart(2, '0')}). Khởi vận xấp xỉ **${luck.startAge.label}**.`;
+  const lines = luck.cycles.slice(0, 6).map((c) => `• **${c.ageRange}** — ${pillarDisplay(c.pillar)}: ${c.summary}`);
+  return `${head}\n\n${lines.join('\n')}`;
+}
+
+
 function createBattuEmbeds(user, chart) {
   if (!chart.analysis?.usefulGods || !chart.analysis?.pattern || !chart.analysis?.growthStages) enrichAnalysis(chart);
   const embeds = [];
   const transit = buildTransitSummary(chart);
+
+  const birthTime = chart.birth.timeLabel || `${String(chart.birth.hour).padStart(2, '0')}:${String(chart.birth.minute || 0).padStart(2, '0')}`;
+  const trueSolar = chart.birth.trueSolar;
+  const place = chart.birth.birthPlace;
+  const solarLabel = trueSolar?.dateTimeLabel || `${String(chart.birth.day).padStart(2, '0')}/${String(chart.birth.month).padStart(2, '0')}/${chart.birth.year} ${birthTime}`;
+  const offset = Number(trueSolar?.offsetMinutes || 0);
+  const offsetText = `${offset >= 0 ? '+' : ''}${offset.toFixed(1)} phút`;
+  const dayDate = chart.birth.dayPillarDate;
+  const dayRuleNote = dayDate && (dayDate.year !== (trueSolar?.year || chart.birth.year) || dayDate.month !== (trueSolar?.month || chart.birth.month) || dayDate.day !== (trueSolar?.day || chart.birth.day))
+    ? `
+Nhật trụ được tính sang ngày **${String(dayDate.day).padStart(2, '0')}/${String(dayDate.month).padStart(2, '0')}/${dayDate.year}** do quy tắc giờ Tý 23:00.`
+    : '';
 
   embeds.push(
     new EmbedBuilder()
       .setColor(0x6C5CE7)
       .setTitle('Mệnh Bàn Bát Tự')
       .setDescription(
-        `**${user.username}** — mệnh bàn lấy theo múi giờ **${chart.birth.timezone}**\n` +
-        `Sinh thời: **${String(chart.birth.day).padStart(2, '0')}/${String(chart.birth.month).padStart(2, '0')}/${chart.birth.year} ${chart.birth.hourRange}**\n\n` +
+        `**${user.username}** — mệnh bàn lấy theo múi giờ gốc **${chart.birth.timezone}**
+` +
+        `Sinh thời đồng hồ: **${String(chart.birth.day).padStart(2, '0')}/${String(chart.birth.month).padStart(2, '0')}/${chart.birth.year} ${birthTime}**
+` +
+        `Nơi sinh: **${place?.name || 'không rõ'}**${place?.longitude ? ` (${Number(place.longitude).toFixed(4)}°E)` : ''} • Giới tính Đại vận: **${chart.birth.genderLabel || '—'}**
+` +
+        `Giờ mặt trời dùng cho nhật/thời trụ: **${solarLabel}** (${offsetText}, ${chart.birth.hourRange})${dayRuleNote}
+
+` +
         buildBirthSummary(chart)
       )
       .addFields(
@@ -250,7 +279,7 @@ function createBattuEmbeds(user, chart) {
           inline: false,
         },
       )
-      .setFooter({ text: 'Trụ tháng lấy theo tiết khí. Mốc Lập Xuân dùng để phân niên trụ.' })
+      .setFooter({ text: 'Trụ năm/tháng lấy theo tiết khí thật; nhật/thời trụ dùng giờ mặt trời tại nơi sinh. Sinh 23:00-23:59 theo giờ mặt trời tính nhật trụ sang ngày kế tiếp.' })
   );
 
   embeds.push(
@@ -269,7 +298,7 @@ function createBattuEmbeds(user, chart) {
           inline: false,
         },
         {
-          name: 'Dụng thần, hỷ thần, kỵ thần và nhàn thần',
+          name: 'Dụng thần tham khảo, hỷ thần, kỵ thần và nhàn thần',
           value: clamp(buildUsefulGodStory(chart)),
           inline: false,
         },
@@ -292,7 +321,7 @@ function createBattuEmbeds(user, chart) {
           inline: false,
         },
         {
-          name: 'Cách cục của lá số',
+          name: 'Khuynh hướng cách cục',
           value: clamp(buildPatternStory(chart)),
           inline: false,
         },
@@ -315,6 +344,20 @@ function createBattuEmbeds(user, chart) {
           inline: false,
         },
       )
+  );
+
+  embeds.push(
+    new EmbedBuilder()
+      .setColor(0x3498DB)
+      .setTitle('Đại Vận 10 Năm')
+      .addFields(
+        {
+          name: 'Chu kỳ Đại vận',
+          value: clamp(buildLuckStory(chart)),
+          inline: false,
+        },
+      )
+      .setFooter({ text: 'Đại vận là lớp vận 10 năm, cần đọc cùng bản mệnh và lưu niên/lưu nguyệt; không nên tách riêng để kết luận.' })
   );
 
   embeds.push(

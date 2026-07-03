@@ -27,7 +27,7 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     const user = users[msg.author.id];
-    if (!user) return msg.reply("❌ Bạn chưa bước vào con đường tu luyện. Dùng `-create` để khai mở nhân vật.");
+    if (!user) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` để khai mở nhân vật.");
 
     ensureGear(user);
     ensureUserSkills(user);
@@ -63,7 +63,7 @@ module.exports = {
     ];
 
     const affLines = Object.entries(aff).map(([k, v]) => `• ${AFFIX_LABELS[k] || k}: **+${formatPct(v)}%**`);
-    if (!affLines.length) affLines.push("Chưa có thuộc tính kèm theo.");
+    if (!affLines.length) affLines.push("Chưa có linh văn phụ trợ.");
 
     const eq = user.skills?.equipped || { actives: [null, null, null, null], passive: null };
     const act = Array.isArray(eq.actives) ? eq.actives : [null, null, null, null];

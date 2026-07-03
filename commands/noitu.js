@@ -75,7 +75,7 @@ module.exports = {
     }
 
     if (!hasManageChannels(msg)) {
-      return msg.reply("❌ Bạn không có quyền chỉnh sửa kênh để dùng lệnh này.");
+      return msg.reply("❌ Đạo hữu không có quyền lập trận trong kênh này.");
     }
 
     const sub = (args[0] || "").toLowerCase();
@@ -87,13 +87,13 @@ module.exports = {
     try {
       loadWordChainDictionaries(client);
     } catch (error) {
-      return msg.reply(`❌ Không thể nạp từ điển nối từ: ${error.message}`);
+      return msg.reply(`❌ Từ điển nối từ chưa sẵn sàng. Hãy báo quản sự kiểm tra.`);
     }
 
     if (sub === "setup") {
       const mode = (args[1] || "").toLowerCase();
       if (!["vi", "en"].includes(mode)) {
-        return msg.reply("❌ Hãy chọn mode `vi` hoặc `en`.");
+        return msg.reply("❌ Hãy chọn phép chơi `vi` hoặc `en`.");
       }
 
       setupChannel(client, msg.channel.id, mode);
@@ -110,28 +110,28 @@ module.exports = {
     if (sub === "stop") {
       const channelState = stopChannel(client, msg.channel.id);
       if (!channelState) {
-        return msg.reply("❌ Kênh này chưa được setup nối từ.");
+        return msg.reply("❌ Kênh này chưa lập trận nối từ.");
       }
 
       return msg.reply(
         "🛑 Đã dừng ván nối từ hiện tại.\n" +
-          "⚙️ Setup của kênh vẫn được giữ nguyên. Dùng `-noitu setup vi|en` để mở lại nhanh."
+          "⚙️ Trận pháp của kênh vẫn được giữ. Dùng `-noitu setup vi|en` để mở lại nhanh."
       );
     }
 
     if (sub === "clear") {
       const existed = clearChannel(client, msg.channel.id);
       if (!existed) {
-        return msg.reply("❌ Kênh này chưa có setup nối từ để hủy.");
+        return msg.reply("❌ Kênh này chưa có trận nối từ để hủy.");
       }
 
-      return msg.reply("🧹 Đã hủy setup nối từ của kênh này.");
+      return msg.reply("🧹 Đã tán trận nối từ của kênh này.");
     }
 
     if (sub === "emoji") {
       const channelState = getChannelState(client, msg.channel.id);
       if (!channelState) {
-        return msg.reply("❌ Kênh này chưa được setup nối từ.");
+        return msg.reply("❌ Kênh này chưa lập trận nối từ.");
       }
 
       const target = (args[1] || "").toLowerCase();
@@ -187,7 +187,7 @@ module.exports = {
     if (sub === "status") {
       const status = getStatusText(client, msg.channel.id);
       if (!status) {
-        return msg.reply("❌ Kênh này chưa được setup nối từ.");
+        return msg.reply("❌ Kênh này chưa lập trận nối từ.");
       }
 
       const embed = new EmbedBuilder()

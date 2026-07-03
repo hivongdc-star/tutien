@@ -91,7 +91,7 @@ function consumeMaterials(user, itemIds) {
 }
 
 function attemptEnhance({ user, gear }) {
-  if (!user || !gear) return { ok: false, message: "Thiếu dữ liệu." };
+  if (!user || !gear) return { ok: false, message: "Dữ liệu pháp bảo chưa sẵn sàng." };
   ensureEnhanceFields(gear);
   const lv = gear.enhanceLevel;
   if (lv >= MAX_ENH) return { ok: false, message: "Trang bị đã đạt cấp cường hoá tối đa." };

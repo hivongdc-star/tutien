@@ -5,7 +5,7 @@ const crypto = require("node:crypto");
 // 🎲 Tài Xỉu
 function playTaiXiu(user, bet) {
   if (getLT(user) < bet)
-    return { success: false, msg: "❌ Bạn không đủ LT để cược!" };
+    return { success: false, msg: "❌ Linh thạch không đủ để đặt cược." };
 
   removeLT(user, bet);
   // Dùng crypto RNG để nhất quán và khó dự đoán hơn Math.random()
@@ -30,13 +30,13 @@ function playTaiXiu(user, bet) {
     win -= tax;
     addLT(user, win);
     addToJackpot(tax);
-    result += `✨ Bạn thắng! Nhận ${win} LT (trích ${tax} LT vào Jackpot)`;
+    result += `✨ Đạo hữu thắng! Nhận ${win} LT (trích ${tax} LT vào bảo khố)`;
 
     meta.outcome = "win";
     meta.win = win;
     meta.tax = tax;
   } else {
-    result += "💀 Bạn thua!";
+    result += "💀 Đạo hữu thua ván này.";
   }
 
   // Best-effort: lấy jackpot hiện tại để hiển thị
@@ -52,7 +52,7 @@ function playTaiXiu(user, bet) {
 // 🪙 Tung Xu
 function playFlip(user, bet, choice) {
   if (getLT(user) < bet)
-    return { success: false, msg: "❌ Bạn không đủ LT để cược!" };
+    return { success: false, msg: "❌ Linh thạch không đủ để đặt cược." };
 
   removeLT(user, bet);
   // RNG crypto để nhất quán với tài xỉu
@@ -75,13 +75,13 @@ function playFlip(user, bet, choice) {
     win -= tax;
     addLT(user, win);
     addToJackpot(tax);
-    result += `✨ Bạn đoán đúng! Nhận ${win} LT (trích ${tax} LT vào Jackpot)`;
+    result += `✨ Đoán trúng! Nhận ${win} LT (trích ${tax} LT vào bảo khố)`;
 
     meta.outcome = "win";
     meta.win = win;
     meta.tax = tax;
   } else {
-    result += "💀 Bạn đoán sai!";
+    result += "💀 Đoán sai, mất cược.";
   }
 
   try {
@@ -96,7 +96,7 @@ function playFlip(user, bet, choice) {
 // 🎰 Slot Machine
 function playSlot(user, bet) {
   if (getLT(user) < bet)
-    return { success: false, msg: "❌ Bạn không đủ LT để cược!" };
+    return { success: false, msg: "❌ Linh thạch không đủ để đặt cược." };
 
   removeLT(user, bet);
   const symbols = ["⚔️", "🌲", "💧", "🔥", "🪨", "💎"];
@@ -119,7 +119,7 @@ function playSlot(user, bet) {
     win -= tax;
     addLT(user, win);
     addToJackpot(tax);
-    result += `✨ Jackpot! Bạn thắng ${win} LT (trích ${tax} LT vào Jackpot)`;
+    result += `✨ Đại vận khai mở! Đạo hữu thắng ${win} LT (trích ${tax} LT vào bảo khố)`;
 
     meta.outcome = "jackpot";
     meta.win = win;
@@ -134,13 +134,13 @@ function playSlot(user, bet) {
     win -= tax;
     addLT(user, win);
     addToJackpot(tax);
-    result += `✨ Bạn thắng nhỏ! Nhận ${win} LT (trích ${tax} LT vào Jackpot)`;
+    result += `✨ Tiểu vận hanh thông! Nhận ${win} LT (trích ${tax} LT vào bảo khố)`;
 
     meta.outcome = "smallwin";
     meta.win = win;
     meta.tax = tax;
   } else {
-    result += "💀 Bạn thua!";
+    result += "💀 Đạo hữu thua ván này.";
   }
 
   try {
@@ -152,10 +152,10 @@ function playSlot(user, bet) {
   return { success: true, msg: result, ...meta };
 }
 
-// 🎴 Bài Cào (đánh với bot, có 3 cào)
+// 🎴 Bài Cào (đấu với nhà cái, có 3 cào)
 function playBaiCao(user, bet) {
   if (getLT(user) < bet)
-    return { success: false, msg: "❌ Bạn không đủ LT để cược!" };
+    return { success: false, msg: "❌ Linh thạch không đủ để đặt cược." };
 
   removeLT(user, bet);
 
@@ -199,21 +199,21 @@ function playBaiCao(user, bet) {
   const playerBaCao = isBaCao(playerHand);
   const botBaCao = isBaCao(botHand);
 
-  let result = `👤 Bài của bạn: ${playerHand.map(c => c.rank + c.suit).join(" ")}\n`;
-  result += `🤖 Bài của bot: ${botHand.map(c => c.rank + c.suit).join(" ")}\n`;
+  let result = `👤 Bài của đạo hữu: ${playerHand.map(c => c.rank + c.suit).join(" ")}\n`;
+  result += `🏯 Bài nhà cái: ${botHand.map(c => c.rank + c.suit).join(" ")}\n`;
 
   if (playerBaCao && botBaCao) {
     addLT(user, bet);
-    result += "⚖️ Cả hai đều 3 cào → Hòa! Hoàn cược.";
+    result += "⚖️ Hai bên cùng Tam Cào → hòa, hoàn cược.";
   } else if (playerBaCao) {
     let win = bet * 5;
     let tax = Math.floor(win * 0.05);
     win -= tax;
     addLT(user, win);
     addToJackpot(tax);
-    result += `✨ 3 Cào! Bạn thắng ${win} LT (trích ${tax} LT vào Jackpot)`;
+    result += `✨ Tam Cào hiện thế! Đạo hữu thắng ${win} LT (trích ${tax} LT vào bảo khố)`;
   } else if (botBaCao) {
-    result += "💀 Bot có 3 Cào! Bạn thua toàn tập!";
+    result += "💀 Nhà cái lật Tam Cào. Đạo hữu thua ván này.";
   } else {
     if (playerPoint > botPoint) {
       let win = bet * 2;
@@ -221,12 +221,12 @@ function playBaiCao(user, bet) {
       win -= tax;
       addLT(user, win);
       addToJackpot(tax);
-      result += `✨ Bạn ${playerPoint} điểm, bot ${botPoint} điểm → Bạn thắng ${win} LT (trích ${tax} LT vào Jackpot)`;
+      result += `✨ Đạo hữu ${playerPoint} điểm, nhà cái ${botPoint} điểm → thắng ${win} LT (trích ${tax} LT vào bảo khố)`;
     } else if (playerPoint < botPoint) {
-      result += `💀 Bạn ${playerPoint} điểm, bot ${botPoint} điểm → Bạn thua!`;
+      result += `💀 Đạo hữu ${playerPoint} điểm, nhà cái ${botPoint} điểm → thua ván này.`;
     } else {
       addLT(user, bet);
-      result += `⚖️ Hòa điểm (${playerPoint}) → Hoàn cược.`;
+      result += `⚖️ Đồng điểm (${playerPoint}) → hòa, hoàn cược.`;
     }
   }
 

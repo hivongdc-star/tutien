@@ -231,7 +231,7 @@ function buildHatchEmbed(user) {
   return new EmbedBuilder()
     .setTitle("🥚 Ấp Trứng Linh Thú")
     .setColor(0x9B59B6)
-    .setDescription(`Bạn đang có **${eggs}** trứng.
+    .setDescription(`Đạo hữu đang có **${eggs}** trứng.
 Chọn số lượng muốn ấp.`);
 }
 
@@ -270,7 +270,7 @@ function buildJobEmbed(user) {
 function buildBreakEmbed(user) {
   const pid = user.pet?.activePetId;
   if (!pid) {
-    return new EmbedBuilder().setTitle("⬆️ Đột phá").setColor(0xE67E22).setDescription("Bạn chưa có linh thú xuất chiến.");
+    return new EmbedBuilder().setTitle("⬆️ Đột phá").setColor(0xE67E22).setDescription("Đạo hữu chưa có linh thú xuất chiến.");
   }
 
   const st = user.pet.pets?.[pid];
@@ -308,7 +308,7 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     const u = users[msg.author.id];
-    if (!u) return msg.reply("❌ Bạn chưa bước vào con đường tu luyện. Dùng `-create` để khai mở nhân vật.");
+    if (!u) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` để khai mở nhân vật.");
 
     ensurePetShape(u);
 
@@ -324,7 +324,7 @@ module.exports = {
     const render = () => {
       const curUsers = loadUsers();
       const cur = curUsers[msg.author.id];
-      if (!cur) return { content: "❌ Bạn chưa có nhân vật.", embeds: [], components: [] };
+      if (!cur) return { content: "❌ Đạo hữu chưa nhập đạo.", embeds: [], components: [] };
 
       ensurePetShape(cur);
 
@@ -371,7 +371,7 @@ module.exports = {
         embeds = [buildEquipEmbed(cur)];
         const row = equipMenuRow(`${baseId}:equip`, cur);
         components = [actionMenuRow(actionId), ...(row ? [row] : []), backRow(backId)];
-        if (!row) embeds[0].setDescription("Bạn chưa có linh thú nào. Ghé `-shop` để tìm trứng phù hợp.");
+        if (!row) embeds[0].setDescription("Đạo hữu chưa có linh thú nào. Ghé `-shop` để tìm trứng phù hợp.");
       } else if (view === "job") {
         embeds = [buildJobEmbed(cur)];
         const current = cur.pet.activePetId ? cur.pet.pets?.[cur.pet.activePetId]?.job : null;
@@ -403,7 +403,7 @@ module.exports = {
     collector.on("collect", async (i) => {
       try {
         if (i.user.id !== msg.author.id) {
-          return i.reply({ content: "❌ Đây không phải giao diện của bạn.", ephemeral: true });
+          return i.reply({ content: "❌ Đây không phải linh thú giới của đạo hữu.", ephemeral: true });
         }
 
         if (!String(i.customId || "").startsWith(baseId)) return;

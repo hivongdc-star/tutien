@@ -107,7 +107,7 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     const u = users[msg.author.id];
-    if (!u) return msg.reply("❌ Bạn chưa bước vào con đường tu luyện. Dùng `-create` để khai mở nhân vật.");
+    if (!u) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` để khai mở nhân vật.");
 
     ensureQuestState(u, Date.now());
     users[msg.author.id] = u;
@@ -128,7 +128,7 @@ module.exports = {
     };
 
     const s0 = readState();
-    if (!s0) return msg.reply("❌ Bạn chưa có nhân vật.");
+    if (!s0) return msg.reply("❌ Đạo hữu chưa nhập đạo.");
 
     const buildRows = (daily, weekly) => {
       const rows = [buildButtons(msg.author.id, nonce)];
@@ -157,7 +157,7 @@ module.exports = {
 
     col.on("collect", async (i) => {
       try {
-        if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải bảng của bạn.", ephemeral: true });
+        if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải bảng nhiệm vụ của đạo hữu.", ephemeral: true });
 
         const cid = String(i.customId || "");
         const sessionSuffix = `_${nonce}`;
@@ -175,7 +175,7 @@ module.exports = {
 
           const users2 = loadUsers();
           const u2 = users2[msg.author.id];
-          if (!u2) return i.followUp({ content: "❌ Bạn chưa có nhân vật.", ephemeral: true });
+          if (!u2) return i.followUp({ content: "❌ Đạo hữu chưa nhập đạo.", ephemeral: true });
           ensureQuestState(u2, Date.now());
 
           let total = 0;
@@ -209,7 +209,7 @@ module.exports = {
 
           const users2 = loadUsers();
           const u2 = users2[msg.author.id];
-          if (!u2) return i.followUp({ content: "❌ Bạn chưa có nhân vật.", ephemeral: true });
+          if (!u2) return i.followUp({ content: "❌ Đạo hữu chưa nhập đạo.", ephemeral: true });
           ensureQuestState(u2, Date.now());
 
           if (!canClaim(u2, scope, questId, Date.now())) {

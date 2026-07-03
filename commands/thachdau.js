@@ -6,7 +6,7 @@ module.exports = {
   aliases: ["td"],
   run: async (client, message) => {
     const opponent = message.mentions.users.first();
-    if (!opponent) return message.reply("❌ Hãy tag người bạn muốn tỷ thí.");
+    if (!opponent) return message.reply("❌ Hãy tag đạo hữu muốn tỷ thí.");
     if (opponent.id === message.author.id) return message.reply("❌ Không thể tự tỷ thí với chính mình.");
 
     const u1 = getUser(message.author.id);

@@ -87,7 +87,7 @@ function buildBossEmbed(summary) {
     );
 
   if (summary.killedAt) {
-    emb.setFooter({ text: "Boss đã bị hạ gục — hãy nhận thưởng nếu bạn có đóng góp." });
+    emb.setFooter({ text: "Ma ảnh đã bị tru diệt — hãy nhận thưởng nếu đạo hữu có chiến công." });
   } else {
     emb.setFooter({ text: "Nhấn 'Tấn công' để ra tay. Cooldown 60 giây." });
   }
@@ -127,12 +127,12 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     const u = users[msg.author.id];
-    if (!u) return msg.reply("❌ Bạn chưa có nhân vật. Dùng `-create` trước.");
+    if (!u) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
 
     // ensure boss for current week
     const st = ensureBoss(users, Date.now());
     const summary = bossSummary(st, users);
-    if (!summary) return msg.reply("⚠️ Không thể tạo World Boss.");
+    if (!summary) return msg.reply("⚠️ Ma ảnh chưa giáng lâm. Hãy thử lại sau.");
 
     const nonce = Math.random().toString(36).slice(2, 8);
     const sent = await msg.reply({
@@ -147,11 +147,11 @@ module.exports = {
 
     collector.on("collect", async (i) => {
       if (i.user.id !== msg.author.id) {
-        return i.reply({ content: "❌ Đây không phải bảng của bạn.", ephemeral: true });
+        return i.reply({ content: "❌ Đây không phải chiến bảng của đạo hữu.", ephemeral: true });
       }
 
       const cid = String(i.customId || "");
-      if (!cid.endsWith(`_${nonce}`)) return i.reply({ content: "⚠️ Session đã hết hạn.", ephemeral: true });
+      if (!cid.endsWith(`_${nonce}`)) return i.reply({ content: "⚠️ Chiến lệnh đã hết hiệu lực.", ephemeral: true });
 
       if (cid.startsWith("boss_close_")) {
         await i.deferUpdate();
@@ -163,25 +163,25 @@ module.exports = {
         await i.deferUpdate();
         const users2 = loadUsers();
         const u2 = users2[msg.author.id];
-        if (!u2) return i.followUp({ content: "❌ Bạn chưa có nhân vật.", ephemeral: true });
+        if (!u2) return i.followUp({ content: "❌ Đạo hữu chưa nhập đạo.", ephemeral: true });
 
         const now = Date.now();
         const last = Number(u2.bossLastAt) || 0;
         const remain = last + ATTACK_COOLDOWN_MS - now;
         if (remain > 0) {
           const sec = Math.ceil(remain / 1000);
-          return i.followUp({ content: `⏳ Bạn cần chờ **${sec}s** để ra tay lần nữa.`, ephemeral: true });
+          return i.followUp({ content: `⏳ Chân khí chưa hồi. Chờ **${sec}s** rồi ra tay tiếp.`, ephemeral: true });
         }
 
         const st2 = ensureBoss(users2, now);
         const sum2 = bossSummary(st2, users2);
-        if (!sum2) return i.followUp({ content: "⚠️ Boss lỗi.", ephemeral: true });
+        if (!sum2) return i.followUp({ content: "⚠️ Ma ảnh bất ổn. Hãy thử lại sau.", ephemeral: true });
         if (sum2.killedAt) {
           await sent.edit({
             embeds: [buildBossEmbed(sum2)],
             components: buildRows({ userId: msg.author.id, nonce, dead: true }),
           }).catch(() => {});
-          return i.followUp({ content: "⚠️ Boss đã bị hạ gục. Hãy nhận thưởng.", ephemeral: true });
+          return i.followUp({ content: "⚠️ Ma ảnh đã bị tru diệt. Hãy nhận chiến lợi phẩm.", ephemeral: true });
         }
 
         const dmg = computeDamageFromUser(u2);
@@ -209,7 +209,7 @@ module.exports = {
           : "";
         const killedMsg = res.killed ? "\n🏁 **Đòn này đã hạ gục Boss!**" : "";
         return i.followUp({
-          content: `⚔️ Bạn gây **${fmtLT(res.dmg)}** sát thương.${killedMsg}${extra}`,
+          content: `⚔️ Đạo hữu gây **${fmtLT(res.dmg)}** sát thương.${killedMsg}${extra}`,
           ephemeral: true,
         });
       }
@@ -218,16 +218,16 @@ module.exports = {
         await i.deferUpdate();
         const users2 = loadUsers();
         const u2 = users2[msg.author.id];
-        if (!u2) return i.followUp({ content: "❌ Bạn chưa có nhân vật.", ephemeral: true });
+        if (!u2) return i.followUp({ content: "❌ Đạo hữu chưa nhập đạo.", ephemeral: true });
 
         const st2 = ensureBoss(users2, Date.now());
-        if (!st2?.boss?.killedAt) return i.followUp({ content: "⚠️ Boss chưa bị hạ gục.", ephemeral: true });
+        if (!st2?.boss?.killedAt) return i.followUp({ content: "⚠️ Ma ảnh chưa bị tru diệt.", ephemeral: true });
         if (!canClaim(st2.boss, msg.author.id)) {
           const info = computeRewardForUser(st2.boss, msg.author.id);
           if ((Number(info.dmg) || 0) <= 0) {
-            return i.followUp({ content: "❌ Bạn không có đóng góp tuần này.", ephemeral: true });
+            return i.followUp({ content: "❌ Đạo hữu chưa có chiến công tuần này.", ephemeral: true });
           }
-          return i.followUp({ content: "⚠️ Bạn đã nhận thưởng hoặc không đủ điều kiện.", ephemeral: true });
+          return i.followUp({ content: "⚠️ Đạo hữu đã nhận thưởng hoặc chưa đủ chiến công.", ephemeral: true });
         }
 
         const claimed = claimReward(st2, msg.author.id);

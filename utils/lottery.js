@@ -79,7 +79,7 @@ function buyTicket(user, amount, ticketPrice = 10) {
 
   return {
     success: true,
-    msg: `🎟️ Bạn đã mua ${amount} vé với giá ${totalCost} LT`,
+    msg: `🎟️ Đạo hữu đã mua ${amount} vé với giá ${totalCost} LT`,
   };
 }
 

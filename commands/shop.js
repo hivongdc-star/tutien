@@ -64,7 +64,7 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     const u = users[msg.author.id];
-    if (!u) return msg.reply("❌ Bạn chưa có nhân vật. Dùng `-create` trước.");
+    if (!u) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
 
     ensureUserSkills(u);
     saveUsers(users);
@@ -82,11 +82,11 @@ module.exports = {
     const header = new EmbedBuilder()
       .setTitle("🛒 Linh Bảo Các")
       .setColor(0x3498db)
-      .setDescription(`Linh thạch hiện có: **${fmtLT(u.lt)}** 💎\n\nChọn mục mua sắm:`);
+      .setDescription(`Linh thạch hiện có: **${fmtLT(u.lt)}** 💎\n\nChọn quầy muốn ghé:`);
 
     const sent = await msg.reply({
       embeds: [header],
-      components: [menuRow(catId, "Chọn mục...", catOptions)],
+      components: [menuRow(catId, "Chọn quầy...", catOptions)],
     });
 
     let mode = null; // tools | items | skills | pets
@@ -102,7 +102,7 @@ module.exports = {
     });
 
     col.on("collect", async (i) => {
-      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải quầy của đạo hữu.", ephemeral: true });
       await i.deferUpdate();
 
       const users2 = loadUsers();
@@ -209,18 +209,18 @@ module.exports = {
           const maxAff = price > 0 ? Math.floor(ltNow / price) : 1;
           const maxQty = Math.max(1, Math.min(maxAff, 99));
           if (ltNow < price || maxAff < 1) {
-            return sent.edit({ content: "❌ Không đủ LT.", embeds: [], components: [] }).catch(() => {});
+            return sent.edit({ content: "❌ Linh thạch không đủ.", embeds: [], components: [] }).catch(() => {});
           }
 
           const emb = new EmbedBuilder()
             .setTitle("🛒 Xác nhận mua • Khoáng cụ")
             .setColor(0x2ecc71)
             .setDescription(
-              `Bạn muốn mua: **${(it.emoji || "")} ${it.name}**\n` +
+              `Đạo hữu muốn mua: **${(it.emoji || "")} ${it.name}**\n` +
                 `Giá: **${fmtLT(price)} LT** / cái\n` +
                 `LT hiện có: **${fmtLT(ltNow)}** 💎\n` +
-                `Tối đa mua được: **${maxAff}**\n\n` +
-                `Chọn số lượng:`
+                `Có thể mua tối đa: **${maxAff}**\n\n` +
+                `Chọn số lượng muốn mua:`
             );
 
           return sent.edit({ embeds: [emb], components: [qtyButtonsRow(msg.author.id, itemId, maxQty)] }).catch(() => {});
@@ -237,14 +237,14 @@ module.exports = {
           const maxAff = price > 0 ? Math.floor(ltNow / price) : 1;
           const maxQty = Math.max(1, Math.min(maxAff, 99));
           if (ltNow < price || maxAff < 1) {
-            return sent.edit({ content: "❌ Không đủ LT.", embeds: [], components: [] }).catch(() => {});
+            return sent.edit({ content: "❌ Linh thạch không đủ.", embeds: [], components: [] }).catch(() => {});
           }
 
           const emb = new EmbedBuilder()
             .setTitle("🛒 Xác nhận mua • Vật phẩm")
             .setColor(0x1abc9c)
             .setDescription(
-              `Bạn muốn mua: **${(it.emoji || "")} ${it.name}**
+              `Đạo hữu muốn mua: **${(it.emoji || "")} ${it.name}**
 ` +
                 `Phẩm chất: **${tierText(it.tier || "pham")}**
 ` +
@@ -252,10 +252,10 @@ module.exports = {
 ` +
                 `LT hiện có: **${fmtLT(ltNow)}** 💎
 ` +
-                `Tối đa mua được: **${maxAff}**
+                `Có thể mua tối đa: **${maxAff}**
 
 ` +
-                `Chọn số lượng:`
+                `Chọn số lượng muốn mua:`
             );
 
           return sent.edit({ embeds: [emb], components: [qtyButtonsRow(msg.author.id, itemId, maxQty)] }).catch(() => {});
@@ -272,18 +272,18 @@ module.exports = {
           const maxAff = price > 0 ? Math.floor(ltNow / price) : 1;
           const maxQty = Math.max(1, Math.min(maxAff, 99));
           if (ltNow < price || maxAff < 1) {
-            return sent.edit({ content: "❌ Không đủ LT.", embeds: [], components: [] }).catch(() => {});
+            return sent.edit({ content: "❌ Linh thạch không đủ.", embeds: [], components: [] }).catch(() => {});
           }
 
           const emb = new EmbedBuilder()
             .setTitle("🛒 Xác nhận mua • Trứng Linh Thú")
             .setColor(0xF1C40F)
             .setDescription(
-              `Bạn muốn mua: **${(it.emoji || "")} ${it.name}**\n` +
+              `Đạo hữu muốn mua: **${(it.emoji || "")} ${it.name}**\n` +
                 `Giá: **${fmtLT(price)} LT** / quả\n` +
                 `LT hiện có: **${fmtLT(ltNow)}** 💎\n` +
-                `Tối đa mua được: **${maxAff}**\n\n` +
-                `Chọn số lượng:`
+                `Có thể mua tối đa: **${maxAff}**\n\n` +
+                `Chọn số lượng muốn mua:`
             );
 
           return sent.edit({ embeds: [emb], components: [qtyButtonsRow(msg.author.id, itemId, maxQty)] }).catch(() => {});
@@ -300,7 +300,7 @@ module.exports = {
             return sent.edit({ content: "❌ Không đủ linh thạch.", embeds: [], components: [] }).catch(() => {});
           }
           if (u2.skills.owned.includes(skillId)) {
-            return sent.edit({ content: "⚠️ Bạn đã sở hữu bí kíp này.", embeds: [], components: [] }).catch(() => {});
+            return sent.edit({ content: "⚠️ Đạo hữu đã lĩnh ngộ bí kíp này.", embeds: [], components: [] }).catch(() => {});
           }
 
           u2.lt -= sk.price || 0;
@@ -311,7 +311,7 @@ module.exports = {
           const kindTxt = sk.kind === "passive" ? "Bị động" : "Chủ động";
           return sent
             .edit({
-              content: `✅ Đã mua **${sk.name}** (${kindTxt}) với giá **${fmtLT(sk.price)} LT**.`,
+              content: `✅ Đã lĩnh **${sk.name}** (${kindTxt}) với giá **${fmtLT(sk.price)} LT**.`,
               embeds: [],
               components: [],
             })
@@ -321,7 +321,7 @@ module.exports = {
     });
 
     bcol.on("collect", async (i) => {
-      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải nút của bạn.", ephemeral: true });
+      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải lựa chọn của đạo hữu.", ephemeral: true });
       await i.deferUpdate();
 
       const id = i.customId || "";

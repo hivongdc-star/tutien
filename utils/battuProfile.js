@@ -20,7 +20,10 @@ function loadProfiles() {
 
 function saveProfiles(data) {
   ensureFile();
-  fs.writeFileSync(profilePath, JSON.stringify(data, null, 2));
+  const dir = path.dirname(profilePath);
+  const tmp = path.join(dir, `.battu_profiles.${process.pid}.${Date.now()}.tmp`);
+  fs.writeFileSync(tmp, JSON.stringify(data, null, 2));
+  fs.renameSync(tmp, profilePath);
 }
 
 function getBattuProfile(userId) {

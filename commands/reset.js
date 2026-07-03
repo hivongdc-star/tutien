@@ -14,7 +14,7 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     if (!users[msg.author.id]) {
-      return msg.reply("⚠️ Bạn chưa có nhân vật để reset.");
+      return msg.reply("⚠️ Đạo hữu chưa có nhân vật để tái lập căn cơ.");
     }
 
     delete users[msg.author.id];
@@ -50,7 +50,7 @@ module.exports = {
 
     const embed = new EmbedBuilder()
       .setColor("Red")
-      .setTitle("♻️ Reset nhân vật")
+      .setTitle("♻️ Tái Lập Căn Cơ")
       .setDescription(
         `Nhân vật của **${msg.author.username}** đã được xoá.\n👉 Hãy chọn lại **Tộc** và **Ngũ hành** để bắt đầu lại từ đầu!`
       );
@@ -68,7 +68,7 @@ module.exports = {
     collector.on("collect", async (interaction) => {
       if (interaction.user.id !== msg.author.id) {
         return interaction.reply({
-          content: "⚠️ Bạn chỉ có thể reset chính nhân vật của mình!",
+          content: "⚠️ Đạo hữu chỉ có thể tái lập căn cơ của chính mình.",
           ephemeral: true,
         });
       }
@@ -76,7 +76,7 @@ module.exports = {
       if (interaction.customId === "reset_select_race") {
         selectedRace = interaction.values[0];
         await interaction.reply({
-          content: `🧬 Bạn đã chọn lại **${races[selectedRace].emoji} ${races[selectedRace].name}**`,
+          content: `🧬 Đã chọn lại **${races[selectedRace].emoji} ${races[selectedRace].name}**`,
           ephemeral: true,
         });
       }
@@ -84,7 +84,7 @@ module.exports = {
       if (interaction.customId === "reset_select_element") {
         selectedElement = interaction.values[0];
         await interaction.reply({
-          content: `🌿 Bạn đã chọn lại **${elements.display[selectedElement]}**`,
+          content: `🌿 Đã chọn lại **${elements.display[selectedElement]}**`,
           ephemeral: true,
         });
       }
@@ -94,7 +94,7 @@ module.exports = {
         const newUser = createUser(msg.author.id, selectedRace, selectedElement);
 
         const confirm = new EmbedBuilder()
-          .setTitle("✅ Reset thành công!")
+          .setTitle("✅ Tái Lập Thành Công")
           .setColor("Green")
           .setDescription(
             `🧬 **Tộc:** ${races[selectedRace].emoji} ${races[selectedRace].name}\n` +
@@ -104,7 +104,7 @@ module.exports = {
               `🔥 Công: ${newUser.atk} | 🛡️ Thủ: ${newUser.def} | ⚡ Tốc: ${newUser.spd}\n` +
               `💢 Nộ: ${newUser.fury} | 💎 Linh Thạch: ${newUser.lt}`
           )
-          .setFooter({ text: "✨ Hãy tu luyện chăm chỉ từ đầu!" });
+          .setFooter({ text: "✨ Căn cơ đã định, hãy tu luyện lại từ đầu." });
 
         await msg.channel.send({ embeds: [confirm] });
         collector.stop("done");

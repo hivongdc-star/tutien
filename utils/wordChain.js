@@ -569,7 +569,7 @@ async function handleWordChainMessage(client, msg) {
   const users = loadUsers();
   if (!users[msg.author.id]) {
     if (shouldShowJoinHint(client, msg.channel.id, msg.author.id)) {
-      await msg.reply("⚠️ Bạn chưa có nhân vật. Dùng `-create` để bắt đầu tu luyện.");
+      await msg.reply("⚠️ Đạo hữu chưa nhập đạo. Dùng `-create` để bắt đầu tu luyện.");
     }
     return true;
   }

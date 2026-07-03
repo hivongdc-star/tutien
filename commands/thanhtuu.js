@@ -59,7 +59,7 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     const u = users[msg.author.id];
-    if (!u) return msg.reply("❌ Bạn chưa bước vào con đường tu luyện. Dùng `-create` để khai mở nhân vật.");
+    if (!u) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` để khai mở nhân vật.");
 
     ensureAchv(u);
     users[msg.author.id] = u;
@@ -183,7 +183,7 @@ module.exports = {
     col.on("collect", async (i) => {
       try {
         if (i.user.id !== userId) {
-          return i.reply({ content: "❌ Đây không phải bảng của bạn.", ephemeral: true });
+          return i.reply({ content: "❌ Đây không phải bảng thành tựu của đạo hữu.", ephemeral: true });
         }
 
         const cid = String(i.customId || "");

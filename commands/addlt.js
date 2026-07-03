@@ -7,7 +7,7 @@ module.exports = {
   run: async (client, msg, args) => {
     const ownerId = process.env.OWNER_ID;
     if (msg.author.id !== ownerId) {
-      return msg.reply("❌ Bạn không có quyền dùng lệnh này.");
+      return msg.reply("❌ Đạo hữu không có quyền dùng lệnh này.");
     }
 
     const mentionedUser = msg.mentions.users.first() || null;
@@ -31,7 +31,7 @@ module.exports = {
 
     if (targetId === msg.author.id) {
       return msg.reply(
-        `✅ Bạn đã nhận thêm **${amount}** 💎 Linh thạch. Tổng: **${targetUser.lt}**`
+        `✅ Đạo hữu nhận thêm **${amount}** 💎 Linh thạch. Linh khố: **${targetUser.lt}**`
       );
     }
 

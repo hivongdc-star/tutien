@@ -283,12 +283,12 @@ module.exports = {
     const utext = args.join(" ").trim();
 
     if (!utext) {
-      return msg.reply("❌ Cú pháp: `-chat <nội dung>`");
+      return msg.reply("📜 Cú pháp: `-chat <nội dung>`");
     }
 
     const apiKey = process.env.SIMSIMI_API_KEY;
     if (!apiKey) {
-      return msg.reply("❌ Chưa cấu hình `SIMSIMI_API_KEY` trong file `.env`.");
+      return msg.reply("❌ Linh thức Vân Tiêu chưa được khai mở. Hãy báo quản sự kiểm tra cấu hình.");
     }
 
     const rawInput = normalizeText(utext);
@@ -350,11 +350,11 @@ module.exports = {
       });
 
       if (httpStatus === 401 || httpStatus === 403) {
-        return msg.reply("❌ API key hiện tại không dùng được.");
+        return msg.reply("❌ Trận pháp truyền âm đang nhiễu loạn. Hãy báo quản sự kiểm tra.");
       }
 
       if (httpStatus === 429) {
-        return msg.reply("⏳ Hôm nay người tìm ta hơi đông, chậm lại chút.");
+        return msg.reply("⏳ Linh thức hôm nay bị gọi quá nhiều. Hãy chờ một lát rồi hỏi lại.");
       }
 
       return msg.channel.send(localFallback(utext));
@@ -380,15 +380,15 @@ module.exports = {
       });
 
       if (error.code === "ECONNABORTED") {
-        return msg.reply("⏳ Ta chưa muốn trả lời nhanh đến vậy.");
+        return msg.reply("⏳ Linh âm chưa kịp hồi đáp. Hãy thử lại sau ít giây.");
       }
 
       if (httpStatus === 401 || httpStatus === 403) {
-        return msg.reply("❌ API key hiện tại không dùng được.");
+        return msg.reply("❌ Trận pháp truyền âm đang nhiễu loạn. Hãy báo quản sự kiểm tra.");
       }
 
       if (httpStatus === 429) {
-        return msg.reply("⏳ Hôm nay người tìm ta hơi đông, chậm lại chút.");
+        return msg.reply("⏳ Linh thức hôm nay bị gọi quá nhiều. Hãy chờ một lát rồi hỏi lại.");
       }
 
       return msg.channel.send(localFallback(utext));

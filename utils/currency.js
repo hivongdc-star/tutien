@@ -46,11 +46,11 @@ function earnFromChat(userId) {
 function claimDaily(userId) {
   const users = loadUsers();
   if (!users[userId])
-    return { success: false, message: "Bạn chưa tạo nhân vật." };
+    return { success: false, message: "Đạo hữu chưa nhập đạo." };
 
   const today = new Date().toDateString();
   if (users[userId].lastDaily === today) {
-    return { success: false, message: "❌ Bạn đã nhận daily hôm nay rồi." };
+    return { success: false, message: "❌ Hôm nay đạo hữu đã nhận bổng lộc rồi." };
   }
 
   users[userId].lastDaily = today;
@@ -63,7 +63,7 @@ function claimDaily(userId) {
 
   return {
     success: true,
-    message: `✅ Bạn đã nhận ${reward} 💎 Linh thạch (chuỗi ${users[userId].dailyStreak} ngày).`,
+    message: `✅ Đạo hữu nhận **${reward}** 💎 Linh thạch. Chuỗi lĩnh bổng: **${users[userId].dailyStreak}** ngày.`,
   };
 }
 

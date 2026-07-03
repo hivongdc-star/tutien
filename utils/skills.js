@@ -279,7 +279,7 @@ function canEquipSkill(user, skillId, slot) {
   ensureUserSkills(user);
   const s = getSkill(skillId);
   if (!s) return { ok: false, reason: "Kỹ năng không tồn tại." };
-  if (!user.skills.owned.includes(skillId)) return { ok: false, reason: "Bạn chưa sở hữu kỹ năng này." };
+  if (!user.skills.owned.includes(skillId)) return { ok: false, reason: "Đạo hữu chưa lĩnh ngộ kỹ năng này." };
   if (s.element && user.element && s.element !== user.element) {
     return { ok: false, reason: "Ngũ hành không phù hợp." };
   }
@@ -312,7 +312,7 @@ function addOwnedSkill(user, skillId) {
   if (s.element && user.element && s.element !== user.element) {
     return { ok: false, reason: "Ngũ hành không phù hợp." };
   }
-  if (user.skills.owned.includes(skillId)) return { ok: false, reason: "Bạn đã sở hữu kỹ năng này." };
+  if (user.skills.owned.includes(skillId)) return { ok: false, reason: "Đạo hữu đã lĩnh ngộ kỹ năng này." };
   user.skills.owned.push(skillId);
   return { ok: true };
 }
@@ -368,10 +368,10 @@ function craftSkill(user, arg) {
   rarity = rarity || sk.rarity;
 
   if (sk.element && user.element && sk.element !== user.element) {
-    return { ok: false, message: "⚠️ Bí kíp không cùng hệ với bạn." };
+    return { ok: false, message: "⚠️ Bí kíp không cùng bản mệnh ngũ hành." };
   }
   if (user.skills.owned.includes(skillId)) {
-    return { ok: false, message: "⚠️ Bạn đã sở hữu bí kíp này." };
+    return { ok: false, message: "⚠️ Đạo hữu đã lĩnh ngộ bí kíp này." };
   }
   if (rarity !== "rare" && rarity !== "epic") {
     return { ok: false, message: "⚠️ Chỉ có thể ghép bí kíp Hiếm/Cực hiếm." };

@@ -62,7 +62,7 @@ module.exports = {
 
     const users = loadUsers();
     const user = users[userId];
-    if (!user) return msg.reply("❌ Bạn chưa có nhân vật.");
+    if (!user) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
 
     user.inventory = user.inventory || {};
     ensureMining(user);
@@ -86,13 +86,13 @@ module.exports = {
       const activeTool = (user.mining.tools || []).find((t) => t && t.iid === user.mining.activeToolId) || null;
       if (activeTool) {
         return msg.reply(
-          `⛏️ Khoáng cụ hiện dùng: **${activeTool.name || activeTool.itemId || "Khoáng cụ"}**. Dùng \`-bag\` để đổi khoáng cụ.`
+          `⛏️ Khoáng cụ đang vận dụng: **${activeTool.name || activeTool.itemId || "Khoáng cụ"}**. Dùng \`-bag\` để đổi khoáng cụ.`
         );
       }
 
-      return msg.reply("⛏️ Khoáng cụ không dùng bằng `-use`. Mua xong sẽ vào mục khoáng cụ và dùng qua `-bag` / `-dao`.");
+      return msg.reply("⛏️ Khoáng cụ không cần kích hoạt bằng `-use`. Hãy vào `-bag` để đổi khoáng cụ, rồi dùng `-dao` để khai khoáng.");
     }
 
-    return msg.reply("❌ Vật phẩm này chưa có cơ chế sử dụng trực tiếp trong database hiện tại.");
+    return msg.reply("❌ Vật phẩm này hiện chưa có pháp môn sử dụng trực tiếp. Hãy mở `-bag` để xem cách xử lý khác.");
   },
 };

@@ -58,15 +58,15 @@ function runGit(args, cwd) {
 
 function detectGitBusy(repoRoot) {
   const gitDir = path.join(repoRoot, ".git");
-  if (!fs.existsSync(gitDir)) return "Không tìm thấy thư mục .git ở root repo.";
+  if (!fs.existsSync(gitDir)) return "Không tìm thấy kho lưu trữ ở máy chủ.";
 
   const busyMarkers = [
-    { file: "MERGE_HEAD", message: "Repo đang ở trạng thái merge dang dở." },
-    { file: "rebase-merge", message: "Repo đang ở trạng thái rebase dang dở." },
-    { file: "rebase-apply", message: "Repo đang ở trạng thái rebase/apply dang dở." },
-    { file: "CHERRY_PICK_HEAD", message: "Repo đang ở trạng thái cherry-pick dang dở." },
-    { file: "REVERT_HEAD", message: "Repo đang ở trạng thái revert dang dở." },
-    { file: "BISECT_LOG", message: "Repo đang ở trạng thái bisect." },
+    { file: "MERGE_HEAD", message: "Kho lưu trữ đang có thao tác hợp nhất dang dở." },
+    { file: "rebase-merge", message: "Kho lưu trữ đang có thao tác sắp xếp lại dang dở." },
+    { file: "rebase-apply", message: "Kho lưu trữ đang có thao tác cập nhật dang dở." },
+    { file: "CHERRY_PICK_HEAD", message: "Kho lưu trữ đang có thao tác chọn bản ghi dang dở." },
+    { file: "REVERT_HEAD", message: "Kho lưu trữ đang có thao tác hoàn nguyên dang dở." },
+    { file: "BISECT_LOG", message: "Kho lưu trữ đang ở trạng thái kiểm tra lỗi." },
   ];
 
   for (const marker of busyMarkers) {
@@ -88,11 +88,11 @@ module.exports = {
   name: "img",
   run: async (client, msg) => {
     if (msg.author.id !== process.env.OWNER_ID) {
-      return msg.reply("❌ Bạn không có quyền dùng lệnh này.");
+      return msg.reply("❌ Đạo hữu không có quyền dùng lệnh này.");
     }
 
     if (isRunning) {
-      return msg.reply("⏳ Đang có một phiên `-img` chạy. Chờ xong rồi gọi lại.");
+      return msg.reply("⏳ Đang có một phiên đồng bộ ảnh. Chờ xong rồi gọi lại.");
     }
 
     const repoRoot = path.join(__dirname, "..");
@@ -103,35 +103,34 @@ module.exports = {
 
     try {
       isRunning = true;
-      await msg.reply("🔄 Đang chạy `git add .` → `git commit -m \"img\"` → `git push`...");
+      await msg.reply("🔄 Đang đồng bộ ảnh vào kho lưu trữ...");
 
       const branch = await getCurrentBranch(repoRoot);
 
       const addRes = await runGit(["add", "."], repoRoot);
       if (addRes.code !== 0) {
-        return msg.reply(`❌ Lỗi ở bước \`git add .\`${wrapLog(fmtOutput(addRes.stdout, addRes.stderr))}`);
+        return msg.reply("❌ Không thể ghi nhận thay đổi ảnh. Hãy kiểm tra máy chủ.");
       }
 
       const diffRes = await runGit(["diff", "--cached", "--quiet"], repoRoot);
       if (diffRes.code === 0) {
-        return msg.reply("⚠️ Không có thay đổi nào để commit.");
+        return msg.reply("⚠️ Không có ảnh hoặc tài nguyên mới cần đồng bộ.");
       }
       if (diffRes.code !== 1) {
-        return msg.reply(`❌ Không kiểm tra được thay đổi đã stage.${wrapLog(fmtOutput(diffRes.stdout, diffRes.stderr))}`);
+        return msg.reply(`❌ Không thể kiểm tra thay đổi ảnh. Hãy kiểm tra máy chủ.`);
       }
 
       const commitRes = await runGit(["commit", "-m", "img"], repoRoot);
       if (commitRes.code !== 0) {
-        return msg.reply(`❌ Lỗi ở bước \`git commit -m \"img\"\`${wrapLog(fmtOutput(commitRes.stdout, commitRes.stderr))}`);
+        return msg.reply("❌ Không thể tạo mốc đồng bộ ảnh. Hãy kiểm tra máy chủ.");
       }
 
       const pushRes = await runGit(["push"], repoRoot);
       if (pushRes.code !== 0) {
-        const branchText = branch ? ` (branch hiện tại: \`${branch}\`)` : "";
-        return msg.reply(`❌ Lỗi ở bước \`git push\`${branchText}${wrapLog(fmtOutput(pushRes.stdout, pushRes.stderr))}`);
+        return msg.reply("❌ Không thể đẩy ảnh lên kho lưu trữ. Hãy kiểm tra máy chủ.");
       }
 
-      return msg.reply(`✅ Đã add, commit và push thành công${branch ? ` lên branch \`${branch}\`` : ""}.`);
+      return msg.reply(`✅ Đã đồng bộ ảnh thành công.`);
     } finally {
       isRunning = false;
     }

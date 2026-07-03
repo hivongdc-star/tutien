@@ -3,7 +3,7 @@ const { addLT, removeLT, getLT } = require("../utils/currency");
 
 module.exports = {
   name: "chuyen",
-  description: "Chuyển Linh thạch cho người chơi khác",
+  description: "Chuyển Linh thạch cho đạo hữu khác",
   aliases: ["give", "pay", "transfer", "chuyenlt"],
   usage: "-chuyen @nguoi_nhan <so_luong>",
   run: async (client, msg, args) => {
@@ -36,7 +36,7 @@ module.exports = {
       );
     }
     if (targetId === senderId) {
-      return msg.reply("❌ Bạn không thể tự chuyển cho chính mình.");
+      return msg.reply("❌ Không thể tự chuyển Linh thạch cho chính mình.");
     }
 
     const amount = parseInt(amountStr, 10);
@@ -47,15 +47,15 @@ module.exports = {
     // Ensure both users exist
     const users = loadUsers();
     if (!users[senderId]) {
-      return msg.reply("⚠️ Bạn chưa tạo nhân vật. Dùng `-create` trước.");
+      return msg.reply("⚠️ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
     }
     if (!users[targetId]) {
-      return msg.reply("⚠️ Người nhận chưa tạo nhân vật.");
+      return msg.reply("⚠️ Người nhận chưa nhập đạo.");
     }
 
     const senderLT = getLT(senderId) || 0;
     if (senderLT < amount) {
-      return msg.reply(`❌ Bạn không đủ Linh thạch. Hiện có: **${senderLT}**`);
+      return msg.reply(`❌ Linh thạch không đủ. Hiện có: **${senderLT}**`);
     }
 
     // Transfer via currency utils to keep logic consistent
@@ -67,8 +67,8 @@ module.exports = {
 
     return msg.reply(
       `✅ Đã chuyển **${amount}** 💎 Linh thạch cho <@${targetId}>.\n` +
-      `📤 Số dư của bạn: **${newSender}**\n` +
-      `📥 Số dư của họ: **${newTarget}**`
+      `📤 Linh khố của đạo hữu: **${newSender}**\n` +
+      `📥 Linh khố người nhận: **${newTarget}**`
     );
   },
 };

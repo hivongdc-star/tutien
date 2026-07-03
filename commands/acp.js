@@ -8,7 +8,7 @@ module.exports = {
   async run(client, message) {
     const challenge = challenges[message.author.id];
     if (!challenge) {
-      return message.reply("❌ Hiện không có lời thách đấu nào dành cho bạn!");
+      return message.reply("❌ Hiện không có chiến thư nào gửi tới đạo hữu.");
     }
 
     const challengerId = challenge.challengerId;
@@ -17,7 +17,7 @@ module.exports = {
     // tạo state
     const state = startDuel(challengerId, defenderId);
     if (!state) {
-      return message.reply("❌ Không thể bắt đầu trận đấu (thiếu dữ liệu nhân vật)!");
+      return message.reply("❌ Không thể khai chiến vì có người chưa nhập đạo.");
     }
 
     // log mở màn

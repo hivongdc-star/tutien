@@ -270,8 +270,8 @@ function claimReward(state, userId) {
   const boss = state?.boss;
   if (!boss) return { ok: false, message: "Boss chưa sẵn sàng." };
   if (!boss.killedAt) return { ok: false, message: "Boss chưa bị hạ gục." };
-  if (!boss.contributions?.[userId]) return { ok: false, message: "Bạn không có đóng góp tuần này." };
-  if (boss.claimed?.[userId]) return { ok: false, message: "Bạn đã nhận thưởng rồi." };
+  if (!boss.contributions?.[userId]) return { ok: false, message: "Đạo hữu chưa có chiến công tuần này." };
+  if (boss.claimed?.[userId]) return { ok: false, message: "Đạo hữu đã nhận thưởng rồi." };
 
   // Nếu boss đã chết trước khi update, có thể chưa tính drop.
   if (boss.killedAt && !boss.redDropsComputedAt) computeRedDrops(boss);

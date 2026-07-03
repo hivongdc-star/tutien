@@ -83,7 +83,7 @@ function buildSkillsSummaryEmbed(user) {
       { name: "Chủ động (4)", value: act.join("\n") || "_(trống)_" },
       { name: "Bị động (1)", value: пас ? `**${пас.name}**` : "_(trống)_" },
       {
-        name: "Mảnh bí kíp (hệ của bạn)",
+        name: "Mảnh bí kíp hợp bản mệnh",
         value: `• ${fmtShardLabel(el, "rare")}: **${shards.rare || 0}**\n• ${fmtShardLabel(el, "epic")}: **${shards.epic || 0}**`,
       }
     );
@@ -130,7 +130,7 @@ async function openSkillsView(msg, user, nonce) {
       return new ActionRowBuilder().addComponents(
         new StringSelectMenuBuilder()
           .setCustomId(skillMenuId)
-          .setPlaceholder("Bạn chưa có bí kíp phù hợp")
+          .setPlaceholder("Chưa có bí kíp phù hợp")
           .addOptions([{ label: "(trống)", value: "none" }])
           .setDisabled(true)
       );
@@ -229,7 +229,7 @@ async function openSkillsView(msg, user, nonce) {
   const col = sent.createMessageComponentCollector({ time: 180_000 });
 
   col.on("collect", async (i) => {
-    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải hành trang của đạo hữu.", ephemeral: true });
     const cid = String(i.customId || "");
 
     if (i.isStringSelectMenu()) {
@@ -303,7 +303,7 @@ async function openSkillsView(msg, user, nonce) {
           return i.followUp({ content: "⚠️ Bí kíp này không phù hợp slot.", ephemeral: true });
         }
         if (!(cur.skills.owned || []).includes(sk.id)) {
-          return i.followUp({ content: "⚠️ Bạn chưa sở hữu bí kíp này.", ephemeral: true });
+          return i.followUp({ content: "⚠️ Đạo hữu chưa lĩnh ngộ bí kíp này.", ephemeral: true });
         }
 
         if (state.slot === "passive") {
@@ -474,7 +474,7 @@ async function openToolsMenu(msg, user, nonce) {
 
   const col = sent.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 90_000 });
   col.on("collect", async (i) => {
-    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải hành trang của đạo hữu.", ephemeral: true });
     await i.deferUpdate();
     user.mining.activeToolId = i.values[0];
     const activeTool = (user.mining.tools || []).find((t) => t.iid === user.mining.activeToolId);
@@ -633,7 +633,7 @@ async function openOresView(msg, user, nonce) {
   };
 
   col.on("collect", async (i) => {
-    if (i.user.id !== userId) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+    if (i.user.id !== userId) return i.reply({ content: "❌ Đây không phải hành trang của đạo hữu.", ephemeral: true });
     await i.deferUpdate();
 
     const cid = String(i.customId || "");
@@ -874,7 +874,7 @@ async function openGearView(msg, user, nonce) {
 
   col.on("collect", async (i) => {
     if (i.user.id !== msg.author.id) {
-      return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+      return i.reply({ content: "❌ Đây không phải hành trang của đạo hữu.", ephemeral: true });
     }
 
     const cid = String(i.customId || "");
@@ -1347,7 +1347,7 @@ async function openSkillsView(msg, user, nonce) {
   };
 
   col.on("collect", async (i) => {
-    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải hành trang của đạo hữu.", ephemeral: true });
 
     const cid = String(i.customId || "");
     if (cid.includes(`_${msg.author.id}_${nonce}`)) await i.deferUpdate();
@@ -1402,10 +1402,10 @@ async function openSkillsView(msg, user, nonce) {
 
       if (!selectedSlot) return i.followUp({ content: "⚠️ Chưa chọn slot.", ephemeral: true });
       if (!selectedSkillId) return i.followUp({ content: "⚠️ Chưa chọn bí kíp.", ephemeral: true });
-      if (!cur.skills.owned.includes(selectedSkillId)) return i.followUp({ content: "⚠️ Bạn chưa sở hữu bí kíp này.", ephemeral: true });
+      if (!cur.skills.owned.includes(selectedSkillId)) return i.followUp({ content: "⚠️ Đạo hữu chưa lĩnh ngộ bí kíp này.", ephemeral: true });
       const sk = getSkill(selectedSkillId);
       if (!sk) return i.followUp({ content: "⚠️ Bí kíp không tồn tại.", ephemeral: true });
-      if (sk.element !== (cur.element || "kim")) return i.followUp({ content: "⚠️ Bí kíp không cùng hệ với bạn.", ephemeral: true });
+      if (sk.element !== (cur.element || "kim")) return i.followUp({ content: "⚠️ Bí kíp không cùng bản mệnh ngũ hành.", ephemeral: true });
       if (selectedSlot === "passive" && sk.kind !== "passive") return i.followUp({ content: "⚠️ Slot bị động chỉ nhận bí kíp bị động.", ephemeral: true });
       if (selectedSlot !== "passive" && sk.kind !== "active") return i.followUp({ content: "⚠️ Slot chủ động chỉ nhận bí kíp chủ động.", ephemeral: true });
 
@@ -1501,7 +1501,7 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     const user = users[msg.author.id];
-    if (!user) return msg.reply("❌ Bạn chưa có nhân vật. Dùng `-create` trước.");
+    if (!user) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
 
     ensureMining(user);
     ensureGear(user);
@@ -1533,7 +1533,7 @@ module.exports = {
 
     const col = sent.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 60_000 });
     col.on("collect", async (i) => {
-      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Không phải menu của bạn.", ephemeral: true });
+      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải hành trang của đạo hữu.", ephemeral: true });
       await i.deferUpdate();
       const choice = i.values[0];
       await sent.edit({ components: [] }).catch(() => {});

@@ -335,10 +335,10 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     const host = users[msg.author.id];
-    if (!host) return msg.reply("❌ Bạn chưa có nhân vật. Dùng `-create` trước.");
+    if (!host) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
 
     if (activeTeamOfUser.has(msg.author.id)) {
-      return msg.reply("⚠️ Bạn đang ở trong một đội khác. Hãy rời đội đó trước.");
+      return msg.reply("⚠️ Đạo hữu đang ở trong một đội khác. Hãy rời đội đó trước.");
     }
 
     const id = randomUUID().replace(/-/g, "").slice(0, 6);
@@ -366,7 +366,7 @@ module.exports = {
         if (i.message.id !== reply.id) return;
         const users2 = loadUsers();
         if (!users2[i.user.id]) {
-          return i.reply({ content: "❌ Bạn chưa có nhân vật.", ephemeral: true });
+          return i.reply({ content: "❌ Đạo hữu chưa nhập đạo.", ephemeral: true });
         }
         await i.deferUpdate();
 
@@ -379,7 +379,7 @@ module.exports = {
             return i.followUp({ content: "⚠️ Đội đã đủ 3 người.", ephemeral: true });
           }
           if (activeTeamOfUser.has(i.user.id)) {
-            return i.followUp({ content: "⚠️ Bạn đang ở trong một đội khác.", ephemeral: true });
+            return i.followUp({ content: "⚠️ Đạo hữu đang ở trong một đội khác.", ephemeral: true });
           }
           curLobby.members.add(i.user.id);
           activeTeamOfUser.set(i.user.id, id);

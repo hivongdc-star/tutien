@@ -7,7 +7,7 @@ module.exports = {
   run: (client, msg, args) => {
     const users = loadUsers();
     const user = users[msg.author.id];
-    if (!user) return msg.channel.send("❌ Bạn chưa có nhân vật.");
+    if (!user) return msg.channel.send("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
 
     const text = args.join(" ");
     if (!text) return msg.channel.send("❌ Hãy nhập bio mới.");

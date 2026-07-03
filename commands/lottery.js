@@ -37,7 +37,7 @@ module.exports = {
       // 🔒 chỉ OWNER_ID trong .env mới có quyền
       const ownerId = process.env.OWNER_ID;
       if (msg.author.id !== ownerId) {
-        return msg.reply("❌ Bạn không có quyền dùng lệnh này!");
+        return msg.reply("❌ Đạo hữu không có quyền dùng lệnh này.");
       }
 
       const result = drawWinner();

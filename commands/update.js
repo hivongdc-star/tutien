@@ -85,7 +85,7 @@ module.exports = {
     const ownerId = process.env.OWNER_ID;
 
     if (msg.author.id !== ownerId) {
-      return msg.reply("❌ Bạn không có quyền dùng lệnh này.");
+      return msg.reply("❌ Đạo hữu không có quyền dùng lệnh này.");
     }
 
     if (isUpdating) {
@@ -225,7 +225,7 @@ module.exports = {
             (stdout ? `\n--- STDOUT (tail) ---\n${stdout}` : "") +
             (stderr ? `\n--- STDERR (tail) ---\n${stderr}` : "")
         );
-        await msg.channel.send("❌ Update thất bại. Mình đã DM log cho bạn.");
+        await msg.channel.send("❌ Cập nhật thất bại. Log đã được gửi riêng cho quản sự.");
       }
     } catch (err) {
       console.error("Lỗi khi chạy update:", err);

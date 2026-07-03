@@ -10,7 +10,7 @@ module.exports = {
   run: async (client, msg) => {
     const user = getUser(msg.author.id);
     if (!user) {
-      return msg.reply("❌ Bạn chưa bước vào con đường tu luyện. Dùng `-create` để khai mở nhân vật.");
+      return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` để khai mở nhân vật.");
     }
 
     const displayName = user.name && user.name !== "Chưa đặt tên" ? user.name : msg.author.username;
@@ -21,7 +21,7 @@ module.exports = {
 
     const embed = new EmbedBuilder()
       .setColor(0x5865F2)
-      .setTitle("Hồ Sơ Tu Luyện")
+      .setTitle("📜 Hồ Sơ Tu Luyện")
       .setThumbnail(msg.author.displayAvatarURL({ extension: "png", size: 256 }))
       .setDescription(
         `**${titlePrefix}${displayName}**\n` +
@@ -58,7 +58,7 @@ module.exports = {
           inline: false,
         }
       )
-      .setFooter({ text: "Dùng -nv để xem chi tiết gia tăng từ trang bị và chiêu thức." });
+      .setFooter({ text: "Dùng -nv để xem chi tiết gia tăng từ pháp bảo và chiêu thức." });
 
     return msg.reply({ embeds: [embed] });
   },

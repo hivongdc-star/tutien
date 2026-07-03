@@ -26,7 +26,7 @@ module.exports = {
 
     const users = loadUsers();
     if (!users[msg.author.id])
-      return msg.channel.send("❌ Bạn chưa tạo nhân vật.");
+      return msg.channel.send("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
 
     const reply = quotes[Math.floor(Math.random() * quotes.length)];
     msg.channel.send(`👩‍🦰 **Tiểu Nhu**: ${reply}`);

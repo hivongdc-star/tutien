@@ -11,7 +11,7 @@ module.exports = {
 
   run(client, msg) {
     if (msg.author.id !== OWNER_ID) {
-      return msg.reply("❌ Bạn không có quyền dùng lệnh này.");
+      return msg.reply("❌ Đạo hữu không có quyền dùng lệnh này.");
     }
 
     const users = loadUsers();

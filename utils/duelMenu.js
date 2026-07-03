@@ -87,7 +87,7 @@ function createSkillMenu(user, userId, isTurn) {
   const skillList = skills[user.element] || [];
   const menu = new StringSelectMenuBuilder()
     .setCustomId(`duel-skill-${userId}`)
-    .setPlaceholder(isTurn ? "Chọn chiêu thức" : "Chưa tới lượt của bạn")
+    .setPlaceholder(isTurn ? "Chọn chiêu thức" : "Chưa tới lượt đạo hữu")
     .setDisabled(!isTurn);
 
   if (skillList.length === 0) {
@@ -150,7 +150,7 @@ async function handleSkillInteraction(interaction, client) {
   const state = battle.state;
   if (state.turn !== clickerId) {
     return interaction.reply({
-      content: "❌ Chưa tới lượt của bạn.",
+      content: "❌ Chưa tới lượt đạo hữu.",
       ephemeral: true,
     });
   }
@@ -174,7 +174,7 @@ async function handleSkillInteraction(interaction, client) {
   await sendBattleEmbeds(client, newState);
 
   await interaction.followUp({
-    content: `✅ Bạn đã dùng chiêu thức: **${skillName}**`,
+    content: `✅ Đạo hữu thi triển chiêu thức: **${skillName}**`,
     ephemeral: true,
   });
 }

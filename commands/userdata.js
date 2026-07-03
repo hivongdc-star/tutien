@@ -46,7 +46,7 @@ module.exports = {
     }
 
     if (msg.author.id !== ownerId) {
-      return msg.reply("Bạn không có quyền dùng lệnh này.");
+      return msg.reply("Đạo hữu không có quyền dùng lệnh này.");
     }
 
     const targetId = resolveTargetId(msg, args);
@@ -108,10 +108,10 @@ module.exports = {
         fs.unlinkSync(tmpPath);
       }
 
-      return msg.reply(`Đã gửi data của user \`${targetId}\` qua DM cho bạn.`);
+      return msg.reply(`Đã gửi hồ sơ kiểm tra của user \`${targetId}\` qua DM.`);
     } catch (err) {
       console.error("[userdata] Failed to DM owner:", err);
-      return msg.reply("Không thể gửi DM cho bạn. Hãy kiểm tra cài đặt DM.");
+      return msg.reply("Không thể gửi DM. Hãy kiểm tra cài đặt tin nhắn riêng.");
     }
   },
 };

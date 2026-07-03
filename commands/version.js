@@ -4,7 +4,7 @@ const path = require("path");
 module.exports = {
   name: "version",
   aliases: ["ver"],
-  description: "Hiển thị phiên bản bot và ghi chú mới nhất",
+  description: "Hiển thị phiên bản tông môn và ghi chú mới nhất",
   run: async (client, msg) => {
     try {
       // Đọc version từ package.json
@@ -17,7 +17,7 @@ module.exports = {
       const logContent = fs.readFileSync(logPath, "utf8");
 
       // Lấy phần note mới nhất (dòng đầu tiên sau tiêu đề)
-      let note = "Không tìm thấy ghi chú.";
+      let note = "Chưa tìm thấy ghi chú cập nhật.";
       const lines = logContent.split("\n").map((l) => l.trim());
       for (let i = 0; i < lines.length; i++) {
         if (lines[i].startsWith("##")) {
@@ -29,10 +29,10 @@ module.exports = {
 
       // Trả về kết quả
       msg.reply(
-        `📌 **Phiên bản:** v${version}\n📝 **Ghi chú:** ${note}`
+        `📌 **Phiên bản tông môn:** v${version}\n📝 **Ghi chú:** ${note}`
       );
     } catch (e) {
-      console.error("Lỗi đọc version:", e);
+      console.error("Lỗi đọc phiên bản:", e);
       msg.reply("❌ Không thể đọc thông tin phiên bản.");
     }
   },

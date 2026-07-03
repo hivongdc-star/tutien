@@ -12,11 +12,11 @@ const BAG_RARITIES = new Set(["truyền thuyết", "tiên phẩm"]);
 module.exports = {
   name: "fishbag",
   aliases: ["tuca", "kho", "cakho"],
-  description: "Xem bộ sưu tập cá bạn đang có",
+  description: "Xem ngư phổ linh ngư đã câu",
   run: async (client, msg) => {
     const users = loadUsers();
     const me = users[msg.author.id];
-    if (!me) return msg.reply("❌ Bạn chưa bước vào con đường tu luyện. Dùng `-create` để khai mở nhân vật.");
+    if (!me) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` để khai mở nhân vật.");
 
     if (!me.fishInventory || Object.keys(me.fishInventory).length === 0)
       return msg.reply("🐟 Kho cá hiện chưa có thu hoạch từ **Thiên phẩm** trở lên.");

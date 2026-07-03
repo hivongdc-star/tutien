@@ -9,7 +9,7 @@ const HELP_SECTIONS = {
     label: "Tổng quan",
     emoji: "📚",
     description:
-      "Chọn một nhóm tính năng bên dưới để xem đúng phần lệnh bạn cần. Menu này chỉ dùng cho người đã gọi `-help`.",
+      "Chọn một nhóm bên dưới để xem đúng phần pháp lệnh cần dùng. Menu này chỉ nhận lệnh từ người đã gọi `-help`.",
     fields: [
       {
         name: "🧍 Nhân vật",
@@ -48,7 +48,7 @@ const HELP_SECTIONS = {
     fields: [
       {
         name: "✨ Tạo nhân vật",
-        value: "`-create` | alias: `-c`, `-crate`\nTạo nhân vật mới.",
+        value: "`-create` | alias: `-c`, `-crate`\nKhai mở nhân vật mới.",
       },
       {
         name: "📜 Hồ sơ",
@@ -60,7 +60,7 @@ const HELP_SECTIONS = {
       },
       {
         name: "♻️ Reset nhân vật",
-        value: "`-reset` | alias: `-rs`\nReset lại nhân vật để chọn lại Tộc + Ngũ hành.",
+        value: "`-reset` | alias: `-rs`\nTái lập căn cơ để chọn lại huyết mạch + ngũ hành.",
       },
       {
         name: "📖 Bio",
@@ -106,8 +106,8 @@ const HELP_SECTIONS = {
         value: "`-ranklt`\nXem top linh thạch của server.",
       },
       {
-        name: "🆕 Phiên bản bot",
-        value: "`-version`\nXem phiên bản hiện tại của bot.",
+        name: "🆕 Phiên bản tông môn",
+        value: "`-version`\nXem phiên bản hiện tại của tông môn.",
       },
     ],
   },
@@ -126,7 +126,7 @@ const HELP_SECTIONS = {
       },
       {
         name: "📦 Kho đồ cũ",
-        value: "`-inventory`\nXem kho đồ dạng danh sách nếu cần.",
+        value: "`-inventory`\nXem hành trang dạng danh sách nếu cần.",
       },
       {
         name: "⛏️ Khai khoáng",
@@ -138,7 +138,7 @@ const HELP_SECTIONS = {
       },
       {
         name: "🎴 Dùng vật phẩm",
-        value: "`-use ...`\nDùng nhanh vật phẩm nếu tính năng đó còn mở riêng.",
+        value: "`-use ...`\nThử vận dụng nhanh vật phẩm nếu pháp môn còn mở riêng.",
       },
       {
         name: "🧚 Tiểu Nhu",
@@ -222,8 +222,12 @@ const HELP_SECTIONS = {
         value: "`-lottery buy <số>` | alias: `-loto`, `-xs`\nMua vé số, xem pot và quay số.",
       },
       {
+        name: "🧭 Bát Tự",
+        value: "`-battu` | alias: `-bazi`, `-batu`\nLập/xem mệnh bàn Bát Tự. Dùng `-battu reset` để lập lại.",
+      },
+      {
         name: "☯️ Khí vận",
-        value: "`-khivan`\nXem quẻ khí vận hiện tại.",
+        value: "`-khivan`\nXem quẻ khí vận hiện tại sau khi đã lập Bát Tự.",
       },
       {
         name: "🔮 Tử vi",
@@ -334,7 +338,7 @@ module.exports = {
 
       if (interaction.user.id !== msg.author.id) {
         return interaction.reply({
-          content: "❌ Đây không phải bảng hướng dẫn của bạn.",
+          content: "❌ Đây không phải bảng hướng dẫn của đạo hữu.",
           ephemeral: true,
         });
       }

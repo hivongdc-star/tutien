@@ -10,19 +10,19 @@ module.exports = {
 
     // kiểm tra quyền admin
     if (msg.author.id !== ownerId) {
-      return msg.reply("❌ Bạn không có quyền dùng lệnh này!");
+      return msg.reply("❌ Đạo hữu không có quyền dùng lệnh này.");
     }
 
     const target = msg.mentions.users.first();
     if (!target) {
       return msg.reply(
-        "⚠️ Bạn phải tag người cần xóa nhân vật. Ví dụ: `-xoa @user`"
+        "⚠️ Hãy tag người cần xóa nhân vật. Ví dụ: `-xoa @user`"
       );
     }
 
     const users = loadUsers();
     if (!users[target.id]) {
-      return msg.reply("❌ Người này chưa có nhân vật.");
+      return msg.reply("❌ Người này chưa nhập đạo.");
     }
 
     delete users[target.id];

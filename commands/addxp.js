@@ -7,7 +7,7 @@ module.exports = {
   description: "Cộng EXP cho nhân vật chỉ định (Admin Only)",
   async run(client, message, args) {
     if (message.author.id !== OWNER_ID) {
-      return message.reply("❌ Bạn không có quyền dùng lệnh này.");
+      return message.reply("❌ Đạo hữu không có quyền dùng lệnh này.");
     }
 
     const target = message.mentions.users.first();

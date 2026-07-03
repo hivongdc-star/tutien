@@ -13,13 +13,13 @@ module.exports = {
     try {
       const bet = Number.parseInt(args[0], 10);
       if (!Number.isFinite(bet) || bet <= 0)
-        return msg.reply("❌ Hãy nhập số LT muốn cược!");
+        return msg.reply("❌ Hãy nhập số Linh thạch muốn đặt cược.");
 
       // Commit cược + RNG trước (nhanh), UI chỉ là reveal.
       const result = playTaiXiu(msg.author.id, bet);
       if (!result?.success) return msg.reply(result?.msg || "❌ Có lỗi xảy ra.");
 
-      const rollingText = `🎲 Đang tung... ${ROLL} ${ROLL} ${ROLL}`;
+      const rollingText = `🎲 Đang gieo quẻ xúc xắc... ${ROLL} ${ROLL} ${ROLL}`;
       const sent = await msg.reply(rollingText);
 
       // 1.2–1.8s như vibe OwO
@@ -33,18 +33,18 @@ module.exports = {
 
       let finalMsg;
       if (faces && Number.isFinite(result.total)) {
-        finalMsg = `🎲 Kết quả: ${faces} = ${result.total}\n`;
+        finalMsg = `🎲 Kết quả gieo: ${faces} = ${result.total}\n`;
 
         if (result.outcome === "win") {
           const tax = Number(result.tax) || 0;
           const win = Number(result.win) || 0;
           const jackpot = Number(result.jackpot);
-          finalMsg += `✨ Bạn thắng! +${win} LT (trích ${tax} LT vào Jackpot)`;
-          if (Number.isFinite(jackpot)) finalMsg += `\n💰 Jackpot: ${jackpot} LT`;
+          finalMsg += `✨ Đạo hữu thắng! +${win} LT (trích ${tax} LT vào bảo khố)`;
+          if (Number.isFinite(jackpot)) finalMsg += `\n💰 Bảo khố: ${jackpot} LT`;
         } else {
           const jackpot = Number(result.jackpot);
-          finalMsg += `💀 Bạn thua! -${bet} LT`;
-          if (Number.isFinite(jackpot)) finalMsg += `\n💰 Jackpot: ${jackpot} LT`;
+          finalMsg += `💀 Đạo hữu thua ván này. -${bet} LT`;
+          if (Number.isFinite(jackpot)) finalMsg += `\n💰 Bảo khố: ${jackpot} LT`;
         }
       } else {
         finalMsg = result.msg;
@@ -54,7 +54,7 @@ module.exports = {
       await sent.edit(finalMsg);
     } catch (e) {
       try {
-        await msg.reply("❌ Lỗi khi xử lý tài xỉu. Vui lòng thử lại.");
+        await msg.reply("❌ Trận tài xỉu bị nhiễu. Hãy thử lại sau.");
       } catch {}
       console.error("[taixiu] error:", e);
     }

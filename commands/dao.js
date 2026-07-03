@@ -25,7 +25,7 @@ module.exports = {
   run: async (client, msg) => {
     const users = loadUsers();
     const user = users[msg.author.id];
-    if (!user) return msg.reply("❌ Bạn chưa bước vào con đường tu luyện. Dùng `-create` để khai mở nhân vật.");
+    if (!user) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` để khai mở nhân vật.");
 
     ensureMining(user);
 
@@ -39,7 +39,7 @@ module.exports = {
     }
 
     if (!user.mining.tools.length) {
-      return msg.reply("❌ Bạn chưa có khoáng cụ. Ghé `-shop` để chuẩn bị trước khi khai khoáng.");
+      return msg.reply("❌ Đạo hữu chưa có khoáng cụ. Ghé `-shop` để chuẩn bị trước khi xuống mỏ.");
     }
 
     // Active tool
@@ -51,7 +51,7 @@ module.exports = {
 
     const ore = rollOre({ bonusRare: tool.bonusRare || 0 });
     if (!ore) {
-      return msg.reply("❌ Thiếu dữ liệu khoáng thạch (data/ores_db.json).");
+      return msg.reply("❌ Linh mỏ tạm thời chưa khai thông. Hãy báo quản sự kiểm tra.");
     }
 
     // Ghi nhận khoáng
@@ -83,7 +83,7 @@ module.exports = {
       .setColor(m.color)
       .setTitle("⛏️ Khai Khoáng")
       .setDescription(
-        `Bạn xuống mỏ và thu được:\n\n` +
+        `Đạo hữu xuống mỏ và thu được:\n\n` +
         `${m.icon} **${ore.name}** • **${tierText(ore.tier)}**\n` +
         `Khoáng cụ đang dùng: **${tool.name || "Khoáng cụ"}** • Độ bền **${toolDurText}**` +
         brokeText
@@ -91,7 +91,7 @@ module.exports = {
 
     if (unlockedTitles.length) {
       embed.addFields({
-        name: "Danh hiệu vừa mở",
+        name: "Danh hiệu vừa ngộ",
         value: unlockedTitles.map((t) => `• **${t}**`).join("\n"),
         inline: false,
       });

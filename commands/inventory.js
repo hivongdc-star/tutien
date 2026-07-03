@@ -7,13 +7,13 @@ module.exports = {
   aliases: ["inv"],
   run: async (client, msg) => {
     const user = getUser(msg.author.id);
-    if (!user) return msg.reply("❌ Bạn chưa có nhân vật.");
+    if (!user) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
 
     const catalog = listItems();
     const inv = user.inventory || {};
 
     if (Object.keys(inv).length === 0) {
-      return msg.reply("🎒 Túi đồ của bạn đang trống.");
+      return msg.reply("🎒 Hành trang của đạo hữu đang trống.");
     }
 
     let lines = [];
@@ -23,15 +23,15 @@ module.exports = {
         if (item) {
           lines.push(`${item.emoji || "📦"} **${item.name}** x${qty}`);
         } else {
-          lines.push(`📦 ${id} x${qty}`);
+          lines.push(`📦 **Vật phẩm chưa giám định** x${qty}`);
         }
       }
     }
 
     if (lines.length === 0) {
-      return msg.reply("🎒 Túi đồ của bạn đang trống.");
+      return msg.reply("🎒 Hành trang của đạo hữu đang trống.");
     }
 
-    msg.reply("🎒 **Túi đồ của bạn:**\n" + lines.join("\n"));
+    msg.reply("🎒 **Hành trang:**\n" + lines.join("\n"));
   },
 };

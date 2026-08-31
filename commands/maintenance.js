@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 const { spawn } = require("child_process");
-const aliases = require("../utils/aliases");
 
 function asCommandList(mod) {
   if (Array.isArray(mod)) return mod;
@@ -12,7 +11,6 @@ function register(client, cmd) {
   if (!cmd?.name || typeof cmd.run !== "function") return;
   client.commands.set(cmd.name, cmd);
   for (const alias of cmd.aliases || []) client.commands.set(alias, cmd);
-  for (const alias of aliases[cmd.name] || []) client.commands.set(alias, cmd);
 }
 function commandFiles() {
   return fs.readdirSync(__dirname).filter((f) => f.endsWith(".js"));
@@ -23,7 +21,7 @@ function loadFile(file, fresh = false) {
   return asCommandList(require(filePath));
 }
 function namesFor(cmd) {
-  return new Set([cmd.name, ...(cmd.aliases || []), ...(aliases[cmd.name] || [])]);
+  return new Set([cmd.name, ...(cmd.aliases || [])]);
 }
 
 const reload = {
@@ -100,11 +98,9 @@ const update = {
       isUpdating = true;
       await msg.reply("🔄 Đang đồng bộ bot với `origin/main`...");
       await safeDM("🔄 Bắt đầu update bot:\n• fetch `origin/main`\n• chuyển working tree về đúng `origin/main`\n" + (opts.install ? "• cài dependency production\n" : "• bỏ qua cài dependency\n") + "• restart bot");
-
       const scriptArgs = isWin ? ["/c", scriptPath] : [scriptPath];
       if (!opts.install) scriptArgs.push("--no-install");
       const { code, stdout, stderr } = await runScript({ cmd: isWin ? "cmd.exe" : "bash", args: scriptArgs, cwd: repoRoot });
-
       if (code !== 0) {
         await safeDM(`❌ Update thất bại (code=${code}).` + (stdout ? `\n\n--- STDOUT ---\n${stdout}` : "") + (stderr ? `\n\n--- STDERR ---\n${stderr}` : ""));
         return msg.channel.send("❌ Update thất bại. Log đã gửi riêng cho owner.");

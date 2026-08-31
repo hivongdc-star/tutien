@@ -1,8 +1,8 @@
 const progress = require("../commands/progress");
 
 module.exports = {
-  getDailyKey: undefined,
-  getISOWeekKey: undefined,
+  getDailyKey: progress.getDailyKey,
+  getISOWeekKey: progress.getISOWeekKey,
   ensureQuestState: progress.ensureQuestState,
   recordEvent: progress.recordQuestEvent,
   getQuestProgress: progress.getQuestProgress,

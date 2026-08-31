@@ -2,7 +2,7 @@ require("dotenv").config();
 const { Client, GatewayIntentBits, Partials, Events } = require("discord.js");
 const { startDispatcher } = require("./utils/dispatcher");
 const { handleSkillInteraction } = require("./commands/pvp");
-const { handleBattuInteraction } = require("./utils/battuWizard");
+const { handleBattuInteraction } = require("./commands/fortune");
 
 const client = new Client({
   intents: [
@@ -38,7 +38,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
     console.error("❌ Interaction error:", err);
     if (!interaction.replied && !interaction.deferred) {
       try {
-        await interaction.reply({ content: "⚠️ Có lỗi xảy ra khi xử lý skill!", ephemeral: true });
+        await interaction.reply({ content: "⚠️ Có lỗi xảy ra khi xử lý tương tác.", ephemeral: true });
       } catch (e) {
         console.error("❌ Reply error:", e);
       }

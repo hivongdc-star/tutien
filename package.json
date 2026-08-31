@@ -7,7 +7,6 @@
   },
   "dependencies": {
     "@napi-rs/canvas": "^0.1.55",
-    "axios": "^1.12.2",
     "discord.js": "^14.22.1",
     "dotenv": "^16.6.1",
     "node-schedule": "^2.1.1",

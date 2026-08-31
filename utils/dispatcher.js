@@ -65,7 +65,11 @@ function startDispatcher(client) {
     console.error("⚠️ Word chain dictionaries not loaded:", error.message);
   }
 
-  require("./lotteryScheduler")(client);
+  try {
+    require("../commands/games").startScheduler(client);
+  } catch (error) {
+    console.error("⚠️ Lottery scheduler not started:", error.message);
+  }
 
   client.on("messageCreate", async (msg) => {
     if (msg.author.bot) return;

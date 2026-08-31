@@ -8,6 +8,7 @@ module.exports = {
   danhhieu: ["title"], // đổi danh hiệu
   daily: ["dly"], // nhận thưởng hàng ngày
   shop: ["s"], // cửa hàng
+  bag: ["inventory", "inv"], // alias legacy -> túi tổng hợp
   thachdau: ["td"], // thách đấu
   acp: ["accept"], // chấp nhận thách đấu
   deny: ["d"], // từ chối thách đấu

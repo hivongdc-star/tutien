@@ -14,24 +14,31 @@ const {
 let commands = new Map();
 const cooldowns = new Map();
 
+function asCommandList(mod) {
+  if (Array.isArray(mod)) return mod;
+  if (Array.isArray(mod?.commands)) return mod.commands;
+  return mod ? [mod] : [];
+}
+
+function registerCommand(target, cmd) {
+  if (!cmd?.name || typeof cmd.run !== "function") return;
+  target.set(cmd.name, cmd);
+  for (const alias of cmd.aliases || []) target.set(alias, cmd);
+  for (const alias of aliases[cmd.name] || []) target.set(alias, cmd);
+}
+
 function loadCommands(client) {
   commands = new Map();
-
-  const cmdFiles = fs
-    .readdirSync(path.join(__dirname, "../commands"))
-    .filter((f) => f.endsWith(".js"));
+  const commandsPath = path.join(__dirname, "../commands");
+  const cmdFiles = fs.readdirSync(commandsPath).filter((f) => f.endsWith(".js"));
 
   for (const file of cmdFiles) {
-    const cmd = require(path.join(__dirname, "../commands", file));
-    if (!cmd?.name) continue;
-
-    commands.set(cmd.name, cmd);
-    for (const alias of cmd.aliases || []) commands.set(alias, cmd);
-    for (const alias of aliases[cmd.name] || []) commands.set(alias, cmd);
+    const mod = require(path.join(commandsPath, file));
+    for (const cmd of asCommandList(mod)) registerCommand(commands, cmd);
   }
 
   client.commands = commands;
-  console.log(`✅ Loaded ${commands.size} commands`);
+  console.log(`✅ Loaded ${commands.size} commands/aliases from ${cmdFiles.length} files`);
 }
 
 async function handleCommand(client, msg, args) {
@@ -98,10 +105,8 @@ function startDispatcher(client) {
       return;
     }
 
-    if (inWordChainChannel) {
-      await handleWordChainMessage(client, msg);
-    }
+    if (inWordChainChannel) await handleWordChainMessage(client, msg);
   });
 }
 
-module.exports = { startDispatcher };
+module.exports = { startDispatcher, loadCommands };

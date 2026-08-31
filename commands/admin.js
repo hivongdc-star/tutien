@@ -1,9 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { loadUsers, saveUsers } = require("../utils/storage");
-const { addXp, getRealm } = require("../utils/xp");
-const races = require("../utils/races");
-const elements = require("../utils/element");
+const { addXp, getRealm, races, elements } = require("./character");
 
 function ownerOnly(msg) {
   return Boolean(process.env.OWNER_ID && msg.author.id === process.env.OWNER_ID);

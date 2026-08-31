@@ -8,7 +8,7 @@ const {
   loadWordChainDictionaries,
   getChannelState,
   handleWordChainMessage,
-} = require("./wordChain");
+} = require("../commands/noitu");
 
 let commands = new Map();
 const cooldowns = new Map();

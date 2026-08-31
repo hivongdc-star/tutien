@@ -33,7 +33,7 @@ const HELP_SECTIONS = {
       },
       {
         name: "🎲 Giải trí & tiện ích",
-        value: "Tài xỉu, tung xu, slot, xổ số, khí vận, tử vi.",
+        value: "Tài xỉu, tung xu, slot, xổ số, Bát Tự, khí vận.",
       },
       {
         name: "🛠️ Quản trị & nối từ",
@@ -140,10 +140,6 @@ const HELP_SECTIONS = {
         name: "🎴 Dùng vật phẩm",
         value: "`-use ...`\nThử vận dụng nhanh vật phẩm nếu pháp môn còn mở riêng.",
       },
-      {
-        name: "🧚 Tiểu Nhu",
-        value: "`-tieunhu` | alias: `-tn`\nGọi NPC Tiểu Nhu để nhận thưởng theo cơ chế hiện tại.",
-      },
     ],
   },
   pets: {
@@ -203,7 +199,7 @@ const HELP_SECTIONS = {
   fun: {
     label: "Giải trí & tiện ích",
     emoji: "🎲",
-    description: "Mini game, bói toán và các lệnh tiện ích nhanh.",
+    description: "Mini game, Bát Tự, khí vận và các lệnh tiện ích nhanh.",
     fields: [
       {
         name: "🎲 Tài xỉu",
@@ -228,10 +224,6 @@ const HELP_SECTIONS = {
       {
         name: "☯️ Khí vận",
         value: "`-khivan`\nXem quẻ khí vận hiện tại sau khi đã lập Bát Tự.",
-      },
-      {
-        name: "🔮 Tử vi",
-        value: "`-tuvi`\nXem nội dung tử vi đang hỗ trợ.",
       },
     ],
   },

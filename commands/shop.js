@@ -1,355 +1,118 @@
-// commands/shop.js
-// Shop: Khoáng cụ + Bí kíp (kỹ năng theo ngũ hành) + Trứng Linh Thú.
-
+const fs = require("fs");
+const path = require("path");
 const {
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
   StringSelectMenuBuilder,
-  ComponentType,
   EmbedBuilder,
 } = require("discord.js");
-
-const { listItems, buyItem } = require("../shop/shopUtils");
-const { tierText } = require("../utils/tiers");
 const { loadUsers, saveUsers } = require("../utils/storage");
+const { tierText } = require("../utils/tiers");
 const elements = require("../utils/element");
-const {
-  listSkills,
-  getSkill,
-  ensureUserSkills,
-  addOwnedSkill,
-  describeSkillShort,
-} = require("../utils/skills");
+const { listSkills, getSkill, ensureUserSkills, addOwnedSkill, describeSkillShort } = require("../utils/skills");
 
-function fmtLT(n) {
-  return Number(n || 0).toLocaleString("vi-VN");
+// ==================================================
+// SHOP ENGINE
+// ==================================================
+const ITEMS_PATH = path.join(__dirname, "../shop/items.json");
+function loadItems() {
+  try { return JSON.parse(fs.readFileSync(ITEMS_PATH, "utf8")); }
+  catch (e) { console.error("❌ Không thể tải shop/items.json:", e?.message || e); return {}; }
+}
+function listItems() { return loadItems(); }
+function getItem(itemId) { return loadItems()[itemId] || null; }
+function fmtLT(n) { return Number(n || 0).toLocaleString("vi-VN"); }
+function clampQty(n) { const x=Math.floor(Number(n)); return Number.isFinite(x)&&x>=1&&x<=99 ? x : null; }
+function ensureUserShape(user) {
+  if(!user)return null; user.inventory=user.inventory||{};user.equipments=user.equipments||{};user.titles=user.titles||[];
+  user.mining=user.mining||{};if(!Array.isArray(user.mining.tools))user.mining.tools=[];if(typeof user.mining.activeToolId==="undefined")user.mining.activeToolId=null;if(!Number.isFinite(user.mining.lastMineAt))user.mining.lastMineAt=0;if(!user.mining.ores||typeof user.mining.ores!=="object")user.mining.ores={};
+  user.gear=user.gear||{};if(!user.gear.equipped||typeof user.gear.equipped!=="object")user.gear.equipped={weapon:null,armor:null,boots:null,bracelet:null};if(!Array.isArray(user.gear.bag))user.gear.bag=[];
+  return user;
+}
+function buyItem(buyerId,itemId,qty=1) {
+  const users=loadUsers(), catalog=loadItems(), buyer=ensureUserShape(users[buyerId]);
+  if(!buyer)return{ok:false,message:"❌ Bạn chưa có nhân vật."}; const it=catalog[itemId];if(!it)return{ok:false,message:"❌ Mặt hàng không tồn tại."};
+  const q=clampQty(qty),price=Number(it.price||0);if(!q)return{ok:false,message:"❌ Số lượng không hợp lệ (1–99)."};if(!Number.isFinite(price)||price<0)return{ok:false,message:"❌ Giá không hợp lệ."};
+  const total=price*q;if((Number(buyer.lt)||0)<total)return{ok:false,message:"❌ Không đủ LT."};buyer.lt-=total;
+  if(it.type==="mining_tool"){
+    const maxDur=Math.max(1,Number(it.durability||1));
+    for(let k=0;k<q;k++){
+      const iid=`mt_${Date.now()}_${Math.random().toString(16).slice(2,8)}`;
+      buyer.mining.tools.push({iid,itemId,name:it.name,tier:it.tier||"pham",durability:maxDur,durabilityMax:maxDur,bonusRare:Number(it.bonusRare??it.bonus??0),boughtAt:Date.now()});
+      if(!buyer.mining.activeToolId)buyer.mining.activeToolId=iid;
+    }
+  } else buyer.inventory[itemId]=(buyer.inventory[itemId]||0)+q;
+  users[buyerId]=buyer;saveUsers(users);
+  const tierLine=it.tier?` • ${tierText(it.tier)}`:"",name=`${it.emoji||""} ${it.name}`.trim();
+  return{ok:true,message:`✅ Đã đưa vào hành trang: ${q>1?`x${q} `:""}**${name}**${tierLine} • Tổng giá **${fmtLT(total)} LT**.`};
 }
 
-function menuRow(customId, placeholder, options) {
-  const row = new ActionRowBuilder().addComponents(
-    new StringSelectMenuBuilder().setCustomId(customId).setPlaceholder(placeholder).addOptions(options)
-  );
-  return row;
+// ==================================================
+// SHOP UI
+// ==================================================
+function menuRow(id,placeholder,options){return new ActionRowBuilder().addComponents(new StringSelectMenuBuilder().setCustomId(id).setPlaceholder(placeholder).addOptions(options));}
+function qtyRow(userId,itemId,maxQty){
+  const vals=[1,5,10,25,maxQty].filter((v,i,a)=>v<=maxQty&&a.indexOf(v)===i).slice(0,5);
+  return new ActionRowBuilder().addComponents(vals.map((q)=>new ButtonBuilder().setCustomId(`shopbuy_${userId}:${itemId}:${q}`).setLabel(q===maxQty?`Max ${q}`:`x${q}`).setStyle(q===maxQty?ButtonStyle.Success:ButtonStyle.Primary)));
+}
+function short100(s){const x=String(s||"").replace(/\s+/g," ").trim();return x.length<=100?x:`${x.slice(0,97)}…`;}
+function categoryEntries(mode) {
+  const catalog=listItems();
+  if(mode==="tools")return Object.entries(catalog).filter(([,it])=>it.type==="mining_tool");
+  if(mode==="pets")return Object.entries(catalog).filter(([,it])=>it.type==="pet_egg");
+  return Object.entries(catalog).filter(([,it])=>it.type!=="mining_tool"&&it.type!=="pet_egg");
 }
 
-function qtyButtonsRow(userId, itemId, maxQty) {
-  const presets = [1, 5, 10, 25].filter((q) => q <= maxQty);
-  const qs = [...presets];
-  if (!qs.includes(maxQty)) qs.push(maxQty);
-  // Discord row tối đa 5 nút
-  const trimmed = qs.slice(0, 5);
-  const row = new ActionRowBuilder();
-  for (const q of trimmed) {
-    const isMax = q === maxQty;
-    row.addComponents(
-      new ButtonBuilder()
-        .setCustomId(`shopbuy_${userId}:${itemId}:${q}`)
-        .setLabel(isMax ? `Max ${q}` : `x${q}`)
-        .setStyle(isMax ? ButtonStyle.Success : ButtonStyle.Primary)
-    );
+const shopCommand={
+  name:"shop",aliases:["s"],
+  run:async(_client,msg)=>{
+    let users=loadUsers(),u=users[msg.author.id];if(!u)return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");ensureUserSkills(u);users[msg.author.id]=u;saveUsers(users);
+    const nonce=Date.now(),catId=`shopcat_${msg.author.id}_${nonce}`,pickId=`shoppick_${msg.author.id}_${nonce}`;
+    const header=new EmbedBuilder().setTitle("🛒 Linh Bảo Các").setColor(0x3498DB).setDescription(`Linh thạch hiện có: **${fmtLT(u.lt)}** 💎\n\nChọn quầy muốn ghé:`);
+    const catRow=menuRow(catId,"Chọn quầy...",[
+      {label:"Khoáng cụ",value:"tools",description:"Khoáng cụ khai mạch"},{label:"Vật phẩm",value:"items",description:"Linh tài và vật phẩm"},{label:"Bí kíp",value:"skills",description:"Kỹ năng theo ngũ hành"},{label:"Trứng Linh Thú",value:"pets",description:"Trứng để ấp linh thú"}
+    ]);
+    const sent=await msg.reply({embeds:[header],components:[catRow]});const col=sent.createMessageComponentCollector({time:120_000});let mode=null;
+    const showCategory=async()=>{
+      users=loadUsers();u=users[msg.author.id];if(!u)return;
+      if(mode==="skills"){
+        ensureUserSkills(u);const el=u.element||"kim",pool=listSkills({element:el,rarity:"common"});
+        const emb=new EmbedBuilder().setTitle("🛒 Linh Bảo Các • Bí kíp").setColor(0x9B59B6).setDescription(`Hệ: ${elements.display[el]||el}\nLT: **${fmtLT(u.lt)}** 💎`);
+        if(!pool.length)return sent.edit({embeds:[emb.setDescription("Hiện chưa có bí kíp phù hợp.")],components:[catRow]}).catch(()=>{});
+        return sent.edit({embeds:[emb],components:[catRow,menuRow(pickId,"Chọn bí kíp...",pool.slice(0,25).map((s)=>({label:s.name.slice(0,100),value:`skill:${s.id}`,description:short100(`${fmtLT(s.price)} LT • ${describeSkillShort(s)}`)})))]}).catch(()=>{});
+      }
+      const entries=categoryEntries(mode);const title=mode==="tools"?"Khoáng cụ":mode==="pets"?"Trứng Linh Thú":"Vật phẩm";
+      const emb=new EmbedBuilder().setTitle(`🛒 Linh Bảo Các • ${title}`).setColor(mode==="pets"?0xF1C40F:mode==="tools"?0x2ECC71:0x1ABC9C).setDescription(`Linh thạch hiện có: **${fmtLT(u.lt)}** 💎`);
+      if(!entries.length)return sent.edit({embeds:[emb.setDescription("Quầy này hiện đang trống.")],components:[catRow]}).catch(()=>{});
+      return sent.edit({embeds:[emb],components:[catRow,menuRow(pickId,`Chọn ${title.toLowerCase()}...`,entries.slice(0,25).map(([id,it])=>({label:`${it.emoji||""} ${it.name}`.trim().slice(0,100),value:`item:${id}`,description:`${fmtLT(it.price||0)} LT${it.tier?` • ${tierText(it.tier)}`:""}`.slice(0,100)})))]}).catch(()=>{});
+    };
+    col.on("collect",async(i)=>{
+      if(i.user.id!==msg.author.id)return i.reply({content:"❌ Đây không phải quầy của đạo hữu.",ephemeral:true});await i.deferUpdate();
+      if(i.isStringSelectMenu()&&i.customId===catId){mode=i.values[0];return showCategory();}
+      if(i.isStringSelectMenu()&&i.customId===pickId){
+        const val=i.values[0];users=loadUsers();u=users[msg.author.id];if(!u)return;
+        if(val.startsWith("skill:")){
+          const sid=val.slice(6),sk=getSkill(sid);ensureUserSkills(u);
+          if(!sk||sk.rarity!=="common")return i.followUp({content:"❌ Bí kíp không hợp lệ.",ephemeral:true});
+          if(u.skills.owned.includes(sid))return i.followUp({content:"⚠️ Đạo hữu đã lĩnh ngộ bí kíp này.",ephemeral:true});
+          if((Number(u.lt)||0)<(Number(sk.price)||0))return i.followUp({content:"❌ Không đủ linh thạch.",ephemeral:true});
+          u.lt-=Number(sk.price)||0;const add=addOwnedSkill(u,sid);if(!add.ok)return i.followUp({content:`❌ ${add.reason||"Không thể lĩnh ngộ."}`,ephemeral:true});users[msg.author.id]=u;saveUsers(users);
+          col.stop("done");return sent.edit({content:`✅ Đã lĩnh **${sk.name}** với giá **${fmtLT(sk.price)} LT**.`,embeds:[],components:[]}).catch(()=>{});
+        }
+        const itemId=val.startsWith("item:")?val.slice(5):null,it=itemId?getItem(itemId):null;if(!it)return;
+        const price=Number(it.price)||0,lt=Number(u.lt)||0,maxAff=price>0?Math.floor(lt/price):99;
+        if(maxAff<1)return i.followUp({content:"❌ Không đủ linh thạch.",ephemeral:true});const maxQty=Math.max(1,Math.min(99,maxAff));
+        const emb=new EmbedBuilder().setTitle(`🛒 Xác nhận mua • ${it.name}`).setColor(0x3498DB).setDescription(`Giá: **${fmtLT(price)} LT** / món\nLT hiện có: **${fmtLT(lt)}** 💎\nCó thể mua tối đa: **${maxQty}**`);
+        return sent.edit({embeds:[emb],components:[qtyRow(msg.author.id,itemId,maxQty)]}).catch(()=>{});
+      }
+      if(i.isButton()&&String(i.customId).startsWith(`shopbuy_${msg.author.id}:`)){
+        const rest=String(i.customId).slice(`shopbuy_${msg.author.id}:`.length),[itemId,q]=rest.split(":");const res=buyItem(msg.author.id,itemId,Number(q));
+        col.stop("done");return sent.edit({content:res.message,embeds:[],components:[]}).catch(()=>{});
+      }
+    });
+    col.on("end",()=>sent.edit({components:[]}).catch(()=>{}));
   }
-  return row;
-}
-
-function shorten100(s) {
-  const str = String(s || "").replace(/\s+/g, " ").trim();
-  if (str.length <= 100) return str;
-  return str.slice(0, 97).trimEnd() + "…";
-}
-
-module.exports = {
-  name: "shop",
-  aliases: ["s"],
-  run: async (client, msg) => {
-    const users = loadUsers();
-    const u = users[msg.author.id];
-    if (!u) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
-
-    ensureUserSkills(u);
-    saveUsers(users);
-
-    const catId = `shopcat_${msg.author.id}`;
-    const pickId = `shoppick_${msg.author.id}`;
-
-    const catOptions = [
-      { label: "Khoáng cụ", value: "tools", description: "Mua khoáng cụ khai mạch" },
-      { label: "Vật phẩm", value: "items", description: "Mua linh tài cường hoá" },
-      { label: "Bí kíp", value: "skills", description: "Kỹ năng theo ngũ hành" },
-      { label: "Trứng Linh Thú", value: "pets", description: "Mua trứng để ấp linh thú" },
-    ];
-
-    const header = new EmbedBuilder()
-      .setTitle("🛒 Linh Bảo Các")
-      .setColor(0x3498db)
-      .setDescription(`Linh thạch hiện có: **${fmtLT(u.lt)}** 💎\n\nChọn quầy muốn ghé:`);
-
-    const sent = await msg.reply({
-      embeds: [header],
-      components: [menuRow(catId, "Chọn quầy...", catOptions)],
-    });
-
-    let mode = null; // tools | items | skills | pets
-
-    const col = sent.createMessageComponentCollector({
-      componentType: ComponentType.StringSelect,
-      time: 120_000,
-    });
-
-    const bcol = sent.createMessageComponentCollector({
-      componentType: ComponentType.Button,
-      time: 120_000,
-    });
-
-    col.on("collect", async (i) => {
-      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải quầy của đạo hữu.", ephemeral: true });
-      await i.deferUpdate();
-
-      const users2 = loadUsers();
-      const u2 = users2[msg.author.id];
-      if (!u2) {
-        col.stop("nochar");
-        return;
-      }
-      ensureUserSkills(u2);
-
-      if (i.customId === catId) {
-        mode = i.values[0];
-
-        if (mode === "tools") {
-          const catalog = listItems();
-          const entries = Object.entries(catalog).filter(([, it]) => it.type === "mining_tool");
-          const options = entries.slice(0, 25).map(([id, it]) => ({
-            label: `${it.emoji || ""} ${it.name}`.trim().slice(0, 100),
-            value: `tool:${id}`,
-            description: `${fmtLT(it.price || 0)} LT • ${it.tier || ""}`.slice(0, 100),
-          }));
-
-          const emb = new EmbedBuilder()
-            .setTitle("🛒 Linh Bảo Các • Khoáng cụ")
-            .setColor(0x2ecc71)
-            .setDescription(`Linh thạch hiện có: **${fmtLT(u2.lt)}** 💎\nChọn pháp khí để mua.`);
-
-          return sent
-            .edit({ embeds: [emb], components: [menuRow(pickId, "Chọn khoáng cụ...", options)] })
-            .catch(() => {});
-        }
-
-        if (mode === "pets") {
-          const catalog = listItems();
-          const entries = Object.entries(catalog).filter(([, it]) => it.type === "pet_egg");
-          if (!entries.length) {
-            const emb = new EmbedBuilder()
-              .setTitle("🛒 Linh Bảo Các • Trứng Linh Thú")
-              .setColor(0xF1C40F)
-              .setDescription("Hiện chưa có trứng linh thú nào trong shop.");
-            return sent.edit({ embeds: [emb], components: [] }).catch(() => {});
-          }
-
-          const options = entries.slice(0, 25).map(([id, it]) => ({
-            label: `${it.emoji || ""} ${it.name}`.trim().slice(0, 100),
-            value: `egg:${id}`,
-            description: `${fmtLT(it.price || 0)} LT`.slice(0, 100),
-          }));
-
-          const emb = new EmbedBuilder()
-            .setTitle("🛒 Linh Bảo Các • Trứng Linh Thú")
-            .setColor(0xF1C40F)
-            .setDescription(`Linh thạch hiện có: **${fmtLT(u2.lt)}** 💎\nChọn trứng để mua.`);
-
-          return sent
-            .edit({ embeds: [emb], components: [menuRow(pickId, "Chọn trứng...", options)] })
-            .catch(() => {});
-        }
-
-        if (mode === "skills") {
-          const el = u2.element || "kim";
-          const skillList = listSkills({ element: el, rarity: "common", kind: null });
-          if (!skillList.length) {
-            const emb = new EmbedBuilder()
-              .setTitle("🛒 Linh Bảo Các • Bí kíp")
-              .setColor(0x9b59b6)
-              .setDescription("Hiện chưa có bí kíp phù hợp.");
-            return sent.edit({ embeds: [emb], components: [] }).catch(() => {});
-          }
-
-          const options = skillList.slice(0, 25).map((s) => ({
-            label: s.name.slice(0, 100),
-            value: `skill:${s.id}`,
-            description: shorten100(`${fmtLT(s.price)} LT • ${describeSkillShort(s)}`),
-          }));
-
-          const emb = new EmbedBuilder()
-            .setTitle("🛒 Linh Bảo Các • Bí kíp")
-            .setColor(0x9b59b6)
-            .setDescription(
-              `Hệ: ${elements.display[el] || el}\n` +
-                `Linh thạch hiện có: **${fmtLT(u2.lt)}** 💎\n\n` +
-                `Chọn bí kíp để mua (chỉ bán **thường**).`
-            );
-
-          return sent
-            .edit({ embeds: [emb], components: [menuRow(pickId, "Chọn bí kíp...", options)] })
-            .catch(() => {});
-        }
-      }
-
-      if (i.customId === pickId) {
-        const val = i.values[0];
-        if (!val) return;
-
-        // TOOL
-        if (val.startsWith("tool:")) {
-          const itemId = val.slice("tool:".length);
-          const catalog = listItems();
-          const it = catalog[itemId];
-          if (!it) return sent.edit({ content: "❌ Mặt hàng không tồn tại.", embeds: [], components: [] }).catch(() => {});
-          const price = Number(it.price || 0);
-          const ltNow = Number(u2.lt || 0);
-          const maxAff = price > 0 ? Math.floor(ltNow / price) : 1;
-          const maxQty = Math.max(1, Math.min(maxAff, 99));
-          if (ltNow < price || maxAff < 1) {
-            return sent.edit({ content: "❌ Linh thạch không đủ.", embeds: [], components: [] }).catch(() => {});
-          }
-
-          const emb = new EmbedBuilder()
-            .setTitle("🛒 Xác nhận mua • Khoáng cụ")
-            .setColor(0x2ecc71)
-            .setDescription(
-              `Đạo hữu muốn mua: **${(it.emoji || "")} ${it.name}**\n` +
-                `Giá: **${fmtLT(price)} LT** / cái\n` +
-                `LT hiện có: **${fmtLT(ltNow)}** 💎\n` +
-                `Có thể mua tối đa: **${maxAff}**\n\n` +
-                `Chọn số lượng muốn mua:`
-            );
-
-          return sent.edit({ embeds: [emb], components: [qtyButtonsRow(msg.author.id, itemId, maxQty)] }).catch(() => {});
-        }
-
-        // ITEM
-        if (val.startsWith("item:")) {
-          const itemId = val.slice("item:".length);
-          const catalog = listItems();
-          const it = catalog[itemId];
-          if (!it) return sent.edit({ content: "❌ Mặt hàng không tồn tại.", embeds: [], components: [] }).catch(() => {});
-          const price = Number(it.price || 0);
-          const ltNow = Number(u2.lt || 0);
-          const maxAff = price > 0 ? Math.floor(ltNow / price) : 1;
-          const maxQty = Math.max(1, Math.min(maxAff, 99));
-          if (ltNow < price || maxAff < 1) {
-            return sent.edit({ content: "❌ Linh thạch không đủ.", embeds: [], components: [] }).catch(() => {});
-          }
-
-          const emb = new EmbedBuilder()
-            .setTitle("🛒 Xác nhận mua • Vật phẩm")
-            .setColor(0x1abc9c)
-            .setDescription(
-              `Đạo hữu muốn mua: **${(it.emoji || "")} ${it.name}**
-` +
-                `Phẩm chất: **${tierText(it.tier || "pham")}**
-` +
-                `Giá: **${fmtLT(price)} LT** / món
-` +
-                `LT hiện có: **${fmtLT(ltNow)}** 💎
-` +
-                `Có thể mua tối đa: **${maxAff}**
-
-` +
-                `Chọn số lượng muốn mua:`
-            );
-
-          return sent.edit({ embeds: [emb], components: [qtyButtonsRow(msg.author.id, itemId, maxQty)] }).catch(() => {});
-        }
-
-        // EGG
-        if (val.startsWith("egg:")) {
-          const itemId = val.slice("egg:".length);
-          const catalog = listItems();
-          const it = catalog[itemId];
-          if (!it) return sent.edit({ content: "❌ Mặt hàng không tồn tại.", embeds: [], components: [] }).catch(() => {});
-          const price = Number(it.price || 0);
-          const ltNow = Number(u2.lt || 0);
-          const maxAff = price > 0 ? Math.floor(ltNow / price) : 1;
-          const maxQty = Math.max(1, Math.min(maxAff, 99));
-          if (ltNow < price || maxAff < 1) {
-            return sent.edit({ content: "❌ Linh thạch không đủ.", embeds: [], components: [] }).catch(() => {});
-          }
-
-          const emb = new EmbedBuilder()
-            .setTitle("🛒 Xác nhận mua • Trứng Linh Thú")
-            .setColor(0xF1C40F)
-            .setDescription(
-              `Đạo hữu muốn mua: **${(it.emoji || "")} ${it.name}**\n` +
-                `Giá: **${fmtLT(price)} LT** / quả\n` +
-                `LT hiện có: **${fmtLT(ltNow)}** 💎\n` +
-                `Có thể mua tối đa: **${maxAff}**\n\n` +
-                `Chọn số lượng muốn mua:`
-            );
-
-          return sent.edit({ embeds: [emb], components: [qtyButtonsRow(msg.author.id, itemId, maxQty)] }).catch(() => {});
-        }
-
-        // SKILL
-        if (val.startsWith("skill:")) {
-          const skillId = val.slice("skill:".length);
-          const sk = getSkill(skillId);
-          if (!sk) return sent.edit({ content: "❌ Bí kíp không tồn tại.", embeds: [], components: [] }).catch(() => {});
-          if (sk.rarity !== "common") return sent.edit({ content: "❌ Chỉ bán bí kíp thường.", embeds: [], components: [] }).catch(() => {});
-
-          if ((u2.lt || 0) < (sk.price || 0)) {
-            return sent.edit({ content: "❌ Không đủ linh thạch.", embeds: [], components: [] }).catch(() => {});
-          }
-          if (u2.skills.owned.includes(skillId)) {
-            return sent.edit({ content: "⚠️ Đạo hữu đã lĩnh ngộ bí kíp này.", embeds: [], components: [] }).catch(() => {});
-          }
-
-          u2.lt -= sk.price || 0;
-          addOwnedSkill(u2, skillId);
-          users2[msg.author.id] = u2;
-          saveUsers(users2);
-
-          const kindTxt = sk.kind === "passive" ? "Bị động" : "Chủ động";
-          return sent
-            .edit({
-              content: `✅ Đã lĩnh **${sk.name}** (${kindTxt}) với giá **${fmtLT(sk.price)} LT**.`,
-              embeds: [],
-              components: [],
-            })
-            .catch(() => {});
-        }
-      }
-    });
-
-    bcol.on("collect", async (i) => {
-      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải lựa chọn của đạo hữu.", ephemeral: true });
-      await i.deferUpdate();
-
-      const id = i.customId || "";
-      const prefix = `shopbuy_${msg.author.id}:`;
-      if (!id.startsWith(prefix)) return;
-
-      const rest = id.slice(prefix.length);
-      const [itemId, qtyStr] = rest.split(":");
-      const qty = Number(qtyStr);
-      const res = buyItem(msg.author.id, itemId, qty);
-
-      // Kết thúc flow sau khi mua (thành công hoặc thất bại)
-      try {
-        await sent.edit({ content: res.message, embeds: [], components: [] });
-      } catch {}
-      col.stop("done");
-      bcol.stop("done");
-    });
-
-    col.on("end", async () => {
-      try {
-        const m = await sent.fetch();
-        if (m && m.editable) await sent.edit({ components: [] }).catch(() => {});
-      } catch {}
-    });
-
-    bcol.on("end", async () => {
-      // giữ hành vi dọn component theo col.on('end') là đủ
-    });
-  },
 };
+
+module.exports={commands:[shopCommand],loadItems,listItems,getItem,buyItem};

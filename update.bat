@@ -1,44 +1,31 @@
 @echo off
 setlocal enableextensions
 
-REM chạy ở đúng thư mục repo (nơi đặt file update.bat)
 cd /d "%~dp0"
+set INSTALL_FLAG=%~1
 
-echo [1/4] git pull...
-git pull
+echo [1/4] Fetch origin/main...
+git fetch --prune origin main
 if errorlevel 1 exit /b 1
 
-set PATCH_FILE=%~1
-set INSTALL_FLAG=%~2
+echo [2/4] Sync working tree to origin/main...
+REM Production server luôn chạy đúng code trên main.
+REM Runtime data (.env, users.json, battu profiles, logs...) đã được .gitignore bảo vệ.
+git reset --hard HEAD
+if errorlevel 1 exit /b 2
+git checkout -B main origin/main
+if errorlevel 1 exit /b 2
+git reset --hard origin/main
+if errorlevel 1 exit /b 2
 
-REM Cho phép gọi: update.bat --install (không patch)
-REM hoặc:         update.bat <patch> --install
-REM hoặc:         update.bat --no-install
-if /i "%PATCH_FILE%"=="--install" (
-  set INSTALL_FLAG=%PATCH_FILE%
-  set PATCH_FILE=
-)
-if /i "%PATCH_FILE%"=="--no-install" (
-  set INSTALL_FLAG=%PATCH_FILE%
-  set PATCH_FILE=
-)
-
-if not "%PATCH_FILE%"=="" (
-  echo [2/4] git apply "%PATCH_FILE%"...
-  git apply "%PATCH_FILE%"
-  if errorlevel 1 exit /b 2
-) else (
-  echo [2/4] skip patch
-)
-
-REM Mặc định: luôn install (npm ci) trừ khi có --no-install
 if /i "%INSTALL_FLAG%"=="--no-install" (
-  echo [3/4] skip npm ci (--no-install)
+  echo [3/4] Skip npm install (--no-install)
 ) else (
-  echo [3/4] npm ci...
-  call npm ci
+  echo [3/4] Install production dependencies...
+  REM Không phụ thuộc package-lock cũ; không ghi lại lockfile trên server.
+  call npm install --omit=dev --no-audit --no-fund --package-lock=false
   if errorlevel 1 exit /b 3
 )
 
-echo [4/4] done (bot sẽ tự restart bằng supervisor/pm2 khi process thoát)
+echo [4/4] Done. Supervisor/PM2 will restart the bot after process exit.
 exit /b 0

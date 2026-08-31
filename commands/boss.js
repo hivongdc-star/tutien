@@ -9,7 +9,7 @@ const {
   EmbedBuilder,
 } = require("discord.js");
 const { loadUsers, saveUsers } = require("../utils/storage");
-const { computeEffective } = require("../utils/dungeonEngine");
+const { computeEffective } = require("./dungeon");
 const elements = require("../utils/element");
 const { loadOreDB } = require("../utils/mining");
 const { createGearFromOres, formatGearLines } = require("../utils/forge");

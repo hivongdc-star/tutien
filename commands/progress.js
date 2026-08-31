@@ -7,9 +7,6 @@ const {
 } = require("discord.js");
 const { loadUsers, saveUsers } = require("../utils/storage");
 
-// ==================================================
-// QUEST ENGINE
-// ==================================================
 function pad2(n) { return String(n).padStart(2, "0"); }
 function getDailyKey(now = Date.now()) {
   const d = new Date(now);
@@ -106,9 +103,6 @@ function claim(user, scope, questId, now = Date.now()) {
   return { ok: true, rewardLt: q.rewardLt };
 }
 
-// ==================================================
-// ACHIEVEMENT ENGINE
-// ==================================================
 const ACHIEVEMENTS = [
   { id: "A_FISH_1000", stat: "fish", need: 1000, title: "Ngư Vương", desc: "Câu cá 1.000 lần — ngư tâm bất loạn, thủy đạo tự khai.", group: "fish" },
   { id: "A_FISH_2000", stat: "fish", need: 2000, title: "Ngư Thống", desc: "Câu cá 2.000 lần — một cần định sóng, bầy cá quy phục.", group: "fish" },
@@ -163,14 +157,10 @@ function recordAchievementEvent(user, event, amount = 1) {
   if (event === "enh_plus5") user.achvStats.enhPlus5 = Math.max(1, user.achvStats.enhPlus5);
   if (event === "enh_plus10") user.achvStats.enhPlus10 = Math.max(1, user.achvStats.enhPlus10);
   if (event === "enh_plus15") user.achvStats.enhPlus15 = Math.max(1, user.achvStats.enhPlus15);
-  // legacy spelling used by old bag.js
   if (event === "enh_fail") user.achvStats.enhFail += add;
   return checkUnlocks(user);
 }
 
-// ==================================================
-// QUEST UI
-// ==================================================
 function fmtLT(n) { return Number(n || 0).toLocaleString("vi-VN"); }
 function renderScopeLines(list) {
   return (list || []).map((q) => `• **${q.name}** — ${q.progress}/${q.target} • +${fmtLT(q.rewardLt)} LT • ${q.claimed ? "✅ Đã nhận" : q.done ? "🎁 Có thể nhận" : "⏳ Đang làm"}`).join("\n");
@@ -248,9 +238,6 @@ const quest = {
   },
 };
 
-// ==================================================
-// ACHIEVEMENT UI
-// ==================================================
 const GROUP_META = {
   all: "📜 Tất cả", fish: "🎣 Câu cá", mine: "⛏️ Khai khoáng", dungeon: "🏯 Dungeon",
   boss: "🐲 World Boss", enhance: "⚒️ Cường hoá", economy: "💰 Kinh tế", titles: "🎖 Danh hiệu",
@@ -265,7 +252,6 @@ const thanhtuu = {
     ensureAchv(u); all[msg.author.id] = u; saveUsers(all);
     const nonce = Math.random().toString(36).slice(2, 8);
     let group = "all", page = 0;
-
     const build = () => {
       const base = new EmbedBuilder().setTitle("🏅 Thành Tựu").setColor(0xF1C40F)
         .setDescription(`Danh hiệu đang dùng: **${u.title || "(chưa chọn)"}**\nMục: **${GROUP_META[group]}**`);
@@ -302,6 +288,8 @@ const thanhtuu = {
 
 module.exports = {
   commands: [quest, thanhtuu],
+  getDailyKey,
+  getISOWeekKey,
   DAILY_QUESTS,
   WEEKLY_QUESTS,
   ACHIEVEMENTS,

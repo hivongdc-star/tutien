@@ -1,36 +1,26 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# chạy ở đúng thư mục repo (nơi đặt file update.sh)
 cd "$(dirname "$0")"
 
-echo "[1/4] git pull..."
-git pull
+INSTALL_FLAG="${1:-}"
 
-PATCH_FILE="${1:-}"
-INSTALL_FLAG="${2:-}"
+echo "[1/4] Fetch origin/main..."
+git fetch --prune origin main
 
-# Cho phép gọi: ./update.sh --install  (không patch)
-# hoặc:         ./update.sh <patch> --install
-# hoặc:         ./update.sh --no-install
-if [[ "$PATCH_FILE" == "--install" || "$PATCH_FILE" == "--no-install" ]]; then
-  INSTALL_FLAG="$PATCH_FILE"
-  PATCH_FILE=""
-fi
+echo "[2/4] Sync working tree to origin/main..."
+# Production server luôn chạy đúng code trên main.
+# Runtime data (.env, users.json, battu profiles, logs...) đã được .gitignore bảo vệ.
+git reset --hard HEAD
+git checkout -B main origin/main
+git reset --hard origin/main
 
-if [[ -n "$PATCH_FILE" ]]; then
-  echo "[2/4] git apply $PATCH_FILE..."
-  git apply "$PATCH_FILE"
-else
-  echo "[2/4] skip patch"
-fi
-
-# Mặc định: luôn install (npm ci) trừ khi có --no-install
 if [[ "$INSTALL_FLAG" == "--no-install" ]]; then
-  echo "[3/4] skip npm ci (--no-install)"
+  echo "[3/4] Skip npm install (--no-install)"
 else
-  echo "[3/4] npm ci..."
-  npm ci
+  echo "[3/4] Install production dependencies..."
+  # Không phụ thuộc package-lock cũ; không ghi lại lockfile trên server.
+  npm install --omit=dev --no-audit --no-fund --package-lock=false
 fi
 
-echo "[4/4] done (bot sẽ tự restart bằng supervisor/pm2 khi process thoát)"
+echo "[4/4] Done. Supervisor/PM2 will restart the bot after process exit."

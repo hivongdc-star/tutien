@@ -1,19 +1,2 @@
-module.exports = [
-  "Luyện Khí",
-  "Trúc Cơ",
-  "Kết Đan",
-  "Nguyên Anh",
-  "Hóa Thần",
-  "Hợp Thể",
-  "Độ Kiếp",
-  "Đại Thừa",
-  "Nhân Tiên",
-  "Chân Tiên",
-  "Địa Tiên",
-  "Thiên Tiên",
-  "Kim Tiên",
-  "Tiên Quân",
-  "Tiên Vương",
-  "Tiên Hoàng",
-  "Tiên Đế",
-];
+// Compatibility shim. Canonical realm data lives in commands/character.js.
+module.exports = require("../commands/character").realms;

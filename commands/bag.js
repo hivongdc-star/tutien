@@ -1,12 +1,8 @@
-// commands/bag.js
-// Túi mới (select menu chống trôi): Khoáng cụ / Khoáng thạch / Trang bị / Vật phẩm (legacy).
-
 const {
   ActionRowBuilder,
   StringSelectMenuBuilder,
-  ButtonStyle,
   ButtonBuilder,
-  ComponentType,
+  ButtonStyle,
   EmbedBuilder,
 } = require("discord.js");
 
@@ -16,12 +12,7 @@ const { tierMeta, tierText } = require("../utils/tiers");
 const { fmtLT, oreSellValueByTier, gearSellValue, clampInt, tierOrder } = require("../utils/pricing");
 const { attemptEnhance, ensureEnhanceFields, successRate, enhanceCost } = require("../utils/enhanceSystem");
 const { getItem } = require("../shop/shopUtils");
-const {
-  describeGearItem,
-  sumAffixes,
-  sumMainPercents,
-  formatPct,
-} = require("../utils/statsView");
+const { describeGearItem, sumAffixes, sumMainPercents, formatPct } = require("../utils/statsView");
 const elements = require("../utils/element");
 const {
   ensureUserSkills,
@@ -31,15 +22,10 @@ const {
   describeSkillShort,
   describeSkillLong,
 } = require("../utils/skills");
-
-function shorten100(s) {
-  const str = String(s || "").replace(/\s+/g, " ").trim();
-  if (str.length <= 100) return str;
-  return str.slice(0, 97).trimEnd() + "…";
-}
+const { recordAchievementEvent } = require("./progress");
 
 function ensureMining(user) {
-  if (!user.mining) user.mining = {};
+  user.mining = user.mining || {};
   if (!Array.isArray(user.mining.tools)) user.mining.tools = [];
   if (typeof user.mining.activeToolId === "undefined") user.mining.activeToolId = null;
   if (!Number.isFinite(user.mining.lastMineAt)) user.mining.lastMineAt = 0;
@@ -47,1503 +33,305 @@ function ensureMining(user) {
 }
 
 function ensureGear(user) {
-  if (!user.gear) user.gear = {};
-  if (!user.gear.equipped || typeof user.gear.equipped !== "object") {
-    user.gear.equipped = { weapon: null, armor: null, boots: null, bracelet: null };
-  } else {
-    if (typeof user.gear.equipped.weapon === "undefined") user.gear.equipped.weapon = null;
-    if (typeof user.gear.equipped.armor === "undefined") user.gear.equipped.armor = null;
-    if (typeof user.gear.equipped.boots === "undefined") user.gear.equipped.boots = null;
-    if (typeof user.gear.equipped.bracelet === "undefined") user.gear.equipped.bracelet = null;
+  user.gear = user.gear || {};
+  user.gear.equipped = user.gear.equipped && typeof user.gear.equipped === "object"
+    ? user.gear.equipped
+    : { weapon: null, armor: null, boots: null, bracelet: null };
+  for (const slot of ["weapon", "armor", "boots", "bracelet"]) {
+    if (typeof user.gear.equipped[slot] === "undefined") user.gear.equipped[slot] = null;
   }
   if (!Array.isArray(user.gear.bag)) user.gear.bag = [];
 }
 
-function fmtShardLabel(elKey, rarity) {
-  const el = elements.display[elKey] || elKey;
-  return `${el} • ${rarity === "epic" ? "Cực hiếm" : "Hiếm"}`;
-}
-
-function buildSkillsSummaryEmbed(user) {
-  ensureUserSkills(user);
-  const el = user.element || "kim";
-  const eq = user.skills.equipped;
-  const act = eq.actives.map((id, idx) => {
-    const sk = id ? getSkill(id) : null;
-    return `${idx + 1}. ${sk ? `**${sk.name}**` : "_(trống)_"}`;
-  });
-  const пас = eq.passive ? getSkill(eq.passive) : null;
-
-  const shards = user.skills.shards?.[el] || { rare: 0, epic: 0 };
-  return new EmbedBuilder()
-    .setColor(0x8e44ad)
-    .setTitle("📜 Bí kíp")
-    .setDescription(`Hệ: ${elements.display[el] || el}`)
-    .addFields(
-      { name: "Chủ động (4)", value: act.join("\n") || "_(trống)_" },
-      { name: "Bị động (1)", value: пас ? `**${пас.name}**` : "_(trống)_" },
-      {
-        name: "Mảnh bí kíp hợp bản mệnh",
-        value: `• ${fmtShardLabel(el, "rare")}: **${shards.rare || 0}**\n• ${fmtShardLabel(el, "epic")}: **${shards.epic || 0}**`,
-      }
-    );
-}
-
-async function openSkillsView(msg, user, nonce) {
-  let u = user;
-  ensureUserSkills(u);
-  const el = u.element || "kim";
-
-  const state = {
-    mode: "equip", // equip | craft
-    slot: null, // a1..a4 | passive
-    skillId: null,
-    craftRarity: null, // rare|epic
-  };
-
-  const slotMenuId = `bag_skill_slot_${msg.author.id}_${nonce}`;
-  const skillMenuId = `bag_skill_pick_${msg.author.id}_${nonce}`;
-  const craftMenuId = `bag_skill_craft_${msg.author.id}_${nonce}`;
-
-  const buildSlotRow = () => {
-    const options = [
-      { label: "Chủ động 1", value: "a1" },
-      { label: "Chủ động 2", value: "a2" },
-      { label: "Chủ động 3", value: "a3" },
-      { label: "Chủ động 4", value: "a4" },
-      { label: "Bị động", value: "passive" },
-    ];
-    return new ActionRowBuilder().addComponents(
-      new StringSelectMenuBuilder()
-        .setCustomId(slotMenuId)
-        .setPlaceholder("Chọn slot...")
-        .addOptions(options)
-    );
-  };
-
-  const buildSkillPickRow = () => {
-    if (!state.slot || state.mode !== "equip") return null;
-    const kind = state.slot === "passive" ? "passive" : "active";
-    const owned = (u.skills.owned || []).map((id) => getSkill(id)).filter(Boolean);
-    const pool = owned.filter((s) => s.kind === kind);
-    if (!pool.length) {
-      return new ActionRowBuilder().addComponents(
-        new StringSelectMenuBuilder()
-          .setCustomId(skillMenuId)
-          .setPlaceholder("Chưa có bí kíp phù hợp")
-          .addOptions([{ label: "(trống)", value: "none" }])
-          .setDisabled(true)
-      );
-    }
-    const options = pool.slice(0, 25).map((s) => ({
-      label: s.name.slice(0, 100),
-      value: s.id,
-      // Discord giới hạn 100 ký tự/description
-      description: shorten100(describeSkillShort(s)),
-    }));
-    return new ActionRowBuilder().addComponents(
-      new StringSelectMenuBuilder()
-        .setCustomId(skillMenuId)
-        .setPlaceholder("Chọn bí kíp...")
-        .addOptions(options)
-    );
-  };
-
-  const buildCraftRow = () => {
-    if (state.mode !== "craft") return null;
-    const rarity = state.craftRarity;
-    const candidates = listSkills({ element: el, rarity, kind: null })
-      .filter((s) => !(u.skills.owned || []).includes(s.id));
-
-    const options = candidates.slice(0, 25).map((s) => ({
-      label: s.name.slice(0, 100),
-      value: s.id,
-      description: shorten100(describeSkillShort(s)),
-    }));
-    if (!options.length) {
-      return new ActionRowBuilder().addComponents(
-        new StringSelectMenuBuilder()
-          .setCustomId(craftMenuId)
-          .setPlaceholder("Không có bí kíp để ghép")
-          .addOptions([{ label: "(trống)", value: "none" }])
-          .setDisabled(true)
-      );
-    }
-    return new ActionRowBuilder().addComponents(
-      new StringSelectMenuBuilder()
-        .setCustomId(craftMenuId)
-        .setPlaceholder("Chọn bí kíp để ghép...")
-        .addOptions(options)
-    );
-  };
-
-  const buildButtonsRow = () => {
-    const rows = [];
-    if (state.mode === "equip") {
-      rows.push(
-        new ActionRowBuilder().addComponents(
-          new ButtonBuilder().setCustomId(`bag_skill_equip_${msg.author.id}_${nonce}`).setLabel("Trang bị").setStyle(ButtonStyle.Primary).setDisabled(!state.slot || !state.skillId),
-          new ButtonBuilder().setCustomId(`bag_skill_unequip_${msg.author.id}_${nonce}`).setLabel("Gỡ").setStyle(ButtonStyle.Secondary).setDisabled(!state.slot),
-          new ButtonBuilder().setCustomId(`bag_skill_craftr_${msg.author.id}_${nonce}`).setLabel("Ghép (Hiếm)").setStyle(ButtonStyle.Success),
-          new ButtonBuilder().setCustomId(`bag_skill_crafte_${msg.author.id}_${nonce}`).setLabel("Ghép (Cực hiếm)").setStyle(ButtonStyle.Success),
-          new ButtonBuilder().setCustomId(`bag_skill_close_${msg.author.id}_${nonce}`).setLabel("Đóng").setStyle(ButtonStyle.Danger)
-        )
-      );
-    } else {
-      rows.push(
-        new ActionRowBuilder().addComponents(
-          new ButtonBuilder().setCustomId(`bag_skill_doCraft_${msg.author.id}_${nonce}`).setLabel("Ghép").setStyle(ButtonStyle.Primary).setDisabled(!state.skillId),
-          new ButtonBuilder().setCustomId(`bag_skill_back_${msg.author.id}_${nonce}`).setLabel("Quay lại").setStyle(ButtonStyle.Secondary),
-          new ButtonBuilder().setCustomId(`bag_skill_close_${msg.author.id}_${nonce}`).setLabel("Đóng").setStyle(ButtonStyle.Danger)
-        )
-      );
-    }
-    return rows;
-  };
-
-  const render = async (sent) => {
-    const rows = [buildSlotRow()];
-    const row2 = state.mode === "craft" ? buildCraftRow() : buildSkillPickRow();
-    if (row2) rows.push(row2);
-    rows.push(...buildButtonsRow());
-
-    const baseEmbed = buildSkillsSummaryEmbed(u);
-    if (state.mode === "craft") {
-      baseEmbed.setTitle(`📜 Ghép bí kíp • ${state.craftRarity === "epic" ? "Cực hiếm" : "Hiếm"}`);
-      const need = state.craftRarity === "epic" ? 40 : 12;
-      const shards = u.skills.shards?.[el] || { rare: 0, epic: 0 };
-      const have = state.craftRarity === "epic" ? (shards.epic || 0) : (shards.rare || 0);
-      baseEmbed.setDescription(
-        `Hệ: ${elements.display[el] || el}\n` +
-        `Cần: **${need}** mảnh • Hiện có: **${have}** mảnh\n\nChọn bí kíp để ghép.`
-      );
-    } else if (state.slot) {
-      const slotName = state.slot === "passive" ? "Bị động" : `Chủ động ${Number(state.slot.slice(1))}`;
-      baseEmbed.setFooter({ text: `Đang chọn: ${slotName}` });
-    }
-
-    await sent.edit({ embeds: [baseEmbed], components: rows }).catch(() => {});
-  };
-
-  const sent = await msg.reply({ embeds: [buildSkillsSummaryEmbed(u)], components: [buildSlotRow(), ...buildButtonsRow()] });
-  const col = sent.createMessageComponentCollector({ time: 180_000 });
-
-  col.on("collect", async (i) => {
-    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải hành trang của đạo hữu.", ephemeral: true });
-    const cid = String(i.customId || "");
-
-    if (i.isStringSelectMenu()) {
-      await i.deferUpdate();
-
-      if (cid === slotMenuId) {
-        state.slot = i.values?.[0] || null;
-        state.skillId = null;
-        return render(sent);
-      }
-
-      if (cid === skillMenuId && state.mode === "equip") {
-        const v = i.values?.[0];
-        if (!v || v === "none") return;
-        state.skillId = v;
-        return render(sent);
-      }
-
-      if (cid === craftMenuId && state.mode === "craft") {
-        const v = i.values?.[0];
-        if (!v || v === "none") return;
-        state.skillId = v;
-        return render(sent);
-      }
-    }
-
-    if (i.isButton()) {
-      await i.deferUpdate();
-
-      if (cid === `bag_skill_close_${msg.author.id}_${nonce}`) {
-        col.stop("close");
-        return sent.edit({ components: [] }).catch(() => {});
-      }
-
-      if (cid === `bag_skill_back_${msg.author.id}_${nonce}`) {
-        state.mode = "equip";
-        state.craftRarity = null;
-        state.skillId = null;
-        return render(sent);
-      }
-
-      if (cid === `bag_skill_craftr_${msg.author.id}_${nonce}`) {
-        state.mode = "craft";
-        state.craftRarity = "rare";
-        state.skillId = null;
-        state.slot = null;
-        return render(sent);
-      }
-      if (cid === `bag_skill_crafte_${msg.author.id}_${nonce}`) {
-        state.mode = "craft";
-        state.craftRarity = "epic";
-        state.skillId = null;
-        state.slot = null;
-        return render(sent);
-      }
-
-      // Equip
-      if (cid === `bag_skill_equip_${msg.author.id}_${nonce}`) {
-        if (!state.slot || !state.skillId) return;
-
-        const users = loadUsers();
-        const cur = users[msg.author.id];
-        if (!cur) return;
-        ensureUserSkills(cur);
-
-        const sk = getSkill(state.skillId);
-        if (!sk) return i.followUp({ content: "❌ Bí kíp không tồn tại.", ephemeral: true });
-
-        const kindNeed = state.slot === "passive" ? "passive" : "active";
-        if (sk.kind !== kindNeed) {
-          return i.followUp({ content: "⚠️ Bí kíp này không phù hợp slot.", ephemeral: true });
-        }
-        if (!(cur.skills.owned || []).includes(sk.id)) {
-          return i.followUp({ content: "⚠️ Đạo hữu chưa lĩnh ngộ bí kíp này.", ephemeral: true });
-        }
-
-        if (state.slot === "passive") {
-          cur.skills.equipped.passive = sk.id;
-        } else {
-          const idx = Math.max(0, Math.min(3, Number(state.slot.slice(1)) - 1));
-          cur.skills.equipped.actives[idx] = sk.id;
-        }
-
-        users[msg.author.id] = cur;
-        saveUsers(users);
-        u = cur;
-        return render(sent);
-      }
-
-      // Unequip
-      if (cid === `bag_skill_unequip_${msg.author.id}_${nonce}`) {
-        if (!state.slot) return;
-        const users = loadUsers();
-        const cur = users[msg.author.id];
-        if (!cur) return;
-        ensureUserSkills(cur);
-
-        if (state.slot === "passive") {
-          cur.skills.equipped.passive = null;
-        } else {
-          const idx = Math.max(0, Math.min(3, Number(state.slot.slice(1)) - 1));
-          cur.skills.equipped.actives[idx] = null;
-        }
-        users[msg.author.id] = cur;
-        saveUsers(users);
-        u = cur;
-        state.skillId = null;
-        return render(sent);
-      }
-
-      // Craft
-      if (cid === `bag_skill_doCraft_${msg.author.id}_${nonce}`) {
-        if (state.mode !== "craft" || !state.craftRarity || !state.skillId) return;
-        const users = loadUsers();
-        const cur = users[msg.author.id];
-        if (!cur) return;
-        ensureUserSkills(cur);
-
-        const res = craftSkill(cur, { element: el, rarity: state.craftRarity, skillId: state.skillId });
-        if (!res.ok) return i.followUp({ content: res.message, ephemeral: true });
-        users[msg.author.id] = cur;
-        saveUsers(users);
-        u = cur;
-        // quay lại equip
-        state.mode = "equip";
-        state.craftRarity = null;
-        state.skillId = null;
-        state.slot = null;
-        await i.followUp({ content: res.message, ephemeral: true });
-        return render(sent);
-      }
-    }
-  });
-
-  col.on("end", () => sent.edit({ components: [] }).catch(() => {}));
-}
-
 function ensureGearIds(user) {
   let changed = false;
-  // bag
   for (const it of user.gear.bag) {
-    if (!it) continue;
-    if (!it.gid) {
-      it.gid = `g_${Date.now()}_${Math.random().toString(16).slice(2, 8)}`;
-      changed = true;
-    }
+    if (it && !it.gid) { it.gid = `g_${Date.now()}_${Math.random().toString(16).slice(2, 8)}`; changed = true; }
   }
-  // equipped
   for (const [slot, it] of Object.entries(user.gear.equipped)) {
-    if (!it) continue;
-    if (!it.gid) {
-      it.gid = `g_${slot}_${Date.now()}_${Math.random().toString(16).slice(2, 8)}`;
-      changed = true;
-    }
+    if (it && !it.gid) { it.gid = `g_${slot}_${Date.now()}_${Math.random().toString(16).slice(2, 8)}`; changed = true; }
   }
   return changed;
 }
 
 function slotLabel(slot) {
-  if (slot === "weapon") return "Vũ khí";
-  if (slot === "armor") return "Giáp";
-  if (slot === "boots") return "Giày";
-  if (slot === "bracelet") return "Vòng tay";
-  return slot;
+  return ({ weapon: "Vũ khí", armor: "Giáp", boots: "Giày", bracelet: "Vòng tay" })[slot] || slot;
 }
 
-function describeMainLine(it) {
-  const main = it?.main || it?.mainPct || it?.main_percent || null;
-  if (!main || typeof main !== "object") return "(chưa có)";
-
-  // Hiển thị ưu tiên theo slot
-  const parts = [];
-  if (Number.isFinite(main.atkPct) || Number.isFinite(main.atk)) parts.push(`Công +${formatPct(main.atkPct ?? main.atk)}%`);
-  if (Number.isFinite(main.defPct) || Number.isFinite(main.def)) parts.push(`Thủ +${formatPct(main.defPct ?? main.def)}%`);
-  if (Number.isFinite(main.spdPct) || Number.isFinite(main.spd)) parts.push(`Tốc +${formatPct(main.spdPct ?? main.spd)}%`);
-  if (Number.isFinite(main.hpPct) || Number.isFinite(main.hp)) parts.push(`Sinh mệnh +${formatPct(main.hpPct ?? main.hp)}%`);
-  if (Number.isFinite(main.mpPct) || Number.isFinite(main.mp)) parts.push(`Linh lực +${formatPct(main.mpPct ?? main.mp)}%`);
-  return parts.length ? parts.join(" • ") : "(chưa có)";
+function short100(s) {
+  const x = String(s || "").replace(/\s+/g, " ").trim();
+  return x.length <= 100 ? x : `${x.slice(0, 97)}…`;
 }
 
-function describeAffixes(it) {
-  const arr = Array.isArray(it?.affixes) ? it.affixes : [];
-  if (!arr.length) return "(Không có)";
-  return arr
-    .map((a) => {
-      const k = String(a.stat || "");
-      const pct = Number(a.pct) || 0;
-      const label = {
-        crit: "Chí mạng",
-        crit_resist: "Kháng chí mạng",
-        armor_pen: "Xuyên giáp",
-        crit_dmg: "Bạo kích",
-        dmg_reduce: "Giảm sát thương",
-        lifesteal: "Hút huyết",
-        dodge: "Né tránh",
-        accuracy: "Chính xác",
-      }[k] || k;
-      return `• ${label}: +${formatPct(pct)}%`;
-    })
-    .join("\n");
-}
+async function openTools(msg) {
+  const users = loadUsers();
+  const u = users[msg.author.id];
+  ensureMining(u);
+  if (!u.mining.tools.length) return msg.reply("🧰 Túi khoáng cụ trống. Hãy vào `-shop` để mua.");
 
-async function openToolsMenu(msg, user, nonce) {
-  const tools = user.mining.tools || [];
-  if (!tools.length) {
-    return msg.reply("🧰 Túi khoáng cụ trống. Hãy vào `-shop` để mua.");
-  }
-
-  // ensure active
-  if (!user.mining.activeToolId || !tools.find((t) => t.iid === user.mining.activeToolId)) {
-    user.mining.activeToolId = tools[0].iid;
-  }
-
-  const active = user.mining.activeToolId;
-  const options = tools.slice(0, 25).map((t) => {
-    const isActive = t.iid === active;
-    const dur = `${Math.max(0, Number(t.durability) || 0)}/${Math.max(0, Number(t.durabilityMax) || Number(t.durability) || 0)}`;
-    const br = Math.max(0, Number(t.bonusRare) || 0);
-    return {
-      label: `${isActive ? "[Đang dùng] " : ""}${t.name || "Khoáng cụ"}`.slice(0, 100),
-      value: t.iid,
-      description: `Độ bền ${dur} • Hiếm +${br}%`.slice(0, 100),
-    };
-  });
-
-  const embed = new EmbedBuilder()
-    .setColor(0x95A5A6)
-    .setTitle("🧰 Khoáng Cụ")
-    .setDescription(
-      `Cảnh giới: **${user.realm || "(chưa rõ)"}**\n` +
-      `Chọn khoáng cụ đang dùng (ảnh hưởng tỷ lệ ra khoáng hiếm).`
-    );
-
-  const row = new ActionRowBuilder().addComponents(
-    new StringSelectMenuBuilder()
-      .setCustomId(`bag_tools_${msg.author.id}_${nonce}`)
-      .setPlaceholder("Chọn khoáng cụ...")
-      .addOptions(options)
-  );
-
+  if (!u.mining.tools.some((x) => x.iid === u.mining.activeToolId)) u.mining.activeToolId = u.mining.tools[0].iid;
+  users[msg.author.id] = u; saveUsers(users);
+  const nonce = Date.now();
+  const options = u.mining.tools.slice(0, 25).map((t) => ({
+    label: `${t.iid === u.mining.activeToolId ? "[Đang dùng] " : ""}${t.name || "Khoáng cụ"}`.slice(0, 100),
+    value: t.iid,
+    description: `Độ bền ${Math.max(0, Number(t.durability) || 0)}/${Math.max(0, Number(t.durabilityMax) || 0)} • Hiếm +${Math.max(0, Number(t.bonusRare) || 0)}%`.slice(0, 100),
+  }));
+  const embed = new EmbedBuilder().setTitle("🧰 Khoáng Cụ").setColor(0x95A5A6)
+    .setDescription("Chọn khoáng cụ sẽ dùng cho lần khai khoáng kế tiếp.");
+  const row = new ActionRowBuilder().addComponents(new StringSelectMenuBuilder().setCustomId(`bag_tool_${msg.author.id}_${nonce}`).setPlaceholder("Chọn khoáng cụ...").addOptions(options));
   const sent = await msg.reply({ embeds: [embed], components: [row] });
-
-  const col = sent.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 90_000 });
+  const col = sent.createMessageComponentCollector({ time: 90_000 });
   col.on("collect", async (i) => {
     if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải hành trang của đạo hữu.", ephemeral: true });
+    if (!i.isStringSelectMenu()) return;
     await i.deferUpdate();
-    user.mining.activeToolId = i.values[0];
-    const activeTool = (user.mining.tools || []).find((t) => t.iid === user.mining.activeToolId);
-    saveUsers({ ...loadUsers(), [msg.author.id]: user });
-    await sent.edit({
-      embeds: [
-        EmbedBuilder.from(embed).setDescription(
-          `Cảnh giới: **${user.realm || "(chưa rõ)"}**\n` +
-          `Đang dùng: **${activeTool?.name || "Khoáng cụ"}**`
-        ),
-      ],
-    }).catch(() => {});
+    const all = loadUsers(); const cur = all[msg.author.id]; ensureMining(cur);
+    if (cur.mining.tools.some((x) => x.iid === i.values[0])) cur.mining.activeToolId = i.values[0];
+    all[msg.author.id] = cur; saveUsers(all);
+    const active = cur.mining.tools.find((x) => x.iid === cur.mining.activeToolId);
+    await sent.edit({ embeds: [EmbedBuilder.from(embed).setDescription(`Đang dùng: **${active?.name || "Khoáng cụ"}**`)] }).catch(() => {});
   });
   col.on("end", () => sent.edit({ components: [] }).catch(() => {}));
 }
 
-async function openOresView(msg, user, nonce) {
-  const userId = msg.author.id;
-  const n = nonce || `${Date.now()}`;
-  let u = user;
+async function openOres(msg) {
+  let all = loadUsers(); let u = all[msg.author.id]; ensureMining(u); loadOreDB();
+  const list = () => Object.entries(u.mining.ores || {})
+    .filter(([, q]) => Number(q) > 0)
+    .map(([id, q]) => { const ore = getOreById(id) || { id, name: id, tier: "pham" }; return { ...ore, qty: Number(q) || 0 }; })
+    .sort((a, b) => tierOrder(b.tier) - tierOrder(a.tier) || String(a.name).localeCompare(String(b.name), "vi"));
+  if (!list().length) return msg.reply("🪨 Túi khoáng thạch trống. Dùng `-dao` để khai khoáng.");
 
-  const listOwned = () => {
-    const ores = u?.mining?.ores || {};
-    const entries = Object.entries(ores).filter(([, q]) => (Number(q) || 0) > 0);
-    if (!entries.length) return [];
-    loadOreDB();
-    return entries
-      .map(([id, q]) => {
-        const ore = getOreById(id);
-        if (!ore) return { id, name: id, tier: "pham", qty: Number(q) || 0 };
-        return { id, name: ore.name, tier: ore.tier, qty: Number(q) || 0 };
-      })
-      .sort((a, b) => {
-        const order = { pham: 1, linh: 2, hoang: 3, huyen: 4, dia: 5, thien: 6, tien: 7, than: 8 };
-        const ta = order[a.tier] || 99;
-        const tb = order[b.tier] || 99;
-        if (ta !== tb) return tb - ta;
-        return a.name.localeCompare(b.name);
-      });
+  const nonce = Date.now(); let selected = null;
+  const build = () => {
+    const ores = list();
+    const cur = selected ? ores.find((x) => x.id === selected) : null;
+    const embed = new EmbedBuilder().setTitle("🪨 Khoáng Thạch").setColor(cur ? tierMeta(cur.tier).color : 0x3498DB)
+      .setDescription(cur
+        ? `${tierMeta(cur.tier).icon} **${cur.name}** • ${tierText(cur.tier)}\nĐang có: **${cur.qty}**\nGiá bán: **${fmtLT(oreSellValueByTier(cur.tier))} LT/viên**`
+        : ores.slice(0, 20).map((o) => `${tierMeta(o.tier).icon} **${o.name}** x${o.qty} • ${tierText(o.tier)}`).join("\n"));
+    const menu = new ActionRowBuilder().addComponents(new StringSelectMenuBuilder().setCustomId(`bag_ore_${msg.author.id}_${nonce}`).setPlaceholder("Chọn khoáng để bán...")
+      .addOptions(ores.slice(0, 25).map((o) => ({ label: `${o.name} x${o.qty}`.slice(0, 100), value: o.id, description: `${tierText(o.tier)} • ${fmtLT(oreSellValueByTier(o.tier))} LT/viên`.slice(0, 100) }))));
+    const rows = [menu];
+    if (cur) rows.push(new ActionRowBuilder().addComponents(
+      new ButtonBuilder().setCustomId(`bag_ore_sell_${nonce}_1`).setLabel("Bán 1").setStyle(ButtonStyle.Primary),
+      new ButtonBuilder().setCustomId(`bag_ore_sell_${nonce}_5`).setLabel("Bán 5").setStyle(ButtonStyle.Primary).setDisabled(cur.qty < 5),
+      new ButtonBuilder().setCustomId(`bag_ore_sell_${nonce}_all`).setLabel(`Bán hết (${cur.qty})`).setStyle(ButtonStyle.Success),
+      new ButtonBuilder().setCustomId(`bag_ore_close_${nonce}`).setLabel("Đóng").setStyle(ButtonStyle.Secondary)
+    ));
+    return { embeds: [embed], components: rows };
   };
-
-  if (!listOwned().length) {
-    return msg.reply("🪨 Túi khoáng thạch trống. Dùng `-dao` để khai khoáng.");
-  }
-
-  let selectedOreId = null;
-
-  const buildEmbed = () => {
-    const list = listOwned();
-    const lines = list.map((o) => {
-      const m = tierMeta(o.tier);
-      return `${m.icon} **${o.name}** x${o.qty}  _(${tierText(o.tier)})_`;
-    });
-
-    if (!selectedOreId) {
-      return new EmbedBuilder()
-        .setColor(0x3498db)
-        .setTitle("🪨 Khoáng Thạch")
-        .setDescription(
-          `Cảnh giới: **${u.realm || "(chưa rõ)"}**\n` +
-            `LT: **${fmtLT(u.lt)}** 💎\n\n` +
-            `${lines.join("\n")}\n\n` +
-            `Chọn một loại khoáng để **bán**.`
-        );
-    }
-
-    const listMap = new Map(list.map((x) => [x.id, x]));
-    const cur = listMap.get(selectedOreId) || null;
-    if (!cur) {
-      selectedOreId = null;
-      return buildEmbed();
-    }
-
-    const unit = oreSellValueByTier(cur.tier);
-    const maxQty = Math.max(1, cur.qty);
-    const m = tierMeta(cur.tier);
-
-    return new EmbedBuilder()
-      .setColor(m.color)
-      .setTitle(`${m.icon} ${cur.name}`)
-      .setDescription(
-        `Phẩm giai: **${tierText(cur.tier)}**\n` +
-          `Đang có: **${cur.qty}**\n` +
-          `Giá bán: **${fmtLT(unit)} LT** / viên\n` +
-          `Bán hết: **${fmtLT(unit * maxQty)} LT**\n\n` +
-          `LT hiện có: **${fmtLT(u.lt)}** 💎`
-      );
-  };
-
-  const buildSelectRow = () => {
-    const list = listOwned();
-    const options = list.slice(0, 25).map((o) => ({
-      label: `${o.name} x${o.qty}`.slice(0, 100),
-      value: o.id,
-      description: `${tierText(o.tier)} • Bán ${fmtLT(oreSellValueByTier(o.tier))} LT/viên`.slice(0, 100),
-    }));
-
-    return new ActionRowBuilder().addComponents(
-      new StringSelectMenuBuilder()
-        .setCustomId(`bag_ores_${userId}_${n}`)
-        .setPlaceholder("Chọn khoáng để bán...")
-        .addOptions(options.length ? options : [{ label: "(Trống)", value: "none" }])
-    );
-  };
-
-  const buildButtonsRow = () => {
-    if (!selectedOreId) {
-      return new ActionRowBuilder().addComponents(
-        new ButtonBuilder()
-          .setCustomId(`bag_ores_close_${userId}_${n}`)
-          .setStyle(ButtonStyle.Secondary)
-          .setLabel("Đóng")
-      );
-    }
-    const list = listOwned();
-    const cur = list.find((x) => x.id === selectedOreId);
-    if (!cur) return null;
-    const maxQty = Math.max(1, cur.qty);
-    const presets = [1, 5, 10].filter((q) => q <= maxQty);
-    const qs = [...presets];
-    if (!qs.includes(maxQty)) qs.push(maxQty);
-    const row = new ActionRowBuilder();
-    for (const q of qs.slice(0, 4)) {
-      const isMax = q === maxQty;
-      row.addComponents(
-        new ButtonBuilder()
-          .setCustomId(`bag_ores_sell_${userId}_${n}_${selectedOreId}_${q}`)
-          .setStyle(isMax ? ButtonStyle.Success : ButtonStyle.Primary)
-          .setLabel(isMax ? `Bán hết (${q})` : `Bán x${q}`)
-      );
-    }
-    row.addComponents(
-      new ButtonBuilder()
-        .setCustomId(`bag_ores_close_${userId}_${n}`)
-        .setStyle(ButtonStyle.Secondary)
-        .setLabel("Đóng")
-    );
-    return row;
-  };
-
-  const render = async (sent) => {
-    const rows = [buildSelectRow(), buildButtonsRow()].filter(Boolean);
-    await sent.edit({ embeds: [buildEmbed()], components: rows }).catch(() => {});
-  };
-
-  const sent = await msg.reply({ embeds: [buildEmbed()], components: [buildSelectRow(), buildButtonsRow()] });
+  const sent = await msg.reply(build());
   const col = sent.createMessageComponentCollector({ time: 120_000 });
-
-  const refreshUser = () => {
-    const users = loadUsers();
-    const cur = users[userId];
-    if (!cur) return null;
-    ensureMining(cur);
-    users[userId] = cur;
-    return { users, cur };
-  };
-
-  col.on("collect", async (i) => {
-    if (i.user.id !== userId) return i.reply({ content: "❌ Đây không phải hành trang của đạo hữu.", ephemeral: true });
-    await i.deferUpdate();
-
-    const cid = String(i.customId || "");
-
-    if (i.isStringSelectMenu() && cid === `bag_ores_${userId}_${n}`) {
-      const v = i.values?.[0];
-      if (!v || v === "none") return;
-      selectedOreId = v;
-      return render(sent);
-    }
-
-    if (i.isButton() && cid === `bag_ores_close_${userId}_${n}`) {
-      col.stop("close");
-      await sent.edit({ components: [] }).catch(() => {});
-      return;
-    }
-
-    if (i.isButton() && cid.startsWith(`bag_ores_sell_${userId}_${n}_`)) {
-      const prefix = `bag_ores_sell_${userId}_${n}_`;
-      const rest = cid.startsWith(prefix) ? cid.slice(prefix.length) : "";
-      const last = rest.lastIndexOf("_");
-      if (last < 0) return;
-      const oreId = rest.slice(0, last);
-      const qty = clampInt(rest.slice(last + 1), 1, 999999);
-
-      const pack = refreshUser();
-      if (!pack) return;
-      const { users, cur } = pack;
-
-      const ores = cur.mining.ores || {};
-      const have = Math.max(0, Number(ores[oreId]) || 0);
-      if (have <= 0) {
-        selectedOreId = null;
-        u = cur;
-        users[userId] = cur;
-        saveUsers(users);
-        return render(sent);
-      }
-
-      loadOreDB();
-      const ore = getOreById(oreId) || { id: oreId, name: oreId, tier: "pham" };
-      const qSell = Math.max(1, Math.min(have, qty));
-      const unit = oreSellValueByTier(ore.tier);
-      const total = unit * qSell;
-
-      const next = have - qSell;
-      if (next <= 0) delete ores[oreId];
-      else ores[oreId] = next;
-      cur.mining.ores = ores;
-
-      cur.lt = (Number(cur.lt) || 0) + total;
-
-      const { recordEvent: recordAchvEvent } = require("../utils/achievementSystem");
-      const titlesUnlocked = recordAchvEvent(cur, "sell_ore", qSell) || [];
-
-      users[userId] = cur;
-      saveUsers(users);
-      u = cur;
-
-      // cập nhật selection nếu hết
-      if (!cur.mining.ores[oreId]) selectedOreId = null;
-
-      await i.followUp({
-        content: `✅ Đã bán **${ore.name}** x${qSell} → nhận **${fmtLT(total)} LT**.` + (titlesUnlocked.length ? `\n🎖 Mở khoá danh hiệu: **${titlesUnlocked.join(', ')}**` : ''),
-        ephemeral: true,
-      });
-
-      return render(sent);
-    }
-  });
-
-  col.on("end", async () => {
-    await sent.edit({ components: [] }).catch(() => {});
-  });
-}
-
-async function openGearView(msg, user, nonce) {
-  let u = user;
-
-  const buildOptions = () => {
-    const equipped = u.gear.equipped || {};
-    const bag = u.gear.bag || [];
-
-    const options = [];
-    for (const [slot, it] of Object.entries(equipped)) {
-      if (!it) continue;
-      options.push({
-        label: `[Đang mặc] ${slotLabel(slot)}: ${it.name || "Trang bị"}`.slice(0, 100),
-        value: `EQ:${slot}`,
-        description: `${tierText(it.tier || "pham")}`.slice(0, 100),
-      });
-    }
-    for (const it of bag) {
-      if (!it) continue;
-      options.push({
-        label: `[Túi] ${slotLabel(it.slot || "?")}: ${it.name || "Trang bị"}`.slice(0, 100),
-        value: `BG:${it.gid || ""}`,
-        description: `${tierText(it.tier || "pham")}`.slice(0, 100),
-      });
-      if (options.length >= 25) break;
-    }
-    return options;
-  };
-
-  const renderSummary = () => {
-    const equipped = u.gear.equipped || {};
-    const eqLines = Object.entries(equipped).map(
-      ([slot, it]) => `• **${slotLabel(slot)}:** ${describeGearItem(it)}`
-    );
-    const aff = sumAffixes(equipped);
-    const mainPct = sumMainPercents(equipped);
-
-    const summary =
-      `Cảnh giới: **${u.realm || "(chưa rõ)"}**\n` +
-      `Trang bị đang mặc:\n${eqLines.join("\n")}\n\n` +
-      `Tổng % dòng chính: Công +${formatPct(mainPct.atk)}% • Thủ +${formatPct(mainPct.def)}% • Tốc +${formatPct(mainPct.spd)}% • HP +${formatPct(mainPct.hp)}% • MP +${formatPct(mainPct.mp)}%\n` +
-      `Tổng phụ tố: **${Object.keys(aff).length || 0}** loại`;
-
-    return new EmbedBuilder()
-      .setColor(0x9B59B6)
-      .setTitle("🛡️ Trang Bị")
-      .setDescription(summary);
-  };
-
-  let selected = null; // { kind: 'EQ'|'BG', slot?, gid? }
-
-  const resolveSelected = () => {
-    if (!selected) return { it: null, where: "" };
-    if (selected.kind === "EQ") {
-      const it = u.gear.equipped?.[selected.slot] || null;
-      return { it, where: `Đang mặc • ${slotLabel(selected.slot)}` };
-    }
-    if (selected.kind === "BG") {
-      const it = (u.gear.bag || []).find((x) => x && x.gid === selected.gid) || null;
-      return { it, where: `Trong túi • ${slotLabel(it?.slot || "?")}` };
-    }
-    return { it: null, where: "" };
-  };
-
-  const buildSelectRow = () => {
-    const options = buildOptions();
-    return new ActionRowBuilder().addComponents(
-      new StringSelectMenuBuilder()
-        .setCustomId(`bag_gear_${msg.author.id}_${nonce}`)
-        .setPlaceholder("Xem chi tiết / mặc / tháo...")
-        .addOptions(options.length ? options : [{ label: "(Không có trang bị)", value: "none" }])
-    );
-  };
-
-  const buildButtonRow = () => {
-    if (!selected) return null;
-
-    if (selected.kind === "BG") {
-      const btnEquip = new ButtonBuilder()
-        .setCustomId(`bag_equip_${msg.author.id}_${nonce}_${selected.gid}`)
-        .setStyle(ButtonStyle.Success)
-        .setLabel("Mặc");
-
-      const btnEnh = new ButtonBuilder()
-        .setCustomId(`bag_enh_${msg.author.id}_${nonce}_BG_${selected.gid}`)
-        .setStyle(ButtonStyle.Primary)
-        .setLabel("Cường hoá");
-
-      const btnSell = new ButtonBuilder()
-        .setCustomId(`bag_sellgear_${msg.author.id}_${nonce}_${selected.gid}`)
-        .setStyle(ButtonStyle.Danger)
-        .setLabel("Bán");
-
-      const btnClose = new ButtonBuilder()
-        .setCustomId(`bag_close_${msg.author.id}_${nonce}`)
-        .setStyle(ButtonStyle.Secondary)
-        .setLabel("Đóng");
-
-      return new ActionRowBuilder().addComponents(btnEquip, btnEnh, btnSell, btnClose);
-    }
-
-    if (selected.kind === "EQ") {
-      const btnUnequip = new ButtonBuilder()
-        .setCustomId(`bag_unequip_${msg.author.id}_${nonce}_${selected.slot}`)
-        .setStyle(ButtonStyle.Secondary)
-        .setLabel("Tháo");
-
-      const btnEnh = new ButtonBuilder()
-        .setCustomId(`bag_enh_${msg.author.id}_${nonce}_EQ_${selected.slot}`)
-        .setStyle(ButtonStyle.Primary)
-        .setLabel("Cường hoá");
-
-      const btnClose = new ButtonBuilder()
-        .setCustomId(`bag_close_${msg.author.id}_${nonce}`)
-        .setStyle(ButtonStyle.Secondary)
-        .setLabel("Đóng");
-
-      return new ActionRowBuilder().addComponents(btnUnequip, btnEnh, btnClose);
-    }
-
-    return null;
-  };
-
-  const renderDetail = () => {
-    const { it, where } = resolveSelected();
-    if (!it) return renderSummary();
-
-    ensureEnhanceFields(it);
-    const enh = Math.max(0, Math.floor(Number(it.enhanceLevel) || 0));
-    const rate = successRate(enh);
-    const cost = enhanceCost(it);
-
-    const m = tierMeta(it.tier || "pham");
-    const sellLine = selected?.kind === "BG" ? `\nGiá bán: **${fmtLT(gearSellValue(it))} LT**` : "";
-    const enhLine = enh > 0 ? `+${enh}` : "+0";
-    return new EmbedBuilder()
-      .setColor(m.color)
-      .setTitle(`${m.icon} ${it.name || "Trang bị"} ${enhLine}`)
-      .setDescription(
-        `${where}\n` +
-          `Phẩm giai: **${tierText(it.tier || "pham")}**\n` +
-          `Dòng chính: **${describeMainLine(it)}**\n\n` +
-          `Cường hoá: **${enhLine}** • Tỉ lệ lên cấp: **${Math.round(rate * 100)}%**\n` +
-          `Chi phí: **${fmtLT(cost.lt)} LT** + **${cost.materialNeed}** linh tài (${tierText(cost.minTier)} trở lên)` +
-          `${sellLine}\n\n` +
-          `**Phụ tố:**\n${describeAffixes(it)}`
-      );
-  };
-
-  const render = async (sent) => {
-    const rows = [buildSelectRow()];
-    const btnRow = buildButtonRow();
-    if (btnRow) rows.push(btnRow);
-    await sent.edit({ embeds: [selected ? renderDetail() : renderSummary()], components: rows }).catch(() => {});
-  };
-
-  const sent = await msg.reply({
-    embeds: [renderSummary()],
-    components: [buildSelectRow()],
-  });
-
-  const col = sent.createMessageComponentCollector({ time: 120_000 });
-
-  col.on("collect", async (i) => {
-    if (i.user.id !== msg.author.id) {
-      return i.reply({ content: "❌ Đây không phải hành trang của đạo hữu.", ephemeral: true });
-    }
-
-    const cid = String(i.customId || "");
-
-    // Select
-    if (i.isStringSelectMenu() && cid.startsWith(`bag_gear_${msg.author.id}_${nonce}`)) {
-      await i.deferUpdate();
-      const v = i.values?.[0];
-      if (!v || v === "none") return;
-
-      if (v.startsWith("EQ:")) {
-        selected = { kind: "EQ", slot: v.slice(3) };
-      } else if (v.startsWith("BG:")) {
-        selected = { kind: "BG", gid: v.slice(3) };
-      }
-
-      return render(sent);
-    }
-
-    // Close
-    if (i.isButton() && cid === `bag_close_${msg.author.id}_${nonce}`) {
-      await i.deferUpdate();
-      col.stop("close");
-      await sent.edit({ components: [] }).catch(() => {});
-      return;
-    }
-
-    // Enhance
-    if (i.isButton() && cid.startsWith(`bag_enh_${msg.author.id}_${nonce}_`)) {
-      await i.deferUpdate();
-      const prefix = `bag_enh_${msg.author.id}_${nonce}_`;
-      const tail = cid.startsWith(prefix) ? cid.slice(prefix.length) : ""; // BG_<gid> | EQ_<slot>
-      const sep = tail.indexOf("_");
-      if (sep < 0) return;
-      const kind = tail.slice(0, sep);
-      const id = tail.slice(sep + 1);
-      if (!kind || !id) return;
-
-      const users = loadUsers();
-      const cur = users[msg.author.id];
-      if (!cur) return;
-      ensureGear(cur);
-      ensureMining(cur);
-
-      let gear = null;
-      if (kind === "BG") {
-        gear = (cur.gear.bag || []).find((x) => x && x.gid === id) || null;
-      } else if (kind === "EQ") {
-        gear = cur.gear.equipped?.[id] || null;
-      }
-      if (!gear) return i.followUp({ content: "⚠️ Trang bị không còn tồn tại.", ephemeral: true });
-
-      const { recordEvent } = require("../utils/achievementSystem");
-      const result = attemptEnhance({ user: cur, gear });
-      if (!result.ok) {
-        users[msg.author.id] = cur;
-        saveUsers(users);
-        u = cur;
-        return i.followUp({ content: `❌ ${result.message}`, ephemeral: true });
-      }
-      // Thành tựu: mốc +5/+10/+15 + số lần thất bại
-      let titleUnlocked = [];
-      if (result.after >= 5) {
-        titleUnlocked = titleUnlocked.concat(recordEvent(cur, "enh_plus5", 1) || []);
-      }
-      if (result.after >= 10) {
-        titleUnlocked = titleUnlocked.concat(recordEvent(cur, "enh_plus10", 1) || []);
-      }
-      if (result.after >= 15) {
-        titleUnlocked = titleUnlocked.concat(recordEvent(cur, "enh_plus15", 1) || []);
-      }
-      if (!result.success) {
-        titleUnlocked = titleUnlocked.concat(recordEvent(cur, "enh_fail", 1) || []);
-      }
-
-      users[msg.author.id] = cur;
-      saveUsers(users);
-      u = cur;
-
-      const okTxt = result.success ? "✅ Thành công" : "❌ Thất bại";
-      const extra = titleUnlocked.length ? `\n🎖 Mở khoá danh hiệu: **${titleUnlocked.join(", ")}**` : "";
-      await i.followUp({
-        content:
-          `${okTxt}: **${gear.name || "Trang bị"}** ` +
-          `(**+${result.before} → +${result.after}**)\n` +
-          `Tốn **${fmtLT(result.cost.lt)} LT** + **${result.cost.materialNeed}** linh tài.
-` +
-          `Tỉ lệ: **${Math.round(result.rate * 100)}%**${extra}`,
-        ephemeral: true,
-      });
-
-      // cập nhật selection
-      if (kind === "BG") selected = { kind: "BG", gid: id };
-      if (kind === "EQ") selected = { kind: "EQ", slot: id };
-      return render(sent);
-    }
-
-    // Sell gear (only bag)
-    if (i.isButton() && cid.startsWith(`bag_sellgear_${msg.author.id}_${nonce}_`)) {
-      await i.deferUpdate();
-      const gid = cid.split(`bag_sellgear_${msg.author.id}_${nonce}_`)[1] || "";
-      if (!gid) return;
-
-      const users = loadUsers();
-      const cur = users[msg.author.id];
-      if (!cur) return;
-      ensureGear(cur);
-
-      const idx = (cur.gear.bag || []).findIndex((x) => x && x.gid === gid);
-      if (idx < 0) return i.followUp({ content: "⚠️ Trang bị không còn trong túi.", ephemeral: true });
-      const it = cur.gear.bag[idx];
-      const price = gearSellValue(it);
-      cur.gear.bag.splice(idx, 1);
-      cur.lt = (Number(cur.lt) || 0) + price;
-
-      const { recordEvent: recordAchvEvent } = require("../utils/achievementSystem");
-      const titlesUnlocked = recordAchvEvent(cur, "sell_gear", 1) || [];
-
-      users[msg.author.id] = cur;
-      saveUsers(users);
-      u = cur;
-      selected = null;
-
-      await i.followUp({ content: `✅ Đã bán **${it.name || "Trang bị"}** → nhận **${fmtLT(price)} LT**.` + (titlesUnlocked.length ? `
-🎖 Mở khoá danh hiệu: **${titlesUnlocked.join(', ')}**` : ''), ephemeral: true });
-      return render(sent);
-    }
-
-    // Equip
-    if (i.isButton() && cid.startsWith(`bag_equip_${msg.author.id}_${nonce}_`)) {
-      await i.deferUpdate();
-      const gid = cid.split(`bag_equip_${msg.author.id}_${nonce}_`)[1] || "";
-      if (!gid) return;
-
-      const users = loadUsers();
-      const cur = users[msg.author.id];
-      if (!cur) return;
-      ensureGear(cur);
-
-      const idx = (cur.gear.bag || []).findIndex((x) => x && x.gid === gid);
-      if (idx < 0) return i.followUp({ content: "⚠️ Trang bị không còn trong túi.", ephemeral: true });
-
-      const item = cur.gear.bag[idx];
-      const slot = String(item.slot || "");
-      if (!slot) return i.followUp({ content: "⚠️ Trang bị này không có slot hợp lệ.", ephemeral: true });
-
-      // Move currently equipped back to bag
-      const prev = cur.gear.equipped?.[slot] || null;
-      if (prev) cur.gear.bag.push(prev);
-
-      // Equip
-      cur.gear.equipped[slot] = item;
-      cur.gear.bag.splice(idx, 1);
-
-      users[msg.author.id] = cur;
-      saveUsers(users);
-
-      u = cur;
-      selected = { kind: "EQ", slot };
-      return render(sent);
-    }
-
-    // Unequip
-    if (i.isButton() && cid.startsWith(`bag_unequip_${msg.author.id}_${nonce}_`)) {
-      await i.deferUpdate();
-      const slot = cid.split(`bag_unequip_${msg.author.id}_${nonce}_`)[1] || "";
-      if (!slot) return;
-
-      const users = loadUsers();
-      const cur = users[msg.author.id];
-      if (!cur) return;
-      ensureGear(cur);
-
-      const it = cur.gear.equipped?.[slot] || null;
-      if (!it) return i.followUp({ content: "⚠️ Slot này đang trống.", ephemeral: true });
-
-      cur.gear.equipped[slot] = null;
-      cur.gear.bag.push(it);
-
-      users[msg.author.id] = cur;
-      saveUsers(users);
-
-      u = cur;
-      selected = null;
-      return render(sent);
-    }
-  });
-
-  col.on("end", async () => {
-    await sent.edit({ components: [] }).catch(() => {});
-  });
-}
-
-
-async function openLegacyInventory(msg, user) {
-  const inv = user.inventory || {};
-  const items = Object.entries(inv).filter(([, q]) => (Number(q) || 0) > 0);
-  if (!items.length) return msg.reply("📦 Túi vật phẩm trống.");
-
-  const lines = items
-    .map(([id, q]) => {
-      const meta = getItem(id);
-      const name = meta?.name || id;
-      const emoji = meta?.emoji ? `${meta.emoji} ` : "";
-      const tier = meta?.tier ? ` • ${tierText(meta.tier)}` : "";
-      return {
-        order: meta?.tier ? tierOrder(meta.tier) : -1,
-        line: `• ${emoji}**${name}** x${Number(q) || 0}${tier}`,
-      };
-    })
-    .sort((a, b) => {
-      if (a.order !== b.order) return a.order - b.order;
-      return a.line.localeCompare(b.line, "vi");
-    })
-    .slice(0, 40)
-    .map((x) => x.line);
-
-  const embed = new EmbedBuilder()
-    .setColor(0x95A5A6)
-    .setTitle("📦 Vật Phẩm")
-    .setDescription(lines.join("\n"));
-  return msg.reply({ embeds: [embed] });
-}
-
-async function openSkillsView(msg, user, nonce) {
-  let u = user;
-  ensureUserSkills(u);
-
-  let mode = "main"; // main | equip | craft
-  let selectedSlot = null; // a1..a4 | passive
-  let selectedSkillId = null;
-  let craftRarity = null; // rare | epic
-  let craftSkillId = null;
-
-  const slotLabel = (slot) => {
-    if (!slot) return "(chưa chọn)";
-    if (slot === "passive") return "Bị động";
-    const idx = Number(slot.slice(1) || 0);
-    return `Chủ động ${idx}`;
-  };
-
-  const fmtShard = (el) => {
-    const shard = (u.skills?.shards?.[el] || { rare: 0, epic: 0 });
-    const elTxt = elements.display[el] || el;
-    return `${elTxt} • Hiếm: **${shard.rare || 0}** • Cực hiếm: **${shard.epic || 0}**`;
-  };
-
-  const equippedLine = () => {
-    const eq = u.skills?.equipped || { actives: [null, null, null, null], passive: null };
-    const act = (eq.actives || []).map((id, i) => {
-      const sk = id ? getSkill(id) : null;
-      return `• Chủ động ${i + 1}: ${sk ? `**${sk.name}**` : "_(trống)_"}`;
-    });
-    const pas = eq.passive ? getSkill(eq.passive) : null;
-    act.push(`• Bị động: ${pas ? `**${pas.name}**` : "_(trống)_"}`);
-    return act.join("\n");
-  };
-
-  const ownedSkills = () => {
-    const ids = Array.isArray(u.skills?.owned) ? u.skills.owned : [];
-    return ids
-      .map((id) => {
-        const s = getSkill(id);
-        return s ? { id, ...s } : null;
-      })
-      .filter(Boolean);
-  };
-
-  const buildEmbed = () => {
-    const el = u.element || "kim";
-    const elTxt = elements.display[el] || el;
-    const owned = ownedSkills();
-    const shardText = fmtShard(el);
-
-    const emb = new EmbedBuilder()
-      .setColor(0x8e44ad)
-      .setTitle("📜 Bí Kíp")
-      .setDescription(
-        `Cảnh giới: **${u.realm || "(chưa rõ)"}**\n` +
-          `Hệ: ${elTxt}\n\n` +
-          `**Đang trang bị:**\n${equippedLine()}\n\n` +
-          `**Sở hữu:** ${owned.length} bí kíp\n` +
-          `**Mảnh bí kíp:** ${shardText}`
-      );
-
-    if (mode === "equip") {
-      const picked = selectedSkillId ? getSkill(selectedSkillId) : null;
-      const pickedDesc = picked ? describeSkillLong(picked) : null;
-      emb.addFields({
-        name: "Chọn trang bị",
-        value:
-          `Slot: **${slotLabel(selectedSlot)}**\n` +
-          `Bí kíp: ${selectedSkillId ? `**${getSkill(selectedSkillId)?.name || "?"}**` : "_(chưa chọn)_"}` +
-          (pickedDesc ? `\n\n${pickedDesc}` : ""),
-      });
-    }
-
-    if (mode === "craft") {
-      const picked = craftSkillId ? getSkill(craftSkillId) : null;
-      const pickedDesc = picked ? describeSkillLong(picked) : null;
-      emb.addFields({
-        name: "Ghép bí kíp",
-        value:
-          `Loại: **${craftRarity === "epic" ? "Cực hiếm" : "Hiếm"}**\n` +
-          `Chọn: ${craftSkillId ? `**${getSkill(craftSkillId)?.name || "?"}**` : "_(chưa chọn)_"}` +
-          (pickedDesc ? `\n\n${pickedDesc}` : ""),
-      });
-    }
-
-    return emb;
-  };
-
-  const buildComponents = () => {
-    const rows = [];
-
-    const closeBtn = new ButtonBuilder()
-      .setCustomId(`bag_skill_close_${msg.author.id}_${nonce}`)
-      .setStyle(ButtonStyle.Secondary)
-      .setLabel("Đóng");
-
-    if (mode === "main") {
-      const mainRow = new ActionRowBuilder().addComponents(
-        new ButtonBuilder()
-          .setCustomId(`bag_skill_equip_${msg.author.id}_${nonce}`)
-          .setStyle(ButtonStyle.Primary)
-          .setLabel("Trang bị"),
-        new ButtonBuilder()
-          .setCustomId(`bag_skill_craft_rare_${msg.author.id}_${nonce}`)
-          .setStyle(ButtonStyle.Success)
-          .setLabel("Ghép (Hiếm)"),
-        new ButtonBuilder()
-          .setCustomId(`bag_skill_craft_epic_${msg.author.id}_${nonce}`)
-          .setStyle(ButtonStyle.Success)
-          .setLabel("Ghép (Cực hiếm)"),
-        closeBtn
-      );
-      rows.push(mainRow);
-      return rows;
-    }
-
-    if (mode === "equip") {
-      const slotMenu = new StringSelectMenuBuilder()
-        .setCustomId(`bag_skill_slot_${msg.author.id}_${nonce}`)
-        .setPlaceholder("Chọn slot...")
-        .addOptions(
-          { label: "Chủ động 1", value: "a1" },
-          { label: "Chủ động 2", value: "a2" },
-          { label: "Chủ động 3", value: "a3" },
-          { label: "Chủ động 4", value: "a4" },
-          { label: "Bị động", value: "passive" }
-        );
-
-      if (selectedSlot) {
-        const el = u.element || "kim";
-        const wantKind = selectedSlot === "passive" ? "passive" : "active";
-        const list = ownedSkills().filter((s) => s.element === el && s.kind === wantKind);
-        const opts = list.slice(0, 25).map((s) => ({
-          label: s.name.slice(0, 100),
-          value: s.id,
-          // Discord giới hạn 100 ký tự/description
-          description: shorten100(describeSkillShort(s)),
-        }));
-        if (opts.length === 0) {
-          opts.push({ label: "(Không có bí kíp phù hợp)", value: "none" });
-        }
-
-        const skillMenu = new StringSelectMenuBuilder()
-          .setCustomId(`bag_skill_pick_${msg.author.id}_${nonce}`)
-          .setPlaceholder("Chọn bí kíp...")
-          .addOptions(opts);
-
-        rows.push(new ActionRowBuilder().addComponents(slotMenu));
-        rows.push(new ActionRowBuilder().addComponents(skillMenu));
-
-        const btnRow = new ActionRowBuilder().addComponents(
-          new ButtonBuilder()
-            .setCustomId(`bag_skill_apply_${msg.author.id}_${nonce}`)
-            .setStyle(ButtonStyle.Success)
-            .setLabel("Đổi"),
-          new ButtonBuilder()
-            .setCustomId(`bag_skill_unequip_${msg.author.id}_${nonce}`)
-            .setStyle(ButtonStyle.Danger)
-            .setLabel("Tháo"),
-          new ButtonBuilder()
-            .setCustomId(`bag_skill_back_${msg.author.id}_${nonce}`)
-            .setStyle(ButtonStyle.Secondary)
-            .setLabel("Quay lại"),
-          closeBtn
-        );
-        rows.push(btnRow);
-        return rows;
-      }
-
-      rows.push(new ActionRowBuilder().addComponents(slotMenu));
-      rows.push(
-        new ActionRowBuilder().addComponents(
-          new ButtonBuilder()
-            .setCustomId(`bag_skill_back_${msg.author.id}_${nonce}`)
-            .setStyle(ButtonStyle.Secondary)
-            .setLabel("Quay lại"),
-          closeBtn
-        )
-      );
-      return rows;
-    }
-
-    if (mode === "craft") {
-      const el = u.element || "kim";
-      const wantR = craftRarity || "rare";
-      const list = listSkills({ element: el, rarity: wantR, kind: null }).filter((s) => !u.skills.owned.includes(s.id));
-
-      const shard = u.skills.shards?.[el] || { rare: 0, epic: 0 };
-      const okList = list.filter((s) => {
-        const need = s.rarity === "epic" ? 40 : 12;
-        const have = s.rarity === "epic" ? shard.epic : shard.rare;
-        return have >= need;
-      });
-
-      const opts = okList.slice(0, 25).map((s) => {
-        const need = s.rarity === "epic" ? 40 : 12;
-        return {
-          label: s.name.slice(0, 100),
-          value: s.id,
-          // Discord giới hạn 100 ký tự/description
-          description: shorten100(`Cần ${need} mảnh • ${describeSkillShort(s)}`),
-        };
-      });
-      if (opts.length === 0) {
-        opts.push({ label: "(Chưa đủ mảnh để ghép)", value: "none" });
-      }
-
-      const craftMenu = new StringSelectMenuBuilder()
-        .setCustomId(`bag_skill_craftpick_${msg.author.id}_${nonce}`)
-        .setPlaceholder("Chọn bí kíp để ghép...")
-        .addOptions(opts);
-      rows.push(new ActionRowBuilder().addComponents(craftMenu));
-
-      rows.push(
-        new ActionRowBuilder().addComponents(
-          new ButtonBuilder()
-            .setCustomId(`bag_skill_craftdo_${msg.author.id}_${nonce}`)
-            .setStyle(ButtonStyle.Success)
-            .setLabel("Ghép"),
-          new ButtonBuilder()
-            .setCustomId(`bag_skill_back_${msg.author.id}_${nonce}`)
-            .setStyle(ButtonStyle.Secondary)
-            .setLabel("Quay lại"),
-          closeBtn
-        )
-      );
-      return rows;
-    }
-
-    return [new ActionRowBuilder().addComponents(closeBtn)];
-  };
-
-  const sent = await msg.reply({ embeds: [buildEmbed()], components: buildComponents() });
-  const col = sent.createMessageComponentCollector({ time: 180_000 });
-
-  const refreshUser = () => {
-    const users = loadUsers();
-    const cur = users[msg.author.id];
-    if (!cur) return null;
-    ensureUserSkills(cur);
-    return { users, cur };
-  };
-
-  const render = async () => {
-    await sent.edit({ embeds: [buildEmbed()], components: buildComponents() }).catch(() => {});
-  };
-
   col.on("collect", async (i) => {
     if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải hành trang của đạo hữu.", ephemeral: true });
-
-    const cid = String(i.customId || "");
-    if (cid.includes(`_${msg.author.id}_${nonce}`)) await i.deferUpdate();
-
-    // Close
-    if (i.isButton() && cid === `bag_skill_close_${msg.author.id}_${nonce}`) {
-      col.stop("close");
-      return sent.edit({ components: [] }).catch(() => {});
-    }
-
-    // Back
-    if (i.isButton() && cid === `bag_skill_back_${msg.author.id}_${nonce}`) {
-      mode = "main";
-      selectedSlot = null;
-      selectedSkillId = null;
-      craftRarity = null;
-      craftSkillId = null;
-      return render();
-    }
-
-    // Enter equip
-    if (i.isButton() && cid === `bag_skill_equip_${msg.author.id}_${nonce}`) {
-      mode = "equip";
-      selectedSlot = null;
-      selectedSkillId = null;
-      return render();
-    }
-
-    // Slot select
-    if (i.isStringSelectMenu() && cid === `bag_skill_slot_${msg.author.id}_${nonce}`) {
-      selectedSlot = i.values?.[0] || null;
-      selectedSkillId = null;
-      return render();
-    }
-
-    // Skill pick
-    if (i.isStringSelectMenu() && cid === `bag_skill_pick_${msg.author.id}_${nonce}`) {
-      const v = i.values?.[0];
-      if (!v || v === "none") {
-        selectedSkillId = null;
-      } else {
-        selectedSkillId = v;
-      }
-      return render();
-    }
-
-    // Apply equip
-    if (i.isButton() && cid === `bag_skill_apply_${msg.author.id}_${nonce}`) {
-      const pack = refreshUser();
-      if (!pack) return;
-      const { users, cur } = pack;
-
-      if (!selectedSlot) return i.followUp({ content: "⚠️ Chưa chọn slot.", ephemeral: true });
-      if (!selectedSkillId) return i.followUp({ content: "⚠️ Chưa chọn bí kíp.", ephemeral: true });
-      if (!cur.skills.owned.includes(selectedSkillId)) return i.followUp({ content: "⚠️ Đạo hữu chưa lĩnh ngộ bí kíp này.", ephemeral: true });
-      const sk = getSkill(selectedSkillId);
-      if (!sk) return i.followUp({ content: "⚠️ Bí kíp không tồn tại.", ephemeral: true });
-      if (sk.element !== (cur.element || "kim")) return i.followUp({ content: "⚠️ Bí kíp không cùng bản mệnh ngũ hành.", ephemeral: true });
-      if (selectedSlot === "passive" && sk.kind !== "passive") return i.followUp({ content: "⚠️ Slot bị động chỉ nhận bí kíp bị động.", ephemeral: true });
-      if (selectedSlot !== "passive" && sk.kind !== "active") return i.followUp({ content: "⚠️ Slot chủ động chỉ nhận bí kíp chủ động.", ephemeral: true });
-
-      if (!cur.skills.equipped) cur.skills.equipped = { actives: [null, null, null, null], passive: null };
-      if (!Array.isArray(cur.skills.equipped.actives)) cur.skills.equipped.actives = [null, null, null, null];
-
-      if (selectedSlot === "passive") {
-        cur.skills.equipped.passive = selectedSkillId;
-      } else {
-        const idx = Math.max(0, Math.min(3, Number(selectedSlot.slice(1)) - 1));
-        cur.skills.equipped.actives[idx] = selectedSkillId;
-      }
-
-      users[msg.author.id] = cur;
-      saveUsers(users);
-      u = cur;
-      return render();
-    }
-
-    // Unequip
-    if (i.isButton() && cid === `bag_skill_unequip_${msg.author.id}_${nonce}`) {
-      const pack = refreshUser();
-      if (!pack) return;
-      const { users, cur } = pack;
-
-      if (!selectedSlot) return i.followUp({ content: "⚠️ Chưa chọn slot.", ephemeral: true });
-
-      if (!cur.skills.equipped) cur.skills.equipped = { actives: [null, null, null, null], passive: null };
-      if (!Array.isArray(cur.skills.equipped.actives)) cur.skills.equipped.actives = [null, null, null, null];
-
-      if (selectedSlot === "passive") {
-        cur.skills.equipped.passive = null;
-      } else {
-        const idx = Math.max(0, Math.min(3, Number(selectedSlot.slice(1)) - 1));
-        cur.skills.equipped.actives[idx] = null;
-      }
-
-      users[msg.author.id] = cur;
-      saveUsers(users);
-      u = cur;
-      return render();
-    }
-
-    // Craft buttons
-    if (i.isButton() && cid === `bag_skill_craft_rare_${msg.author.id}_${nonce}`) {
-      mode = "craft";
-      craftRarity = "rare";
-      craftSkillId = null;
-      return render();
-    }
-    if (i.isButton() && cid === `bag_skill_craft_epic_${msg.author.id}_${nonce}`) {
-      mode = "craft";
-      craftRarity = "epic";
-      craftSkillId = null;
-      return render();
-    }
-
-    if (i.isStringSelectMenu() && cid === `bag_skill_craftpick_${msg.author.id}_${nonce}`) {
-      const v = i.values?.[0];
-      craftSkillId = !v || v === "none" ? null : v;
-      return render();
-    }
-
-    if (i.isButton() && cid === `bag_skill_craftdo_${msg.author.id}_${nonce}`) {
-      const pack = refreshUser();
-      if (!pack) return;
-      const { users, cur } = pack;
-      if (!craftSkillId) return i.followUp({ content: "⚠️ Chưa chọn bí kíp để ghép.", ephemeral: true });
-      const res = craftSkill(cur, craftSkillId);
-      if (!res.ok) return i.followUp({ content: res.message || "❌ Ghép thất bại.", ephemeral: true });
-
-      users[msg.author.id] = cur;
-      saveUsers(users);
-      u = cur;
-      mode = "main";
-      craftSkillId = null;
-      craftRarity = null;
-      return sent
-        .edit({ content: `✅ ${res.message}`, embeds: [buildEmbed()], components: buildComponents() })
-        .catch(() => {});
-    }
+    await i.deferUpdate();
+    if (i.isStringSelectMenu()) { selected = i.values[0]; return sent.edit(build()).catch(() => {}); }
+    if (i.customId === `bag_ore_close_${nonce}`) { col.stop(); return sent.edit({ components: [] }).catch(() => {}); }
+    if (!i.customId.startsWith(`bag_ore_sell_${nonce}_`) || !selected) return;
+    all = loadUsers(); u = all[msg.author.id]; ensureMining(u);
+    const ore = getOreById(selected) || { id: selected, name: selected, tier: "pham" };
+    const have = Math.max(0, Number(u.mining.ores[selected]) || 0);
+    const tail = i.customId.slice(`bag_ore_sell_${nonce}_`.length);
+    const qty = tail === "all" ? have : Math.min(have, clampInt(tail, 1, 999999));
+    if (qty <= 0) { selected = null; return sent.edit(build()).catch(() => {}); }
+    const total = qty * oreSellValueByTier(ore.tier);
+    const left = have - qty; if (left > 0) u.mining.ores[selected] = left; else delete u.mining.ores[selected];
+    u.lt = (Number(u.lt) || 0) + total;
+    const titles = recordAchievementEvent(u, "sell_ore", qty) || [];
+    all[msg.author.id] = u; saveUsers(all);
+    if (!u.mining.ores[selected]) selected = null;
+    await i.followUp({ content: `✅ Bán **${ore.name}** x${qty} → **+${fmtLT(total)} LT**.${titles.length ? `\n🎖 ${titles.join(", ")}` : ""}`, ephemeral: true });
+    return sent.edit(build()).catch(() => {});
   });
+  col.on("end", () => sent.edit({ components: [] }).catch(() => {}));
+}
 
-  col.on("end", async () => {
-    await sent.edit({ components: [] }).catch(() => {});
+function gearSummary(u) {
+  const eq = u.gear.equipped || {};
+  const main = sumMainPercents(eq); const aff = sumAffixes(eq);
+  const lines = Object.entries(eq).map(([slot, it]) => `• **${slotLabel(slot)}:** ${describeGearItem(it)}`);
+  return new EmbedBuilder().setTitle("🛡️ Trang Bị").setColor(0x9B59B6)
+    .setDescription(`${lines.join("\n")}\n\nCông +${formatPct(main.atk)}% • Thủ +${formatPct(main.def)}% • Tốc +${formatPct(main.spd)}% • HP +${formatPct(main.hp)}% • MP +${formatPct(main.mp)}%\nPhụ tố cộng dồn: **${Object.keys(aff).length}** loại`);
+}
+
+async function openGear(msg) {
+  let all = loadUsers(); let u = all[msg.author.id]; ensureGear(u); ensureGearIds(u); all[msg.author.id] = u; saveUsers(all);
+  const nonce = Date.now(); let selected = null;
+  const options = () => {
+    const out = [];
+    for (const [slot, it] of Object.entries(u.gear.equipped)) if (it) out.push({ label: `[Đang mặc] ${slotLabel(slot)}: ${it.name || "Trang bị"}`.slice(0,100), value: `E:${slot}` });
+    for (const it of u.gear.bag) if (it && out.length < 25) out.push({ label: `[Túi] ${slotLabel(it.slot)}: ${it.name || "Trang bị"}`.slice(0,100), value: `B:${it.gid}` });
+    return out;
+  };
+  const resolve = () => {
+    if (!selected) return null;
+    if (selected.kind === "E") return u.gear.equipped[selected.id] || null;
+    return u.gear.bag.find((x) => x?.gid === selected.id) || null;
+  };
+  const build = () => {
+    const opts = options(); const gear = resolve(); let embed = gearSummary(u);
+    if (gear) {
+      ensureEnhanceFields(gear); const cost = enhanceCost(gear); const m = tierMeta(gear.tier || "pham");
+      embed = new EmbedBuilder().setTitle(`${m.icon} ${gear.name || "Trang bị"} +${gear.enhanceLevel || 0}`).setColor(m.color)
+        .setDescription(`${selected.kind === "E" ? "Đang mặc" : "Trong túi"} • **${slotLabel(gear.slot || selected.id)}**\nPhẩm: **${tierText(gear.tier || "pham")}**\nCường hóa kế: **${Math.round(successRate(gear.enhanceLevel) * 100)}%** • ${fmtLT(cost.lt)} LT + ${cost.materialNeed} linh tài${selected.kind === "B" ? `\nGiá bán: **${fmtLT(gearSellValue(gear))} LT**` : ""}`);
+    }
+    const rows = [];
+    if (opts.length) rows.push(new ActionRowBuilder().addComponents(new StringSelectMenuBuilder().setCustomId(`bag_gear_${msg.author.id}_${nonce}`).setPlaceholder("Chọn trang bị...").addOptions(opts)));
+    if (gear) {
+      const row = new ActionRowBuilder();
+      if (selected.kind === "B") row.addComponents(new ButtonBuilder().setCustomId(`bag_gear_equip_${nonce}`).setLabel("Mặc").setStyle(ButtonStyle.Success));
+      else row.addComponents(new ButtonBuilder().setCustomId(`bag_gear_unequip_${nonce}`).setLabel("Tháo").setStyle(ButtonStyle.Secondary));
+      row.addComponents(new ButtonBuilder().setCustomId(`bag_gear_enh_${nonce}`).setLabel("Cường hóa").setStyle(ButtonStyle.Primary));
+      if (selected.kind === "B") row.addComponents(new ButtonBuilder().setCustomId(`bag_gear_sell_${nonce}`).setLabel("Bán").setStyle(ButtonStyle.Danger));
+      row.addComponents(new ButtonBuilder().setCustomId(`bag_gear_close_${nonce}`).setLabel("Đóng").setStyle(ButtonStyle.Secondary));
+      rows.push(row);
+    }
+    return { embeds: [embed], components: rows };
+  };
+  const sent = await msg.reply(build()); const col = sent.createMessageComponentCollector({ time: 120_000 });
+  col.on("collect", async (i) => {
+    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải hành trang của đạo hữu.", ephemeral: true });
+    await i.deferUpdate();
+    if (i.isStringSelectMenu()) { const [kind, id] = i.values[0].split(":"); selected = { kind, id }; return sent.edit(build()).catch(() => {}); }
+    if (i.customId === `bag_gear_close_${nonce}`) { col.stop(); return sent.edit({ components: [] }).catch(() => {}); }
+    all = loadUsers(); u = all[msg.author.id]; ensureGear(u); ensureMining(u);
+    let gear = selected?.kind === "E" ? u.gear.equipped[selected.id] : u.gear.bag.find((x) => x?.gid === selected?.id);
+    if (!gear) { selected = null; return sent.edit(build()).catch(() => {}); }
+
+    if (i.customId === `bag_gear_equip_${nonce}` && selected.kind === "B") {
+      const idx = u.gear.bag.findIndex((x) => x?.gid === selected.id); const slot = gear.slot;
+      if (u.gear.equipped[slot]) u.gear.bag.push(u.gear.equipped[slot]);
+      u.gear.equipped[slot] = gear; u.gear.bag.splice(idx, 1); selected = { kind: "E", id: slot };
+    } else if (i.customId === `bag_gear_unequip_${nonce}` && selected.kind === "E") {
+      u.gear.equipped[selected.id] = null; u.gear.bag.push(gear); selected = null;
+    } else if (i.customId === `bag_gear_sell_${nonce}` && selected.kind === "B") {
+      const idx = u.gear.bag.findIndex((x) => x?.gid === selected.id); const price = gearSellValue(gear);
+      u.gear.bag.splice(idx, 1); u.lt = (Number(u.lt) || 0) + price; const titles = recordAchievementEvent(u, "sell_gear", 1) || [];
+      await i.followUp({ content: `✅ Bán **${gear.name || "Trang bị"}** → **+${fmtLT(price)} LT**.${titles.length ? `\n🎖 ${titles.join(", ")}` : ""}`, ephemeral: true }); selected = null;
+    } else if (i.customId === `bag_gear_enh_${nonce}`) {
+      const res = attemptEnhance({ user: u, gear });
+      if (!res.ok) return i.followUp({ content: `❌ ${res.message}`, ephemeral: true });
+      let titles = [];
+      if (res.after >= 5) titles.push(...recordAchievementEvent(u, "enh_plus5", 1));
+      if (res.after >= 10) titles.push(...recordAchievementEvent(u, "enh_plus10", 1));
+      if (res.after >= 15) titles.push(...recordAchievementEvent(u, "enh_plus15", 1));
+      if (!res.success) titles.push(...recordAchievementEvent(u, "enh_fail", 1));
+      await i.followUp({ content: `${res.success ? "✅ Thành công" : "❌ Thất bại"}: **+${res.before} → +${res.after}**${titles.length ? `\n🎖 ${[...new Set(titles)].join(", ")}` : ""}`, ephemeral: true });
+    }
+    all[msg.author.id] = u; saveUsers(all); return sent.edit(build()).catch(() => {});
   });
+  col.on("end", () => sent.edit({ components: [] }).catch(() => {}));
+}
+
+function skillsEmbed(u) {
+  ensureUserSkills(u); const eq = u.skills.equipped; const el = u.element || "kim";
+  const act = eq.actives.map((id, i) => `${i + 1}. ${id ? `**${getSkill(id)?.name || id}**` : "_(trống)_"}`).join("\n");
+  const pass = eq.passive ? `**${getSkill(eq.passive)?.name || eq.passive}**` : "_(trống)_";
+  const shards = u.skills.shards[el] || { rare: 0, epic: 0 };
+  return new EmbedBuilder().setTitle("📜 Bí Kíp").setColor(0x8E44AD)
+    .setDescription(`Hệ: ${elements.display[el] || el}\n\n**Chủ động**\n${act}\n**Bị động:** ${pass}\n\nMảnh Hiếm: **${shards.rare || 0}** • Cực hiếm: **${shards.epic || 0}**`);
+}
+
+async function openSkills(msg) {
+  let all = loadUsers(); let u = all[msg.author.id]; ensureUserSkills(u); all[msg.author.id] = u; saveUsers(all);
+  const nonce = Date.now(); let mode = "main"; let slot = null; let picked = null; let rarity = null;
+  const build = () => {
+    const rows = []; const embed = skillsEmbed(u);
+    if (mode === "main") rows.push(new ActionRowBuilder().addComponents(
+      new ButtonBuilder().setCustomId(`bag_sk_equip_${nonce}`).setLabel("Trang bị").setStyle(ButtonStyle.Primary),
+      new ButtonBuilder().setCustomId(`bag_sk_rare_${nonce}`).setLabel("Ghép Hiếm").setStyle(ButtonStyle.Success),
+      new ButtonBuilder().setCustomId(`bag_sk_epic_${nonce}`).setLabel("Ghép Cực hiếm").setStyle(ButtonStyle.Success),
+      new ButtonBuilder().setCustomId(`bag_sk_close_${nonce}`).setLabel("Đóng").setStyle(ButtonStyle.Secondary)
+    ));
+    if (mode === "equip") {
+      rows.push(new ActionRowBuilder().addComponents(new StringSelectMenuBuilder().setCustomId(`bag_sk_slot_${nonce}`).setPlaceholder("Chọn slot...").addOptions(
+        { label: "Chủ động 1", value: "a1" }, { label: "Chủ động 2", value: "a2" }, { label: "Chủ động 3", value: "a3" }, { label: "Chủ động 4", value: "a4" }, { label: "Bị động", value: "passive" }
+      )));
+      if (slot) {
+        const want = slot === "passive" ? "passive" : "active";
+        const pool = (u.skills.owned || []).map((id) => ({ id, s: getSkill(id) })).filter((x) => x.s?.kind === want && (!x.s.element || x.s.element === u.element));
+        if (pool.length) rows.push(new ActionRowBuilder().addComponents(new StringSelectMenuBuilder().setCustomId(`bag_sk_pick_${nonce}`).setPlaceholder("Chọn bí kíp...").addOptions(pool.slice(0,25).map((x) => ({ label: x.s.name.slice(0,100), value: x.id, description: short100(describeSkillShort(x.s)) })))));
+      }
+      rows.push(new ActionRowBuilder().addComponents(
+        new ButtonBuilder().setCustomId(`bag_sk_apply_${nonce}`).setLabel("Áp dụng").setStyle(ButtonStyle.Success).setDisabled(!slot || !picked),
+        new ButtonBuilder().setCustomId(`bag_sk_remove_${nonce}`).setLabel("Tháo").setStyle(ButtonStyle.Danger).setDisabled(!slot),
+        new ButtonBuilder().setCustomId(`bag_sk_back_${nonce}`).setLabel("Quay lại").setStyle(ButtonStyle.Secondary)
+      ));
+    }
+    if (mode === "craft") {
+      const pool = listSkills({ element: u.element, rarity }).filter((s) => !(u.skills.owned || []).includes(s.id));
+      if (pool.length) rows.push(new ActionRowBuilder().addComponents(new StringSelectMenuBuilder().setCustomId(`bag_sk_craftpick_${nonce}`).setPlaceholder("Chọn bí kíp để ghép...").addOptions(pool.slice(0,25).map((s) => ({ label: s.name.slice(0,100), value: s.id, description: short100(describeSkillShort(s)) }))));
+      rows.push(new ActionRowBuilder().addComponents(
+        new ButtonBuilder().setCustomId(`bag_sk_craft_${nonce}`).setLabel("Ghép").setStyle(ButtonStyle.Success).setDisabled(!picked),
+        new ButtonBuilder().setCustomId(`bag_sk_back_${nonce}`).setLabel("Quay lại").setStyle(ButtonStyle.Secondary)
+      ));
+      if (picked) { const sk = getSkill(picked); if (sk) embed.addFields({ name: sk.name, value: describeSkillLong(sk).slice(0,1024) }); }
+    }
+    return { embeds: [embed], components: rows };
+  };
+  const sent = await msg.reply(build()); const col = sent.createMessageComponentCollector({ time: 150_000 });
+  col.on("collect", async (i) => {
+    if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải hành trang của đạo hữu.", ephemeral: true });
+    await i.deferUpdate(); const cid = i.customId;
+    if (cid === `bag_sk_close_${nonce}`) { col.stop(); return sent.edit({ components: [] }).catch(() => {}); }
+    if (cid === `bag_sk_back_${nonce}`) { mode = "main"; slot = null; picked = null; rarity = null; return sent.edit(build()).catch(() => {}); }
+    if (cid === `bag_sk_equip_${nonce}`) { mode = "equip"; slot = null; picked = null; return sent.edit(build()).catch(() => {}); }
+    if (cid === `bag_sk_rare_${nonce}` || cid === `bag_sk_epic_${nonce}`) { mode = "craft"; rarity = cid.includes("epic") ? "epic" : "rare"; picked = null; return sent.edit(build()).catch(() => {}); }
+    if (i.isStringSelectMenu() && cid === `bag_sk_slot_${nonce}`) { slot = i.values[0]; picked = null; return sent.edit(build()).catch(() => {}); }
+    if (i.isStringSelectMenu() && (cid === `bag_sk_pick_${nonce}` || cid === `bag_sk_craftpick_${nonce}`)) { picked = i.values[0]; return sent.edit(build()).catch(() => {}); }
+
+    all = loadUsers(); u = all[msg.author.id]; ensureUserSkills(u);
+    if (cid === `bag_sk_apply_${nonce}` && slot && picked) {
+      if (slot === "passive") u.skills.equipped.passive = picked;
+      else u.skills.equipped.actives[Math.max(0, Math.min(3, Number(slot.slice(1)) - 1))] = picked;
+    } else if (cid === `bag_sk_remove_${nonce}` && slot) {
+      if (slot === "passive") u.skills.equipped.passive = null;
+      else u.skills.equipped.actives[Math.max(0, Math.min(3, Number(slot.slice(1)) - 1))] = null;
+      picked = null;
+    } else if (cid === `bag_sk_craft_${nonce}` && picked) {
+      const res = craftSkill(u, picked); if (!res.ok) return i.followUp({ content: res.message, ephemeral: true });
+      await i.followUp({ content: `✅ ${res.message}`, ephemeral: true }); mode = "main"; picked = null; rarity = null;
+    }
+    all[msg.author.id] = u; saveUsers(all); return sent.edit(build()).catch(() => {});
+  });
+  col.on("end", () => sent.edit({ components: [] }).catch(() => {}));
+}
+
+async function openItems(msg) {
+  const u = loadUsers()[msg.author.id]; const inv = u.inventory || {};
+  const rows = Object.entries(inv).filter(([, q]) => Number(q) > 0).map(([id, q]) => {
+    const it = getItem(id); return { order: it?.tier ? tierOrder(it.tier) : -1, text: `• ${it?.emoji || ""} **${it?.name || id}** x${q}${it?.tier ? ` • ${tierText(it.tier)}` : ""}` };
+  }).sort((a,b) => a.order-b.order).slice(0,40);
+  return msg.reply({ embeds: [new EmbedBuilder().setTitle("📦 Vật Phẩm").setColor(0x95A5A6).setDescription(rows.length ? rows.map((x) => x.text).join("\n") : "(Trống)")] });
 }
 
 module.exports = {
   name: "bag",
   aliases: ["tui"],
-  description: "Xem túi (khoáng cụ / khoáng thạch / trang bị).",
-  run: async (client, msg) => {
-    const users = loadUsers();
-    const user = users[msg.author.id];
-    if (!user) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
-
-    ensureMining(user);
-    ensureGear(user);
-    ensureUserSkills(user);
-    const changed = ensureGearIds(user);
-    users[msg.author.id] = user;
-    if (changed) saveUsers(users);
-    else saveUsers(users);
-
-    const nonce = `${Date.now()}`;
-    const embed = new EmbedBuilder()
-      .setColor(0x5865F2)
-      .setTitle("🎒 Túi")
-      .setDescription(`Cảnh giới: **${user.realm || "(chưa rõ)"}**\nChọn mục để mở.`);
-
-    const menu = new StringSelectMenuBuilder()
-      .setCustomId(`bag_cat_${msg.author.id}_${nonce}`)
-      .setPlaceholder("Chọn mục...")
-      .addOptions(
-        { label: "🧰 Khoáng cụ", value: "tools", description: "Chọn khoáng cụ đang dùng" },
-        { label: "🪨 Khoáng thạch", value: "ores", description: "Xem khoáng thạch đã đào" },
-        { label: "📜 Bí kíp", value: "skills", description: "Xem/Trang bị/Ghép bí kíp" },
-        { label: "🛡️ Trang bị", value: "gear", description: "Xem trang bị đang mặc & trong túi" },
-        { label: "📦 Vật phẩm", value: "legacy", description: "Xem linh tài và vật phẩm đang có" }
-      );
-
-    const row = new ActionRowBuilder().addComponents(menu);
+  description: "Túi: khoáng cụ, khoáng, bí kíp, trang bị và vật phẩm.",
+  run: async (_client, msg) => {
+    const users = loadUsers(); const u = users[msg.author.id];
+    if (!u) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
+    ensureMining(u); ensureGear(u); ensureUserSkills(u); ensureGearIds(u); users[msg.author.id] = u; saveUsers(users);
+    const nonce = Date.now();
+    const embed = new EmbedBuilder().setTitle("🎒 Túi").setColor(0x5865F2).setDescription(`Cảnh giới: **${u.realm || "(chưa rõ)"}**\nChọn khu vực cần mở.`);
+    const row = new ActionRowBuilder().addComponents(new StringSelectMenuBuilder().setCustomId(`bag_cat_${msg.author.id}_${nonce}`).setPlaceholder("Chọn mục...").addOptions(
+      { label: "🧰 Khoáng cụ", value: "tools" }, { label: "🪨 Khoáng thạch", value: "ores" }, { label: "📜 Bí kíp", value: "skills" }, { label: "🛡️ Trang bị", value: "gear" }, { label: "📦 Vật phẩm", value: "items" }
+    ));
     const sent = await msg.reply({ embeds: [embed], components: [row] });
-
-    const col = sent.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 60_000 });
+    const col = sent.createMessageComponentCollector({ time: 60_000 });
     col.on("collect", async (i) => {
       if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải hành trang của đạo hữu.", ephemeral: true });
-      await i.deferUpdate();
-      const choice = i.values[0];
-      await sent.edit({ components: [] }).catch(() => {});
-
-      if (choice === "tools") return openToolsMenu(msg, user, nonce);
-      if (choice === "ores") return openOresView(msg, user, nonce);
-      if (choice === "skills") return openSkillsView(msg, user, nonce);
-      if (choice === "gear") return openGearView(msg, user, nonce);
-      if (choice === "legacy") return openLegacyInventory(msg, user);
+      if (!i.isStringSelectMenu()) return;
+      await i.deferUpdate(); await sent.edit({ components: [] }).catch(() => {}); col.stop();
+      const v = i.values[0];
+      if (v === "tools") return openTools(msg);
+      if (v === "ores") return openOres(msg);
+      if (v === "skills") return openSkills(msg);
+      if (v === "gear") return openGear(msg);
+      return openItems(msg);
     });
-    col.on("end", () => sent.edit({ components: [] }).catch(() => {}));
   },
 };

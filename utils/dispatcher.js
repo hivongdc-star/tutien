@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 const { loadUsers, saveUsers } = require("./storage");
-const { addXp, getRealm } = require("./xp");
-const { earnFromChat } = require("./currency");
+const { addXp, getRealm } = require("../commands/character");
+const { earnFromChat } = require("../commands/economy");
 const {
   ensureWordChainState,
   loadWordChainDictionaries,

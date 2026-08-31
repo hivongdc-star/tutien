@@ -1,8 +1,8 @@
 const { randomInt } = require("crypto");
 const { EmbedBuilder } = require("discord.js");
 const { loadUsers, saveUsers } = require("../utils/storage");
-const { addLT } = require("../utils/currency");
-const { addXp } = require("../utils/xp");
+const { addLT } = require("./economy");
+const { addXp } = require("./character");
 const { ensurePetShape, applyPetIdle, feedPetFromFish } = require("./pet");
 const FISH_DB = require("../data/fish_db.json");
 

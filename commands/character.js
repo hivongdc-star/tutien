@@ -1,297 +1,63 @@
-const {
-  ActionRowBuilder,
-  StringSelectMenuBuilder,
-  EmbedBuilder,
-  ComponentType,
-} = require("discord.js");
+const { ActionRowBuilder, StringSelectMenuBuilder, EmbedBuilder, ComponentType } = require("discord.js");
 const { createUser, loadUsers, saveUsers, getUser } = require("../utils/storage");
-const races = require("../utils/races");
-const elements = require("../utils/element");
-const { getExpNeeded } = require("../utils/xp");
+const { baseExp, expMultiplier } = require("../utils/config");
 const { tierMeta } = require("../utils/tiers");
-const {
-  AFFIX_LABELS,
-  sumAffixes,
-  sumMainPercents,
-  applyPct,
-  progressBar,
-  formatPct,
-} = require("../utils/statsView");
+const { AFFIX_LABELS, sumAffixes, sumMainPercents, applyPct, progressBar, formatPct } = require("../utils/statsView");
 const { ensureUserSkills, getSkill } = require("../utils/skills");
 
-function ensureGear(user) {
-  if (!user.gear) user.gear = {};
-  if (!user.gear.equipped || typeof user.gear.equipped !== "object") {
-    user.gear.equipped = { weapon: null, armor: null, boots: null, bracelet: null };
-  }
+// ==================================================
+// CHARACTER DATA + PROGRESSION ENGINE
+// ==================================================
+const races={
+  nhan:{name:"Nhân",emoji:"👤",gain:{hp:12,mp:12,atk:12,def:12,spd:2}},
+  ma:{name:"Ma",emoji:"😈",gain:{hp:6,mp:6,atk:26,def:10,spd:2}},
+  tien:{name:"Tiên",emoji:"👼",gain:{hp:6,mp:26,atk:6,def:10,spd:2}},
+  yeu:{name:"Yêu",emoji:"🦊",gain:{hp:26,mp:6,atk:6,def:10,spd:2}},
+  than:{name:"Thần",emoji:"⚡",gain:{hp:12,mp:12,atk:12,def:12,spd:2}},
+};
+const elements={
+  kim:{hp:12,mp:12,atk:12,def:12,spd:2},moc:{hp:26,mp:6,atk:6,def:10,spd:2},thuy:{hp:6,mp:26,atk:6,def:10,spd:2},hoa:{hp:6,mp:6,atk:26,def:10,spd:2},tho:{hp:12,mp:6,atk:6,def:24,spd:2},
+  display:{kim:"⚔️ Kim",moc:"🌿 Mộc",thuy:"💧 Thủy",hoa:"🔥 Hỏa",tho:"⛰️ Thổ"},
+};
+const realms=["Luyện Khí","Trúc Cơ","Kết Đan","Nguyên Anh","Hóa Thần","Hợp Thể","Độ Kiếp","Đại Thừa","Nhân Tiên","Chân Tiên","Địa Tiên","Thiên Tiên","Kim Tiên","Tiên Quân","Tiên Vương","Tiên Hoàng","Tiên Đế"];
+function getExpNeeded(level){return Math.floor(baseExp*Math.pow(expMultiplier,(Number(level)||1)-1));}
+function computeExpBonusPercent(user){let bonus=0;for(const it of Object.values(user?.equipments||{})){if(!it)continue;if(typeof it.exp_percent==="number")bonus+=it.exp_percent;if(it.bonus&&typeof it.bonus.exp_percent==="number")bonus+=it.bonus.exp_percent;}return bonus;}
+function getRealm(level){const lv=Math.max(1,Number(level)||1),idx=Math.floor((lv-1)/10),stage=((lv-1)%10)+1;return `${realms[idx]||"Phàm Nhân"} - Tầng ${stage}`;}
+function applyLevelStatGrowth(user){
+  const raceKey=user.race||"nhan",elementKey=user.element||"kim",rg=races[raceKey]?.gain||{},eg=elements[elementKey]||{};
+  if(!Number.isFinite(user.maxHp))user.maxHp=Number.isFinite(user.hp)?user.hp:100;if(!Number.isFinite(user.maxMp))user.maxMp=Number.isFinite(user.mp)?user.mp:100;if(!Number.isFinite(user.atk))user.atk=10;if(!Number.isFinite(user.def))user.def=10;if(!Number.isFinite(user.spd))user.spd=10;
+  for(const k of ["hp","mp","atk","def","spd"]){const field=k==="hp"?"maxHp":k==="mp"?"maxMp":k;if(Number.isFinite(rg[k]))user[field]+=rg[k];if(Number.isFinite(eg[k]))user[field]+=eg[k];}
+  user.maxHp+=100;user.maxMp+=20;
+  if((user.level||1)%10===1){const m=raceKey==="than"?1.6:1.5;for(const f of ["atk","def","spd","maxHp","maxMp"])user[f]=Math.floor(user[f]*m);}
+  user.hp=user.maxHp;user.mp=user.maxMp;
 }
+function addXp(userId,amount){const users=loadUsers(),u=users[userId];if(!u)return 0;const raw=Number(amount)||0;if(raw<=0)return 0;u.exp=(Number(u.exp)||0)+Math.floor(raw*(1+computeExpBonusPercent(u)/100));u.level=Number(u.level)||1;let gained=0;while(u.exp>=getExpNeeded(u.level)){u.exp-=getExpNeeded(u.level);u.level++;gained++;applyLevelStatGrowth(u);}if(gained>0)u.realm=getRealm(u.level);users[userId]=u;saveUsers(users);return gained;}
 
-const create = {
-  name: "create",
-  aliases: ["c", "crate"],
-  run: async (_client, msg) => {
-    const users = loadUsers();
-    if (users[msg.author.id]) return msg.reply("⚠️ Đạo hữu đã nhập đạo rồi. Dùng `-profile` để xem hồ sơ hiện tại.");
+function ensureGear(user){user.gear=user.gear||{};if(!user.gear.equipped||typeof user.gear.equipped!=="object")user.gear.equipped={weapon:null,armor:null,boots:null,bracelet:null};}
+function raceMenu(id,placeholder){return new StringSelectMenuBuilder().setCustomId(id).setPlaceholder(placeholder).addOptions(Object.entries(races).map(([key,r])=>({label:r.name,value:key,emoji:r.emoji})));}
+function elementMenu(id,placeholder){return new StringSelectMenuBuilder().setCustomId(id).setPlaceholder(placeholder).addOptions(Object.entries(elements.display).map(([key,raw])=>{const [emoji,...name]=raw.split(" ");return{label:name.join(" "),value:key,emoji};}));}
 
-    const raceMenu = new StringSelectMenuBuilder()
-      .setCustomId("select_race")
-      .setPlaceholder("Chọn huyết mạch...")
-      .addOptions(Object.entries(races).map(([key, r]) => ({ label: r.name.substring(0, 25), value: key, emoji: r.emoji })));
-    const elementMenu = new StringSelectMenuBuilder()
-      .setCustomId("select_element")
-      .setPlaceholder("Chọn bản mệnh ngũ hành...")
-      .addOptions(Object.entries(elements.display).map(([key, raw]) => {
-        const [emoji, name] = raw.split(" ");
-        return { label: name.substring(0, 25), value: key, emoji };
-      }));
-
-    const reply = await msg.reply({
-      embeds: [new EmbedBuilder().setTitle("✨ Khai Mở Nhân Vật").setDescription("Chọn **huyết mạch** và **bản mệnh ngũ hành** để khai mở tiên đồ.").setColor(0x8E44AD)],
-      components: [new ActionRowBuilder().addComponents(raceMenu), new ActionRowBuilder().addComponents(elementMenu)],
-    });
-
-    let selectedRace = null;
-    let selectedElement = null;
-    let created = false;
-    const collector = reply.createMessageComponentCollector({ time: 60000 });
-
-    collector.on("collect", async (interaction) => {
-      if (interaction.user.id !== msg.author.id) {
-        return interaction.reply({ content: "⚠️ Đây không phải lựa chọn của đạo hữu.", ephemeral: true });
-      }
-      if (interaction.customId === "select_race") {
-        selectedRace = interaction.values[0];
-        await interaction.reply({ content: `Đã chọn huyết mạch: **${races[selectedRace].emoji} ${races[selectedRace].name}**`, ephemeral: true });
-      }
-      if (interaction.customId === "select_element") {
-        selectedElement = interaction.values[0];
-        await interaction.reply({ content: `Đã chọn bản mệnh: **${elements.display[selectedElement]}**`, ephemeral: true });
-      }
-      if (selectedRace && selectedElement && !created) {
-        created = true;
-        const newUser = createUser(msg.author.id, selectedRace, selectedElement);
-        newUser.background = "default";
-        const confirm = new EmbedBuilder()
-          .setTitle("✅ Nhập Đạo Thành Công")
-          .setColor(0x2ECC71)
-          .setDescription(
-            `Huyết mạch: **${races[selectedRace].emoji} ${races[selectedRace].name}**\n` +
-            `Bản mệnh: **${elements.display[selectedElement]}**\n` +
-            `Cảnh giới: **${newUser.realm}**\n\n` +
-            `Sinh lực: **${newUser.hp}/${newUser.maxHp}**\n` +
-            `Linh lực: **${newUser.mp}/${newUser.maxMp}**\n` +
-            `Công kích: **${newUser.atk}**\nPhòng ngự: **${newUser.def}**\nThân pháp: **${newUser.spd}**\n` +
-            `Linh thạch: **${newUser.lt}**`
-          )
-          .setFooter({ text: "Dùng -profile để xem hồ sơ, -bag để mở hành trang." });
-        await msg.channel.send({ embeds: [confirm] });
-        collector.stop();
-      }
-    });
-    collector.on("end", () => {
-      if (!created) msg.channel.send("⏳ Đạo hữu chưa hoàn tất khai mệnh. Dùng `-create` để bắt đầu lại.");
-    });
-  },
+const create={
+  name:"create",aliases:["c","crate"],run:async(_client,msg)=>{
+    const users=loadUsers();if(users[msg.author.id])return msg.reply("⚠️ Đạo hữu đã nhập đạo rồi. Dùng `-profile` để xem hồ sơ hiện tại.");
+    const reply=await msg.reply({embeds:[new EmbedBuilder().setTitle("✨ Khai Mở Nhân Vật").setDescription("Chọn **huyết mạch** và **bản mệnh ngũ hành** để khai mở tiên đồ.").setColor(0x8E44AD)],components:[new ActionRowBuilder().addComponents(raceMenu("select_race","Chọn huyết mạch...")),new ActionRowBuilder().addComponents(elementMenu("select_element","Chọn bản mệnh ngũ hành..."))]});
+    let race=null,element=null,done=false;const col=reply.createMessageComponentCollector({time:60000});
+    col.on("collect",async(i)=>{if(i.user.id!==msg.author.id)return i.reply({content:"⚠️ Đây không phải lựa chọn của đạo hữu.",ephemeral:true});if(i.customId==="select_race"){race=i.values[0];await i.reply({content:`Đã chọn huyết mạch: **${races[race].emoji} ${races[race].name}**`,ephemeral:true});}if(i.customId==="select_element"){element=i.values[0];await i.reply({content:`Đã chọn bản mệnh: **${elements.display[element]}**`,ephemeral:true});}if(race&&element&&!done){done=true;const u=createUser(msg.author.id,race,element);u.background="default";await msg.channel.send({embeds:[new EmbedBuilder().setTitle("✅ Nhập Đạo Thành Công").setColor(0x2ECC71).setDescription(`Huyết mạch: **${races[race].emoji} ${races[race].name}**\nBản mệnh: **${elements.display[element]}**\nCảnh giới: **${u.realm}**\n\nSinh lực: **${u.hp}/${u.maxHp}**\nLinh lực: **${u.mp}/${u.maxMp}**\nCông kích: **${u.atk}**\nPhòng ngự: **${u.def}**\nThân pháp: **${u.spd}**\nLinh thạch: **${u.lt}**`)]});col.stop("done");}});
+    col.on("end",(_c,reason)=>{if(reason!=="done"&&!done)msg.channel.send("⏳ Đạo hữu chưa hoàn tất khai mệnh. Dùng `-create` để bắt đầu lại.");});
+  }
 };
-
-const reset = {
-  name: "reset",
-  aliases: ["rs"],
-  run: async (_client, msg) => {
-    const users = loadUsers();
-    if (!users[msg.author.id]) return msg.reply("⚠️ Đạo hữu chưa có nhân vật để tái lập căn cơ.");
-    delete users[msg.author.id];
-    saveUsers(users);
-
-    const raceMenu = new StringSelectMenuBuilder()
-      .setCustomId("reset_select_race")
-      .setPlaceholder("🧬 Chọn lại Tộc")
-      .addOptions(Object.entries(races).map(([key, r]) => ({ label: r.name.substring(0, 25), value: key, emoji: r.emoji })));
-    const elementMenu = new StringSelectMenuBuilder()
-      .setCustomId("reset_select_element")
-      .setPlaceholder("🌿 Chọn lại Ngũ hành")
-      .addOptions(Object.entries(elements.display).map(([key, raw]) => {
-        const [emoji, ...rest] = String(raw || "").split(" ");
-        return { label: rest.join(" ").substring(0, 25), value: key, emoji };
-      }));
-
-    const reply = await msg.channel.send({
-      embeds: [new EmbedBuilder().setColor("Red").setTitle("♻️ Tái Lập Căn Cơ").setDescription(`Nhân vật của **${msg.author.username}** đã được xoá.\n👉 Hãy chọn lại **Tộc** và **Ngũ hành** để bắt đầu lại từ đầu!`)],
-      components: [new ActionRowBuilder().addComponents(raceMenu), new ActionRowBuilder().addComponents(elementMenu)],
-    });
-
-    let selectedRace = null;
-    let selectedElement = null;
-    let completed = false;
-    const collector = reply.createMessageComponentCollector({ time: 60000 });
-
-    collector.on("collect", async (interaction) => {
-      if (interaction.user.id !== msg.author.id) {
-        return interaction.reply({ content: "⚠️ Đạo hữu chỉ có thể tái lập căn cơ của chính mình.", ephemeral: true });
-      }
-      if (interaction.customId === "reset_select_race") {
-        selectedRace = interaction.values[0];
-        await interaction.reply({ content: `🧬 Đã chọn lại **${races[selectedRace].emoji} ${races[selectedRace].name}**`, ephemeral: true });
-      }
-      if (interaction.customId === "reset_select_element") {
-        selectedElement = interaction.values[0];
-        await interaction.reply({ content: `🌿 Đã chọn lại **${elements.display[selectedElement]}**`, ephemeral: true });
-      }
-      if (selectedRace && selectedElement && !completed) {
-        completed = true;
-        const newUser = createUser(msg.author.id, selectedRace, selectedElement);
-        const confirm = new EmbedBuilder()
-          .setTitle("✅ Tái Lập Thành Công").setColor("Green")
-          .setDescription(
-            `🧬 **Tộc:** ${races[selectedRace].emoji} ${races[selectedRace].name}\n` +
-            `🌿 **Ngũ hành:** ${elements.display[selectedElement]}\n` +
-            `⚔️ **Cảnh giới:** ${newUser.realm}\n` +
-            `❤️ HP: ${newUser.hp}/${newUser.maxHp} | 🔷 MP: ${newUser.mp}/${newUser.maxMp}\n` +
-            `🔥 Công: ${newUser.atk} | 🛡️ Thủ: ${newUser.def} | ⚡ Tốc: ${newUser.spd}\n` +
-            `💢 Nộ: ${newUser.fury} | 💎 Linh Thạch: ${newUser.lt}`
-          );
-        await msg.channel.send({ embeds: [confirm] });
-        collector.stop("done");
-      }
-    });
-    collector.on("end", (_collected, reason) => {
-      if (reason !== "done") msg.channel.send("⏳ Reset không hoàn tất, hãy dùng lại lệnh `-reset`.");
-    });
-  },
+const reset={
+  name:"reset",aliases:["rs"],run:async(_client,msg)=>{
+    const users=loadUsers();if(!users[msg.author.id])return msg.reply("⚠️ Đạo hữu chưa có nhân vật để tái lập căn cơ.");delete users[msg.author.id];saveUsers(users);
+    const reply=await msg.channel.send({embeds:[new EmbedBuilder().setColor("Red").setTitle("♻️ Tái Lập Căn Cơ").setDescription("Hãy chọn lại **Tộc** và **Ngũ hành**.")],components:[new ActionRowBuilder().addComponents(raceMenu("reset_select_race","🧬 Chọn lại Tộc")),new ActionRowBuilder().addComponents(elementMenu("reset_select_element","🌿 Chọn lại Ngũ hành"))]});
+    let race=null,element=null,done=false;const col=reply.createMessageComponentCollector({time:60000});
+    col.on("collect",async(i)=>{if(i.user.id!==msg.author.id)return i.reply({content:"⚠️ Đạo hữu chỉ có thể tái lập căn cơ của chính mình.",ephemeral:true});if(i.customId==="reset_select_race"){race=i.values[0];await i.reply({content:`🧬 Đã chọn **${races[race].emoji} ${races[race].name}**`,ephemeral:true});}if(i.customId==="reset_select_element"){element=i.values[0];await i.reply({content:`🌿 Đã chọn **${elements.display[element]}**`,ephemeral:true});}if(race&&element&&!done){done=true;const u=createUser(msg.author.id,race,element);await msg.channel.send({embeds:[new EmbedBuilder().setTitle("✅ Tái Lập Thành Công").setColor("Green").setDescription(`🧬 **Tộc:** ${races[race].emoji} ${races[race].name}\n🌿 **Ngũ hành:** ${elements.display[element]}\n⚔️ **Cảnh giới:** ${u.realm}\n❤️ HP: ${u.hp}/${u.maxHp} | 🔷 MP: ${u.mp}/${u.maxMp}\n🔥 Công: ${u.atk} | 🛡️ Thủ: ${u.def} | ⚡ Tốc: ${u.spd}\n💎 Linh Thạch: ${u.lt}`)]});col.stop("done");}});col.on("end",(_c,reason)=>{if(reason!=="done")msg.channel.send("⏳ Reset không hoàn tất, hãy dùng lại lệnh `-reset`.");});
+  }
 };
+const profile={name:"profile",aliases:["p","prof"],run:async(_client,msg)=>{const u=getUser(msg.author.id);if(!u)return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` để khai mở nhân vật.");const display=u.name&&u.name!=="Chưa đặt tên"?u.name:msg.author.username,title=u.title?`[${u.title}] `:"";return msg.reply({embeds:[new EmbedBuilder().setColor(0x5865F2).setTitle("📜 Hồ Sơ Tu Luyện").setThumbnail(msg.author.displayAvatarURL({extension:"png",size:256})).setDescription(`**${title}${display}**\n${u.realm||"(chưa rõ)"}\n\n${races[u.race]?.name||u.race||"?"} • ${elements.display[u.element]||u.element||"?"}`).addFields({name:"Tiến cảnh",value:`Cấp: **${u.level||1}**\nEXP: **${u.exp||0}/${getExpNeeded(u.level||1)}**\nLT: **${u.lt||0}**`,inline:true},{name:"Nội thể",value:`HP: **${u.hp||0}/${u.maxHp||0}**\nMP: **${u.mp||0}/${u.maxMp||0}**`,inline:true},{name:"Nền tảng",value:`Công: **${u.atk||0}**\nThủ: **${u.def||0}**\nTốc: **${u.spd||0}**`},{name:"Lời tự thuật",value:u.bio?String(u.bio).slice(0,1024):"Chưa lưu lại lời tự thuật."})]});}};
+const nv={name:"nv",aliases:["nhanvat","char"],description:"Xem chỉ số nhân vật.",run:async(_client,msg)=>{const users=loadUsers(),u=users[msg.author.id];if(!u)return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` để khai mở nhân vật.");ensureGear(u);ensureUserSkills(u);const eq=u.gear.equipped||{},main=sumMainPercents(eq),aff=sumAffixes(eq),base={atk:Number(u.atk)||0,def:Number(u.def)||0,spd:Number(u.spd)||0,hp:Number(u.maxHp)||0,mp:Number(u.maxMp)||0},eff={atk:applyPct(base.atk,main.atk),def:applyPct(base.def,main.def),spd:applyPct(base.spd,main.spd),hp:applyPct(base.hp,main.hp),mp:applyPct(base.mp,main.mp)},affLines=Object.entries(aff).map(([k,v])=>`• ${AFFIX_LABELS[k]||k}: **+${formatPct(v)}%**`);if(!affLines.length)affLines.push("Chưa có linh văn phụ trợ.");const se=u.skills?.equipped||{actives:[null,null,null,null],passive:null},skillLines=(se.actives||[]).map((id,i)=>`• Chiêu thức ${i+1}: ${id?`**${getSkill(id)?.name||id}**`:"_(trống)_"}`);skillLines.push(`• Tâm pháp: ${se.passive?`**${getSkill(se.passive)?.name||se.passive}**`:"_(trống)_"}`);return msg.reply({embeds:[new EmbedBuilder().setColor(tierMeta("huyen").color).setTitle("🧾 Nền Tảng Nhân Vật").setDescription(`**${u.title?`[${u.title}] `:""}${u.name||msg.author.username}**\n${u.realm||"?"} • ${races[u.race]?.name||u.race||"?"} • ${elements.display[u.element]||u.element||"?"}`).addFields({name:"Sinh lực & linh lực",value:`HP: ${progressBar(Math.min(Number(u.hp)||0,eff.hp),eff.hp,12)} **${Math.min(Number(u.hp)||0,eff.hp)}/${eff.hp}**\nMP: ${progressBar(Math.min(Number(u.mp)||0,eff.mp),eff.mp,12)} **${Math.min(Number(u.mp)||0,eff.mp)}/${eff.mp}**`},{name:"Chỉ số nền",value:`Công: **${base.atk}** → **${eff.atk}**\nThủ: **${base.def}** → **${eff.def}**\nTốc: **${base.spd}** → **${eff.spd}**`},{name:"Thuộc tính kèm theo",value:affLines.join("\n")},{name:"Chiêu thức đang mang",value:skillLines.join("\n")})]});}};
+const bio={name:"bio",aliases:["b","thongtin","about"],run:(_client,msg,args)=>{const users=loadUsers(),u=users[msg.author.id];if(!u)return msg.channel.send("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");const text=args.join(" ");if(!text)return msg.channel.send("❌ Hãy nhập bio mới.");if(text.length>200)return msg.channel.send("⚠️ Bio quá dài, tối đa 200 ký tự.");u.bio=text.replace(/[*_`~|]/g,"");saveUsers(users);return msg.channel.send("✅ Cập nhật bio thành công.");}};
+const doiten={name:"doiten",aliases:["rename","name"],run:(_client,msg,args)=>{const users=loadUsers(),u=users[msg.author.id];if(!u)return msg.channel.send("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");const name=args.join(" ");if(!name)return msg.channel.send("❌ Hãy nhập đạo hiệu mới.");if(name.length>30)return msg.channel.send("⚠️ Đạo hiệu quá dài, tối đa 30 ký tự.");u.name=name.replace(/[*_`~|]/g,"");saveUsers(users);return msg.channel.send(`✅ Đạo hiệu đã đổi thành: **${u.name}**`);}};
+const danhhieu={name:"danhhieu",aliases:["title"],run:async(_client,msg)=>{const users=loadUsers(),u=users[msg.author.id];if(!u)return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");u.titles=u.titles||[];if(!u.titles.length)return msg.reply("❌ Đạo hữu chưa có danh hiệu nào.");const menu=new StringSelectMenuBuilder().setCustomId(`title_${msg.author.id}`).setPlaceholder("Chọn danh hiệu...").addOptions(u.titles.slice(0,25).map((t)=>({label:t.slice(0,100),value:t.slice(0,100)}))),sent=await msg.reply({content:"🎖 Chọn danh hiệu muốn hiển lộ:",components:[new ActionRowBuilder().addComponents(menu)]}),col=sent.createMessageComponentCollector({componentType:ComponentType.StringSelect,time:30000});col.on("collect",(i)=>{if(i.user.id!==msg.author.id)return i.reply({content:"❌ Đây không phải danh sách danh hiệu của đạo hữu.",ephemeral:true});u.title=i.values[0];saveUsers(users);return i.update({content:`✅ Đã chọn danh hiệu **${u.title}**`,components:[]});});col.on("end",()=>sent.edit({components:[]}).catch(()=>{}));}};
 
-const profile = {
-  name: "profile",
-  aliases: ["p", "prof"],
-  run: async (_client, msg) => {
-    const user = getUser(msg.author.id);
-    if (!user) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` để khai mở nhân vật.");
-    const displayName = user.name && user.name !== "Chưa đặt tên" ? user.name : msg.author.username;
-    const titlePrefix = user.title ? `[${user.title}] ` : "";
-    const raceLabel = races[user.race]?.name || user.race || "?";
-    const elementLabel = elements.display[user.element] || user.element || "?";
-    const expNeed = getExpNeeded(Number(user.level) || 1);
-    const embed = new EmbedBuilder()
-      .setColor(0x5865F2).setTitle("📜 Hồ Sơ Tu Luyện")
-      .setThumbnail(msg.author.displayAvatarURL({ extension: "png", size: 256 }))
-      .setDescription(`**${titlePrefix}${displayName}**\n${user.realm || "(chưa rõ)"}\n\n${raceLabel} • ${elementLabel}`)
-      .addFields(
-        { name: "Tiến cảnh", value: `Cấp tu luyện: **${Number(user.level) || 1}**\nKinh nghiệm: **${Number(user.exp) || 0}/${expNeed}**\nLinh thạch: **${Number(user.lt) || 0}**`, inline: true },
-        { name: "Nội thể", value: `Sinh lực: **${Number(user.hp) || 0}/${Number(user.maxHp) || 0}**\nLinh lực: **${Number(user.mp) || 0}/${Number(user.maxMp) || 0}**`, inline: true },
-        { name: "Nền tảng", value: `Công kích: **${Number(user.atk) || 0}**\nPhòng ngự: **${Number(user.def) || 0}**\nThân pháp: **${Number(user.spd) || 0}**` },
-        { name: "Lời tự thuật", value: user.bio ? String(user.bio).slice(0, 1024) : "Chưa lưu lại lời tự thuật." }
-      )
-      .setFooter({ text: "Dùng -nv để xem chi tiết gia tăng từ pháp bảo và chiêu thức." });
-    return msg.reply({ embeds: [embed] });
-  },
-};
-
-const nv = {
-  name: "nv",
-  aliases: ["nhanvat", "char"],
-  description: "Xem chỉ số nhân vật.",
-  run: async (_client, msg) => {
-    const users = loadUsers();
-    const user = users[msg.author.id];
-    if (!user) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` để khai mở nhân vật.");
-    ensureGear(user);
-    ensureUserSkills(user);
-    const equipped = user.gear.equipped || {};
-    const mainPct = sumMainPercents(equipped);
-    const aff = sumAffixes(equipped);
-    const baseAtk = Number(user.atk) || 0;
-    const baseDef = Number(user.def) || 0;
-    const baseSpd = Number(user.spd) || 0;
-    const baseMaxHp = Number(user.maxHp) || 0;
-    const baseMaxMp = Number(user.maxMp) || 0;
-    const effAtk = applyPct(baseAtk, mainPct.atk);
-    const effDef = applyPct(baseDef, mainPct.def);
-    const effSpd = applyPct(baseSpd, mainPct.spd);
-    const effMaxHp = applyPct(baseMaxHp, mainPct.hp);
-    const effMaxMp = applyPct(baseMaxMp, mainPct.mp);
-    const curHp = Math.min(Math.max(0, Number(user.hp) || 0), effMaxHp || 0);
-    const curMp = Math.min(Math.max(0, Number(user.mp) || 0), effMaxMp || 0);
-    const affLines = Object.entries(aff).map(([k, v]) => `• ${AFFIX_LABELS[k] || k}: **+${formatPct(v)}%**`);
-    if (!affLines.length) affLines.push("Chưa có linh văn phụ trợ.");
-    const eq = user.skills?.equipped || { actives: [null, null, null, null], passive: null };
-    const act = Array.isArray(eq.actives) ? eq.actives : [null, null, null, null];
-    const skillLines = act.map((id, idx) => {
-      const sk = id ? getSkill(id) : null;
-      return `• Chiêu thức ${idx + 1}: ${sk ? `**${sk.name}**` : "_(trống)_"}`;
-    });
-    const pas = eq.passive ? getSkill(eq.passive) : null;
-    skillLines.push(`• Tâm pháp: ${pas ? `**${pas.name}**` : "_(trống)_"}`);
-    const titlePrefix = user.title ? `[${user.title}] ` : "";
-    const embed = new EmbedBuilder()
-      .setColor(tierMeta("huyen").color).setTitle("🧾 Nền Tảng Nhân Vật")
-      .setDescription(`**${titlePrefix}${user.name || msg.author.username}**\n${user.realm || "(chưa rõ)"} • ${races[user.race]?.name || user.race || "?"} • ${elements.display[user.element] || user.element || "?"}\nCấp tu luyện: **${user.level || 1}** • Linh thạch: **${user.lt || 0}**`)
-      .addFields(
-        { name: "Sinh lực & linh lực", value: `Sinh lực: ${progressBar(curHp, effMaxHp, 12)} **${curHp}/${effMaxHp}** _( +${formatPct(mainPct.hp)}% )_\nLinh lực: ${progressBar(curMp, effMaxMp, 12)} **${curMp}/${effMaxMp}** _( +${formatPct(mainPct.mp)}% )_` },
-        { name: "Chỉ số nền", value: `Công kích: **${baseAtk}** _( +${formatPct(mainPct.atk)}% )_ → **${effAtk}**\nPhòng ngự: **${baseDef}** _( +${formatPct(mainPct.def)}% )_ → **${effDef}**\nThân pháp: **${baseSpd}** _( +${formatPct(mainPct.spd)}% )_ → **${effSpd}**` },
-        { name: "Thuộc tính kèm theo", value: affLines.join("\n") },
-        { name: "Chiêu thức đang mang", value: skillLines.join("\n") }
-      );
-    return msg.reply({ embeds: [embed] });
-  },
-};
-
-const bio = {
-  name: "bio",
-  aliases: ["b", "thongtin", "about"],
-  run: (_client, msg, args) => {
-    const users = loadUsers();
-    const user = users[msg.author.id];
-    if (!user) return msg.channel.send("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
-    const text = args.join(" ");
-    if (!text) return msg.channel.send("❌ Hãy nhập bio mới.");
-    if (text.length > 200) return msg.channel.send("⚠️ Bio quá dài, tối đa 200 ký tự.");
-    user.bio = text.replace(/[*_`~|]/g, "");
-    saveUsers(users);
-    return msg.channel.send("✅ Cập nhật bio thành công.");
-  },
-};
-
-const doiten = {
-  name: "doiten",
-  aliases: ["rename", "name"],
-  run: (_client, msg, args) => {
-    const users = loadUsers();
-    const user = users[msg.author.id];
-    if (!user) return msg.channel.send("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
-    const newName = args.join(" ");
-    if (!newName) return msg.channel.send("❌ Hãy nhập đạo hiệu mới.");
-    if (newName.length > 30) return msg.channel.send("⚠️ Đạo hiệu quá dài, tối đa 30 ký tự.");
-    const safeName = newName.replace(/[*_`~|]/g, "");
-    user.name = safeName;
-    saveUsers(users);
-    return msg.channel.send(`✅ Đạo hiệu đã đổi thành: **${safeName}**`);
-  },
-};
-
-const danhhieu = {
-  name: "danhhieu",
-  aliases: ["title"],
-  run: async (_client, msg) => {
-    const users = loadUsers();
-    const user = users[msg.author.id];
-    if (!user) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
-    user.titles = user.titles || [];
-    if (!user.titles.length) return msg.reply("❌ Đạo hữu chưa có danh hiệu nào.");
-    const menu = new StringSelectMenuBuilder()
-      .setCustomId(`title_${msg.author.id}`)
-      .setPlaceholder("Chọn danh hiệu...")
-      .addOptions(user.titles.slice(0, 25).map((t) => ({ label: t.slice(0, 100), value: t.slice(0, 100), description: `Chọn danh hiệu: ${t}`.slice(0, 100) })));
-    const sent = await msg.reply({ content: "🎖 Chọn danh hiệu muốn hiển lộ:", components: [new ActionRowBuilder().addComponents(menu)] });
-    const collector = sent.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 30000 });
-    collector.on("collect", (i) => {
-      if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải danh sách danh hiệu của đạo hữu.", ephemeral: true });
-      const chosen = i.values[0];
-      user.title = chosen;
-      saveUsers(users);
-      return i.update({ content: `✅ Đã chọn danh hiệu **${chosen}**`, components: [] });
-    });
-    collector.on("end", () => sent.edit({ components: [] }).catch(() => {}));
-  },
-};
-
-module.exports = [create, reset, profile, nv, bio, doiten, danhhieu];
+module.exports={commands:[create,reset,profile,nv,bio,doiten,danhhieu],races,elements,realms,getExpNeeded,computeExpBonusPercent,getRealm,addXp};

@@ -1,4 +1,4 @@
-﻿# Node modules & build
+# Node modules & build
 node_modules/
 dist/
 build/
@@ -29,6 +29,7 @@ Thumbs.db
 
 # Runtime data - không sync dữ liệu người dùng
 data/users.json
+data/images/
 
 # Runtime data - bát tự / birth profile
 data/battu.json
@@ -44,11 +45,9 @@ data/*bat_tu*.json
 data/*bazi*.json
 data/*birth*.json
 
-
 # PM2 logs
 pids/
 *.pid
 *.seed
 *.pid.lock
 logs/
-EOF

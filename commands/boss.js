@@ -12,12 +12,9 @@ const { loadUsers, saveUsers } = require("../utils/storage");
 const { computeEffective } = require("./dungeon");
 const elements = require("../utils/element");
 const { loadOreDB } = require("../utils/mining");
-const { createGearFromOres, formatGearLines } = require("../utils/forge");
+const { createGearFromOres, formatGearLines } = require("./ren");
 const { getISOWeekKey, recordQuestEvent, recordAchievementEvent } = require("./progress");
 
-// ==================================================
-// WORLD BOSS ENGINE
-// ==================================================
 const DATA_PATH = path.join(__dirname, "../data/worldboss.json");
 const ATTACK_COOLDOWN_MS = 60_000;
 
@@ -31,13 +28,8 @@ function progressBar(current, max, width = 18) {
   const filled = Math.round(ratio * width);
   return "▰".repeat(filled) + "▱".repeat(width - filled);
 }
-function loadBossState() {
-  try { return JSON.parse(fs.readFileSync(DATA_PATH, "utf8")); }
-  catch { return { version: 1 }; }
-}
-function saveBossState(state) {
-  try { fs.writeFileSync(DATA_PATH, JSON.stringify(state, null, 2)); } catch {}
-}
+function loadBossState() { try { return JSON.parse(fs.readFileSync(DATA_PATH, "utf8")); } catch { return { version: 1 }; } }
+function saveBossState(state) { try { fs.writeFileSync(DATA_PATH, JSON.stringify(state, null, 2)); } catch {} }
 function pickBossName() {
   const pool = ["Huyết Linh Vương", "Hắc Vực Cự Thú", "U Minh Ma Long", "Thiên Ngoại Dị Thú", "Cổ Ấn Hung Thú", "Tà Ảnh Ma Vương"];
   return pool[randomInt(0, pool.length)];
@@ -77,9 +69,7 @@ function topContributors(boss, users, limit = 5) {
     .filter((x) => x.dmg > 0).sort((a, b) => b.dmg - a.dmg).slice(0, limit)
     .map((x, i) => ({ rank: i + 1, uid: x.uid, name: users?.[x.uid]?.name || `@${x.uid}`, dmg: x.dmg }));
 }
-function computeRewardPoolLt(boss) {
-  return clampInt(Math.round((Number(boss.maxHp) || 0) / 10), 50_000, 2_000_000);
-}
+function computeRewardPoolLt(boss) { return clampInt(Math.round((Number(boss.maxHp) || 0) / 10), 50_000, 2_000_000); }
 function computeRewardForUser(boss, userId) {
   const dmg = Math.max(0, Number(boss.contributions?.[userId]) || 0);
   const total = Object.values(boss.contributions || {}).reduce((a, v) => a + Math.max(0, Number(v) || 0), 0);
@@ -100,24 +90,17 @@ function computeRedDrops(boss) {
   boss.redDrops = {};
   const totalDmg = entries.reduce((a, x) => a + x.dmg, 0);
   if (!entries.length || totalDmg <= 0) { boss.redDropsComputedAt = Date.now(); return; }
-
-  const alloc = {};
-  let used = 0;
-  const remainders = [];
+  const alloc = {}; let used = 0; const remainders = [];
   for (const x of entries) {
     const exact = totalDrops * x.dmg / totalDmg;
-    alloc[x.uid] = Math.floor(exact);
-    used += alloc[x.uid];
-    remainders.push({ uid: x.uid, w: exact - Math.floor(exact) });
+    alloc[x.uid] = Math.floor(exact); used += alloc[x.uid]; remainders.push({ uid: x.uid, w: exact - Math.floor(exact) });
   }
   for (let left = totalDrops - used; left > 0; left--) {
     const totalW = remainders.reduce((a, x) => a + x.w, 0);
-    let r = Math.random() * Math.max(totalW, 0.000001);
-    let uid = remainders[0]?.uid;
+    let r = Math.random() * Math.max(totalW, 0.000001); let uid = remainders[0]?.uid;
     for (const x of remainders) { r -= x.w; if (r <= 0) { uid = x.uid; break; } }
     if (uid) alloc[uid] = (alloc[uid] || 0) + 1;
   }
-
   const db = loadOreDB();
   const tienPool = Array.isArray(db) ? db.filter((o) => String(o?.tier) === "tien") : [];
   const source = tienPool.length ? tienPool : db;
@@ -145,9 +128,7 @@ function applyDamage(state, userId, dmg, now = Date.now()) {
   saveBossState(state);
   return { ok: true, dmg: d, killed, hp: boss.hp, maxHp: boss.maxHp };
 }
-function canClaim(boss, userId) {
-  return Boolean(boss?.killedAt && boss?.contributions?.[userId] && !boss?.claimed?.[userId]);
-}
+function canClaim(boss, userId) { return Boolean(boss?.killedAt && boss?.contributions?.[userId] && !boss?.claimed?.[userId]); }
 function claimReward(state, userId) {
   const boss = state?.boss;
   if (!boss) return { ok: false, message: "Boss chưa sẵn sàng." };
@@ -157,15 +138,11 @@ function claimReward(state, userId) {
   if (!boss.redDropsComputedAt) computeRedDrops(boss);
   const info = computeRewardForUser(boss, userId);
   const drops = Array.isArray(boss.redDrops?.[userId]) ? boss.redDrops[userId] : [];
-  delete boss.redDrops[userId];
-  boss.claimed[userId] = true;
-  saveBossState(state);
+  delete boss.redDrops[userId]; boss.claimed[userId] = true; saveBossState(state);
   return { ok: true, rewardLt: info.lt, info, drops };
 }
 function bossSummary(state, users) {
-  const b = state?.boss;
-  if (!b) return null;
-  const poolLt = computeRewardPoolLt(b);
+  const b = state?.boss; if (!b) return null; const poolLt = computeRewardPoolLt(b);
   return {
     weekKey: state.weekKey, name: b.name, element: b.element, elementText: elements.display?.[b.element] || b.element,
     maxHp: b.maxHp, hp: b.hp, hpText: `${b.hp.toLocaleString("vi-VN")} / ${b.maxHp.toLocaleString("vi-VN")}`,
@@ -175,19 +152,11 @@ function bossSummary(state, users) {
   };
 }
 
-// ==================================================
-// COMMAND UI
-// ==================================================
 function fmtLT(n) { return Number(n || 0).toLocaleString("vi-VN"); }
-function ensureGearBag(user) {
-  user.gear = user.gear || {};
-  if (!Array.isArray(user.gear.bag)) user.gear.bag = [];
-}
+function ensureGearBag(user) { user.gear = user.gear || {}; if (!Array.isArray(user.gear.bag)) user.gear.bag = []; }
 function computeDamageFromUser(user) {
   const { eff } = computeEffective(user);
-  const atk = Number(eff.atk) || 0;
-  const spd = Number(eff.spd) || 0;
-  const lvl = Number(user.level) || 1;
+  const atk = Number(eff.atk) || 0, spd = Number(eff.spd) || 0, lvl = Number(user.level) || 1;
   return Math.max(1, Math.min(250_000, Math.floor((atk * 1.6 + spd * 0.4) * (1 + Math.min(0.8, Math.log10(Math.max(1, lvl)) * 0.25)) * (0.85 + Math.random() * 0.3))));
 }
 function buildBossEmbed(s) {
@@ -214,39 +183,33 @@ const bossCommand = {
   run: async (_client, msg) => {
     const users = loadUsers();
     if (!users[msg.author.id]) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` trước.");
-    const state = ensureBoss(users);
-    const summary = bossSummary(state, users);
-    const nonce = Math.random().toString(36).slice(2, 8);
+    const state = ensureBoss(users), summary = bossSummary(state, users), nonce = Math.random().toString(36).slice(2, 8);
     const sent = await msg.reply({ embeds: [buildBossEmbed(summary)], components: buildRows(msg.author.id, nonce, !!summary.killedAt) });
     const col = sent.createMessageComponentCollector({ componentType: ComponentType.Button, time: 120_000 });
-
     col.on("collect", async (i) => {
       if (i.user.id !== msg.author.id) return i.reply({ content: "❌ Đây không phải chiến bảng của đạo hữu.", ephemeral: true });
       const cid = String(i.customId || "");
       if (!cid.endsWith(`_${nonce}`)) return i.reply({ content: "⚠️ Chiến lệnh đã hết hiệu lực.", ephemeral: true });
       if (cid.startsWith("boss_close_")) { await i.deferUpdate(); col.stop(); return sent.edit({ components: [] }).catch(() => {}); }
-
       if (cid.startsWith("boss_atk_")) {
         await i.deferUpdate();
-        const all = loadUsers(); const u = all[msg.author.id]; const now = Date.now();
+        const all = loadUsers(), u = all[msg.author.id], now = Date.now();
         const remain = (Number(u.bossLastAt) || 0) + ATTACK_COOLDOWN_MS - now;
         if (remain > 0) return i.followUp({ content: `⏳ Chờ **${Math.ceil(remain / 1000)}s** rồi ra tay tiếp.`, ephemeral: true });
-        const st = ensureBoss(all, now); const sum = bossSummary(st, all);
+        const st = ensureBoss(all, now), sum = bossSummary(st, all);
         if (sum.killedAt) { await sent.edit({ embeds: [buildBossEmbed(sum)], components: buildRows(msg.author.id, nonce, true) }); return; }
         const res = applyDamage(st, msg.author.id, computeDamageFromUser(u), now);
         if (!res.ok) return i.followUp({ content: `❌ ${res.message}`, ephemeral: true });
-        u.bossLastAt = now;
-        recordQuestEvent(u, "boss_damage", res.dmg);
+        u.bossLastAt = now; recordQuestEvent(u, "boss_damage", res.dmg);
         const titles = recordAchievementEvent(u, "boss_damage", res.dmg) || [];
         all[msg.author.id] = u; saveUsers(all);
         const after = bossSummary(st, all);
         await sent.edit({ embeds: [buildBossEmbed(after)], components: buildRows(msg.author.id, nonce, !!after.killedAt) });
         return i.followUp({ content: `⚔️ Gây **${fmtLT(res.dmg)}** sát thương.${res.killed ? "\n🏁 **Boss đã bị hạ!**" : ""}${titles.length ? `\n🎖 ${titles.join(", ")}` : ""}`, ephemeral: true });
       }
-
       if (cid.startsWith("boss_claim_")) {
         await i.deferUpdate();
-        const all = loadUsers(); const u = all[msg.author.id]; const st = ensureBoss(all);
+        const all = loadUsers(), u = all[msg.author.id], st = ensureBoss(all);
         if (!canClaim(st.boss, msg.author.id)) return i.followUp({ content: "⚠️ Không có thưởng khả dụng hoặc đã nhận.", ephemeral: true });
         const res = claimReward(st, msg.author.id);
         if (!res.ok) return i.followUp({ content: `❌ ${res.message}`, ephemeral: true });

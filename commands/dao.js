@@ -5,8 +5,7 @@ const { EmbedBuilder } = require("discord.js");
 const { loadUsers, saveUsers } = require("../utils/storage");
 const { rollOre } = require("../utils/mining");
 const { tierMeta, tierText } = require("../utils/tiers");
-const { recordEvent: recordQuestEvent } = require("../utils/questSystem");
-const { recordEvent: recordAchvEvent } = require("../utils/achievementSystem");
+const { recordQuestEvent, recordAchievementEvent } = require("./progress");
 
 const COOLDOWN_MS = 5 * 1000;
 
@@ -22,7 +21,7 @@ module.exports = {
   name: "dao",
   aliases: ["daokhoang", "mine"],
   description: "Đào khoáng (5 giây/lần).",
-  run: async (client, msg) => {
+  run: async (_client, msg) => {
     const users = loadUsers();
     const user = users[msg.author.id];
     if (!user) return msg.reply("❌ Đạo hữu chưa nhập đạo. Dùng `-create` để khai mở nhân vật.");
@@ -42,7 +41,6 @@ module.exports = {
       return msg.reply("❌ Đạo hữu chưa có khoáng cụ. Ghé `-shop` để chuẩn bị trước khi xuống mỏ.");
     }
 
-    // Active tool
     let tool = user.mining.tools.find((t) => t.iid === user.mining.activeToolId) || null;
     if (!tool) {
       user.mining.activeToolId = user.mining.tools[0].iid;
@@ -50,51 +48,36 @@ module.exports = {
     }
 
     const ore = rollOre({ bonusRare: tool.bonusRare || 0 });
-    if (!ore) {
-      return msg.reply("❌ Linh mỏ tạm thời chưa khai thông. Hãy báo quản sự kiểm tra.");
-    }
+    if (!ore) return msg.reply("❌ Linh mỏ tạm thời chưa khai thông. Hãy báo quản sự kiểm tra.");
 
-    // Ghi nhận khoáng
     const oreId = ore.id;
     user.mining.ores[oreId] = (Number(user.mining.ores[oreId]) || 0) + 1;
-
-    // Quest + Achievement
     recordQuestEvent(user, "mine", 1);
-    const unlockedTitles = recordAchvEvent(user, "mine", 1) || [];
+    const unlockedTitles = recordAchievementEvent(user, "mine", 1) || [];
 
-    // Trừ độ bền
     tool.durability = Math.max(0, (Number(tool.durability) || 0) - 1);
     user.mining.lastMineAt = now;
 
     let brokeText = "";
     if (tool.durability <= 0) {
-      // Hỏng: remove tool
       user.mining.tools = user.mining.tools.filter((t) => t.iid !== tool.iid);
-      if (user.mining.activeToolId === tool.iid) {
-        user.mining.activeToolId = user.mining.tools[0]?.iid || null;
-      }
+      if (user.mining.activeToolId === tool.iid) user.mining.activeToolId = user.mining.tools[0]?.iid || null;
       brokeText = "\n\n⚠️ **Khoáng cụ** đã vỡ nát, linh vận tiêu tán.";
     }
 
     const m = tierMeta(ore.tier);
     const toolDurText = `${Math.max(0, tool.durability)}/${Math.max(0, tool.durabilityMax || tool.durability || 0)}`;
-
     const embed = new EmbedBuilder()
       .setColor(m.color)
       .setTitle("⛏️ Khai Khoáng")
       .setDescription(
         `Đạo hữu xuống mỏ và thu được:\n\n` +
         `${m.icon} **${ore.name}** • **${tierText(ore.tier)}**\n` +
-        `Khoáng cụ đang dùng: **${tool.name || "Khoáng cụ"}** • Độ bền **${toolDurText}**` +
-        brokeText
+        `Khoáng cụ đang dùng: **${tool.name || "Khoáng cụ"}** • Độ bền **${toolDurText}**` + brokeText
       );
 
     if (unlockedTitles.length) {
-      embed.addFields({
-        name: "Danh hiệu vừa ngộ",
-        value: unlockedTitles.map((t) => `• **${t}**`).join("\n"),
-        inline: false,
-      });
+      embed.addFields({ name: "Danh hiệu vừa ngộ", value: unlockedTitles.map((t) => `• **${t}**`).join("\n"), inline: false });
     }
 
     users[msg.author.id] = user;
